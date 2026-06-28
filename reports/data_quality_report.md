@@ -1,175 +1,167 @@
-# Data Quality Report — Điểm thi THPT Việt Nam
+# Báo cáo chất lượng dữ liệu: Điểm thi tốt nghiệp THPT 2022–2025
 
-## 1. Nguồn dữ liệu & độ phủ
+## 1. Nguồn dữ liệu và phạm vi
 
-| # | File gốc | Định dạng | Năm | Chương trình | Số dòng thô |
-|---|----------|-----------|-----|--------------|-------------|
-| 1 | `diem_thi_thpt_2022.csv` | CSV | 2022 | 2006 | 995,441 |
-| 2 | `diem_thi_thpt_2023.csv` | CSV | 2023 | 2006 | 1,022,060 |
-| 3 | `diem_thi_thpt_2024.csv` | CSV | 2024 | 2006 | 1,061,605 |
-| 4 | `20250715-ketquathi-ct2006.xlsx` (Sheet1) | XLSX | 2025 | 2006 | 22,090 |
-| 5 | `20250715-ketquathi-ct2018a.xlsx` (Sheet1) | XLSX | 2025 | 2018 | 1,000,000 |
-| 6 | `20250715-ketquathi-ct2018a_2.xlsx` (Sheet2) | XLSX | 2025 | 2018 | 131,136 |
+Bộ dữ liệu phục vụ phân tích được tổng hợp từ sáu tệp gốc, trải dài bốn kỳ thi tốt nghiệp THPT từ năm 2022 đến năm 2025. Ba năm 2022, 2023 và 2024 được cung cấp dưới dạng tệp CSV, trong khi dữ liệu năm 2025 nằm ở hai tệp Excel tương ứng với hai chương trình giáo dục khác nhau. Riêng nhóm thí sinh chương trình 2018 năm 2025 bị công cụ xuất dữ liệu chia thành hai trang tính, do đó được hợp nhất trở lại trong quá trình xử lý.
 
+| # | Tệp gốc | Định dạng | Năm | Chương trình | Số dòng thô |
+|---|---------|-----------|-----|--------------|-------------|
+| 1 | `diem_thi_thpt_2022.csv` | CSV | 2022 | 2006 | 995.441 |
+| 2 | `diem_thi_thpt_2023.csv` | CSV | 2023 | 2006 | 1.022.060 |
+| 3 | `diem_thi_thpt_2024.csv` | CSV | 2024 | 2006 | 1.061.605 |
+| 4 | `20250715-ketquathi-ct2006.xlsx` (Sheet1) | XLSX | 2025 | 2006 | 22.090 |
+| 5 | `20250715-ketquathi-ct2018a.xlsx` (Sheet1) | XLSX | 2025 | 2018 | 1.000.000 |
+| 6 | `20250715-ketquathi-ct2018a_2.xlsx` (Sheet2) | XLSX | 2025 | 2018 | 131.136 |
 
-## 2. Khóa & đơn vị dòng (grain)
+## 2. Đơn vị phân tích và khóa định danh
 
-- **Đơn vị dòng:** 1 dòng = 1 thí sinh trong 1 kỳ thi.
-- **Khóa duy nhất:** `(nam, chuong_trinh, sbd)`.
-- **0 bản ghi trùng khóa** (đã kiểm tra, không loại).
+Mỗi dòng trong dữ liệu tương ứng với một thí sinh trong một kỳ thi. Khóa định danh duy nhất là tổ hợp ba trường `nam`, `chuong_trinh` và `sbd`. Việc đưa thêm `chuong_trinh` vào khóa là cần thiết, bởi số báo danh có thể được dùng lại giữa các năm cũng như giữa hai chương trình của năm 2025. Sau khi xử lý, dữ liệu không tồn tại bản ghi nào trùng khóa.
 
-## 3. Data Dictionary
+## 3. Từ điển dữ liệu
 
-### 3.1. Cột định danh & metadata
+Tệp kết quả `final_data.csv` được tổ chức theo định dạng wide, mỗi thí sinh một dòng. Các trường được mô tả chi tiết dưới đây.
 
-| Cột | Kiểu logic | Ý nghĩa | Giá trị / khoảng |
-|-----|-----------|---------|------------------|
+### 3.1. Nhóm trường định danh và metadata
+
+| Trường | Kiểu | Ý nghĩa | Miền giá trị |
+|--------|------|---------|--------------|
 | `nam` | số nguyên | Năm dự thi | 2022, 2023, 2024, 2025 |
-| `chuong_trinh` | danh mục (chuỗi) | Chương trình GDPT của đề thi | `"2006"`, `"2018"` |
-| `sbd` | chuỗi, 8 ký tự | Số báo danh, **giữ số 0 đầu** | `"00000000"`–`"99999999"` (8 chữ số) |
-| `ma_tinh` | chuỗi, 2 ký tự | Mã hội đồng thi = `sbd[:2]` = **nơi dự thi** | `"01"`–`"64"` (không có `"20"`) |
-| `ten_tinh` | danh mục | Tên tỉnh/thành theo `ma_tinh` | xem §4.3 |
-| `vung_mien` | danh mục | Vùng kinh tế–xã hội (6 vùng) | xem §4.4 |
-| `vung_3` | danh mục | Miền (gộp từ 6 vùng) | `Bắc`, `Trung`, `Nam` |
-| `ma_ngoai_ngu` | danh mục | Mã thứ tiếng của môn Ngoại ngữ | `N1`–`N7`, hoặc `"NA"` (không thi NN) |
+| `chuong_trinh` | danh mục | Chương trình giáo dục của đề thi | `2006`, `2018` |
+| `sbd` | chuỗi 8 ký tự | Số báo danh, giữ nguyên số 0 ở đầu | tám chữ số |
+| `ma_tinh` | chuỗi 2 ký tự | Mã hội đồng thi, lấy từ hai chữ số đầu của số báo danh | `01` đến `64`, không có `20` |
+| `ten_tinh` | danh mục | Tên tỉnh hoặc thành phố, suy ra từ mã tỉnh | xem mục 4.3 |
+| `vung_mien` | danh mục | Vùng kinh tế xã hội (sáu vùng) | xem mục 4.3 |
+| `vung_3` | danh mục | Miền địa lý, gộp từ sáu vùng | Bắc, Trung, Nam |
+| `ma_ngoai_ngu` | danh mục | Mã thứ tiếng của môn Ngoại ngữ | `N1` đến `N7`, hoặc `NA` |
 
-### 3.2. Cột điểm môn (13 cột)
+### 3.2. Nhóm trường điểm môn
 
-Kiểu: **số thực**, lưu 2 chữ số thập phân, khoảng hợp lệ **[0, 10]**. **Ô trống (NaN) = thí sinh KHÔNG thi môn đó** (không phải 0 điểm).
+Mười ba trường điểm đều có kiểu số thực, lưu hai chữ số thập phân, với khoảng giá trị hợp lệ từ 0 đến 10. Một quy ước quan trọng cần ghi nhớ khi sử dụng dữ liệu là giá trị rỗng (NaN) mang ý nghĩa thí sinh không dự thi môn đó, hoàn toàn khác với điểm 0.
 
-| Cột | Môn | Có ở chương trình |
-|-----|-----|-------------------|
-| `toan` | Toán | 2006 + 2018 |
-| `ngu_van` | Ngữ văn | 2006 + 2018 |
-| `ngoai_ngu` | Ngoại ngữ (thứ tiếng theo `ma_ngoai_ngu`) | 2006 + 2018 |
-| `vat_li` | Vật lí | 2006 + 2018 |
-| `hoa_hoc` | Hóa học | 2006 + 2018 |
-| `sinh_hoc` | Sinh học | 2006 + 2018 |
-| `lich_su` | Lịch sử | 2006 + 2018 |
-| `dia_li` | Địa lí | 2006 + 2018 |
-| `gdcd` | Giáo dục công dân | **chỉ 2006** |
-| `tin_hoc` | Tin học | **chỉ 2018** |
-| `cong_nghe_cn` | Công nghệ công nghiệp | **chỉ 2018** |
-| `cong_nghe_nn` | Công nghệ nông nghiệp | **chỉ 2018** |
-| `gd_ktpl` | Giáo dục kinh tế và pháp luật | **chỉ 2018** |
+| Trường | Môn | Chương trình |
+|--------|-----|--------------|
+| `toan` | Toán | 2006 và 2018 |
+| `ngu_van` | Ngữ văn | 2006 và 2018 |
+| `ngoai_ngu` | Ngoại ngữ | 2006 và 2018 |
+| `vat_li` | Vật lí | 2006 và 2018 |
+| `hoa_hoc` | Hóa học | 2006 và 2018 |
+| `sinh_hoc` | Sinh học | 2006 và 2018 |
+| `lich_su` | Lịch sử | 2006 và 2018 |
+| `dia_li` | Địa lí | 2006 và 2018 |
+| `gdcd` | Giáo dục công dân | chỉ 2006 |
+| `tin_hoc` | Tin học | chỉ 2018 |
+| `cong_nghe_cn` | Công nghệ công nghiệp | chỉ 2018 |
+| `cong_nghe_nn` | Công nghệ nông nghiệp | chỉ 2018 |
+| `gd_ktpl` | Giáo dục kinh tế và pháp luật | chỉ 2018 |
 
-> Cột môn không thuộc chương trình của dòng đó luôn = NaN (ví dụ `gdcd` ở mọi dòng 2018, `tin_hoc` ở mọi dòng 2006).
+Những môn không thuộc chương trình của dòng dữ liệu sẽ luôn có giá trị rỗng. Chẳng hạn, mọi thí sinh chương trình 2018 đều rỗng ở trường `gdcd`, và mọi thí sinh chương trình 2006 đều rỗng ở các trường môn mới như `tin_hoc`.
 
-### 3.3. Biến dẫn xuất
+### 3.3. Nhóm trường dẫn xuất
 
-| Cột | Kiểu | Ý nghĩa | Công thức |
-|-----|------|---------|-----------|
-| `so_mon` | số nguyên | Số môn có điểm | đếm số ô không NaN trong 13 cột điểm (≥ 1) |
-| `ban` | danh mục | Ban dự thi (chỉ CT2006) | `KHTN` / `KHXH` / `Khác`; NaN với CT2018 (xem §5.6) |
-| `diem_khoi_a00` | số thực | Tổng khối A00 | `toan + vat_li + hoa_hoc` |
-| `diem_khoi_a01` | số thực | Tổng khối A01 | `toan + vat_li + ngoai_ngu*` |
-| `diem_khoi_b00` | số thực | Tổng khối B00 | `toan + hoa_hoc + sinh_hoc` |
-| `diem_khoi_c00` | số thực | Tổng khối C00 | `ngu_van + lich_su + dia_li` |
-| `diem_khoi_d01` | số thực | Tổng khối D01 | `toan + ngu_van + ngoai_ngu*` |
+| Trường | Kiểu | Ý nghĩa | Cách tính |
+|--------|------|---------|-----------|
+| `so_mon` | số nguyên | Số môn thí sinh có điểm | đếm số trường điểm không rỗng |
+| `ban` | danh mục | Ban dự thi, chỉ áp dụng cho chương trình 2006 | KHTN, KHXH hoặc Khác; rỗng với chương trình 2018 |
+| `diem_khoi_a00` | số thực | Tổng điểm khối A00 | Toán + Vật lí + Hóa học |
+| `diem_khoi_a01` | số thực | Tổng điểm khối A01 | Toán + Vật lí + Ngoại ngữ (tiếng Anh) |
+| `diem_khoi_b00` | số thực | Tổng điểm khối B00 | Toán + Hóa học + Sinh học |
+| `diem_khoi_c00` | số thực | Tổng điểm khối C00 | Ngữ văn + Lịch sử + Địa lí |
+| `diem_khoi_d01` | số thực | Tổng điểm khối D01 | Toán + Ngữ văn + Ngoại ngữ (tiếng Anh) |
 
-`ngoai_ngu*` = điểm Ngoại ngữ **chỉ khi là tiếng Anh** (xem §5.7). Mọi cột khối = **NaN nếu thiếu bất kỳ môn thành phần** nào.
+Mỗi trường điểm khối chỉ có giá trị khi thí sinh dự thi đủ ba môn thành phần; nếu thiếu bất kỳ môn nào, giá trị khối sẽ là rỗng. Hai khối A01 và D01 chỉ tính điểm Ngoại ngữ khi đó là tiếng Anh, theo quy ước được nêu ở mục 5.
 
+## 4. Danh mục giá trị
 
-## 4. Giá trị danh mục đóng băng
+### 4.1. Năm và chương trình
 
-### 4.1. `nam`
-`2022`, `2023`, `2024`, `2025`.
+Trường `nam` nhận một trong bốn giá trị từ 2022 đến 2025. Trường `chuong_trinh` phân biệt hai hệ đề thi: giá trị `2006` áp dụng cho các kỳ thi 2022, 2023, 2024 và nhóm thí sinh tự do thi theo đề cũ năm 2025; giá trị `2018` dành riêng cho nhóm thí sinh thi theo chương trình giáo dục phổ thông mới năm 2025.
 
-### 4.2. `chuong_trinh`
-- `"2006"` — chương trình GDPT 2006 (đề cũ): 2022, 2023, 2024, và nhóm thí sinh thi đề cũ năm 2025 (`ct2006`).
-- `"2018"` — chương trình GDPT 2018 (đề mới): nhóm `ct2018a` năm 2025.
+### 4.2. Mã ngoại ngữ
 
-### 4.3. `ma_ngoai_ngu`
+Môn Ngoại ngữ bao gồm nhiều thứ tiếng, được phân biệt qua trường `ma_ngoai_ngu` như sau:
+
 | Mã | Thứ tiếng |
 |----|-----------|
-| `N1` | Tiếng Anh |
-| `N2` | Tiếng Nga |
-| `N3` | Tiếng Pháp |
-| `N4` | Tiếng Trung Quốc |
-| `N5` | Tiếng Đức |
-| `N6` | Tiếng Nhật |
-| `N7` | Tiếng Hàn |
-| `NA` | Không thi môn Ngoại ngữ |
+| N1 | Tiếng Anh |
+| N2 | Tiếng Nga |
+| N3 | Tiếng Pháp |
+| N4 | Tiếng Trung Quốc |
+| N5 | Tiếng Đức |
+| N6 | Tiếng Nhật |
+| N7 | Tiếng Hàn |
+| NA | Không dự thi Ngoại ngữ |
 
-> Ánh xạ `N4`–`N7` nên đối chiếu lại với quy ước chính thức của Bộ GD&ĐT trước khi công bố. `ma_ngoai_ngu` thiếu được ghi là **chuỗi `"NA"`** (không để trống); khi đọc lại bằng `pd.read_csv` mặc định, `"NA"` sẽ tự thành NaN — muốn giữ nguyên chuỗi thì đọc với `keep_default_na=False`. **Năm 2022 không có cột mã ngoại ngữ trong dữ liệu gốc** → toàn bộ dòng 2022 có `ma_ngoai_ngu = "NA"`.
+Cần lưu ý rằng ánh xạ các mã từ N4 đến N7 nên được đối chiếu lại với quy ước chính thức của Bộ Giáo dục và Đào tạo trước khi công bố. Trường hợp thí sinh không dự thi Ngoại ngữ được ghi nhận bằng chuỗi `NA` thay vì để trống; khi đọc lại tệp kết quả bằng pandas với cấu hình mặc định, chuỗi này sẽ tự động chuyển thành giá trị rỗng. Riêng năm 2022, dữ liệu gốc không có cột mã ngoại ngữ, nên toàn bộ thí sinh năm này mang giá trị `NA`.
 
-### 4.4. `ten_tinh` & `vung_mien` (63 mã, KHÔNG có mã `20`)
+### 4.3. Phân vùng địa lý
 
-Mã `ma_tinh` = mã **hội đồng thi truyền thống (trước sáp nhập tỉnh 2025)**. Bảng theo 6 vùng kinh tế–xã hội:
+Mã tỉnh trong dữ liệu là mã hội đồng thi theo hệ thống trước khi sáp nhập đơn vị hành chính năm 2025, gồm 63 mã và không có mã 20. Các tỉnh được phân về sáu vùng kinh tế xã hội, sau đó gộp tiếp thành ba miền Bắc, Trung, Nam.
 
-**Trung du và miền núi phía Bắc** — `vung_3 = Bắc`
-05 Hà Giang · 06 Cao Bằng · 07 Lai Châu · 08 Lào Cai · 09 Tuyên Quang · 10 Lạng Sơn · 11 Bắc Kạn · 12 Thái Nguyên · 13 Yên Bái · 14 Sơn La · 15 Phú Thọ · 18 Bắc Giang · 23 Hòa Bình · 62 Điện Biên
+Trung du và miền núi phía Bắc (thuộc miền Bắc) gồm các mã 05 Hà Giang, 06 Cao Bằng, 07 Lai Châu, 08 Lào Cai, 09 Tuyên Quang, 10 Lạng Sơn, 11 Bắc Kạn, 12 Thái Nguyên, 13 Yên Bái, 14 Sơn La, 15 Phú Thọ, 18 Bắc Giang, 23 Hòa Bình và 62 Điện Biên.
 
-**Đồng bằng sông Hồng** — `vung_3 = Bắc`
-01 Hà Nội · 03 Hải Phòng · 16 Vĩnh Phúc · 17 Quảng Ninh · 19 Bắc Ninh · 21 Hải Dương · 22 Hưng Yên · 24 Hà Nam · 25 Nam Định · 26 Thái Bình · 27 Ninh Bình
+Đồng bằng sông Hồng (thuộc miền Bắc) gồm 01 Hà Nội, 03 Hải Phòng, 16 Vĩnh Phúc, 17 Quảng Ninh, 19 Bắc Ninh, 21 Hải Dương, 22 Hưng Yên, 24 Hà Nam, 25 Nam Định, 26 Thái Bình và 27 Ninh Bình.
 
-**Bắc Trung Bộ và Duyên hải miền Trung** — `vung_3 = Trung`
-04 Đà Nẵng · 28 Thanh Hóa · 29 Nghệ An · 30 Hà Tĩnh · 31 Quảng Bình · 32 Quảng Trị · 33 Thừa Thiên - Huế · 34 Quảng Nam · 35 Quảng Ngãi · 37 Bình Định · 39 Phú Yên · 41 Khánh Hòa · 45 Ninh Thuận · 47 Bình Thuận
+Bắc Trung Bộ và Duyên hải miền Trung (thuộc miền Trung) gồm 04 Đà Nẵng, 28 Thanh Hóa, 29 Nghệ An, 30 Hà Tĩnh, 31 Quảng Bình, 32 Quảng Trị, 33 Thừa Thiên Huế, 34 Quảng Nam, 35 Quảng Ngãi, 37 Bình Định, 39 Phú Yên, 41 Khánh Hòa, 45 Ninh Thuận và 47 Bình Thuận.
 
-**Tây Nguyên** — `vung_3 = Trung`
-36 Kon Tum · 38 Gia Lai · 40 Đắk Lắk · 42 Lâm Đồng · 63 Đăk Nông
+Tây Nguyên (thuộc miền Trung) gồm 36 Kon Tum, 38 Gia Lai, 40 Đắk Lắk, 42 Lâm Đồng và 63 Đắk Nông.
 
-**Đông Nam Bộ** — `vung_3 = Nam`
-02 TP. Hồ Chí Minh · 43 Bình Phước · 44 Bình Dương · 46 Tây Ninh · 48 Đồng Nai · 52 Bà Rịa – Vũng Tàu
+Đông Nam Bộ (thuộc miền Nam) gồm 02 Thành phố Hồ Chí Minh, 43 Bình Phước, 44 Bình Dương, 46 Tây Ninh, 48 Đồng Nai và 52 Bà Rịa Vũng Tàu.
 
-**Đồng bằng sông Cửu Long** — `vung_3 = Nam`
-49 Long An · 50 Đồng Tháp · 51 An Giang · 53 Tiền Giang · 54 Kiên Giang · 55 Cần Thơ · 56 Bến Tre · 57 Vĩnh Long · 58 Trà Vinh · 59 Sóc Trăng · 60 Bạc Liêu · 61 Cà Mau · 64 Hậu Giang
+Đồng bằng sông Cửu Long (thuộc miền Nam) gồm 49 Long An, 50 Đồng Tháp, 51 An Giang, 53 Tiền Giang, 54 Kiên Giang, 55 Cần Thơ, 56 Bến Tre, 57 Vĩnh Long, 58 Trà Vinh, 59 Sóc Trăng, 60 Bạc Liêu, 61 Cà Mau và 64 Hậu Giang.
 
-### 4.5. `vung_3`
-`Bắc` = (Trung du & MN phía Bắc) + (ĐB sông Hồng); `Trung` = (Bắc Trung Bộ & DH miền Trung) + (Tây Nguyên); `Nam` = (Đông Nam Bộ) + (ĐB sông Cửu Long).
+### 4.4. Ban dự thi
 
-### 4.6. `ban`
-`KHTN`, `KHXH`, `Khác` (chỉ CT2006); NaN với CT2018.
+Trường `ban` chỉ áp dụng cho thí sinh chương trình 2006 và nhận một trong ba giá trị KHTN, KHXH hoặc Khác. Thí sinh chương trình 2018 luôn có giá trị rỗng ở trường này.
 
+## 5. Quy trình xử lý dữ liệu
 
-## 5. Quy tắc xử lý dữ liệu (đóng băng)
+Quy trình làm sạch và hợp nhất được thiết kế để bảo toàn tối đa thông tin gốc, hạn chế tối thiểu việc can thiệp vào giá trị điểm, và đảm bảo nhất quán giữa các năm có cấu trúc khác nhau.
 
-1. **Đổi tên cột về chuẩn (canonical).** 3 file CSV vốn đã đúng tên chuẩn; 3 file XLSX đổi tên theo bảng RENAME trong `clean_data.py`. Cột `STT` của file XLSX bị bỏ.
-2. **SBD:** ép chuỗi, bỏ đuôi `.0` nếu có, giữ chỉ chữ số, `zfill(8)` (khôi phục số 0 đầu nếu Excel lỡ lưu dạng số). Dòng có SBD ≠ 8 chữ số bị loại + đếm.
-3. **`ma_tinh` = `sbd[:2]`**; map sang `ten_tinh`, `vung_mien`, `vung_3` bằng từ điển cứng 63 tỉnh. Mã tỉnh không có trong danh mục (gồm `"20"`) → loại + đếm.
-4. **Điểm:** ép số thực; ô trống → NaN. **0 và 10 là giá trị HỢP LỆ** (0 = điểm liệt thật). Giá trị ngoài `[0, 10]` → NaN + đếm.
-   - **Không** làm tròn theo bước 0.25 (CT2018 có điểm như 7.35, 6.35).
-   - **Không** cắt outlier bằng IQR.
-   - **NaN không bao giờ được thay bằng 0.** Mọi thống kê trung bình môn phải tính trên tập thí sinh **có dự thi** môn đó.
-5. **`ma_ngoai_ngu`:** chuẩn hóa hoa, khoảng trắng; rỗng → `"NA"`.
-6. **`ban`** (chỉ CT2006): so số môn có điểm giữa nhóm KHTN `{vat_li, hoa_hoc, sinh_hoc}` và KHXH `{lich_su, dia_li, gdcd}`. Bên nào nhiều hơn → ban đó; bằng nhau và > 0 → `Khác`; cả hai = 0 → NaN. CT2018 → NaN (đề mới phá vỡ nhị phân KHTN/KHXH).
-7. **Điểm khối:** chỉ tính khi đủ cả 3 môn thành phần (phép cộng để NaN tự lan). Khối A01/D01 dùng điểm Ngoại ngữ **chỉ khi là tiếng Anh** (`ma_ngoai_ngu == "N1"`). **Ngoại lệ năm 2022:** do gốc thiếu mã ngoại ngữ, coi toàn bộ điểm Ngoại ngữ 2022 là tiếng Anh (giả định có chủ đích, ghi nhận tại đây).
-8. **Loại dòng `so_mon == 0`** (đăng ký nhưng trống toàn bộ điểm) + đếm.
-9. **Không khử trùng** trên khóa `(nam, chuong_trinh, sbd)` — chỉ đếm và báo cáo.
-10. **Xuất:** `final_data.csv` (wide), số thực ghi 2 chữ số thập phân, NaN → ô trống.
+Trước hết, tên cột của ba tệp Excel được chuẩn hóa về cùng bộ tên với ba tệp CSV, đồng thời loại bỏ cột số thứ tự không cần thiết. Số báo danh được ép về dạng chuỗi, làm sạch phần thập phân thừa nếu Excel lưu nhầm dưới dạng số, sau đó bổ sung số 0 ở đầu để đảm bảo đủ tám chữ số. Những dòng có số báo danh không hợp lệ sẽ bị loại và ghi nhận số lượng.
 
-## 6. Thống kê chất lượng (lần chạy freeze)
+Mã tỉnh được trích từ hai chữ số đầu của số báo danh, rồi ánh xạ sang tên tỉnh, vùng kinh tế xã hội và miền địa lý dựa trên bảng tra cứu cố định gồm 63 tỉnh. Các mã tỉnh không nằm trong danh mục, bao gồm cả mã 20 không tồn tại, sẽ bị loại và ghi nhận.
 
-**Tổng quan:** 4,232,332 dòng thô → **4,227,695 dòng** đầu ra (loại 4,637).
+Đối với điểm số, dữ liệu được ép về kiểu số thực, ô trống chuyển thành giá trị rỗng. Hai mốc 0 và 10 được giữ nguyên vì đây là các giá trị hợp lệ, trong đó điểm 0 phản ánh điểm liệt thực tế. Các giá trị nằm ngoài khoảng từ 0 đến 10 được chuyển thành rỗng và ghi nhận số lượng. Quá trình xử lý tuyệt đối không làm tròn điểm theo bước 0,25, bởi chương trình 2018 xuất hiện những mức điểm lẻ như 7,35 hay 6,35; cũng không loại điểm ngoại lai theo phương pháp tứ phân vị, và không thay thế giá trị rỗng bằng 0. Theo đó, mọi thống kê trung bình môn về sau đều phải được tính trên tập thí sinh thực sự dự thi môn đó.
 
-| Hạng mục | Số dòng/ô |
-|----------|-----------|
-| SBD lỗi (≠ 8 chữ số) | 0 |
-| Mã tỉnh lạ (ngoài danh mục) | 0 |
-| `so_mon == 0` (đã loại) | 4,637 |
-| Ô điểm ngoài [0,10] → NaN | 0 |
+Trường mã ngoại ngữ được chuẩn hóa về chữ hoa, loại bỏ khoảng trắng thừa, và quy các giá trị rỗng về chuỗi `NA`. Trường ban dự thi được xác định cho thí sinh chương trình 2006 bằng cách so sánh số môn có điểm giữa nhóm tự nhiên gồm Vật lí, Hóa học, Sinh học và nhóm xã hội gồm Lịch sử, Địa lí, Giáo dục công dân; bên nào nhiều môn hơn sẽ quyết định ban, trường hợp bằng nhau và cùng lớn hơn 0 được xếp vào nhóm Khác. Thí sinh chương trình 2018 không được gán ban, do cấu trúc đề mới đã phá vỡ cách phân chia tự nhiên và xã hội truyền thống.
+
+Điểm các khối thi được tính bằng tổng điểm ba môn thành phần và chỉ có giá trị khi thí sinh dự thi đầy đủ. Hai khối A01 và D01 chỉ sử dụng điểm Ngoại ngữ khi thí sinh thi tiếng Anh. Riêng năm 2022, do dữ liệu gốc không có mã ngoại ngữ, toàn bộ điểm Ngoại ngữ được quy ước là tiếng Anh; đây là một giả định có chủ đích và được ghi nhận rõ để người sử dụng lưu ý khi đọc kết quả khối của riêng năm này.
+
+Cuối cùng, những dòng không có điểm ở bất kỳ môn nào, tương ứng với thí sinh đăng ký nhưng vắng thi toàn bộ, sẽ bị loại khỏi dữ liệu và ghi nhận. Quy trình không thực hiện khử trùng trên khóa định danh mà chỉ đếm và báo cáo số bản ghi trùng. Dữ liệu sau xử lý được xuất ra tệp `final_data.csv` ở định dạng wide, với điểm số ghi hai chữ số thập phân và giá trị rỗng để trống.
+
+## 6. Thống kê chất lượng
+
+Sau khi xử lý, tổng số 4.232.332 dòng dữ liệu thô được rút gọn còn 4.227.695 dòng. Toàn bộ 4.637 dòng bị loại đều thuộc nhóm thí sinh vắng thi toàn bộ. Dữ liệu cho thấy chất lượng đầu vào rất tốt: không có số báo danh sai định dạng, không có mã tỉnh lạ, không có điểm nằm ngoài khoảng hợp lệ, và không có bản ghi trùng khóa.
+
+| Hạng mục | Số lượng |
+|----------|----------|
+| Số báo danh sai định dạng | 0 |
+| Mã tỉnh ngoài danh mục | 0 |
+| Dòng vắng thi toàn bộ (đã loại) | 4.637 |
+| Ô điểm ngoài khoảng 0 đến 10 | 0 |
 | Bản ghi trùng khóa (chỉ đếm) | 0 |
 
-**Phân bố sau xử lý:**
+Phân bố dữ liệu sau xử lý theo từng năm và chương trình được trình bày dưới đây.
 
-| Năm | Chương trình | Số dòng | Loại do `so_mon==0` |
-|-----|--------------|---------|---------------------|
-| 2022 | 2006 | 995,435 | 6 |
-| 2023 | 2006 | 1,017,584 | 4,476 |
-| 2024 | 2006 | 1,061,604 | 1 |
-| 2025 | 2006 | 22,088 | 2 |
-| 2025 | 2018 | 1,130,984 | 152 |
-| **Tổng** | | **4,227,695** | **4,637** |
+| Năm | Chương trình | Số dòng | Loại do vắng thi |
+|-----|--------------|---------|------------------|
+| 2022 | 2006 | 995.435 | 6 |
+| 2023 | 2006 | 1.017.584 | 4.476 |
+| 2024 | 2006 | 1.061.604 | 1 |
+| 2025 | 2006 | 22.088 | 2 |
+| 2025 | 2018 | 1.130.984 | 152 |
+| Tổng | | 4.227.695 | 4.637 |
 
-> Dữ liệu sạch bất thường theo hướng tốt: 0 SBD lỗi, 0 mã tỉnh lạ, 0 điểm ngoài khoảng. Năm 2023 có nhiều dòng `so_mon==0` hơn hẳn (4,476) — nhiều khả năng là thí sinh đăng ký nhưng vắng toàn bộ; cần nhắc trong báo cáo nhưng không phải lỗi dữ liệu.
+Một điểm đáng chú ý là năm 2023 có số dòng vắng thi cao hơn hẳn các năm còn lại, với 4.476 dòng. Đây nhiều khả năng là nhóm thí sinh đăng ký nhưng không tham dự, cần được nhắc đến trong báo cáo phân tích nhưng không phải là lỗi dữ liệu.
 
+## 7. Hạn chế và lưu ý khi diễn giải
 
-## 7. Cảnh báo & giới hạn diễn giải
+Kết quả năm 2025 thuộc chương trình 2018 cần được xem là một năm bản lề và không so sánh trực tiếp về mặt thước đo với giai đoạn 2022 đến 2024. Đề thi, cấu trúc môn và cơ chế chọn môn của chương trình mới đều khác biệt: môn Giáo dục công dân không còn, xuất hiện các môn mới như Tin học, Công nghệ và Giáo dục kinh tế và pháp luật, đồng thời Ngoại ngữ trở thành môn tự chọn. Vì vậy, đường xu hướng điểm trung bình môn nên dừng ở năm 2024, còn năm 2025 được phân tích riêng.
 
-1. **2025 (CT2018) là năm bản lề, KHÔNG cùng thước đo với 2022–2024.** Đề khác, cấu trúc môn khác (bỏ GDCD; thêm Tin học, Công nghệ, GD kinh tế & pháp luật; ngoại ngữ tự chọn). **Không nối thẳng đường "xu hướng điểm trung bình môn" từ 2024 sang 2025.** Nên giới hạn so sánh xu hướng trong 2022–2024 và phân tích 2025 riêng.
-2. **`ma_tinh` là NƠI DỰ THI (hội đồng thi), không chắc là nơi thường trú/học.** Mọi kết luận "chênh lệch vùng miền" phải phát biểu là *theo địa điểm dự thi*.
-3. **Mã tỉnh là hệ trước sáp nhập tỉnh 2025** (63 hội đồng, không có mã 20). Không khớp với danh sách 34 tỉnh sau sáp nhập — giữ nguyên hệ cũ để nhất quán xuyên suốt 4 năm.
-4. **Cột Ngoại ngữ trộn nhiều thứ tiếng** (N1–N7). Khi so sánh tỉnh/vùng theo môn Ngoại ngữ nên lọc về tiếng Anh (`ma_ngoai_ngu == "N1"`), nếu không sẽ so nhầm.
-5. **Năm 2022 thiếu mã ngoại ngữ** → khối A01/D01 năm 2022 dựa trên giả định "toàn bộ là tiếng Anh" (§5.7). Khi đọc khối của riêng 2022 cần nhớ giả định này.
-6. **Tỉ lệ thiếu cao ở nhiều cột là BÌNH THƯỜNG, do cơ chế chọn môn** (ví dụ phần lớn thí sinh không thi Sinh học → `sinh_hoc` thiếu ~90%). Thiếu ≠ chất lượng kém; thiếu = không chọn môn.
-7. **Giới hạn nội tại của dữ liệu:** chỉ có điểm + SBD. **Không có** giới tính, trường, dân tộc, học lực, hoàn cảnh KT-XH. Mọi câu hỏi về "bất bình đẳng giáo dục" chỉ dừng ở mức **tương quan địa lý thô**, không suy ra nguyên nhân.
+Mã tỉnh trong dữ liệu phản ánh địa điểm dự thi theo hội đồng thi, không nhất thiết trùng với nơi cư trú hay nơi học của thí sinh. Do đó, mọi nhận định về chênh lệch giữa các địa phương cần được phát biểu theo địa điểm dự thi. Hệ mã tỉnh này cũng thuộc giai đoạn trước sáp nhập đơn vị hành chính năm 2025, nên không khớp với danh sách 34 tỉnh thành hiện hành; dữ liệu giữ nguyên hệ mã cũ nhằm bảo đảm tính nhất quán xuyên suốt bốn năm.
+
+Môn Ngoại ngữ bao gồm nhiều thứ tiếng khác nhau, nên khi so sánh giữa các tỉnh hoặc vùng, cần giới hạn ở tiếng Anh để tránh so sánh nhầm giữa các thứ tiếng có mặt bằng điểm khác nhau. Bên cạnh đó, khối A01 và D01 của năm 2022 được tính dựa trên giả định toàn bộ Ngoại ngữ là tiếng Anh, do dữ liệu gốc thiếu mã ngoại ngữ.
+
+Tỷ lệ giá trị rỗng cao ở nhiều môn là điều bình thường và bắt nguồn từ cơ chế chọn môn, chứ không phải dấu hiệu dữ liệu kém chất lượng. Ví dụ, phần lớn thí sinh không chọn thi Sinh học khiến trường điểm môn này rỗng tới khoảng 90 phần trăm. Trong mọi trường hợp, giá trị rỗng cần được hiểu là không dự thi, không phải điểm thấp.
+
+Sau cùng, cần ý thức rõ giới hạn nội tại của bộ dữ liệu. Thông tin sẵn có chỉ gồm điểm số và số báo danh, hoàn toàn không có các yếu tố như giới tính, trường học, dân tộc, học lực hay hoàn cảnh kinh tế xã hội. Vì vậy, những câu hỏi liên quan đến bất bình đẳng giáo dục chỉ có thể dừng ở mức mô tả tương quan theo địa lý, và không nên được diễn giải thành quan hệ nhân quả.
