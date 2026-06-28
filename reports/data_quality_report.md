@@ -91,7 +91,7 @@ Môn Ngoại ngữ bao gồm nhiều thứ tiếng, được phân biệt qua tr
 | N7 | Tiếng Hàn |
 | NA | Không dự thi Ngoại ngữ |
 
-Cần lưu ý rằng ánh xạ các mã từ N4 đến N7 nên được đối chiếu lại với quy ước chính thức của Bộ Giáo dục và Đào tạo trước khi công bố. Trường hợp thí sinh không dự thi Ngoại ngữ được ghi nhận bằng chuỗi `NA` thay vì để trống; khi đọc lại tệp kết quả bằng pandas với cấu hình mặc định, chuỗi này sẽ tự động chuyển thành giá trị rỗng. Riêng năm 2022, dữ liệu gốc không có cột mã ngoại ngữ, nên toàn bộ thí sinh năm này mang giá trị `NA`.
+Cần lưu ý rằng ánh xạ các mã từ N4 đến N7 nên được đối chiếu lại với quy ước chính thức của Bộ Giáo dục và Đào tạo trước khi công bố. Trường hợp thí sinh không dự thi Ngoại ngữ được ghi nhận bằng chuỗi `NA` thay vì để trống; khi đọc lại tệp kết quả bằng pandas với cấu hình mặc định, chuỗi này sẽ tự động chuyển thành giá trị rỗng. Riêng năm 2022, dữ liệu gốc không có cột mã ngoại ngữ, nên toàn bộ thí sinh thi ngoại ngữ năm này sẽ giả định là N1 do số liệu thực tế cho thấy có đến 99% thí sinh thi Tiếng Anh.
 
 ### 4.3. Phân vùng địa lý
 
