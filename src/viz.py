@@ -50,42 +50,96 @@ def load_data(path):
     return df
 
 def plot_missing_heatmap(df):
-    """Vẽ heatmap thể hiện tỷ lệ % thiếu điểm của từng môn theo năm."""
-    fig, ax = plt.subplots(figsize=(12, 6))
-    missing_pct = df.groupby("nam")[SUBJECT_COLS].apply(lambda x: x.isna().mean() * 100)
-    sns.heatmap(missing_pct.rename(columns=SUBJECT_VI), annot=True, fmt=".1f", cmap="YlOrRd", ax=ax)
-    ax.set_title("Tỷ lệ % thiếu điểm môn thi theo năm")
+    """Vẽ heatmap tỷ lệ % thí sinh KHÔNG dự thi từng môn, theo năm và chương trình."""
+    miss = (
+        df[SUBJECT_COLS].isna()
+        .groupby([df["nam"], df["chuong_trinh"]])
+        .mean()
+        .mul(100)
+    )
+    n_ct = df.groupby("nam")["chuong_trinh"].nunique()
+    miss.index = [
+        f"{nam}" if n_ct[nam] == 1 else f"{nam} · CT{ct}"
+        for nam, ct in miss.index
+    ]
+
+    fig, ax = plt.subplots(figsize=(13, 5))
+    sns.heatmap(
+        miss.rename(columns=SUBJECT_VI),
+        annot=True, fmt=".1f", cmap="YlOrRd",
+        vmin=0, vmax=100,                       
+        linewidths=0.5, linecolor="white",
+        cbar_kws={"label": "% không dự thi"},
+        ax=ax,
+    )
+    ax.set_title("Tỷ lệ thí sinh không dự thi theo môn",
+                 fontsize=13, pad=12)
+    ax.set_xlabel("Môn thi")
     ax.set_ylabel("Năm")
+    plt.setp(ax.get_xticklabels(), rotation=40, ha="right")
+    plt.setp(ax.get_yticklabels(), rotation=0)
     fig.tight_layout()
     return ax
 
 def plot_so_mon_dist(df):
-    """Vẽ phân bố số lượng môn thi (so_mon) tách theo chương trình."""
-    fig, ax = plt.subplots(figsize=(8, 5))
-    sns.countplot(data=df, x="so_mon", hue="chuong_trinh", ax=ax, palette="Set2")
-    ax.set_title("Phân bố số lượng môn thi")
-    ax.set_xlabel("Số môn")
-    ax.set_ylabel("Số lượng thí sinh")
+    """Vẽ phân bố số môn thi (%) theo từng chương trình."""
+    dist = (
+        df.groupby("chuong_trinh")["so_mon"]
+        .value_counts(normalize=True)
+        .mul(100)
+        .rename("ti_le")
+        .reset_index()
+    )
+    dist["chuong_trinh"] = dist["chuong_trinh"].map({"2006": "CT2006", "2018": "CT2018"})
+
+    fig, ax = plt.subplots(figsize=(9, 5))
+    sns.barplot(data=dist, x="so_mon", y="ti_le", hue="chuong_trinh",
+                palette="Set2", ax=ax)
+    ax.set_title("Phân bố số môn dự thi theo chương trình", fontsize=13, pad=10)
+    ax.set_xlabel("Số môn dự thi")
+    ax.set_ylabel("Tỉ lệ thí sinh trong chương trình (%)")
+    ax.legend(title="Chương trình")
+    for c in ax.containers:
+        ax.bar_label(c, fmt="%.1f", fontsize=8, padding=2)
     fig.tight_layout()
     return ax
 
-def plot_score_hist_grid(df, year=None):
-    """Vẽ histogram phổ điểm của 13 môn trên lưới subplot, bins 0-10 bước 0.25."""
-    data = df if year is None else df[df["nam"] == year]
-    fig, axes = plt.subplots(4, 4, figsize=(16, 12))
-    axes = axes.flatten()
+def plot_score_hist_grid(df, year=None, chuong_trinh=None):
+    """Vẽ histogram phổ điểm các môn có dữ liệu, bins 0-10 bước 0.25."""
+    data = df
+    if year is not None:
+        data = data[data["nam"] == year]
+    if chuong_trinh is not None:
+        data = data[data["chuong_trinh"] == chuong_trinh]
+
+    cols = [c for c in SUBJECT_COLS if data[c].notna().any()]
     bins = np.arange(0, 10.26, 0.25)
-    for i, col in enumerate(SUBJECT_COLS):
+
+    ncols = 4
+    nrows = int(np.ceil(len(cols) / ncols))
+    fig, axes = plt.subplots(nrows, ncols, figsize=(16, 3.2 * nrows))
+    axes = np.atleast_1d(axes).flatten()
+
+    for i, col in enumerate(cols):
         ax = axes[i]
-        sns.histplot(data=data, x=col, bins=bins, color="skyblue", ax=ax)
-        ax.set_title(SUBJECT_VI[col])
+        ax.hist(data[col].dropna().values, bins=bins, color="skyblue", edgecolor="none")
+        ax.set_title(SUBJECT_VI[col], fontsize=11)
         ax.set_xlabel("Điểm")
-        ax.set_ylabel("Tần suất")
-    for j in range(len(SUBJECT_COLS), len(axes)):
+        ax.set_xlim(0, 10)
+        ax.set_ylabel("Tần suất" if i % ncols == 0 else "")
+        ax.ticklabel_format(axis="y", style="plain")
+
+    for j in range(len(cols), len(axes)):
         axes[j].axis("off")
-    title_suffix = f" năm {year}" if year else " qua các năm"
-    fig.suptitle(f"Phổ điểm các môn thi{title_suffix}", fontsize=16)
-    fig.tight_layout()
+
+    parts = []
+    if year is not None:
+        parts.append(f"năm {year}")
+    if chuong_trinh is not None:
+        parts.append(f"CT{chuong_trinh}")
+    suffix = (" " + " · ".join(parts)) if parts else " toàn bộ"
+    fig.suptitle(f"Phổ điểm các môn thi{suffix}", fontsize=16)
+    fig.tight_layout(rect=[0, 0, 1, 0.97])
     return fig
 
 def summary_score_by_subject_year(df):
@@ -110,207 +164,211 @@ def summary_score_by_subject_year(df):
             })
     return pd.DataFrame(records).sort_values(["Năm", "Môn"]).reset_index(drop=True)
 
-def plot_subject_median_rank(df, year):
-    """Vẽ biểu đồ cột xếp hạng trung vị (median) của các môn học trong một năm."""
-    fig, ax = plt.subplots(figsize=(10, 6))
-    df_year = df[df["nam"] == year]
-    medians = df_year[SUBJECT_COLS].median().rename(SUBJECT_VI).sort_values()
-    medians.dropna().plot(kind="barh", color="mediumseagreen", ax=ax)
-    ax.set_title(f"Xếp hạng điểm trung vị các môn năm {year}")
-    ax.set_xlabel("Điểm trung vị")
+
+def plot_fail_rate_by_subject(df):
+    """Tỷ lệ điểm liệt (<1) theo môn, gộp mọi năm/chương trình, chỉ tính trên thí sinh dự thi."""
+    nhom = df["nam"].astype(str)
+    mask = df["nam"] == 2025
+    nhom = nhom.where(~mask, "2025·CT" + df["chuong_trinh"].astype(str))
+
+    taken = df.groupby(nhom)[SUBJECT_COLS].count()
+    failed = df[SUBJECT_COLS].lt(1).groupby(nhom).sum()
+    rate = (failed / taken * 100)
+
+    long = (
+        rate.rename(columns=SUBJECT_VI)
+        .reset_index(names="nhom")
+        .melt(id_vars="nhom", var_name="mon", value_name="ti_le")
+        .dropna(subset=["ti_le"])
+    )
+    order = [SUBJECT_VI[c] for c in SUBJECT_COLS if SUBJECT_VI[c] in long["mon"].values]
+    hue_order = ["2022", "2023", "2024", "2025·CT2006", "2025·CT2018"]
+
+    fig, ax = plt.subplots(figsize=(15, 6))
+    sns.barplot(data=long, x="mon", y="ti_le", hue="nhom",
+                order=order, hue_order=hue_order, palette="Set2", ax=ax)
+    ax.set_title("Tỷ lệ điểm liệt (dưới 1 điểm) theo môn, theo năm và chương trình",
+                 fontsize=13, pad=10)
+    ax.set_xlabel("Môn thi")
+    ax.set_ylabel("Tỷ lệ điểm liệt (%)")
+    ax.legend(title="Năm · CT", bbox_to_anchor=(1.01, 1), loc="upper left")
+    plt.setp(ax.get_xticklabels(), rotation=40, ha="right")
     fig.tight_layout()
     return ax
 
-def plot_fail_rate_by_subject(df, year):
-    """Vẽ biểu đồ cột tỷ lệ % điểm liệt (<1) của các môn học trong một năm."""
-    fig, ax = plt.subplots(figsize=(10, 6))
-    df_year = df[df["nam"] == year]
-    fail_rates = (df_year[SUBJECT_COLS] < 1).mean().rename(SUBJECT_VI).sort_values(ascending=False) * 100
-    fail_rates.dropna().plot(kind="bar", color="salmon", ax=ax)
-    ax.set_title(f"Tỷ lệ điểm liệt (< 1) các môn năm {year}")
-    ax.set_ylabel("Tỷ lệ (%)")
-    plt.xticks(rotation=45, ha="right")
-    fig.tight_layout()
-    return ax
-
-def plot_score_hist_single(df, subject, year=None):
-    """Vẽ histogram phổ điểm của riêng 1 môn học."""
-    fig, ax = plt.subplots(figsize=(8, 5))
-    data = df if year is None else df[df["nam"] == year]
-    bins = np.arange(0, 10.26, 0.25)
-    sns.histplot(data=data, x=subject, bins=bins, color="royalblue", ax=ax)
-    title_suffix = f" năm {year}" if year else " qua các năm"
-    ax.set_title(f"Phổ điểm môn {SUBJECT_VI[subject]}{title_suffix}")
-    ax.set_xlabel("Điểm")
-    ax.set_ylabel("Tần suất")
-    fig.tight_layout()
-    return ax
 
 def plot_trend_2022_2024(df, stat="mean"):
-    """Vẽ biểu đồ xu hướng (mean/median) 2022-2024 dạng đường, và 2025 dạng scatter tách rời CT."""
-    fig, ax = plt.subplots(figsize=(12, 7))
-    
-    # Dữ liệu 2022-2024
-    df_old = df[df["nam"] <= 2024]
-    if stat == "mean":
-        agg_old = df_old.groupby("nam")[SUBJECT_COLS].mean()
-    else:
-        agg_old = df_old.groupby("nam")[SUBJECT_COLS].median()
-        
-    for col in SUBJECT_COLS:
-        ax.plot(agg_old.index, agg_old[col], marker='o', label=SUBJECT_VI[col])
-        
-    # Dữ liệu 2025
-    df_2025_06 = df[(df["nam"] == 2025) & (df["chuong_trinh"] == "2006")]
-    df_2025_18 = df[(df["nam"] == 2025) & (df["chuong_trinh"] == "2018")]
-    
-    if stat == "mean":
-        agg_06 = df_2025_06[SUBJECT_COLS].mean()
-        agg_18 = df_2025_18[SUBJECT_COLS].mean()
-    else:
-        agg_06 = df_2025_06[SUBJECT_COLS].median()
-        agg_18 = df_2025_18[SUBJECT_COLS].median()
-        
-    for col in SUBJECT_COLS:
-        color = ax.lines[SUBJECT_COLS.index(col)].get_color()
-        if not np.isnan(agg_06.get(col, np.nan)):
-            ax.scatter([2025], [agg_06[col]], marker='^', color=color)
-        if not np.isnan(agg_18.get(col, np.nan)):
-            ax.scatter([2025.1], [agg_18[col]], marker='X', color=color)
-            
-    ax.set_xticks([2022, 2023, 2024, 2025, 2025.1])
-    ax.set_xticklabels(["2022", "2023", "2024", "2025 (CT2006)", "2025 (CT2018)"], rotation=15)
-    ax.set_title(f"Xu hướng điểm {stat} qua các năm (Lưu ý: 2025 không nối tuyến)")
-    ax.set_ylabel(f"Điểm {stat}")
-    ax.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
-    fig.tight_layout()
-    return ax
+    """Xu hướng điểm (mean/median) 2022-2024 theo từng môn (lưới nhỏ); 2025 vẽ điểm rời, tách CT2006/CT2018."""
+    from matplotlib.lines import Line2D
+    agg = "mean" if stat == "mean" else "median"
 
-def plot_province_rank(df, subject, top=10):
-    """Vẽ biểu đồ cột ngang top và bottom các tỉnh theo điểm trung bình môn học."""
-    fig, axes = plt.subplots(1, 2, figsize=(15, 6))
-    
-    data = df
-    if subject == "ngoai_ngu":
-        data = df[df["ma_ngoai_ngu"] == "N1"]
-        
-    mean_scores = data.groupby("ten_tinh")[subject].mean().dropna().sort_values(ascending=False)
-    
-    if len(mean_scores) == 0:
-        return fig
-        
-    mean_scores.head(top)[::-1].plot(kind="barh", color="teal", ax=axes[0])
-    axes[0].set_title(f"Top {top} tỉnh có điểm trung bình cao nhất")
-    axes[0].set_xlabel("Điểm trung bình")
-    
-    mean_scores.tail(top).plot(kind="barh", color="coral", ax=axes[1])
-    axes[1].set_title(f"Bottom {top} tỉnh có điểm trung bình thấp nhất")
-    axes[1].set_xlabel("Điểm trung bình")
-    
-    fig.suptitle(f"Xếp hạng điểm trung bình tỉnh môn {SUBJECT_VI[subject]}", fontsize=16)
-    fig.tight_layout()
+    old = getattr(df[df["nam"] <= 2024].groupby("nam")[SUBJECT_COLS], agg)().reindex([2022, 2023, 2024])
+    s06 = getattr(df[(df["nam"] == 2025) & (df["chuong_trinh"] == "2006")][SUBJECT_COLS], agg)()
+    s18 = getattr(df[(df["nam"] == 2025) & (df["chuong_trinh"] == "2018")][SUBJECT_COLS], agg)()
+
+    cols = [c for c in SUBJECT_COLS if old[c].notna().any()]
+    ncols = 3
+    nrows = int(np.ceil(len(cols) / ncols))
+    fig, axes = plt.subplots(nrows, ncols, figsize=(15, 4 * nrows), sharey=True)
+    axes = np.atleast_1d(axes).flatten()
+
+    c_line, c_06, c_18 = "#3b6fb0", "#e07b39", "#2a9d6f"
+    for i, col in enumerate(cols):
+        ax = axes[i]
+        ax.plot([0, 1, 2], old[col].values, marker="o", color=c_line)
+        if pd.notna(s06.get(col)):
+            ax.scatter(3.0, s06[col], marker="^", s=80, color=c_06, zorder=3)
+        if pd.notna(s18.get(col)):
+            ax.scatter(3.4, s18[col], marker="X", s=80, color=c_18, zorder=3)
+        ax.axvline(2.6, ls="--", lw=0.8, color="grey", alpha=0.6)
+        ax.set_title(SUBJECT_VI[col], fontsize=11)
+        ax.set_xticks([0, 1, 2, 3.0, 3.4])
+        ax.set_xticklabels(["2022", "2023", "2024", "25·06", "25·18"], fontsize=8)
+        ax.set_xlim(-0.3, 3.7)
+
+    for j in range(len(cols), len(axes)):
+        axes[j].axis("off")
+
+    legend_handles = [
+        Line2D([0], [0], color=c_line, marker="o", label="2022–2024"),
+        Line2D([0], [0], color=c_06, marker="^", ls="", label="2025 · CT2006"),
+        Line2D([0], [0], color=c_18, marker="X", ls="", label="2025 · CT2018"),
+    ]
+    fig.legend(handles=legend_handles, loc="upper right", ncol=3, fontsize=10)
+    stat_vi = "trung bình" if stat == "mean" else "trung vị"
+    fig.suptitle(f"Xu hướng điểm {stat_vi} theo môn", fontsize=15)
+    fig.tight_layout(rect=[0, 0, 1, 0.96])
     return fig
 
-def plot_region_box(df, subjects):
-    """Vẽ boxplot phân bố điểm của một/nhiều môn theo 6 vùng kinh tế - xã hội."""
-    fig, ax = plt.subplots(figsize=(12, 6))
-    if isinstance(subjects, str):
-        subjects = [subjects]
-        
-    data = df.melt(id_vars=["vung_mien", "ma_ngoai_ngu"], value_vars=subjects, var_name="Môn", value_name="Điểm")
-    data = data.dropna(subset=["Điểm"])
-    
-    # Lọc tiếng Anh nếu có môn ngoại ngữ
-    if "ngoai_ngu" in subjects:
-        data = data[~((data["Môn"] == "ngoai_ngu") & (data["ma_ngoai_ngu"] != "N1"))]
-        
-    data["Môn"] = data["Môn"].map(SUBJECT_VI)
-    
-    sns.boxplot(data=data, x="vung_mien", y="Điểm", hue="Môn", order=REGION6_ORDER, ax=ax)
-    ax.set_title("Phân bố điểm theo vùng kinh tế - xã hội")
-    ax.set_xlabel("Vùng miền")
-    plt.xticks(rotation=45, ha="right")
-    fig.tight_layout()
-    return ax
+def plot_province_rank(df, subject, top=10, min_n=100):
+    """Top/bottom tỉnh theo điểm trung bình một môn (loại tỉnh có quá ít thí sinh)."""
+    data = df[df["ma_ngoai_ngu"] == "N1"] if subject == "ngoai_ngu" else df
 
-def plot_fail_rate_by_province(df, subject, top=10):
-    """Vẽ biểu đồ cột ngang top các tỉnh có tỷ lệ điểm liệt cao nhất."""
-    fig, ax = plt.subplots(figsize=(8, 6))
-    data = df
-    if subject == "ngoai_ngu":
-        data = df[df["ma_ngoai_ngu"] == "N1"]
-        
-    prov_data = data.groupby("ten_tinh")[subject]
-    fail_rates = (prov_data.apply(lambda x: (x < 1).mean()) * 100).dropna().sort_values(ascending=False)
-    
-    if len(fail_rates) == 0:
-        return ax
-        
-    fail_rates.head(top)[::-1].plot(kind="barh", color="crimson", ax=ax)
-    ax.set_title(f"Top {top} tỉnh tỷ lệ điểm liệt cao nhất môn {SUBJECT_VI[subject]}")
-    ax.set_xlabel("Tỷ lệ %")
-    fig.tight_layout()
-    return ax
+    g = data.groupby("ten_tinh")[subject].agg(["mean", "count"])
+    g = g[g["count"] >= min_n]["mean"].sort_values(ascending=False)
+    if g.empty:
+        fig, ax = plt.subplots()
+        return fig
 
-def plot_corr_heatmap(df):
-    """Vẽ heatmap tương quan giữa các môn học (pairwise complete)."""
-    fig, ax = plt.subplots(figsize=(10, 8))
-    corr = df[SUBJECT_COLS].corr()
-    sns.heatmap(corr.rename(columns=SUBJECT_VI, index=SUBJECT_VI), annot=True, fmt=".2f", cmap="coolwarm", center=0, vmin=-1, vmax=1, ax=ax)
-    ax.set_title("Ma trận tương quan điểm thi các môn")
-    fig.tight_layout()
-    return ax
+    top_df = g.head(top)[::-1]
+    bot_df = g.tail(top)
+    xmax = g.max() * 1.05
 
-def plot_subject_scatter(df, x, y, sample=50000):
-    """Vẽ scatter plot giữa 2 môn học, lấy ngẫu nhiên một mẫu con để tối ưu."""
-    fig, ax = plt.subplots(figsize=(8, 6))
-    data = df.dropna(subset=[x, y])
-    if len(data) > sample:
-        data = data.sample(sample, random_state=42)
-        
-    sns.scatterplot(data=data, x=x, y=y, alpha=0.1, color="purple", ax=ax)
-    ax.set_title(f"Tương quan {SUBJECT_VI[x]} và {SUBJECT_VI[y]} (Mẫu: {len(data)})")
-    ax.set_xlabel(SUBJECT_VI[x])
-    ax.set_ylabel(SUBJECT_VI[y])
-    fig.tight_layout()
-    return ax
+    fig, axes = plt.subplots(1, 2, figsize=(15, 6), sharex=True)
+    for ax, d, color, title in [
+        (axes[0], top_df, "teal", f"Top {top} tỉnh điểm cao nhất"),
+        (axes[1], bot_df, "coral", f"Bottom {top} tỉnh điểm thấp nhất"),
+    ]:
+        ax.barh(d.index, d.values, color=color)
+        ax.set_title(title)
+        ax.set_xlabel("Điểm trung bình")
+        ax.set_ylabel("")
+        ax.set_xlim(0, xmax)
+        ax.bar_label(ax.containers[0], fmt="%.2f", padding=3, fontsize=9)
+
+    fig.suptitle(f"Xếp hạng điểm trung bình tỉnh – môn {SUBJECT_VI[subject]}", fontsize=15)
+    fig.tight_layout(rect=[0, 0, 1, 0.96])
+    return fig
+
+
+
+def plot_corr_heatmap(df, min_pairs=1000):
+    """Heatmap tương quan giữa các môn, tách riêng CT2006 và CT2018 (che ô quá ít cặp)."""
+    fig, axes = plt.subplots(2, 1, figsize=(11, 20))
+
+    for ax, ct, title in [
+        (axes[0], "2006", "Chương trình 2006 (2022–2025)"),
+        (axes[1], "2018", "Chương trình 2018 (2025)"),
+    ]:
+        sub = df[df["chuong_trinh"] == ct]
+        cols = [c for c in SUBJECT_COLS if sub[c].notna().any()]
+        data = sub[cols]
+
+        corr = data.corr()
+        valid = data.notna().to_numpy(dtype="int32")
+        n_pairs = valid.T @ valid
+
+        tri = np.triu(np.ones(corr.shape, dtype=bool), k=1)
+        mask = (n_pairs < min_pairs) | tri
+
+        sns.heatmap(
+            corr.rename(columns=SUBJECT_VI, index=SUBJECT_VI),
+            mask=mask, annot=True, fmt=".2f", cmap="coolwarm",
+            center=0, vmin=-1, vmax=1, square=True,
+            linewidths=0.5, linecolor="white",
+            cbar_kws={"shrink": 0.8}, annot_kws={"size": 9}, ax=ax,
+        )
+        ax.set_title(title, fontsize=13, pad=10)
+        plt.setp(ax.get_xticklabels(), rotation=45, ha="right")
+        plt.setp(ax.get_yticklabels(), rotation=0)
+
+    fig.suptitle("Ma trận tương quan điểm thi giữa các môn", fontsize=15)
+    fig.tight_layout(rect=[0, 0, 1, 0.98])
+    return fig
+
+
+REGION6_SHORT = {
+    "Trung du và miền núi phía Bắc": "TD&MN phía Bắc",
+    "Đồng bằng sông Hồng": "ĐB sông Hồng",
+    "Bắc Trung Bộ và Duyên hải miền Trung": "BTB & DH miền Trung",
+    "Tây Nguyên": "Tây Nguyên",
+    "Đông Nam Bộ": "Đông Nam Bộ",
+    "Đồng bằng sông Cửu Long": "ĐB sông Cửu Long",
+}
+
 
 def plot_ban_by_region(df):
-    """Vẽ biểu đồ cột chồng tỷ lệ thí sinh chọn ban KHTN/KHXH theo vùng (CT2006)."""
-    fig, ax = plt.subplots(figsize=(10, 6))
-    df_2006 = df[df["chuong_trinh"] == "2006"].dropna(subset=["ban"])
-    if len(df_2006) == 0:
-        return ax
-        
-    ban_counts = df_2006.groupby(["vung_mien", "ban"]).size().unstack(fill_value=0)
-    # Reorder by REGION6_ORDER
-    ban_counts = ban_counts.reindex(REGION6_ORDER).dropna()
-    
-    if len(ban_counts) > 0:
-        ban_pct = ban_counts.div(ban_counts.sum(axis=1), axis=0) * 100
-        ban_pct.plot(kind="bar", stacked=True, ax=ax, colormap="Set2")
-        
-    ax.set_title("Tỷ lệ lựa chọn ban theo vùng miền (CT2006)")
-    ax.set_ylabel("Tỷ lệ %")
+    """Tỷ lệ thí sinh chọn ban KHTN/KHXH theo vùng (CT2006), cột chồng %."""
+    d = df[df["chuong_trinh"] == "2006"].dropna(subset=["ban"])
+    counts = (
+        d.groupby(["vung_mien", "ban"]).size().unstack(fill_value=0)
+        .reindex(REGION6_ORDER).dropna(how="all")
+    )
+    pct = counts.div(counts.sum(axis=1), axis=0) * 100
+
+    fig, ax = plt.subplots(figsize=(11, 6))
+    pct.plot(kind="bar", stacked=True, ax=ax, color={"KHTN": "#66c2a5", "KHXH": "#bdbdbd"})
+
+    ax.set_title("Tỷ lệ lựa chọn ban theo vùng miền (CT2006)", fontsize=13, pad=10)
+    ax.set_ylabel("Tỷ lệ (%)")
     ax.set_xlabel("Vùng miền")
-    plt.xticks(rotation=45, ha="right")
-    ax.legend(title="Ban")
+    ax.set_ylim(0, 100)
+    ax.set_xticklabels([REGION6_SHORT.get(v, v) for v in pct.index], rotation=0, fontsize=9)
+    ax.legend(title="Ban", bbox_to_anchor=(1.01, 1), loc="upper left")
+
+    for c in ax.containers:
+        ax.bar_label(c, fmt="%.0f%%", label_type="center", fontsize=8, color="white")
+
     fig.tight_layout()
     return ax
 
 def plot_ct2018_subject_uptake(df):
-    """Vẽ biểu đồ cột tỷ lệ % thí sinh chọn thi các môn tự chọn (CT2018)."""
-    fig, ax = plt.subplots(figsize=(10, 6))
-    df_2018 = df[df["chuong_trinh"] == "2018"]
-    if len(df_2018) == 0:
-        return ax
-        
-    opt_subjects = ["vat_li", "hoa_hoc", "sinh_hoc", "lich_su", "dia_li", "tin_hoc", "cong_nghe_cn", "cong_nghe_nn", "gd_ktpl"]
-    uptake = df_2018[opt_subjects].notna().mean().rename(SUBJECT_VI).sort_values(ascending=False) * 100
-    
-    uptake.plot(kind="bar", color="dodgerblue", ax=ax)
-    ax.set_title("Tỷ lệ chọn môn tự chọn (CT2018)")
-    ax.set_ylabel("Tỷ lệ %")
-    plt.xticks(rotation=45, ha="right")
+    """Tỷ lệ thí sinh CT2018 chọn từng môn tự chọn, tô màu theo nhóm môn."""
+    opt = ["vat_li", "hoa_hoc", "sinh_hoc", "lich_su", "dia_li",
+           "tin_hoc", "cong_nghe_cn", "cong_nghe_nn", "gd_ktpl"]
+    nhom = {
+        "vat_li": "Tự nhiên", "hoa_hoc": "Tự nhiên", "sinh_hoc": "Tự nhiên",
+        "lich_su": "Xã hội", "dia_li": "Xã hội", "gd_ktpl": "Xã hội",
+        "tin_hoc": "Công nghệ - Tin", "cong_nghe_cn": "Công nghệ - Tin",
+        "cong_nghe_nn": "Công nghệ - Tin",
+    }
+    mau = {"Tự nhiên": "#4C72B0", "Xã hội": "#DD8452", "Công nghệ - Tin": "#55A868"}
+
+    d = df[df["chuong_trinh"] == "2018"]
+    up = (d[opt].notna().mean() * 100).sort_values(ascending=False)
+    colors = [mau[nhom[c]] for c in up.index]
+
+    fig, ax = plt.subplots(figsize=(11, 6))
+    bars = ax.bar([SUBJECT_VI[c] for c in up.index], up.values, color=colors)
+    ax.bar_label(bars, fmt="%.1f%%", padding=3, fontsize=9)
+
+    ax.set_title("Tỷ lệ chọn môn tự chọn (CT2018)", fontsize=13, pad=10)
+    ax.set_ylabel("Tỷ lệ thí sinh chọn (%)")
+    ax.set_xlabel("Môn tự chọn")
+    ax.set_ylim(0, up.max() * 1.12)
+    plt.setp(ax.get_xticklabels(), rotation=40, ha="right")
+
+    handles = [plt.Rectangle((0, 0), 1, 1, color=mau[k]) for k in mau]
+    ax.legend(handles, mau.keys(), title="Nhóm môn")
     fig.tight_layout()
     return ax
