@@ -218,8 +218,9 @@ __marimo__/
 .streamlit/secrets.toml
 
 data/raw/*
+!data/raw/.gitkeep
 data/processed/*
-
+!data/processed/.gitkeep
 
 
 .vscode/
