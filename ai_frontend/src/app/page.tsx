@@ -69,6 +69,8 @@ const SAMPLE_PROMPTS = [
   'Phân tích tương quan điểm Toán và Văn',
   'Top 10 tỉnh có điểm trung bình cao nhất',
 ];
+const MAX_CONTEXT_MESSAGES = 10;
+const MAX_CONTEXT_TEXT_LENGTH = 1200;
 
 function isGeminiErrorText(text?: string) {
   return Boolean(
@@ -120,6 +122,22 @@ function getApiError(data: unknown) {
   if (!data || typeof data !== 'object' || !('error' in data)) return '';
   const err = data as { error?: string; detail?: string };
   return `${err.error ?? 'API_ERROR'}${err.detail ? `: ${err.detail}` : ''}`;
+}
+
+function truncateContextText(text?: string) {
+  if (!text) return '';
+  return text.length > MAX_CONTEXT_TEXT_LENGTH
+    ? `${text.slice(0, MAX_CONTEXT_TEXT_LENGTH)}...`
+    : text;
+}
+
+function getContextHistory(messages: Message[]) {
+  return messages.slice(-MAX_CONTEXT_MESSAGES).map(message => ({
+    role: message.role,
+    content: truncateContextText(message.content),
+    output: truncateContextText(message.output),
+    code: truncateContextText(message.code),
+  }));
 }
 
 // ── Icons ──────────────────────────────────────────────────
@@ -211,7 +229,10 @@ function ChatTab({
     setPending(null);
     setLoading(true);
     setError('');
-    const gen = await callApi('POST', '/api/ai/generate', { prompt });
+    const gen = await callApi('POST', '/api/ai/generate', {
+      prompt,
+      history: getContextHistory(baseMessages ?? messages),
+    });
     setLoading(false);
     const generateError = getApiError(gen);
     if (generateError) { setError(`Lỗi kết nối tới AI Backend (${BACKEND_LABEL}): ${generateError}`); return; }
