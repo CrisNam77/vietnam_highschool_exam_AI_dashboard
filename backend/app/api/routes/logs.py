@@ -1,22 +1,37 @@
-from fastapi import APIRouter, HTTPException
+from pydantic import BaseModel
 
-from backend.app.schemas.logs import LogItem
+from fastapi import APIRouter
+
+from backend.app.services.log_service import load_logs, log_interaction
 
 
 router = APIRouter()
 
 
-SAMPLE_LOGS: list[LogItem] = []
+class LogEventRequest(BaseModel):
+    prompt: str
+    generated_code: str = ""
+    explanation: str = ""
+    executed_code: str = ""
+    status: str
+    output: str = ""
+    event_type: str
 
 
-@router.get("", response_model=list[LogItem])
-def list_logs() -> list[LogItem]:
-    return SAMPLE_LOGS
+@router.get("")
+def list_logs() -> list[dict]:
+    return load_logs()
 
 
-@router.get("/{log_id}", response_model=LogItem)
-def get_log(log_id: str) -> LogItem:
-    for item in SAMPLE_LOGS:
-        if item.log_id == log_id:
-            return item
-    raise HTTPException(status_code=404, detail="Log not found")
+@router.post("/event")
+def create_log_event(request: LogEventRequest) -> dict[str, bool]:
+    ok = log_interaction(
+        prompt=request.prompt,
+        generated_code=request.generated_code,
+        explanation=request.explanation,
+        executed_code=request.executed_code,
+        status=request.status,
+        output=request.output,
+        event_type=request.event_type,
+    )
+    return {"success": ok}
