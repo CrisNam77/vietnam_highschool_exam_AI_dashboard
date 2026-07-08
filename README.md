@@ -1,93 +1,133 @@
 # vietnam_highschool_exam_AI_dashboard
 
-Dashboard phân tích và trực quan hóa điểm thi tốt nghiệp THPT Việt Nam giai đoạn 2022-2025, xây dựng bằng Streamlit, FastAPI và Next.js AI Assistant.
+Dashboard phân tích và trực quan hóa điểm thi tốt nghiệp THPT Việt Nam giai đoạn 2022-2025, dùng Next.js làm frontend duy nhất, FastAPI làm backend và Python cho data pipeline.
 
-## Tech stack
-
-- Python
-- Streamlit
-- FastAPI
-- Next.js
-- Pandas
-- Matplotlib / Seaborn / Plotly
-- SQLite / JSON log local
-
-## Cấu trúc thư mục
+## Architecture
 
 ```text
-app.py                  # Streamlit entrypoint
-pages/                  # Các trang dashboard
-components/             # UI components dùng lại
-backend/app/            # FastAPI backend theo cấu trúc main
-backend/app/services/   # AI, execution, logging services
-ai_frontend/            # Next.js frontend cho AI Assistant
-src/                    # Data pipeline, metrics, visualization helpers
-notebook/               # Notebook EDA và thiết kế metric
-data/                   # raw/processed/mapping, chỉ track .gitkeep
-database/               # SQLite local, không commit file .db
-outputs/                # Chart/table exports, không commit output lớn
-reports/                # Báo cáo dữ liệu, storyboard, AI usage
-docs/                   # API contract, data schema, runbook
-tests/                  # Unit/API tests tối thiểu
-scripts/                # Utility scripts
+User
+└── Next.js Frontend
+    ├── Dashboard phân tích điểm thi THPT
+    ├── AI Assistant
+    ├── History / Logs
+    └── gọi FastAPI backend qua proxy /api/backend/...
+
+FastAPI Backend
+├── AI API
+├── Execution API
+├── Logs API
+├── Report API
+└── đọc dữ liệu local khi cần
+
+Python src/
+├── cleaning / preprocessing
+├── data loading
+├── metrics
+└── visualization/data helpers
 ```
 
-## Cài đặt
+## Tech Stack
+
+Frontend:
+
+- Next.js
+- TypeScript
+- React
+- Tailwind CSS
+
+Backend:
+
+- FastAPI
+- Python
+- Pandas
+- Matplotlib / Seaborn / Plotly
+- JSON log local hiện tại; SQLite optional/future
+
+Data:
+
+- Python scripts
+- CSV processed data
+- EDA notebooks
+
+## Project Structure
+
+```text
+ai_frontend/            # Next.js frontend duy nhất
+backend/app/            # FastAPI backend
+src/                    # Data pipeline, metrics, visualization helpers
+notebook/               # EDA notebooks
+data/                   # raw/processed/mapping, chỉ track .gitkeep
+database/               # local database nếu dùng sau này
+outputs/                # local chart/table outputs
+reports/                # Data quality report, AI usage, storyboard
+docs/                   # API contract, data schema, runbook
+tests/                  # Tests
+scripts/                # Utility scripts
+run_all.cmd
+run_backend.cmd
+run_frontend.cmd
+requirements.txt
+.env.example
+.gitignore
+README.md
+```
+
+## Requirements
+
+- Python 3.10+
+- Node.js
+- npm
+- OpenRouter API key nếu muốn dùng AI generate thật
+
+## Install Python Dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-## Chạy nhanh trên Windows
+## Quick Start On Windows
 
-Chạy cả backend và frontend AI:
+Chạy backend và frontend:
 
 ```cmd
 run_all.cmd
 ```
 
-Sau đó mở:
+Local URLs:
 
-- Frontend AI: http://localhost:3000
-- Backend docs: http://localhost:8001/docs
+- Next.js Frontend: http://localhost:3000
+- FastAPI Backend: http://localhost:8001
+- FastAPI Docs: http://localhost:8001/docs
 
-## Chạy từng phần
+## Run Each Service
 
-Backend:
+FastAPI backend:
 
 ```cmd
 run_backend.cmd
 ```
 
-Frontend AI:
+Next.js frontend:
 
 ```cmd
 run_frontend.cmd
 ```
 
-Lệnh này sẽ tự vào thư mục `ai_frontend`, cài dependency nếu chưa có `node_modules`, cấu hình backend tại `http://localhost:8001`, rồi chạy Next.js dev server.
+Manual backend:
 
-Nếu muốn chạy thủ công:
+```bash
+uvicorn backend.app.main:app --reload --port 8001
+```
 
-```cmd
+Manual frontend:
+
+```bash
 cd ai_frontend
 npm install
-set NEXT_PUBLIC_API_URL=http://localhost:8001
-set BACKEND_URL=http://127.0.0.1:8001
 npm run dev
 ```
 
-Frontend Next.js chạy tại `http://localhost:3000`.
-
-Streamlit dashboard:
-
-```bash
-streamlit run app.py
-```
-
-Dashboard chạy tại `http://localhost:8501`.
-
-## Cấu hình môi trường
+## Environment Configuration
 
 Tạo file `.env` local từ `.env.example` khi cần:
 
@@ -95,29 +135,72 @@ Tạo file `.env` local từ `.env.example` khi cần:
 cp .env.example .env
 ```
 
-Điền OpenRouter nếu dùng AI Assistant:
+Trên Windows:
+
+```cmd
+copy .env.example .env
+```
+
+Điền OpenRouter nếu dùng AI Assistant thật:
 
 ```env
 OPENROUTER_API_KEY=your_key_here
 OPENROUTER_MODEL=openai/gpt-4.1-mini
 ```
 
-Không commit `.env`, API key, database local hoặc dữ liệu thật. Dữ liệu sau xử lý dự kiến đặt tại:
+Không commit `.env`, API key, database local, data raw/processed lớn, outputs hoặc logs local.
+
+## Data
+
+Dữ liệu sau xử lý được đọc từ:
 
 ```text
 data/processed/final_data.csv
 ```
 
-## Flow AI Assistant
+File dữ liệu thật không được commit. Schema chính thức được mô tả trong `docs/data_schema.md` và dựa trên `src/clean_data.py` cùng `reports/data_quality_report.md`.
+
+## AI Assistant Flow
 
 ```text
-AI sinh code -> hiển thị code -> chờ người dùng duyệt/chỉnh sửa -> FastAPI chạy local trên DataFrame
+Người dùng nhập câu hỏi
+→ AI sinh code và giải thích
+→ Hiển thị code ở trạng thái chờ duyệt
+→ Người dùng chỉnh sửa hoặc hủy
+→ Người dùng phê duyệt
+→ FastAPI thực thi code trên local DataFrame
+→ Trả kết quả/logs
 ```
 
-Các endpoint chính:
+Logs hiện tại được lưu dạng JSON local tại:
 
+```text
+data/logs/interaction_history.json
+```
+
+## Main API Endpoints
+
+- `GET /api/health`: kiểm tra trạng thái backend.
 - `POST /api/ai/generate`: sinh mã Python và giải thích.
-- `POST /api/execute`: thực thi mã đã được duyệt từ frontend AI.
+- `POST /api/execute`: endpoint chính để thực thi code đã được duyệt từ Next.js frontend.
 - `GET /api/logs`: xem lịch sử tương tác.
-- `POST /api/logs/event`: ghi sự kiện hủy/chưa thực thi.
+- `POST /api/logs/event`: ghi sự kiện như hủy/chưa thực thi.
 - `GET /api/report/ai-usage`: tóm tắt sử dụng AI.
+
+Backend hiện có một số alias execution để tương thích nội bộ, nhưng endpoint chính dùng cho demo/frontend là `POST /api/execute`.
+
+## Current Status
+
+- Next.js là frontend duy nhất.
+- AI Assistant đã có flow Next.js + FastAPI.
+- Dashboard pages trong Next.js đang có shell/placeholder để triển khai dần.
+- Data pipeline đã có logic xử lý chính.
+
+## Do Not Commit
+
+- `.env`
+- API keys
+- dữ liệu raw/processed lớn
+- database local
+- outputs local
+- logs local

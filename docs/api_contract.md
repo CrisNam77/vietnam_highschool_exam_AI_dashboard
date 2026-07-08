@@ -1,10 +1,30 @@
 # API Contract
 
-Base URL local: `http://localhost:8000`
+Base URL local chuẩn:
+
+```text
+http://localhost:8001
+```
+
+Next.js AI Assistant gọi backend thông qua proxy nội bộ `/api/backend/...`, nhưng contract bên dưới mô tả endpoint FastAPI thật.
+
+## GET /
+
+Trả thông tin service cơ bản.
+
+Response:
+
+```json
+{
+  "service": "vietnam-highschool-exam-ai-dashboard",
+  "status": "ok",
+  "docs": "/docs"
+}
+```
 
 ## GET /api/health
 
-Trả trạng thái service.
+Kiểm tra trạng thái backend.
 
 Response:
 
@@ -17,14 +37,22 @@ Response:
 
 ## POST /api/ai/generate
 
-Tạo code phân tích ở trạng thái chờ duyệt. Boilerplate hiện trả response giả lập.
+Sinh code Python và phần giải thích từ câu hỏi tự nhiên. Code sinh ra được đưa về trạng thái chờ người dùng duyệt ở frontend, chưa tự động thực thi.
 
 Request:
 
 ```json
 {
-  "question": "So sánh điểm Toán theo vùng miền",
+  "prompt": "Vẽ biểu đồ phổ điểm môn Toán năm 2024",
   "context": {}
+}
+```
+
+Hoặc:
+
+```json
+{
+  "question": "Vẽ biểu đồ phổ điểm môn Toán năm 2024"
 }
 ```
 
@@ -33,27 +61,65 @@ Response:
 ```json
 {
   "status": "pending_approval",
-  "explanation": "...",
-  "code": "...",
+  "explanation": "Markdown explanation",
+  "code": "print(df.head())",
   "expected_output": "table",
   "warnings": []
 }
 ```
 
-## POST /api/execution/run
+Ghi chú:
 
-Nhận code và trạng thái phê duyệt. Boilerplate chưa thực thi code thật.
+- Backend dùng OpenRouter khi có `OPENROUTER_API_KEY`.
+- Nếu thiếu API key hoặc provider lỗi, `explanation` sẽ mô tả lỗi cấu hình/kết nối và `code` có thể rỗng.
+- Generate event được ghi vào JSON log local.
+
+## POST /api/execute
+
+Endpoint chính dùng trong Next.js frontend và demo để thực thi code đã được người dùng duyệt/chỉnh sửa.
 
 Request:
 
 ```json
 {
-  "code": "summary = df.groupby('vung_mien')['toan'].mean()",
-  "approved": false
+  "code": "print(df.head())",
+  "approved": true,
+  "prompt": "Xem thử dữ liệu",
+  "explanation": "Code in 5 dòng đầu tiên của DataFrame."
 }
 ```
 
-Response khi chưa phê duyệt:
+Response thành công:
+
+```json
+{
+  "status": "success",
+  "message": "Đã thực thi mã.",
+  "output": "stdout text",
+  "logs": [],
+  "success": true,
+  "stdout": "stdout text",
+  "stderr": "",
+  "plot_b64": null
+}
+```
+
+Response lỗi:
+
+```json
+{
+  "status": "error",
+  "message": "Mã thực thi bị lỗi.",
+  "output": "",
+  "logs": ["traceback text"],
+  "success": false,
+  "stdout": "",
+  "stderr": "traceback text",
+  "plot_b64": null
+}
+```
+
+Response khi bị từ chối:
 
 ```json
 {
@@ -64,10 +130,103 @@ Response khi chưa phê duyệt:
 }
 ```
 
+Ghi chú:
+
+- Code chạy trên local DataFrame đọc từ `DATA_PATH`, mặc định `data/processed/final_data.csv`.
+- Nếu code tạo Matplotlib figure, backend có thể trả ảnh base64 qua `plot_b64`.
+- Execution event được ghi vào JSON log local.
+
 ## GET /api/logs
 
-Trả danh sách logs. Boilerplate hiện trả danh sách rỗng.
+Trả toàn bộ lịch sử tương tác hiện có.
 
-## GET /api/logs/{log_id}
+Response:
 
-Trả chi tiết một log theo `log_id`, hoặc `404` nếu không tồn tại.
+```json
+[
+  {
+    "timestamp": "2026-07-08T10:00:00",
+    "event_type": "execute",
+    "model": "openai/gpt-4.1-mini",
+    "prompt": "Vẽ biểu đồ phổ điểm môn Toán",
+    "generated_code": "",
+    "explanation": "Markdown explanation",
+    "executed_code": "print(df.head())",
+    "status": "success",
+    "output": "stdout text",
+    "plot_b64": null
+  }
+]
+```
+
+Logs hiện tại lưu bằng JSON local tại:
+
+```text
+data/logs/interaction_history.json
+```
+
+SQLite hiện là hướng mở rộng/placeholder, không phải logging chính hiện tại.
+
+## POST /api/logs/event
+
+Ghi một sự kiện log thủ công, ví dụ người dùng hủy code trước khi thực thi.
+
+Request:
+
+```json
+{
+  "prompt": "Vẽ biểu đồ phổ điểm môn Toán",
+  "generated_code": "print(df.head())",
+  "explanation": "Markdown explanation",
+  "executed_code": "",
+  "status": "cancelled",
+  "output": "Người dùng đã hủy, mã không được thực thi.",
+  "event_type": "cancel"
+}
+```
+
+Response:
+
+```json
+{
+  "success": true
+}
+```
+
+## GET /api/report/ai-usage
+
+Tổng hợp lịch sử sử dụng AI từ JSON logs.
+
+Response:
+
+```json
+{
+  "total_logs": 10,
+  "status_counts": {
+    "success": 5,
+    "cancelled": 2
+  },
+  "event_counts": {
+    "generate": 5,
+    "execute": 3,
+    "cancel": 2
+  },
+  "recent_requests": []
+}
+```
+
+## Execution Endpoint Aliases
+
+Code backend hiện có các alias sau:
+
+```text
+POST /api/run
+POST /api/execution/execute
+POST /api/execution/run
+```
+
+Các alias này tồn tại để tương thích nội bộ. Endpoint chính dùng trong Next.js frontend và demo là:
+
+```text
+POST /api/execute
+```

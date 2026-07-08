@@ -142,7 +142,7 @@ const SendIcon = () => (
   </svg>
 );
 
-const SidebarIcon = ({ name }: { name: 'new' | 'search' | 'history' | 'api' | 'data' | 'more' | 'panel' }) => {
+const SidebarIcon = ({ name }: { name: 'new' | 'search' | 'history' | 'api' | 'data' | 'more' | 'panel' | 'chart' | 'map' | 'distribution' | 'correlation' }) => {
   const common = { fill: 'none', stroke: 'currentColor', strokeWidth: 2, strokeLinecap: 'round' as const, strokeLinejoin: 'round' as const };
   return (
     <svg width="21" height="21" viewBox="0 0 24 24" aria-hidden="true" {...common}>
@@ -151,6 +151,10 @@ const SidebarIcon = ({ name }: { name: 'new' | 'search' | 'history' | 'api' | 'd
       {name === 'history' && <><path d="M3 5h18"/><path d="M7 5v14"/><path d="M17 5v14"/><path d="M3 19h18"/></>}
       {name === 'api' && <><path d="M8 8 4 12l4 4"/><path d="m16 8 4 4-4 4"/><path d="m14 4-4 16"/></>}
       {name === 'data' && <><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/></>}
+      {name === 'chart' && <><path d="M4 19V5"/><path d="M4 19h16"/><path d="M8 16V9"/><path d="M12 16V7"/><path d="M16 16v-5"/></>}
+      {name === 'map' && <><path d="M9 18 3 21V6l6-3 6 3 6-3v15l-6 3-6-3Z"/><path d="M9 3v15"/><path d="M15 6v15"/></>}
+      {name === 'distribution' && <><path d="M4 19h16"/><path d="M7 16c1.5-7 8.5-7 10 0"/><path d="M8 16h8"/><path d="M12 16v3"/></>}
+      {name === 'correlation' && <><path d="M5 19 19 5"/><circle cx="7" cy="7" r="2"/><circle cx="17" cy="17" r="2"/><circle cx="15" cy="9" r="2"/><circle cx="9" cy="15" r="2"/></>}
       {name === 'more' && <><circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/></>}
       {name === 'panel' && <><rect x="4" y="5" width="16" height="14" rx="3"/><path d="M10 5v14"/></>}
     </svg>
@@ -742,8 +746,83 @@ function ApiTab() {
 }
 
 // ── Main Page ─────────────────────────────────────────────
-type Tab = 'chat' | 'history' | 'api';
+type Tab = 'dashboard' | 'subjects' | 'regions' | 'distribution' | 'correlation' | 'chat' | 'history' | 'api';
 const CHAT_SESSIONS_KEY = 'examdata_ai_chat_sessions';
+
+const TAB_LABELS: Record<Tab, string> = {
+  dashboard: 'Dashboard',
+  subjects: 'Subject Analysis',
+  regions: 'Region Analysis',
+  distribution: 'Score Distribution',
+  correlation: 'Correlation / Combination',
+  chat: 'AI Assistant',
+  history: 'History / Logs',
+  api: 'API Docs',
+};
+
+const DASHBOARD_PLACEHOLDERS: Record<Exclude<Tab, 'chat' | 'history' | 'api'>, {
+  title: string;
+  description: string;
+  items: string[];
+}> = {
+  dashboard: {
+    title: 'Dashboard tổng quan',
+    description: 'Tổng quan quy mô dữ liệu, số năm, số tỉnh/thành phố và các KPI chính.',
+    items: ['KPI tổng quan', 'Xu hướng số lượng thí sinh', 'Điểm trung bình theo năm', 'TODO: kết nối data summary từ backend'],
+  },
+  subjects: {
+    title: 'Subject Analysis',
+    description: 'So sánh điểm trung bình, trung vị, độ lệch chuẩn và tỷ lệ điểm cao/thấp theo môn.',
+    items: ['Bảng summary theo môn', 'Biểu đồ so sánh môn', 'Xu hướng điểm theo năm', 'TODO: chuẩn hóa API dữ liệu cho dashboard'],
+  },
+  regions: {
+    title: 'Region Analysis',
+    description: 'Khám phá khác biệt điểm thi giữa tỉnh/thành phố và vùng miền.',
+    items: ['Ranking tỉnh/thành phố', 'So sánh vùng miền', 'Bản đồ hoặc bảng khu vực', 'TODO: thêm endpoint aggregate theo vùng'],
+  },
+  distribution: {
+    title: 'Score Distribution',
+    description: 'Hiển thị phổ điểm theo môn, năm, chương trình và địa phương.',
+    items: ['Histogram phổ điểm', 'Box plot', 'Bảng tần suất điểm', 'TODO: chọn filter dashboard'],
+  },
+  correlation: {
+    title: 'Correlation / Combination',
+    description: 'Phân tích tương quan giữa các môn và tổng điểm các tổ hợp xét tuyển.',
+    items: ['Ma trận tương quan', 'Phân bố điểm tổ hợp', 'Summary A00/A01/B00/C00/D01', 'TODO: triển khai chart bằng dữ liệu processed'],
+  },
+};
+
+function DashboardPlaceholder({ tab }: { tab: Exclude<Tab, 'chat' | 'history' | 'api'> }) {
+  const page = DASHBOARD_PLACEHOLDERS[tab];
+
+  return (
+    <div className="h-full overflow-y-auto px-8 pb-8">
+      <div className="grid gap-4 lg:grid-cols-[1.15fr_0.85fr]">
+        <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+          <p className="text-xs font-bold uppercase tracking-[0.18em] text-indigo-500">Dashboard shell</p>
+          <h2 className="mt-2 text-xl font-bold text-slate-950">{page.title}</h2>
+          <p className="mt-3 text-sm leading-7 text-slate-600">{page.description}</p>
+          <div className="mt-6 grid gap-3 sm:grid-cols-2">
+            {page.items.map(item => (
+              <div key={item} className="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-medium text-slate-700">
+                {item}
+              </div>
+            ))}
+          </div>
+        </section>
+        <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+          <h3 className="text-base font-bold text-slate-950">Data source</h3>
+          <p className="mt-3 text-sm leading-7 text-slate-600">
+            Dashboard sẽ dùng dữ liệu processed từ <code className="rounded bg-slate-100 px-1.5 py-0.5 text-xs text-indigo-700">data/processed/final_data.csv</code> thông qua backend hoặc helper dữ liệu.
+          </p>
+          <div className="mt-5 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-xs font-semibold leading-6 text-amber-700">
+            TODO: triển khai biểu đồ thật trong Next.js sau khi thống nhất API dữ liệu dashboard.
+          </div>
+        </section>
+      </div>
+    </div>
+  );
+}
 
 function createChatSession(): ChatSession {
   const now = Date.now();
@@ -784,7 +863,7 @@ function loadChatSessions() {
 }
 
 export default function Home() {
-  const [activeTab, setActiveTab] = useState<Tab>('chat');
+  const [activeTab, setActiveTab] = useState<Tab>('dashboard');
   const [initialSessions] = useState<ChatSession[]>(loadChatSessions);
   const [sessions, setSessions] = useState<ChatSession[]>(initialSessions);
   const [activeSessionId, setActiveSessionId] = useState(initialSessions[0]?.id ?? '');
@@ -860,17 +939,37 @@ export default function Home() {
               className="w-full rounded-xl border border-white/10 bg-white/5 py-2.5 pl-10 pr-3 text-[12.5px] text-slate-200 outline-none transition-all placeholder:text-slate-500 focus:border-indigo-400/50 focus:bg-white/10"
             />
           </div>
+          <button onClick={() => setActiveTab('dashboard')} className={`sidebar-nav-item ${activeTab === 'dashboard' ? 'sidebar-item-active text-white' : 'text-slate-400 hover:bg-white/5 hover:text-slate-200'}`}>
+            <SidebarIcon name="chart" />
+            <span>Dashboard</span>
+          </button>
+          <button onClick={() => setActiveTab('subjects')} className={`sidebar-nav-item ${activeTab === 'subjects' ? 'sidebar-item-active text-white' : 'text-slate-400 hover:bg-white/5 hover:text-slate-200'}`}>
+            <SidebarIcon name="data" />
+            <span>Subject Analysis</span>
+          </button>
+          <button onClick={() => setActiveTab('regions')} className={`sidebar-nav-item ${activeTab === 'regions' ? 'sidebar-item-active text-white' : 'text-slate-400 hover:bg-white/5 hover:text-slate-200'}`}>
+            <SidebarIcon name="map" />
+            <span>Region Analysis</span>
+          </button>
+          <button onClick={() => setActiveTab('distribution')} className={`sidebar-nav-item ${activeTab === 'distribution' ? 'sidebar-item-active text-white' : 'text-slate-400 hover:bg-white/5 hover:text-slate-200'}`}>
+            <SidebarIcon name="distribution" />
+            <span>Score Distribution</span>
+          </button>
+          <button onClick={() => setActiveTab('correlation')} className={`sidebar-nav-item ${activeTab === 'correlation' ? 'sidebar-item-active text-white' : 'text-slate-400 hover:bg-white/5 hover:text-slate-200'}`}>
+            <SidebarIcon name="correlation" />
+            <span>Correlation / Combination</span>
+          </button>
           <button onClick={() => setActiveTab('chat')} className={`sidebar-nav-item ${activeTab === 'chat' ? 'sidebar-item-active text-white' : 'text-slate-400 hover:bg-white/5 hover:text-slate-200'}`}>
             <SidebarIcon name="data" />
-            <span>Giao tiếp AI</span>
+            <span>AI Assistant</span>
           </button>
           <button onClick={() => setActiveTab('history')} className={`sidebar-nav-item ${activeTab === 'history' ? 'sidebar-item-active text-white' : 'text-slate-400 hover:bg-white/5 hover:text-slate-200'}`}>
             <SidebarIcon name="history" />
-            <span>Lịch sử chạy mã</span>
+            <span>History / Logs</span>
           </button>
           <button onClick={() => setActiveTab('api')} className={`sidebar-nav-item ${activeTab === 'api' ? 'sidebar-item-active text-white' : 'text-slate-400 hover:bg-white/5 hover:text-slate-200'}`}>
             <SidebarIcon name="api" />
-            <span>Đặc tả API</span>
+            <span>API Docs</span>
           </button>
         </nav>
 
@@ -909,13 +1008,18 @@ export default function Home() {
         <div className="flex h-full flex-col">
           <div className="px-8 pb-3 pt-5">
             <p className="text-xs font-bold uppercase tracking-[0.18em] text-slate-400">
-              {activeTab === 'chat' ? 'Giao tiếp AI' : activeTab === 'history' ? 'Lịch sử truy xuất' : 'Đặc tả API'}
+              {TAB_LABELS[activeTab]}
             </p>
             <h1 className="mt-1 text-2xl font-extrabold tracking-tight text-slate-950">
               Hệ thống phân tích điểm thi THPT Quốc gia
             </h1>
           </div>
           <div className="min-h-0 flex-1">
+            {activeTab === 'dashboard' && <DashboardPlaceholder tab="dashboard" />}
+            {activeTab === 'subjects' && <DashboardPlaceholder tab="subjects" />}
+            {activeTab === 'regions' && <DashboardPlaceholder tab="regions" />}
+            {activeTab === 'distribution' && <DashboardPlaceholder tab="distribution" />}
+            {activeTab === 'correlation' && <DashboardPlaceholder tab="correlation" />}
             {activeTab === 'chat' && activeSession && (
               <ChatTab
                 key={activeSession.id}

@@ -10,12 +10,10 @@ app = FastAPI(
     version="0.1.0",
 )
 
-# Local development only: allow Streamlit to call the API from localhost.
+# Local development only: allow the Next.js frontend to call the API.
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "http://localhost:8501",
-        "http://127.0.0.1:8501",
         "http://localhost:3000",
         "http://127.0.0.1:3000",
     ],
