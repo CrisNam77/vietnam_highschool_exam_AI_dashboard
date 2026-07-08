@@ -1,0 +1,1 @@
+"""SQLite logging service skeleton."""

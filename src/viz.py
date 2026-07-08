@@ -372,3 +372,40 @@ def plot_ct2018_subject_uptake(df):
     ax.legend(handles, mau.keys(), title="Nhóm môn")
     fig.tight_layout()
     return ax
+
+
+def create_line_chart(data_frame, x, y, title=None, color=None):
+    """Create a Plotly line chart placeholder helper."""
+    import plotly.express as px
+
+    return px.line(data_frame, x=x, y=y, color=color, title=title)
+
+
+def create_bar_chart(data_frame, x, y, title=None, color=None):
+    """Create a Plotly bar chart placeholder helper."""
+    import plotly.express as px
+
+    return px.bar(data_frame, x=x, y=y, color=color, title=title)
+
+
+def create_histogram(data_frame, x, title=None, color=None, nbins=None):
+    """Create a Plotly histogram placeholder helper."""
+    import plotly.express as px
+
+    return px.histogram(data_frame, x=x, color=color, nbins=nbins, title=title)
+
+
+def create_box_plot(data_frame, x=None, y=None, title=None, color=None):
+    """Create a Plotly box plot placeholder helper."""
+    import plotly.express as px
+
+    return px.box(data_frame, x=x, y=y, color=color, title=title)
+
+
+def create_heatmap(z, x=None, y=None, title=None):
+    """Create a Plotly heatmap placeholder helper."""
+    import plotly.graph_objects as go
+
+    fig = go.Figure(data=go.Heatmap(z=z, x=x, y=y))
+    fig.update_layout(title=title)
+    return fig
