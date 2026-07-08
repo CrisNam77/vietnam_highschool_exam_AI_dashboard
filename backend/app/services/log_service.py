@@ -1,1 +1,82 @@
-"""SQLite logging service skeleton."""
+import json
+from datetime import datetime
+from pathlib import Path
+
+
+LOG_FILE = Path("data/logs/interaction_history.json")
+
+
+def init_log_file() -> None:
+    LOG_FILE.parent.mkdir(parents=True, exist_ok=True)
+    if not LOG_FILE.exists():
+        LOG_FILE.write_text("[]", encoding="utf-8")
+
+
+def load_logs() -> list[dict]:
+    init_log_file()
+    try:
+        return json.loads(LOG_FILE.read_text(encoding="utf-8-sig"))
+    except Exception:
+        return []
+
+
+def log_interaction(
+    prompt: str,
+    generated_code: str,
+    explanation: str,
+    executed_code: str,
+    status: str,
+    output: str,
+    plot_b64: str | None = None,
+    event_type: str = "execute",
+    model: str | None = None,
+) -> bool:
+    logs = load_logs()
+    logs.append(
+        {
+            "timestamp": datetime.now().isoformat(),
+            "event_type": event_type,
+            "model": model,
+            "prompt": prompt,
+            "generated_code": generated_code,
+            "explanation": explanation,
+            "executed_code": executed_code,
+            "status": status,
+            "output": output,
+            "plot_b64": plot_b64,
+        }
+    )
+    try:
+        LOG_FILE.write_text(json.dumps(logs, ensure_ascii=False, indent=4), encoding="utf-8")
+        return True
+    except Exception:
+        return False
+
+
+def summarize_logs() -> dict:
+    logs = load_logs()
+    status_counts: dict[str, int] = {}
+    event_counts: dict[str, int] = {}
+    recent_requests = []
+
+    for log in logs:
+        status = log.get("status", "unknown")
+        event_type = log.get("event_type", "execute")
+        status_counts[status] = status_counts.get(status, 0) + 1
+        event_counts[event_type] = event_counts.get(event_type, 0) + 1
+        if log.get("prompt"):
+            recent_requests.append(
+                {
+                    "timestamp": log.get("timestamp"),
+                    "event_type": event_type,
+                    "status": status,
+                    "prompt": log.get("prompt"),
+                }
+            )
+
+    return {
+        "total_logs": len(logs),
+        "status_counts": status_counts,
+        "event_counts": event_counts,
+        "recent_requests": recent_requests[-10:],
+    }

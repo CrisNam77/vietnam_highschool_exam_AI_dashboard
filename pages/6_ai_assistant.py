@@ -1,48 +1,48 @@
+import subprocess
+from pathlib import Path
+
 import streamlit as st
 
 
-st.title("6. AI Assistant")
+AI_FRONTEND_URL = "http://localhost:3000"
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
 
-st.header("Mục tiêu trang")
-st.write(
-    "Tạo gợi ý phân tích và code Pandas/Plotly theo flow duyệt thủ công: "
-    "AI sinh code, người dùng xem và phê duyệt, backend mới chạy local."
-)
 
-question = st.text_area(
-    "Câu hỏi phân tích",
-    placeholder="Ví dụ: So sánh điểm trung bình môn Toán giữa các vùng năm 2024.",
-)
+def start_hidden_cmd(script_name: str) -> None:
+    script_path = PROJECT_ROOT / script_name
+    if not script_path.exists():
+        raise FileNotFoundError(f"Không tìm thấy {script_name}")
 
-if st.button("Tạo code"):
-    st.session_state["ai_explanation"] = (
-        "Đây là phần giải thích giả lập. Backend AI thật sẽ được tích hợp sau."
-    )
-    st.session_state["ai_code"] = (
-        "summary = df.groupby('vung_mien')['toan'].mean().reset_index()\n"
-        "summary = summary.sort_values('toan', ascending=False)\n"
-        "summary"
+    subprocess.Popen(
+        ["cmd.exe", "/c", str(script_path)],
+        cwd=PROJECT_ROOT,
+        creationflags=subprocess.CREATE_NO_WINDOW,
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.DEVNULL,
     )
 
-st.subheader("Giải thích AI")
-st.info(st.session_state.get("ai_explanation", "Chưa có giải thích."))
 
-st.subheader("Code chờ duyệt")
-code = st.session_state.get("ai_code", "# Code do AI tạo sẽ hiển thị tại đây.")
-st.code(code, language="python")
+if "ai_nextjs_started" not in st.session_state:
+    start_hidden_cmd("run_backend.cmd")
+    start_hidden_cmd("run_frontend.cmd")
+    st.session_state["ai_nextjs_started"] = True
 
-col_reject, col_approve = st.columns(2)
-with col_reject:
-    if st.button("Từ chối"):
-        st.warning("Code đã bị từ chối. Chưa có thao tác thực thi nào được gọi.")
-with col_approve:
-    if st.button("Phê duyệt và chạy"):
-        st.info(
-            "Skeleton UI: chưa gọi Execution API. Execution thật sẽ được triển khai "
-            "sau với validator và sandbox local."
-        )
-
-st.subheader("Kết quả và logs")
-st.info("Placeholder: kết quả bảng/biểu đồ và logs thực thi sẽ hiển thị tại đây.")
-
-st.caption("TODO: kết nối FastAPI AI/Execution theo flow duyệt thủ công.")
+st.markdown(
+    f"""
+    <meta http-equiv="refresh" content="0; url={AI_FRONTEND_URL}">
+    <script>
+      window.location.replace("{AI_FRONTEND_URL}");
+    </script>
+    <a href="{AI_FRONTEND_URL}" target="_self" style="
+        display:block;
+        width:100%;
+        padding:0.75rem 1rem;
+        border:1px solid #d1d5db;
+        border-radius:0.5rem;
+        text-align:center;
+        text-decoration:none;
+        color:#111827;
+    ">Mở AI Assistant</a>
+    """,
+    unsafe_allow_html=True,
+)

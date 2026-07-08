@@ -3,9 +3,12 @@ fastapi
 uvicorn
 pandas
 numpy
+matplotlib
+seaborn
 plotly
 pydantic
 pydantic-settings
 python-dotenv
 requests
+openpyxl
 pytest

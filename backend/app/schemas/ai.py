@@ -2,8 +2,13 @@ from pydantic import BaseModel, Field
 
 
 class AIGenerateRequest(BaseModel):
-    question: str = Field(..., min_length=1)
+    question: str | None = Field(default=None, min_length=1)
+    prompt: str | None = Field(default=None, min_length=1)
     context: dict | None = None
+
+    @property
+    def text(self) -> str:
+        return self.question or self.prompt or ""
 
 
 class AIGenerateResponse(BaseModel):

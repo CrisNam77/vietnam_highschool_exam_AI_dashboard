@@ -13,6 +13,9 @@ class Settings(BaseSettings):
     ai_provider: str = ""
     openai_api_key: str = ""
     gemini_api_key: str = ""
+    openrouter_api_key: str = ""
+    openrouter_model: str = "openai/gpt-4.1-mini"
+    openrouter_url: str = "https://openrouter.ai/api/v1/chat/completions"
 
     if BaseSettings is not object:
         model_config = SettingsConfigDict(
