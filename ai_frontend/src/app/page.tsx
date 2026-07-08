@@ -332,7 +332,7 @@ function ChatTab({
           <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-3xl bg-gradient-to-br from-indigo-600 to-blue-500 shadow-lg shadow-indigo-500/20">
             <SparkleIcon size={20} color="white" />
           </div>
-          <h2 className="mb-2 text-3xl font-bold tracking-tight text-slate-900">Data AI Assistant</h2>
+          <h2 className="mb-2 text-3xl font-bold tracking-tight text-slate-900">Trợ lý AI dữ liệu</h2>
           <p className="max-w-md text-sm leading-relaxed text-slate-500">
             Trợ lý ảo phân tích dữ liệu thi THPT Quốc gia. Đặt câu hỏi bằng ngôn ngữ tự nhiên.
           </p>
@@ -689,118 +689,75 @@ function HistoryTab() {
   );
 }
 
-// ── API Docs Tab ──────────────────────────────────────────
-function ApiTab() {
-  const endpoints = [
-    {
-      method: 'POST', path: '/api/ai/generate', title: 'API AI — Sinh mã & Giải thích',
-      desc: 'Tiếp nhận yêu cầu tự nhiên từ Frontend, gửi kèm ngữ cảnh cấu trúc dữ liệu cho mô hình AI. Yêu cầu AI trả về mã Python và giải thích.',
-      req: '{ "prompt": "Vẽ biểu đồ phổ điểm môn Toán..." }',
-      res: '{ "code": "import ...", "explanation": "Mã này sẽ..." }'
-    },
-    {
-      method: 'POST', path: '/api/execute', title: 'API Thực thi — Chạy code trên dữ liệu',
-      desc: 'Tiếp nhận mã đã được người dùng phê duyệt. Thực thi trực tiếp trên dữ liệu tại máy, thu thập kết quả (ảnh biểu đồ, bảng, logs) trả về.',
-      req: '{ "code": "...", "prompt": "...", "explanation": "..." }',
-      res: '{ "success": true, "stdout": "...", "stderr": "", "plot_b64": "..." }'
-    },
-    {
-      method: 'GET', path: '/api/logs', title: 'API Logs — Lịch sử lưu trữ',
-      desc: 'Lưu trữ và truy xuất tất cả các yêu cầu, mã nguồn, kết quả phân tích và giải thích. Tuân thủ bắt buộc phần Lưu trữ (ai-guide-v2.pdf).',
-      req: '—',
-      res: '[{ "timestamp": "...", "prompt": "...", "generated_code": "...", "status": "success", ... }]'
-    },
-    {
-      method: 'GET', path: '/api/report/ai-usage', title: 'API Báo cáo — Tóm tắt sử dụng AI',
-      desc: 'Tổng hợp số lượt sinh mã, hủy, thực thi thành công/thất bại và các yêu cầu gần nhất để đưa vào phần báo cáo.',
-      req: '—',
-      res: '{ "total_logs": 10, "status_counts": {...}, "event_counts": {...}, "recent_requests": [...] }'
-    },
-  ];
-
-  return (
-    <div className="space-y-4">
-      <p className="text-slate-500 text-sm">Tài liệu tích hợp API Backend (Phần 5.2 — ai-guide-v2.pdf). Backend chạy tại <code className="text-indigo-600 bg-indigo-50 px-1.5 py-0.5 rounded font-mono text-xs">{BACKEND_LABEL}</code>.</p>
-      {endpoints.map((ep, i) => (
-        <div key={i} className="bg-white border border-slate-200 rounded-2xl shadow-sm p-5 space-y-3">
-          <div className="flex items-center gap-3">
-            <span className={`text-xs font-bold px-2.5 py-1 rounded-lg ${ep.method === 'POST' ? 'bg-blue-100 text-blue-700' : 'bg-emerald-100 text-emerald-700'}`}>{ep.method}</span>
-            <code className="text-sm font-mono text-slate-800 font-semibold">{ep.path}</code>
-          </div>
-          <h3 className="font-semibold text-slate-900 text-base">{ep.title}</h3>
-          <p className="text-slate-600 text-sm leading-relaxed">{ep.desc}</p>
-          <div className="grid grid-cols-2 gap-3">
-            <div>
-              <p className="text-xs text-slate-400 font-semibold mb-1.5 uppercase tracking-wider">Payload / Body</p>
-              <pre className="bg-slate-900 text-green-300 text-xs p-3 rounded-xl overflow-x-auto leading-relaxed">{ep.req}</pre>
-            </div>
-            <div>
-              <p className="text-xs text-slate-400 font-semibold mb-1.5 uppercase tracking-wider">Response</p>
-              <pre className="bg-slate-900 text-cyan-300 text-xs p-3 rounded-xl overflow-x-auto leading-relaxed">{ep.res}</pre>
-            </div>
-          </div>
-        </div>
-      ))}
-    </div>
-  );
-}
-
 // ── Main Page ─────────────────────────────────────────────
-type Tab = 'dashboard' | 'subjects' | 'regions' | 'distribution' | 'correlation' | 'chat' | 'history' | 'api';
+type Tab = 'overview' | 'question1' | 'question2' | 'assistant';
 const CHAT_SESSIONS_KEY = 'examdata_ai_chat_sessions';
 
 const TAB_LABELS: Record<Tab, string> = {
-  dashboard: 'Dashboard',
-  subjects: 'Subject Analysis',
-  regions: 'Region Analysis',
-  distribution: 'Score Distribution',
-  correlation: 'Correlation / Combination',
-  chat: 'AI Assistant',
-  history: 'History / Logs',
-  api: 'API Docs',
+  overview: 'Tổng quan',
+  question1: 'Câu hỏi phân tích 1',
+  question2: 'Câu hỏi phân tích 2',
+  assistant: 'Trợ lý AI',
 };
 
-const DASHBOARD_PLACEHOLDERS: Record<Exclude<Tab, 'chat' | 'history' | 'api'>, {
+const ANALYSIS_PLACEHOLDERS: Record<Exclude<Tab, 'assistant'>, {
   title: string;
+  question?: string;
   description: string;
   items: string[];
 }> = {
-  dashboard: {
-    title: 'Dashboard tổng quan',
-    description: 'Tổng quan quy mô dữ liệu, số năm, số tỉnh/thành phố và các KPI chính.',
-    items: ['KPI tổng quan', 'Xu hướng số lượng thí sinh', 'Điểm trung bình theo năm', 'TODO: kết nối data summary từ backend'],
+  overview: {
+    title: 'Tổng quan dữ liệu điểm thi THPT',
+    description: 'Trình bày bức tranh tổng quan về dữ liệu điểm thi THPT Việt Nam giai đoạn 2022-2025.',
+    items: [
+      'Tổng số thí sinh',
+      'Số năm dữ liệu',
+      'Số tỉnh/thành',
+      'Điểm trung bình toàn quốc',
+      'Xu hướng điểm trung bình qua các năm',
+      'TODO: bổ sung insight chính sau khi nối dữ liệu thật',
+    ],
   },
-  subjects: {
-    title: 'Subject Analysis',
-    description: 'So sánh điểm trung bình, trung vị, độ lệch chuẩn và tỷ lệ điểm cao/thấp theo môn.',
-    items: ['Bảng summary theo môn', 'Biểu đồ so sánh môn', 'Xu hướng điểm theo năm', 'TODO: chuẩn hóa API dữ liệu cho dashboard'],
+  question1: {
+    title: 'Câu hỏi phân tích 1',
+    question: 'Điểm trung bình toàn quốc thay đổi như thế nào trong giai đoạn 2022-2025?',
+    description: 'Theo dõi xu hướng điểm trung bình qua các năm để nhận diện biến động chung của kỳ thi.',
+    items: [
+      'Mục tiêu: so sánh xu hướng điểm trung bình toàn quốc theo năm',
+      'Biến dự kiến: nam, các cột điểm môn, điểm trung bình tổng hợp',
+      'Biểu đồ dự kiến: line chart theo năm',
+      'KPI dự kiến: điểm trung bình, mức tăng/giảm qua từng năm',
+      'TODO: bổ sung insight sau khi nối dữ liệu thật',
+    ],
   },
-  regions: {
-    title: 'Region Analysis',
-    description: 'Khám phá khác biệt điểm thi giữa tỉnh/thành phố và vùng miền.',
-    items: ['Ranking tỉnh/thành phố', 'So sánh vùng miền', 'Bản đồ hoặc bảng khu vực', 'TODO: thêm endpoint aggregate theo vùng'],
-  },
-  distribution: {
-    title: 'Score Distribution',
-    description: 'Hiển thị phổ điểm theo môn, năm, chương trình và địa phương.',
-    items: ['Histogram phổ điểm', 'Box plot', 'Bảng tần suất điểm', 'TODO: chọn filter dashboard'],
-  },
-  correlation: {
-    title: 'Correlation / Combination',
-    description: 'Phân tích tương quan giữa các môn và tổng điểm các tổ hợp xét tuyển.',
-    items: ['Ma trận tương quan', 'Phân bố điểm tổ hợp', 'Summary A00/A01/B00/C00/D01', 'TODO: triển khai chart bằng dữ liệu processed'],
+  question2: {
+    title: 'Câu hỏi phân tích 2',
+    question: 'Môn nào có mặt bằng điểm cao/thấp nhất và phổ điểm có gì đáng chú ý?',
+    description: 'So sánh mặt bằng điểm giữa các môn và quan sát hình dạng phổ điểm để tìm điểm nổi bật.',
+    items: [
+      'Mục tiêu: xác định môn có điểm trung bình cao/thấp và phân bố đáng chú ý',
+      'Biến dự kiến: toan, ngu_van, ngoai_ngu, vat_li, hoa_hoc, sinh_hoc, lich_su, dia_li, gdcd và các môn 2018',
+      'Biểu đồ dự kiến: bar chart điểm trung bình theo môn',
+      'Biểu đồ dự kiến: histogram phổ điểm theo môn được chọn',
+      'TODO: bổ sung insight sau khi nối dữ liệu thật',
+    ],
   },
 };
 
-function DashboardPlaceholder({ tab }: { tab: Exclude<Tab, 'chat' | 'history' | 'api'> }) {
-  const page = DASHBOARD_PLACEHOLDERS[tab];
+function AnalysisPlaceholder({ tab }: { tab: Exclude<Tab, 'assistant'> }) {
+  const page = ANALYSIS_PLACEHOLDERS[tab];
 
   return (
     <div className="h-full overflow-y-auto px-8 pb-8">
       <div className="grid gap-4 lg:grid-cols-[1.15fr_0.85fr]">
         <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-          <p className="text-xs font-bold uppercase tracking-[0.18em] text-indigo-500">Dashboard shell</p>
+          <p className="text-xs font-bold uppercase tracking-[0.18em] text-indigo-500">Dashboard placeholder</p>
           <h2 className="mt-2 text-xl font-bold text-slate-950">{page.title}</h2>
+          {page.question && (
+            <p className="mt-3 rounded-xl border border-indigo-100 bg-indigo-50 px-4 py-3 text-sm font-semibold leading-6 text-indigo-700">
+              {page.question}
+            </p>
+          )}
           <p className="mt-3 text-sm leading-7 text-slate-600">{page.description}</p>
           <div className="mt-6 grid gap-3 sm:grid-cols-2">
             {page.items.map(item => (
@@ -818,6 +775,9 @@ function DashboardPlaceholder({ tab }: { tab: Exclude<Tab, 'chat' | 'history' | 
           <div className="mt-5 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-xs font-semibold leading-6 text-amber-700">
             TODO: triển khai biểu đồ thật trong Next.js sau khi thống nhất API dữ liệu dashboard.
           </div>
+          <p className="mt-4 text-xs leading-6 text-slate-500">
+            FastAPI Docs: <code className="rounded bg-slate-100 px-1.5 py-0.5 text-indigo-700">http://localhost:8001/docs</code>
+          </p>
         </section>
       </div>
     </div>
@@ -863,7 +823,7 @@ function loadChatSessions() {
 }
 
 export default function Home() {
-  const [activeTab, setActiveTab] = useState<Tab>('dashboard');
+  const [activeTab, setActiveTab] = useState<Tab>('overview');
   const [initialSessions] = useState<ChatSession[]>(loadChatSessions);
   const [sessions, setSessions] = useState<ChatSession[]>(initialSessions);
   const [activeSessionId, setActiveSessionId] = useState(initialSessions[0]?.id ?? '');
@@ -878,7 +838,7 @@ export default function Home() {
     const newSession = createChatSession();
     setSessions(prev => [newSession, ...prev.filter(session => session.messages.length > 0)]);
     setActiveSessionId(newSession.id);
-    setActiveTab('chat');
+    setActiveTab('assistant');
   }, []);
 
   const updateActiveSession = useCallback((messages: Message[]) => {
@@ -939,37 +899,21 @@ export default function Home() {
               className="w-full rounded-xl border border-white/10 bg-white/5 py-2.5 pl-10 pr-3 text-[12.5px] text-slate-200 outline-none transition-all placeholder:text-slate-500 focus:border-indigo-400/50 focus:bg-white/10"
             />
           </div>
-          <button onClick={() => setActiveTab('dashboard')} className={`sidebar-nav-item ${activeTab === 'dashboard' ? 'sidebar-item-active text-white' : 'text-slate-400 hover:bg-white/5 hover:text-slate-200'}`}>
+          <button onClick={() => setActiveTab('overview')} className={`sidebar-nav-item ${activeTab === 'overview' ? 'sidebar-item-active text-white' : 'text-slate-400 hover:bg-white/5 hover:text-slate-200'}`}>
             <SidebarIcon name="chart" />
-            <span>Dashboard</span>
+            <span>Tổng quan</span>
           </button>
-          <button onClick={() => setActiveTab('subjects')} className={`sidebar-nav-item ${activeTab === 'subjects' ? 'sidebar-item-active text-white' : 'text-slate-400 hover:bg-white/5 hover:text-slate-200'}`}>
+          <button onClick={() => setActiveTab('question1')} className={`sidebar-nav-item ${activeTab === 'question1' ? 'sidebar-item-active text-white' : 'text-slate-400 hover:bg-white/5 hover:text-slate-200'}`}>
             <SidebarIcon name="data" />
-            <span>Subject Analysis</span>
+            <span>Câu hỏi phân tích 1</span>
           </button>
-          <button onClick={() => setActiveTab('regions')} className={`sidebar-nav-item ${activeTab === 'regions' ? 'sidebar-item-active text-white' : 'text-slate-400 hover:bg-white/5 hover:text-slate-200'}`}>
-            <SidebarIcon name="map" />
-            <span>Region Analysis</span>
-          </button>
-          <button onClick={() => setActiveTab('distribution')} className={`sidebar-nav-item ${activeTab === 'distribution' ? 'sidebar-item-active text-white' : 'text-slate-400 hover:bg-white/5 hover:text-slate-200'}`}>
+          <button onClick={() => setActiveTab('question2')} className={`sidebar-nav-item ${activeTab === 'question2' ? 'sidebar-item-active text-white' : 'text-slate-400 hover:bg-white/5 hover:text-slate-200'}`}>
             <SidebarIcon name="distribution" />
-            <span>Score Distribution</span>
+            <span>Câu hỏi phân tích 2</span>
           </button>
-          <button onClick={() => setActiveTab('correlation')} className={`sidebar-nav-item ${activeTab === 'correlation' ? 'sidebar-item-active text-white' : 'text-slate-400 hover:bg-white/5 hover:text-slate-200'}`}>
-            <SidebarIcon name="correlation" />
-            <span>Correlation / Combination</span>
-          </button>
-          <button onClick={() => setActiveTab('chat')} className={`sidebar-nav-item ${activeTab === 'chat' ? 'sidebar-item-active text-white' : 'text-slate-400 hover:bg-white/5 hover:text-slate-200'}`}>
+          <button onClick={() => setActiveTab('assistant')} className={`sidebar-nav-item ${activeTab === 'assistant' ? 'sidebar-item-active text-white' : 'text-slate-400 hover:bg-white/5 hover:text-slate-200'}`}>
             <SidebarIcon name="data" />
-            <span>AI Assistant</span>
-          </button>
-          <button onClick={() => setActiveTab('history')} className={`sidebar-nav-item ${activeTab === 'history' ? 'sidebar-item-active text-white' : 'text-slate-400 hover:bg-white/5 hover:text-slate-200'}`}>
-            <SidebarIcon name="history" />
-            <span>History / Logs</span>
-          </button>
-          <button onClick={() => setActiveTab('api')} className={`sidebar-nav-item ${activeTab === 'api' ? 'sidebar-item-active text-white' : 'text-slate-400 hover:bg-white/5 hover:text-slate-200'}`}>
-            <SidebarIcon name="api" />
-            <span>API Docs</span>
+            <span>Trợ lý AI</span>
           </button>
         </nav>
 
@@ -986,9 +930,9 @@ export default function Home() {
             {visibleSessions.map(session => (
               <button
                 key={session.id}
-                onClick={() => { setActiveSessionId(session.id); setActiveTab('chat'); }}
+                onClick={() => { setActiveSessionId(session.id); setActiveTab('assistant'); }}
                 className={`group relative flex w-full items-center rounded-xl px-3 py-2.5 text-left transition-all ${
-                  activeSessionId === session.id && activeTab === 'chat'
+                  activeSessionId === session.id && activeTab === 'assistant'
                     ? 'sidebar-item-active text-white'
                     : 'text-slate-400 hover:bg-white/5 hover:text-slate-200'
                 }`}
@@ -1015,20 +959,24 @@ export default function Home() {
             </h1>
           </div>
           <div className="min-h-0 flex-1">
-            {activeTab === 'dashboard' && <DashboardPlaceholder tab="dashboard" />}
-            {activeTab === 'subjects' && <DashboardPlaceholder tab="subjects" />}
-            {activeTab === 'regions' && <DashboardPlaceholder tab="regions" />}
-            {activeTab === 'distribution' && <DashboardPlaceholder tab="distribution" />}
-            {activeTab === 'correlation' && <DashboardPlaceholder tab="correlation" />}
-            {activeTab === 'chat' && activeSession && (
-              <ChatTab
-                key={activeSession.id}
-                initialMessages={activeSession.messages}
-                onMessagesChange={updateActiveSession}
-              />
+            {activeTab === 'overview' && <AnalysisPlaceholder tab="overview" />}
+            {activeTab === 'question1' && <AnalysisPlaceholder tab="question1" />}
+            {activeTab === 'question2' && <AnalysisPlaceholder tab="question2" />}
+            {activeTab === 'assistant' && activeSession && (
+              <div className="grid h-full min-h-0 gap-4 px-8 pb-6 lg:grid-cols-[minmax(0,1fr)_380px]">
+                <section className="min-h-0 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+                  <ChatTab
+                    key={activeSession.id}
+                    initialMessages={activeSession.messages}
+                    onMessagesChange={updateActiveSession}
+                  />
+                </section>
+                <aside className="min-h-0 overflow-y-auto rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+                  <h2 className="mb-3 text-sm font-bold text-slate-950">Lịch sử tương tác AI</h2>
+                  <HistoryTab />
+                </aside>
+              </div>
             )}
-            {activeTab === 'history' && <div className="h-full overflow-y-auto px-8 pb-6"><HistoryTab /></div>}
-            {activeTab === 'api' && <div className="h-full overflow-y-auto px-8 pb-6"><ApiTab /></div>}
           </div>
         </div>
       </main>

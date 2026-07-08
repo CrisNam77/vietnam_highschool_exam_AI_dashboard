@@ -7,9 +7,10 @@ Dashboard phân tích và trực quan hóa điểm thi tốt nghiệp THPT Việ
 ```text
 User
 └── Next.js Frontend
-    ├── Dashboard phân tích điểm thi THPT
-    ├── AI Assistant
-    ├── History / Logs
+    ├── Tổng quan
+    ├── Câu hỏi phân tích 1
+    ├── Câu hỏi phân tích 2
+    ├── Trợ lý AI
     └── gọi FastAPI backend qua proxy /api/backend/...
 
 FastAPI Backend
@@ -160,7 +161,7 @@ data/processed/final_data.csv
 
 File dữ liệu thật không được commit. Schema chính thức được mô tả trong `docs/data_schema.md` và dựa trên `src/clean_data.py` cùng `reports/data_quality_report.md`.
 
-## AI Assistant Flow
+## Trợ lý AI Flow
 
 ```text
 Người dùng nhập câu hỏi
@@ -178,6 +179,21 @@ Logs hiện tại được lưu dạng JSON local tại:
 data/logs/interaction_history.json
 ```
 
+## Frontend Sections
+
+Next.js frontend gồm 4 khu vực chính:
+
+1. Tổng quan
+2. Câu hỏi phân tích 1
+3. Câu hỏi phân tích 2
+4. Trợ lý AI
+
+History/logs được hiển thị trong khu vực Trợ lý AI. Tài liệu API backend xem tại:
+
+```text
+http://localhost:8001/docs
+```
+
 ## Main API Endpoints
 
 - `GET /api/health`: kiểm tra trạng thái backend.
@@ -192,8 +208,8 @@ Backend hiện có một số alias execution để tương thích nội bộ, n
 ## Current Status
 
 - Next.js là frontend duy nhất.
-- AI Assistant đã có flow Next.js + FastAPI.
-- Dashboard pages trong Next.js đang có shell/placeholder để triển khai dần.
+- Trợ lý AI đã có flow Next.js + FastAPI.
+- Frontend Next.js có 4 khu vực chính, trong đó các tab phân tích đang là shell/placeholder để triển khai dần.
 - Data pipeline đã có logic xử lý chính.
 
 ## Do Not Commit

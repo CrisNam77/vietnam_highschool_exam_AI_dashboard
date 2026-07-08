@@ -118,7 +118,7 @@ Ghi chú:
 - Frontend gọi FastAPI thông qua proxy `/api/backend/...`.
 - Backend target chuẩn là `http://localhost:8001`.
 
-## 6. Demo AI Assistant
+## 6. Demo Trợ lý AI
 
 Checklist:
 
@@ -127,22 +127,20 @@ Checklist:
 - Có `.env` nếu dùng AI thật.
 - Có `OPENROUTER_API_KEY` nếu muốn generate code thật.
 - Có `data/processed/final_data.csv` nếu muốn execute phân tích thật.
-- Mở tab AI Assistant, nhập câu hỏi, kiểm tra code ở trạng thái chờ duyệt, sau đó hủy hoặc phê duyệt thực thi.
+- Mở tab Trợ lý AI, nhập câu hỏi, kiểm tra code ở trạng thái chờ duyệt, sau đó hủy hoặc phê duyệt thực thi.
 
 ## 7. Demo Dashboard Pages
 
-Dashboard trong Next.js hiện có shell cho các khu vực:
+Frontend Next.js hiện có 4 khu vực chính:
 
-- Dashboard
-- Subject Analysis
-- Region Analysis
-- Score Distribution
-- Correlation / Combination
-- AI Assistant
-- History
-- API Docs
+1. Tổng quan
+2. Câu hỏi phân tích 1
+3. Câu hỏi phân tích 2
+4. Trợ lý AI
 
-Các dashboard page có thể được triển khai dần bằng API/data summary riêng mà không cần thêm frontend khác.
+History/logs nằm trong khu vực Trợ lý AI. FastAPI Docs vẫn truy cập trực tiếp tại `http://localhost:8001/docs`.
+
+Các dashboard section có thể được triển khai dần bằng API/data summary riêng mà không cần thêm frontend khác.
 
 ## 8. Troubleshooting
 
