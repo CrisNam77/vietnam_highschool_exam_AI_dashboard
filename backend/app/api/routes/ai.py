@@ -12,7 +12,8 @@ router = APIRouter()
 @router.post("/generate", response_model=AIGenerateResponse)
 def generate_code(request: AIGenerateRequest) -> AIGenerateResponse:
     """Generate Python code, then wait for user approval before execution."""
-    code, explanation = generate_code_and_explanation(request.text)
+    history = [message.model_dump() for message in request.history]
+    code, explanation = generate_code_and_explanation(request.text, history)
     log_interaction(
         prompt=request.text,
         generated_code=code,
