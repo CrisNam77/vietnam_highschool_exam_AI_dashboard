@@ -6,6 +6,9 @@ import urllib.request
 from backend.app.core.config import settings
 
 
+MAX_HISTORY_MESSAGES = 10
+MAX_HISTORY_CONTENT_CHARS = 1200
+
 SYSTEM_INSTRUCTION = """
 Bạn là một trợ lý AI chuyên nghiệp về phân tích dữ liệu điểm thi tốt nghiệp THPT tại Việt Nam từ năm 2022 đến 2025.
 Nhiệm vụ của bạn là nhận yêu cầu phân tích của người dùng, đề xuất ý tưởng và viết mã Python để xử lý dữ liệu hoặc vẽ biểu đồ.
@@ -26,7 +29,7 @@ QUY TẮC BẮT BUỘC:
 """
 
 
-def generate_code_and_explanation(prompt: str) -> tuple[str, str]:
+def generate_code_and_explanation(prompt: str, history: list[dict] | None = None) -> tuple[str, str]:
     if not settings.openrouter_api_key:
         return (
             "",
@@ -35,10 +38,7 @@ def generate_code_and_explanation(prompt: str) -> tuple[str, str]:
 
     try:
         text = _call_openrouter(
-            messages=[
-                {"role": "system", "content": SYSTEM_INSTRUCTION},
-                {"role": "user", "content": prompt},
-            ],
+            messages=_build_generate_messages(prompt, history or []),
             temperature=0.2,
             max_tokens=8192,
         )
@@ -51,6 +51,41 @@ def generate_code_and_explanation(prompt: str) -> tuple[str, str]:
         return code, explanation
     except Exception as exc:
         return "", _format_openrouter_error(exc)
+
+
+def _build_generate_messages(prompt: str, history: list[dict]) -> list[dict[str, str]]:
+    messages = [{"role": "system", "content": SYSTEM_INSTRUCTION}]
+    messages.extend(_sanitize_history(history))
+    messages.append({"role": "user", "content": prompt})
+    return messages
+
+
+def _sanitize_history(history: list[dict]) -> list[dict[str, str]]:
+    clean_messages: list[dict[str, str]] = []
+
+    for item in history[-MAX_HISTORY_MESSAGES:]:
+        role = item.get("role")
+        if role not in {"user", "assistant"}:
+            continue
+
+        content_parts = [str(item.get("content") or "").strip()]
+        if role == "assistant" and item.get("output"):
+            content_parts.append("Kết quả lần trước:\n" + str(item.get("output") or "").strip())
+        if role == "assistant" and item.get("code"):
+            content_parts.append("Code lần trước:\n```python\n" + str(item.get("code") or "").strip() + "\n```")
+
+        content = "\n\n".join(part for part in content_parts if part)
+        if not content:
+            continue
+
+        clean_messages.append(
+            {
+                "role": role,
+                "content": content[:MAX_HISTORY_CONTENT_CHARS],
+            }
+        )
+
+    return clean_messages
 
 
 def generate_analysis_from_data(prompt: str, stdout: str) -> str:
