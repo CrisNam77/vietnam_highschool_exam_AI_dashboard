@@ -744,6 +744,12 @@ function ApiTab() {
 // ── Main Page ─────────────────────────────────────────────
 type Tab = 'chat' | 'history' | 'api';
 const CHAT_SESSIONS_KEY = 'examdata_ai_chat_sessions';
+const EMPTY_CHAT_SESSION: ChatSession = {
+  id: 'chat-empty',
+  title: 'Cuộc trò chuyện mới',
+  updatedAt: 0,
+  messages: [],
+};
 
 function createChatSession(): ChatSession {
   const now = Date.now();
@@ -769,7 +775,6 @@ function formatSessionTime(timestamp: number) {
 }
 
 function loadChatSessions() {
-  if (typeof window === 'undefined') return [createChatSession()];
   try {
     const saved = window.localStorage.getItem(CHAT_SESSIONS_KEY);
     const parsed = saved ? JSON.parse(saved) as ChatSession[] : [];
@@ -785,15 +790,23 @@ function loadChatSessions() {
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState<Tab>('chat');
-  const [initialSessions] = useState<ChatSession[]>(loadChatSessions);
-  const [sessions, setSessions] = useState<ChatSession[]>(initialSessions);
-  const [activeSessionId, setActiveSessionId] = useState(initialSessions[0]?.id ?? '');
+  const [sessions, setSessions] = useState<ChatSession[]>([EMPTY_CHAT_SESSION]);
+  const [activeSessionId, setActiveSessionId] = useState(EMPTY_CHAT_SESSION.id);
   const [sessionSearch, setSessionSearch] = useState('');
+  const [sessionsHydrated, setSessionsHydrated] = useState(false);
 
   useEffect(() => {
+    const loadedSessions = loadChatSessions();
+    setSessions(loadedSessions);
+    setActiveSessionId(loadedSessions[0]?.id ?? EMPTY_CHAT_SESSION.id);
+    setSessionsHydrated(true);
+  }, []);
+
+  useEffect(() => {
+    if (!sessionsHydrated) return;
     const nonEmptySessions = sessions.filter(session => session.messages.length > 0);
     window.localStorage.setItem(CHAT_SESSIONS_KEY, JSON.stringify(nonEmptySessions));
-  }, [sessions]);
+  }, [sessions, sessionsHydrated]);
 
   const startNewChat = useCallback(() => {
     const newSession = createChatSession();
