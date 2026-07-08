@@ -234,3 +234,8 @@ data/processed/*
 
 
 .vscode/
+
+#logs
+logs/
+
+*.pdf
