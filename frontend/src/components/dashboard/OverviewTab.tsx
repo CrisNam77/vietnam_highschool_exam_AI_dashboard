@@ -33,7 +33,7 @@ export function OverviewTab() {
   });
 
   return (
-    <DashboardShell title="Tổng quan">
+    <DashboardShell title="Tổng quan" question="Tóm tắt nhanh quy mô dữ liệu, điểm trung bình và xu hướng chung toàn quốc.">
       <FilterBar
         controls={[
           {
