@@ -67,7 +67,7 @@ Không commit `.env`.
 Windows script:
 
 ```cmd
-run_backend.cmd
+scripts\windows\start_backend.cmd
 ```
 
 Hoặc chạy thủ công:
@@ -84,12 +84,12 @@ http://localhost:8001/docs
 
 ## 4. Setup Next.js Frontend
 
-Nếu chạy bằng `run_frontend.cmd`, script sẽ vào `ai_frontend/` và cài dependency khi thiếu `node_modules`.
+Nếu chạy bằng `scripts\windows\start_frontend.cmd`, script sẽ vào `frontend/` và cài dependency khi thiếu `node_modules`.
 
 Setup thủ công:
 
 ```bash
-cd ai_frontend
+cd frontend
 npm install
 ```
 
@@ -98,10 +98,10 @@ npm install
 Windows script:
 
 ```cmd
-run_frontend.cmd
+scripts\windows\start_frontend.cmd
 ```
 
-Hoặc chạy thủ công từ `ai_frontend/`:
+Hoặc chạy thủ công từ `frontend/`:
 
 ```bash
 npm run dev
@@ -147,7 +147,7 @@ Các dashboard section có thể được triển khai dần bằng API/data sum
 - Nếu AI generate không trả code, kiểm tra `OPENROUTER_API_KEY`, credit/quota và model.
 - Nếu execute lỗi thiếu dữ liệu, kiểm tra `DATA_PATH` và file `data/processed/final_data.csv`.
 - Nếu frontend không gọi được backend, kiểm tra `BACKEND_URL`, `NEXT_PUBLIC_API_URL` và port `8001`.
-- Nếu frontend chưa có dependencies, chạy `npm install` trong `ai_frontend/`.
+- Nếu frontend chưa có dependencies, chạy `npm install` trong `frontend/`.
 - Không commit `.env`, API key, data, logs, database local hoặc outputs.
 
 ## Local URLs
