@@ -35,7 +35,7 @@ export function YearRangeSlider({
     [maxIdx],
   );
 
-  const handleMouseDown = (thumb: 'from' | 'to') => (e: React.MouseEvent) => {
+  const startDrag = (thumb: 'from' | 'to') => (e: React.MouseEvent) => {
     e.preventDefault();
     setDragging(thumb);
     const onMove = (ev: MouseEvent) => {
@@ -60,74 +60,43 @@ export function YearRangeSlider({
     else onToChange(years[Math.max(idx, fromIdx)]);
   };
 
-  const leftPct = pct(fromIdx);
-  const rightPct = pct(toIdx);
-
   return (
-    <div className="flex min-w-[230px] flex-1 flex-col">
-      {/* Label row — matches DashboardSelect label style */}
+    <div className="flex flex-col">
       <span className="text-xs font-bold uppercase tracking-[0.12em] text-[#64748B]">
         Khoảng năm
       </span>
+      <div className="mt-1 flex w-[200px] items-center gap-2 rounded-2xl border border-slate-200 bg-[#F5F7FB] px-3 py-2.5 transition hover:border-[#AD88F1] hover:bg-white">
+        {/* FROM year */}
+        <span className="w-9 shrink-0 text-center text-xs font-extrabold text-[#594DA3]">{fromYear}</span>
 
-      {/* Control row — same height as select button (py-2.5) */}
-      <div className="mt-1 flex items-center gap-2 rounded-2xl border border-slate-200 bg-[#F5F7FB] px-3.5 py-2.5 transition hover:border-[#AD88F1] hover:bg-white">
-        {/* From badge */}
-        <span className="shrink-0 text-sm font-bold text-[#594DA3]">{fromYear}</span>
-
-        {/* Slider area */}
-        <div className="flex flex-1 flex-col justify-center gap-1.5 px-1">
-          {/* Track */}
+        {/* Track */}
+        <div
+          ref={trackRef}
+          className="relative h-1.5 flex-1 cursor-pointer rounded-full bg-slate-200"
+          onClick={handleTrackClick}
+        >
           <div
-            ref={trackRef}
-            className="relative h-1.5 cursor-pointer rounded-full bg-slate-200"
-            onClick={handleTrackClick}
-          >
-            {/* Active fill */}
-            <div
-              className="pointer-events-none absolute h-full rounded-full bg-gradient-to-r from-[#594DA3] to-[#AD88F1]"
-              style={{ left: `${leftPct}%`, right: `${100 - rightPct}%` }}
-            />
-            {/* FROM thumb */}
-            <button
-              type="button"
-              aria-label={`Từ năm ${fromYear}`}
-              onMouseDown={handleMouseDown('from')}
-              className={`absolute top-1/2 h-3.5 w-3.5 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-[#594DA3] bg-white shadow transition-transform focus:outline-none ${dragging === 'from' ? 'scale-125' : 'hover:scale-110'}`}
-              style={{ left: `${leftPct}%` }}
-            />
-            {/* TO thumb */}
-            <button
-              type="button"
-              aria-label={`Đến năm ${toYear}`}
-              onMouseDown={handleMouseDown('to')}
-              className={`absolute top-1/2 h-3.5 w-3.5 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-[#AD88F1] bg-white shadow transition-transform focus:outline-none ${dragging === 'to' ? 'scale-125' : 'hover:scale-110'}`}
-              style={{ left: `${rightPct}%` }}
-            />
-          </div>
-
-          {/* Tick labels */}
-          <div className="flex items-center justify-between">
-            {years.map((y, i) => (
-              <button
-                key={y}
-                type="button"
-                onClick={() => {
-                  const di = Math.abs(i - fromIdx);
-                  const dj = Math.abs(i - toIdx);
-                  if (di <= dj) onFromChange(years[Math.min(i, toIdx)]);
-                  else onToChange(years[Math.max(i, fromIdx)]);
-                }}
-                className={`text-[9px] font-bold leading-none transition-colors ${i >= fromIdx && i <= toIdx ? 'text-[#594DA3]' : 'text-slate-400 hover:text-slate-600'}`}
-              >
-                {y}
-              </button>
-            ))}
-          </div>
+            className="pointer-events-none absolute h-full rounded-full bg-gradient-to-r from-[#594DA3] to-[#AD88F1]"
+            style={{ left: `${pct(fromIdx)}%`, right: `${100 - pct(toIdx)}%` }}
+          />
+          <button
+            type="button"
+            aria-label={`Từ năm ${fromYear}`}
+            onMouseDown={startDrag('from')}
+            className={`absolute top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-[#594DA3] bg-white shadow focus:outline-none transition-transform ${dragging === 'from' ? 'scale-125' : 'hover:scale-110'}`}
+            style={{ left: `${pct(fromIdx)}%` }}
+          />
+          <button
+            type="button"
+            aria-label={`Đến năm ${toYear}`}
+            onMouseDown={startDrag('to')}
+            className={`absolute top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-[#AD88F1] bg-white shadow focus:outline-none transition-transform ${dragging === 'to' ? 'scale-125' : 'hover:scale-110'}`}
+            style={{ left: `${pct(toIdx)}%` }}
+          />
         </div>
 
-        {/* To badge */}
-        <span className="shrink-0 text-sm font-bold text-[#AD88F1]">{toYear}</span>
+        {/* TO year */}
+        <span className="w-9 shrink-0 text-center text-xs font-extrabold text-[#AD88F1]">{toYear}</span>
       </div>
     </div>
   );
