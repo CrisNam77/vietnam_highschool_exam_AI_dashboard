@@ -1,8 +1,8 @@
-# Báo cáo chất lượng dữ liệu: Điểm thi tốt nghiệp THPT 2022–2025
+# Báo cáo chất lượng dữ liệu: Điểm thi tốt nghiệp THPT 2022–2026
 
-## 1. Nguồn dữ liệu và phạm vi
+## 1. Nguồn dữ liệu và Phạm vi
 
-Bộ dữ liệu phục vụ phân tích được tổng hợp từ sáu tệp gốc, trải dài bốn kỳ thi tốt nghiệp THPT từ năm 2022 đến năm 2025. Ba năm 2022, 2023 và 2024 được cung cấp dưới dạng tệp CSV, trong khi dữ liệu năm 2025 nằm ở hai tệp Excel tương ứng với hai chương trình giáo dục khác nhau. Riêng nhóm thí sinh chương trình 2018 năm 2025 bị công cụ xuất dữ liệu chia thành hai trang tính, do đó được hợp nhất trở lại trong quá trình xử lý.
+Bộ dữ liệu phục vụ phân tích được tổng hợp từ bảy tệp gốc, trải dài năm kỳ thi tốt nghiệp THPT từ năm 2022 đến năm 2026. Các năm 2022, 2023, 2024 và 2026 được cung cấp dưới dạng tệp CSV, trong khi dữ liệu năm 2025 nằm ở hai tệp Excel tương ứng với hai chương trình giáo dục khác nhau. Riêng nhóm thí sinh chương trình 2018 năm 2025 bị công cụ xuất dữ liệu chia thành hai trang tính, do đó được hợp nhất trở lại trong quá trình xử lý.
 
 | # | Tệp gốc | Định dạng | Năm | Chương trình | Số dòng thô |
 |---|---------|-----------|-----|--------------|-------------|
@@ -12,6 +12,7 @@ Bộ dữ liệu phục vụ phân tích được tổng hợp từ sáu tệp g
 | 4 | `20250715-ketquathi-ct2006.xlsx` (Sheet1) | XLSX | 2025 | 2006 | 22.090 |
 | 5 | `20250715-ketquathi-ct2018a.xlsx` (Sheet1) | XLSX | 2025 | 2018 | 1.000.000 |
 | 6 | `20250715-ketquathi-ct2018a_2.xlsx` (Sheet2) | XLSX | 2025 | 2018 | 131.136 |
+| 7 | `diem_thi_THPTQG_2026.csv` | CSV | 2026 | 2018 | 1.131.975 |
 
 ## 2. Đơn vị phân tích và khóa định danh
 
@@ -25,11 +26,11 @@ Tệp kết quả `final_data.csv` được tổ chức theo định dạng wide
 
 | Trường | Kiểu | Ý nghĩa | Miền giá trị |
 |--------|------|---------|--------------|
-| `nam` | số nguyên | Năm dự thi | 2022, 2023, 2024, 2025 |
+| `nam` | số nguyên | Năm dự thi | 2022, 2023, 2024, 2025, 2026 |
 | `chuong_trinh` | danh mục | Chương trình giáo dục của đề thi | `2006`, `2018` |
 | `sbd` | chuỗi 8 ký tự | Số báo danh, giữ nguyên số 0 ở đầu | tám chữ số |
-| `ma_tinh` | chuỗi 2 ký tự | Mã hội đồng thi, lấy từ hai chữ số đầu của số báo danh | `01` đến `64`, không có `20` |
-| `ten_tinh` | danh mục | Tên tỉnh hoặc thành phố, suy ra từ mã tỉnh | xem mục 4.3 |
+| `ma_tinh` | chuỗi 2 ký tự | Mã hội đồng thi, lấy từ hai chữ số đầu của SBD | hệ cũ (01-64) cho 2022-2025; hệ mới (sau sáp nhập) cho 2026 |
+| `ten_tinh` | danh mục | Tên tỉnh hoặc thành phố sau sáp nhập | 34 tỉnh (xem mục 4.3) |
 | `vung_mien` | danh mục | Vùng kinh tế xã hội (sáu vùng) | xem mục 4.3 |
 | `vung_3` | danh mục | Miền địa lý, gộp từ sáu vùng | Bắc, Trung, Nam |
 | `ma_ngoai_ngu` | danh mục | Mã thứ tiếng của môn Ngoại ngữ | `N1` đến `N7`, hoặc `NA` |
@@ -74,7 +75,7 @@ Mỗi trường điểm khối chỉ có giá trị khi thí sinh dự thi đủ
 
 ### 4.1. Năm và chương trình
 
-Trường `nam` nhận một trong bốn giá trị từ 2022 đến 2025. Trường `chuong_trinh` phân biệt hai hệ đề thi: giá trị `2006` áp dụng cho các kỳ thi 2022, 2023, 2024 và nhóm thí sinh tự do thi theo đề cũ năm 2025; giá trị `2018` dành riêng cho nhóm thí sinh thi theo chương trình giáo dục phổ thông mới năm 2025.
+Trường `nam` nhận một trong năm giá trị từ 2022 đến 2026. Trường `chuong_trinh` phân biệt hai hệ đề thi: giá trị `2006` áp dụng cho các kỳ thi 2022, 2023, 2024 và nhóm thí sinh tự do thi theo đề cũ năm 2025; giá trị `2018` dành riêng cho nhóm thí sinh thi theo chương trình giáo dục phổ thông mới từ năm 2025 trở đi.
 
 ### 4.2. Mã ngoại ngữ
 
@@ -95,19 +96,19 @@ Cần lưu ý rằng ánh xạ các mã từ N4 đến N7 nên được đối c
 
 ### 4.3. Phân vùng địa lý
 
-Mã tỉnh trong dữ liệu là mã hội đồng thi theo hệ thống trước khi sáp nhập đơn vị hành chính năm 2025, gồm 63 mã và không có mã 20. Các tỉnh được phân về sáu vùng kinh tế xã hội, sau đó gộp tiếp thành ba miền Bắc, Trung, Nam.
+Mặc dù mã tỉnh trong dữ liệu phản ánh mã hội đồng thi gốc của từng năm (hệ 63 tỉnh cũ cho 2022-2025 và hệ mã mới cho 2026), toàn bộ dữ liệu đã được thống nhất ánh xạ về **hệ thống 34 tỉnh/thành phố sau sáp nhập**. Các tỉnh này được phân về sáu vùng kinh tế xã hội, sau đó gộp tiếp thành ba miền Bắc, Trung, Nam.
 
-Trung du và miền núi phía Bắc (thuộc miền Bắc) gồm các mã 05 Hà Giang, 06 Cao Bằng, 07 Lai Châu, 08 Lào Cai, 09 Tuyên Quang, 10 Lạng Sơn, 11 Bắc Kạn, 12 Thái Nguyên, 13 Yên Bái, 14 Sơn La, 15 Phú Thọ, 18 Bắc Giang, 23 Hòa Bình và 62 Điện Biên.
+Trung du và miền núi phía Bắc (thuộc miền Bắc) gồm: Tuyên Quang, Cao Bằng, Lai Châu, Điện Biên, Lạng Sơn, Sơn La, Lào Cai, Thái Nguyên, Phú Thọ.
 
-Đồng bằng sông Hồng (thuộc miền Bắc) gồm 01 Hà Nội, 03 Hải Phòng, 16 Vĩnh Phúc, 17 Quảng Ninh, 19 Bắc Ninh, 21 Hải Dương, 22 Hưng Yên, 24 Hà Nam, 25 Nam Định, 26 Thái Bình và 27 Ninh Bình.
+Đồng bằng sông Hồng (thuộc miền Bắc) gồm: Hà Nội, Quảng Ninh, Hải Phòng, Bắc Ninh, Hưng Yên, Ninh Bình.
 
-Bắc Trung Bộ và Duyên hải miền Trung (thuộc miền Trung) gồm 04 Đà Nẵng, 28 Thanh Hóa, 29 Nghệ An, 30 Hà Tĩnh, 31 Quảng Bình, 32 Quảng Trị, 33 Thừa Thiên Huế, 34 Quảng Nam, 35 Quảng Ngãi, 37 Bình Định, 39 Phú Yên, 41 Khánh Hòa, 45 Ninh Thuận và 47 Bình Thuận.
+Bắc Trung Bộ và Duyên hải miền Trung (thuộc miền Trung) gồm: Huế, Thanh Hóa, Nghệ An, Hà Tĩnh, Đà Nẵng, Quảng Trị, Quảng Ngãi, Khánh Hòa.
 
-Tây Nguyên (thuộc miền Trung) gồm 36 Kon Tum, 38 Gia Lai, 40 Đắk Lắk, 42 Lâm Đồng và 63 Đắk Nông.
+Tây Nguyên (thuộc miền Trung) gồm: Gia Lai, Đắk Lắk, Lâm Đồng.
 
-Đông Nam Bộ (thuộc miền Nam) gồm 02 Thành phố Hồ Chí Minh, 43 Bình Phước, 44 Bình Dương, 46 Tây Ninh, 48 Đồng Nai và 52 Bà Rịa Vũng Tàu.
+Đông Nam Bộ (thuộc miền Nam) gồm: Hồ Chí Minh, Đồng Nai, Tây Ninh.
 
-Đồng bằng sông Cửu Long (thuộc miền Nam) gồm 49 Long An, 50 Đồng Tháp, 51 An Giang, 53 Tiền Giang, 54 Kiên Giang, 55 Cần Thơ, 56 Bến Tre, 57 Vĩnh Long, 58 Trà Vinh, 59 Sóc Trăng, 60 Bạc Liêu, 61 Cà Mau và 64 Hậu Giang.
+Đồng bằng sông Cửu Long (thuộc miền Nam) gồm: Cần Thơ, Đồng Tháp, An Giang, Vĩnh Long, Cà Mau.
 
 ### 4.4. Ban dự thi
 
@@ -119,19 +120,19 @@ Quy trình làm sạch và hợp nhất được thiết kế để bảo toàn 
 
 Trước hết, tên cột của ba tệp Excel được chuẩn hóa về cùng bộ tên với ba tệp CSV, đồng thời loại bỏ cột số thứ tự không cần thiết. Số báo danh được ép về dạng chuỗi, làm sạch phần thập phân thừa nếu Excel lưu nhầm dưới dạng số, sau đó bổ sung số 0 ở đầu để đảm bảo đủ tám chữ số. Những dòng có số báo danh không hợp lệ sẽ bị loại và ghi nhận số lượng.
 
-Mã tỉnh được trích từ hai chữ số đầu của số báo danh, rồi ánh xạ sang tên tỉnh, vùng kinh tế xã hội và miền địa lý dựa trên bảng tra cứu cố định gồm 63 tỉnh. Các mã tỉnh không nằm trong danh mục, bao gồm cả mã 20 không tồn tại, sẽ bị loại và ghi nhận.
+Mã tỉnh được trích từ hai chữ số đầu của số báo danh đối với dữ liệu từ 2022-2025 để ánh xạ sang tên tỉnh theo hệ thống 34 tỉnh mới. Riêng năm 2026, tên tỉnh được trích xuất trực tiếp từ cột địa lý có sẵn và chuẩn hóa để khớp với danh mục 34 tỉnh. Từ tên tỉnh chuẩn, dữ liệu được ánh xạ tiếp sang sáu vùng kinh tế xã hội và ba miền địa lý. Các bản ghi có tên tỉnh lạ không nằm trong danh mục 34 tỉnh sẽ bị loại và ghi nhận.
 
 Đối với điểm số, dữ liệu được ép về kiểu số thực, ô trống chuyển thành giá trị rỗng. Hai mốc 0 và 10 được giữ nguyên vì đây là các giá trị hợp lệ, trong đó điểm 0 phản ánh điểm liệt thực tế. Các giá trị nằm ngoài khoảng từ 0 đến 10 được chuyển thành rỗng và ghi nhận số lượng. Quá trình xử lý tuyệt đối không làm tròn điểm theo bước 0,25, bởi chương trình 2018 xuất hiện những mức điểm lẻ như 7,35 hay 6,35; cũng không loại điểm ngoại lai theo phương pháp tứ phân vị, và không thay thế giá trị rỗng bằng 0. Theo đó, mọi thống kê trung bình môn về sau đều phải được tính trên tập thí sinh thực sự dự thi môn đó.
 
 Trường mã ngoại ngữ được chuẩn hóa về chữ hoa, loại bỏ khoảng trắng thừa, và quy các giá trị rỗng về chuỗi `NA`. Trường ban dự thi được xác định cho thí sinh chương trình 2006 bằng cách so sánh số môn có điểm giữa nhóm tự nhiên gồm Vật lí, Hóa học, Sinh học và nhóm xã hội gồm Lịch sử, Địa lí, Giáo dục công dân; bên nào nhiều môn hơn sẽ quyết định ban, trường hợp bằng nhau và cùng lớn hơn 0 được xếp vào nhóm Khác. Thí sinh chương trình 2018 không được gán ban, do cấu trúc đề mới đã phá vỡ cách phân chia tự nhiên và xã hội truyền thống.
 
-Điểm các khối thi được tính bằng tổng điểm ba môn thành phần và chỉ có giá trị khi thí sinh dự thi đầy đủ. Hai khối A01 và D01 chỉ sử dụng điểm Ngoại ngữ khi thí sinh thi tiếng Anh. Riêng năm 2022, do dữ liệu gốc không có mã ngoại ngữ, toàn bộ điểm Ngoại ngữ được quy ước là tiếng Anh; đây là một giả định có chủ đích và được ghi nhận rõ để người sử dụng lưu ý khi đọc kết quả khối của riêng năm này.
+Điểm các khối thi được tính bằng tổng điểm ba môn thành phần và chỉ có giá trị khi thí sinh dự thi đầy đủ. Hai khối A01 và D01 chỉ sử dụng điểm Ngoại ngữ khi thí sinh thi tiếng Anh. Dữ liệu gốc của năm 2022 và 2026 thiếu cột mã ngoại ngữ, do đó toàn bộ điểm Ngoại ngữ của hai năm này được quy ước là tiếng Anh; đây là một giả định có chủ đích nhằm giúp việc tính điểm khối được nhất quán.
 
 Cuối cùng, những dòng không có điểm ở bất kỳ môn nào, tương ứng với thí sinh đăng ký nhưng vắng thi toàn bộ, sẽ bị loại khỏi dữ liệu và ghi nhận. Quy trình không thực hiện khử trùng trên khóa định danh mà chỉ đếm và báo cáo số bản ghi trùng. Dữ liệu sau xử lý được xuất ra tệp `final_data.csv` ở định dạng wide, với điểm số ghi hai chữ số thập phân và giá trị rỗng để trống.
 
 ## 6. Thống kê chất lượng
 
-Sau khi xử lý, tổng số 4.232.332 dòng dữ liệu thô được rút gọn còn 4.227.695 dòng. Toàn bộ 4.637 dòng bị loại đều thuộc nhóm thí sinh vắng thi toàn bộ. Dữ liệu cho thấy chất lượng đầu vào rất tốt: không có số báo danh sai định dạng, không có mã tỉnh lạ, không có điểm nằm ngoài khoảng hợp lệ, và không có bản ghi trùng khóa.
+Sau khi xử lý, tổng số 5.364.307 dòng dữ liệu thô được rút gọn còn 5.359.670 dòng. Toàn bộ 4.637 dòng bị loại đều thuộc nhóm thí sinh vắng thi toàn bộ. Dữ liệu cho thấy chất lượng đầu vào rất tốt: không có số báo danh sai định dạng, không có mã tỉnh lạ, không có điểm nằm ngoài khoảng hợp lệ, và không có bản ghi trùng khóa.
 
 | Hạng mục | Số lượng |
 |----------|----------|
@@ -150,17 +151,18 @@ Phân bố dữ liệu sau xử lý theo từng năm và chương trình đượ
 | 2024 | 2006 | 1.061.604 | 1 |
 | 2025 | 2006 | 22.088 | 2 |
 | 2025 | 2018 | 1.130.984 | 152 |
-| Tổng | | 4.227.695 | 4.637 |
+| 2026 | 2018 | 1.131.975 | 0 |
+| Tổng | | 5.359.670 | 4.637 |
 
 Một điểm đáng chú ý là năm 2023 có số dòng vắng thi cao hơn hẳn các năm còn lại, với 4.476 dòng. Đây nhiều khả năng là nhóm thí sinh đăng ký nhưng không tham dự, cần được nhắc đến trong báo cáo phân tích nhưng không phải là lỗi dữ liệu.
 
 ## 7. Hạn chế và lưu ý khi diễn giải
 
-Kết quả năm 2025 thuộc chương trình 2018 cần được xem là một năm bản lề và không so sánh trực tiếp về mặt thước đo với giai đoạn 2022 đến 2024. Đề thi, cấu trúc môn và cơ chế chọn môn của chương trình mới đều khác biệt: môn Giáo dục công dân không còn, xuất hiện các môn mới như Tin học, Công nghệ và Giáo dục kinh tế và pháp luật, đồng thời Ngoại ngữ trở thành môn tự chọn. Vì vậy, đường xu hướng điểm trung bình môn nên dừng ở năm 2024, còn năm 2025 được phân tích riêng.
+Kết quả năm 2025 thuộc chương trình 2018 cần được xem là một năm bản lề và không so sánh trực tiếp về mặt thước đo với giai đoạn 2022 đến 2024. Đề thi, cấu trúc môn và cơ chế chọn môn của chương trình mới đều khác biệt: môn Giáo dục công dân không còn, xuất hiện các môn mới như Tin học, Công nghệ và Giáo dục kinh tế và pháp luật, đồng thời Ngoại ngữ trở thành môn tự chọn. Vì vậy, đường xu hướng điểm trung bình môn nên phân tách rõ giữa giai đoạn trước và sau 2025.
 
-Mã tỉnh trong dữ liệu phản ánh địa điểm dự thi theo hội đồng thi, không nhất thiết trùng với nơi cư trú hay nơi học của thí sinh. Do đó, mọi nhận định về chênh lệch giữa các địa phương cần được phát biểu theo địa điểm dự thi. Hệ mã tỉnh này cũng thuộc giai đoạn trước sáp nhập đơn vị hành chính năm 2025, nên không khớp với danh sách 34 tỉnh thành hiện hành; dữ liệu giữ nguyên hệ mã cũ nhằm bảo đảm tính nhất quán xuyên suốt bốn năm.
+Mã tỉnh nguyên bản phản ánh địa điểm dự thi theo hội đồng thi. Để đảm bảo tính nhất quán xuyên suốt năm năm phân tích, toàn bộ tên tỉnh và phân vùng địa lý đã được quy đổi và thống nhất về hệ thống 34 tỉnh thành sau đợt sáp nhập hành chính (năm 2025). Do đó, mọi nhận định về chênh lệch địa phương đều được thực hiện trên bản đồ địa lý 34 tỉnh mới.
 
-Môn Ngoại ngữ bao gồm nhiều thứ tiếng khác nhau, nên khi so sánh giữa các tỉnh hoặc vùng, cần giới hạn ở tiếng Anh để tránh so sánh nhầm giữa các thứ tiếng có mặt bằng điểm khác nhau. Bên cạnh đó, khối A01 và D01 của năm 2022 được tính dựa trên giả định toàn bộ Ngoại ngữ là tiếng Anh, do dữ liệu gốc thiếu mã ngoại ngữ.
+Môn Ngoại ngữ bao gồm nhiều thứ tiếng khác nhau, nên khi so sánh giữa các tỉnh hoặc vùng, cần giới hạn ở tiếng Anh để tránh so sánh nhầm giữa các thứ tiếng có mặt bằng điểm khác nhau. Đặc biệt, khối A01 và D01 của năm 2022 và 2026 được tính dựa trên giả định toàn bộ Ngoại ngữ là tiếng Anh, do tệp dữ liệu gốc bị thiếu thông tin mã ngoại ngữ.
 
 Tỷ lệ giá trị rỗng cao ở nhiều môn là điều bình thường và bắt nguồn từ cơ chế chọn môn, chứ không phải dấu hiệu dữ liệu kém chất lượng. Ví dụ, phần lớn thí sinh không chọn thi Sinh học khiến trường điểm môn này rỗng tới khoảng 90 phần trăm. Trong mọi trường hợp, giá trị rỗng cần được hiểu là không dự thi, không phải điểm thấp.
 

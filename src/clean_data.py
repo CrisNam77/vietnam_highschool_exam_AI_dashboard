@@ -5,106 +5,68 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
+import unicodedata
 
-# ==============================================================================
-# ĐỊNH NGHĨA CÁC HẰNG SỐ (CONSTANTS)
-# ==============================================================================
-
-# Bảng mã tỉnh (63 tỉnh/thành phố, không có mã 20)
-PROVINCE = {
-    "01": "THÀNH PHỐ HÀ NỘI",
-    "02": "THÀNH PHỐ HỒ CHÍ MINH",
-    "03": "THÀNH PHỐ HẢI PHÒNG",
-    "04": "THÀNH PHỐ ĐÀ NẴNG",
-    "05": "TỈNH HÀ GIANG",
-    "06": "TỈNH CAO BẰNG",
-    "07": "TỈNH LAI CHÂU",
-    "08": "TỈNH LÀO CAI",
-    "09": "TỈNH TUYÊN QUANG",
-    "10": "TỈNH LẠNG SƠN",
-    "11": "TỈNH BẮC KẠN",
-    "12": "TỈNH THÁI NGUYÊN",
-    "13": "TỈNH YÊN BÁI",
-    "14": "TỈNH SƠN LA",
-    "15": "TỈNH PHÚ THỌ",
-    "16": "TỈNH VĨNH PHÚC",
-    "17": "TỈNH QUẢNG NINH",
-    "18": "TỈNH BẮC GIANG",
-    "19": "TỈNH BẮC NINH",
-    "21": "TỈNH HẢI DƯƠNG",
-    "22": "TỈNH HƯNG YÊN",
-    "23": "TỈNH HÒA BÌNH",
-    "24": "TỈNH HÀ NAM",
-    "25": "TỈNH NAM ĐỊNH",
-    "26": "TỈNH THÁI BÌNH",
-    "27": "TỈNH NINH BÌNH",
-    "28": "TỈNH THANH HÓA",
-    "29": "TỈNH NGHỆ AN",
-    "30": "TỈNH HÀ TĨNH",
-    "31": "TỈNH QUẢNG BÌNH",
-    "32": "TỈNH QUẢNG TRỊ",
-    "33": "TỈNH THỪA THIÊN - HUẾ",
-    "34": "TỈNH QUẢNG NAM",
-    "35": "TỈNH QUẢNG NGÃI",
-    "36": "TỈNH KON TUM",
-    "37": "TỈNH BÌNH ĐỊNH",
-    "38": "TỈNH GIA LAI",
-    "39": "TỈNH PHÚ YÊN",
-    "40": "TỈNH ĐẮK LẮK",
-    "41": "TỈNH KHÁNH HÒA",
-    "42": "TỈNH LÂM ĐỒNG",
-    "43": "TỈNH BÌNH PHƯỚC",
-    "44": "TỈNH BÌNH DƯƠNG",
-    "45": "TỈNH NINH THUẬN",
-    "46": "TỈNH TÂY NINH",
-    "47": "TỈNH BÌNH THUẬN",
-    "48": "TỈNH ĐỒNG NAI",
-    "49": "TỈNH LONG AN",
-    "50": "TỈNH ĐỒNG THÁP",
-    "51": "TỈNH AN GIANG",
-    "52": "TỈNH BÀ RỊA – VŨNG TÀU",
-    "53": "TỈNH TIỀN GIANG",
-    "54": "TỈNH KIÊN GIANG",
-    "55": "THÀNH PHỐ CẦN THƠ",
-    "56": "TỈNH BẾN TRE",
-    "57": "TỈNH VĨNH LONG",
-    "58": "TỈNH TRÀ VINH",
-    "59": "TỈNH SÓC TRĂNG",
-    "60": "TỈNH BẠC LIÊU",
-    "61": "TỈNH CÀ MAU",
-    "62": "TỈNH ĐIỆN BIÊN",
-    "63": "TỈNH ĐĂK NÔNG",
-    "64": "TỈNH HẬU GIANG"
+PROVINCE_NEW = {
+ "Tuyên Quang":"Trung du và miền núi phía Bắc","Cao Bằng":"Trung du và miền núi phía Bắc",
+ "Lai Châu":"Trung du và miền núi phía Bắc","Điện Biên":"Trung du và miền núi phía Bắc",
+ "Lạng Sơn":"Trung du và miền núi phía Bắc","Sơn La":"Trung du và miền núi phía Bắc",
+ "Lào Cai":"Trung du và miền núi phía Bắc","Thái Nguyên":"Trung du và miền núi phía Bắc",
+ "Phú Thọ":"Trung du và miền núi phía Bắc",
+ "Hà Nội":"Đồng bằng sông Hồng","Quảng Ninh":"Đồng bằng sông Hồng",
+ "Hải Phòng":"Đồng bằng sông Hồng","Bắc Ninh":"Đồng bằng sông Hồng",
+ "Hưng Yên":"Đồng bằng sông Hồng","Ninh Bình":"Đồng bằng sông Hồng",
+ "Huế":"Bắc Trung Bộ và Duyên hải miền Trung","Thanh Hóa":"Bắc Trung Bộ và Duyên hải miền Trung",
+ "Nghệ An":"Bắc Trung Bộ và Duyên hải miền Trung","Hà Tĩnh":"Bắc Trung Bộ và Duyên hải miền Trung",
+ "Đà Nẵng":"Bắc Trung Bộ và Duyên hải miền Trung","Quảng Trị":"Bắc Trung Bộ và Duyên hải miền Trung",
+ "Quảng Ngãi":"Bắc Trung Bộ và Duyên hải miền Trung","Khánh Hòa":"Bắc Trung Bộ và Duyên hải miền Trung",
+ "Gia Lai":"Tây Nguyên","Đắk Lắk":"Tây Nguyên","Lâm Đồng":"Tây Nguyên",
+ "Hồ Chí Minh":"Đông Nam Bộ","Đồng Nai":"Đông Nam Bộ","Tây Ninh":"Đông Nam Bộ",
+ "Cần Thơ":"Đồng bằng sông Cửu Long","Đồng Tháp":"Đồng bằng sông Cửu Long",
+ "An Giang":"Đồng bằng sông Cửu Long","Vĩnh Long":"Đồng bằng sông Cửu Long",
+ "Cà Mau":"Đồng bằng sông Cửu Long",
 }
 
-# 6 vùng miền
-REGION6 = {
-    "Trung du và miền núi phía Bắc": ["05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "18", "23", "62"],
-    "Đồng bằng sông Hồng": ["01", "03", "16", "17", "19", "21", "22", "24", "25", "26", "27"],
-    "Bắc Trung Bộ và Duyên hải miền Trung": ["04", "28", "29", "30", "31", "32", "33", "34", "35", "37", "39", "41", "45", "47"],
-    "Tây Nguyên": ["36", "38", "40", "42", "63"],
-    "Đông Nam Bộ": ["02", "43", "44", "46", "48", "52"],
-    "Đồng bằng sông Cửu Long": ["49", "50", "51", "53", "54", "55", "56", "57", "58", "59", "60", "61", "64"]
+OLD_TO_NEW = {
+ "01":"Hà Nội","02":"Hồ Chí Minh","03":"Hải Phòng","04":"Đà Nẵng","05":"Tuyên Quang",
+ "06":"Cao Bằng","07":"Lai Châu","08":"Lào Cai","09":"Tuyên Quang","10":"Lạng Sơn",
+ "11":"Thái Nguyên","12":"Thái Nguyên","13":"Lào Cai","14":"Sơn La","15":"Phú Thọ",
+ "16":"Phú Thọ","17":"Quảng Ninh","18":"Bắc Ninh","19":"Bắc Ninh","21":"Hải Phòng",
+ "22":"Hưng Yên","23":"Phú Thọ","24":"Ninh Bình","25":"Ninh Bình","26":"Hưng Yên",
+ "27":"Ninh Bình","28":"Thanh Hóa","29":"Nghệ An","30":"Hà Tĩnh","31":"Quảng Trị",
+ "32":"Quảng Trị","33":"Huế","34":"Đà Nẵng","35":"Quảng Ngãi","36":"Quảng Ngãi",
+ "37":"Gia Lai","38":"Gia Lai","39":"Đắk Lắk","40":"Đắk Lắk","41":"Khánh Hòa",
+ "42":"Lâm Đồng","43":"Đồng Nai","44":"Hồ Chí Minh","45":"Khánh Hòa","46":"Tây Ninh",
+ "47":"Lâm Đồng","48":"Đồng Nai","49":"Tây Ninh","50":"Đồng Tháp","51":"An Giang",
+ "52":"Hồ Chí Minh","53":"Đồng Tháp","54":"An Giang","55":"Cần Thơ","56":"Vĩnh Long",
+ "57":"Vĩnh Long","58":"Vĩnh Long","59":"Cần Thơ","60":"Cà Mau","61":"Cà Mau",
+ "62":"Điện Biên","63":"Lâm Đồng","64":"Cần Thơ",
 }
 
-# 3 vùng (Bắc, Trung, Nam)
-REGION3 = {
-    "Bắc": REGION6["Trung du và miền núi phía Bắc"] + REGION6["Đồng bằng sông Hồng"],
-    "Trung": REGION6["Bắc Trung Bộ và Duyên hải miền Trung"] + REGION6["Tây Nguyên"],
-    "Nam": REGION6["Đông Nam Bộ"] + REGION6["Đồng bằng sông Cửu Long"]
+REGION3_OF_6 = {
+ "Trung du và miền núi phía Bắc":"Bắc","Đồng bằng sông Hồng":"Bắc",
+ "Bắc Trung Bộ và Duyên hải miền Trung":"Trung","Tây Nguyên":"Trung",
+ "Đông Nam Bộ":"Nam","Đồng bằng sông Cửu Long":"Nam",
 }
 
-# Dictionary ánh xạ mã tỉnh sang vùng (phục vụ lookup nhanh)
-MAP_REGION6 = {code: region for region, codes in REGION6.items() for code in codes}
-MAP_REGION3 = {code: region for region, codes in REGION3.items() for code in codes}
+def norm_tinh(s):
+    if pd.isna(s) or s == "":
+        return None
+    s = str(s).strip()
+    for prefix in ["Thành phố ", "TP. ", "TP ", "Tỉnh "]:
+        if s.startswith(prefix):
+            s = s[len(prefix):]
+    s = s.strip()
+    s = unicodedata.normalize("NFC", s)
+    alias = {"Khánh Hoà":"Khánh Hòa", "Thanh Hoá":"Thanh Hóa",
+             "Thừa Thiên Huế":"Huế", "TP Hồ Chí Minh":"Hồ Chí Minh"}
+    return alias.get(s, s)
 
-# Danh sách 13 cột điểm chuẩn (canonical)
 SCORE_COLS = [
     "toan", "ngu_van", "ngoai_ngu", "vat_li", "hoa_hoc", "sinh_hoc", 
     "lich_su", "dia_li", "gdcd", "tin_hoc", "cong_nghe_cn", "cong_nghe_nn", "gd_ktpl"
 ]
 
-# Bảng đổi tên cột từ file gốc sang chuẩn
 RENAME_2006 = {
     "SOBAODANH": "sbd", "Toán": "toan", "Văn": "ngu_van", "Lí": "vat_li", 
     "Hóa": "hoa_hoc", "Sinh": "sinh_hoc", "Sử": "lich_su", "Địa": "dia_li", 
@@ -120,9 +82,13 @@ RENAME_2018 = {
     "Công nghệ nông nghiệp": "cong_nghe_nn", "Giáo dục kinh tế và pháp luật": "gd_ktpl"
 }
 
-# ==============================================================================
-# HÀM XỬ LÝ CHÍNH
-# ==============================================================================
+RENAME_2026 = {
+    "SBD": "sbd", "Toán": "toan", "Văn": "ngu_van", "Lý": "vat_li", "Hóa": "hoa_hoc",
+    "Sinh": "sinh_hoc", "Sử": "lich_su", "Địa": "dia_li",
+    "GD Kinh tế - Pháp luật": "gd_ktpl", "Tin học": "tin_hoc", "Ngoại ngữ": "ngoai_ngu",
+}
+
+
 
 def main():
     parser = argparse.ArgumentParser(description="Script làm sạch và gộp dữ liệu điểm thi THPT.")
@@ -133,17 +99,12 @@ def main():
     raw_dir = Path(args.raw)
     out_dir = Path(args.out)
     
-    # Tạo thư mục đầu ra nếu chưa có
     out_dir.mkdir(parents=True, exist_ok=True)
     
     print(f"[*] Bắt đầu đọc dữ liệu từ thư mục {raw_dir}...")
     
     stats_raw = {}
     dfs = []
-    
-    # ---------------------------------------------------------
-    # BƯỚC 1 & 2: Đọc dữ liệu
-    # ---------------------------------------------------------
     
     # Nguồn 1: diem_thi_thpt_2022.csv
     file1 = raw_dir / "diem_thi_thpt_2022.csv"
@@ -215,22 +176,33 @@ def main():
         dfs.append(df6)
         print(f" - Đã đọc {file6.name}: {len(df6)} dòng")
 
+    # Nguồn 7: diem_thi_THPTQG_2026.csv
+    file7 = raw_dir / "diem_thi_THPTQG_2026.csv"
+    if file7.exists():
+        df7 = pd.read_csv(file7, dtype=str, keep_default_na=False, na_values=[])
+        df7 = df7.rename(columns=RENAME_2026)
+        if "Công nghệ" in df7.columns:
+            df7 = df7.drop(columns=["Công nghệ"])
+        df7["nam"] = 2026
+        df7["chuong_trinh"] = "2018"
+        df7["ma_ngoai_ngu"] = "NA"
+        df7["cong_nghe_cn"] = np.nan
+        df7["cong_nghe_nn"] = np.nan
+        stats_raw["diem_thi_THPTQG_2026.csv"] = len(df7)
+        dfs.append(df7)
+        print(f" - Đã đọc {file7.name}: {len(df7)} dòng")
+
     if not dfs:
         print("Không tìm thấy bất kỳ dữ liệu nào trong thư mục raw. Dừng script.")
         sys.exit(0)
 
-    # ---------------------------------------------------------
-    # BƯỚC 3: Gộp dữ liệu
-    # ---------------------------------------------------------
+    # Gộp dữ liệu
     print("[*] Đang gộp dữ liệu...")
     df = pd.concat(dfs, ignore_index=True)
     total_raw_rows = len(df)
     
-    # ---------------------------------------------------------
-    # BƯỚC 4: Làm sạch SBD
-    # ---------------------------------------------------------
+    # Làm sạch SBD
     print("[*] Đang xử lý Số báo danh (SBD)...")
-    # Ép kiểu chuỗi, thay thế .0 và ký tự không phải số, zfill về 8
     df["sbd"] = df["sbd"].fillna("").astype(str)
     df["sbd"] = df["sbd"].str.replace(r"\.0$", "", regex=True)
     df["sbd"] = df["sbd"].str.replace(r"\D", "", regex=True)
@@ -241,23 +213,37 @@ def main():
     dropped_invalid_sbd = int(invalid_sbd_mask.sum())
     df = df[~invalid_sbd_mask].copy()
     
-    # ---------------------------------------------------------
-    # BƯỚC 5: Mã tỉnh và Vùng miền
-    # ---------------------------------------------------------
+    # Mã tỉnh và Vùng miền
     print("[*] Đang ánh xạ Tỉnh và Vùng miền...")
     df["ma_tinh"] = df["sbd"].str[:2]
-    df["ten_tinh"] = df["ma_tinh"].map(PROVINCE)
-    df["vung_mien"] = df["ma_tinh"].map(MAP_REGION6)
-    df["vung_3"] = df["ma_tinh"].map(MAP_REGION3)
+    
+    cond_old = df["nam"] <= 2025
+    cond_new = df["nam"] == 2026
+    
+    df["ten_tinh"] = pd.Series(pd.NA, index=df.index, dtype=object)
+    if cond_old.any():
+        df.loc[cond_old, "ten_tinh"] = df.loc[cond_old, "ma_tinh"].map(OLD_TO_NEW)
+        
+    strange_new_provinces = []
+    if cond_new.any() and "Tỉnh" in df.columns:
+        normed = df.loc[cond_new, "Tỉnh"].apply(norm_tinh)
+        valid_mask = normed.isin(PROVINCE_NEW.keys())
+        df.loc[cond_new & valid_mask, "ten_tinh"] = normed[valid_mask]
+        
+        invalid_mask = cond_new & (~valid_mask) & df["Tỉnh"].notna() & (df["Tỉnh"] != "")
+        strange_new_provinces = df.loc[invalid_mask, "Tỉnh"].unique().tolist()
+        if strange_new_provinces:
+            print(f"   [CẢNH BÁO] Các tên tỉnh 2026 không khớp: {strange_new_provinces}")
+
+    df["vung_mien"] = df["ten_tinh"].map(PROVINCE_NEW)
+    df["vung_3"] = df["vung_mien"].map(REGION3_OF_6)
     
     # Mã tỉnh lạ -> đếm và loại bỏ
     strange_province_mask = df["ten_tinh"].isna()
     dropped_strange_province = int(strange_province_mask.sum())
     df = df[~strange_province_mask].copy()
 
-    # ---------------------------------------------------------
-    # BƯỚC 6: Xử lý 13 cột điểm
-    # ---------------------------------------------------------
+    # Xử lý 13 cột điểm
     print("[*] Đang ép kiểu và lọc điểm hợp lệ...")
     out_of_bounds_count = 0
     for col in SCORE_COLS:
@@ -271,12 +257,7 @@ def main():
         else:
             df[col] = np.nan
 
-    # ---------------------------------------------------------
-    # BƯỚC 7: Làm sạch ma_ngoai_ngu
-    # ---------------------------------------------------------
-    # Quy ước: thí sinh KHÔNG thi ngoại ngữ -> ma_ngoai_ngu = chuỗi "NA"
-    # (không để trống). Lưu ý: khi đọc lại final_data.csv bằng pd.read_csv mặc định,
-    # "NA" sẽ tự thành NaN; muốn giữ nguyên chuỗi thì đọc với keep_default_na=False.
+    # Làm sạch mã ngoại ngữ
     print("[*] Đang chuẩn hóa mã ngoại ngữ...")
     if "ma_ngoai_ngu" in df.columns:
         df["ma_ngoai_ngu"] = df["ma_ngoai_ngu"].astype(str).str.strip().str.upper()
@@ -285,9 +266,7 @@ def main():
     else:
         df["ma_ngoai_ngu"] = "NA"
 
-    # ---------------------------------------------------------
-    # BƯỚC 8: Các biến dẫn xuất
-    # ---------------------------------------------------------
+    # Các biến dẫn xuất
     print("[*] Đang tạo các biến dẫn xuất...")
     
     # Tính số môn có điểm
@@ -308,9 +287,9 @@ def main():
     df.loc[cond_khac, "ban"] = "Khác"
     
     # Điểm Anh
-    # Giả định: năm 2022 coi toàn bộ điểm ngoại ngữ là tiếng Anh (N1)
+    # 2022 và 2026 thiếu mã ngoại ngữ nên coi toàn bộ là tiếng Anh
     df["diem_anh"] = np.where(
-        (df["ma_ngoai_ngu"] == "N1") | (df["nam"] == 2022),
+        (df["ma_ngoai_ngu"] == "N1") | df["nam"].isin([2022, 2026]),
         df["ngoai_ngu"],
         np.nan
     )
@@ -322,18 +301,14 @@ def main():
     df["diem_khoi_c00"] = df["ngu_van"] + df["lich_su"] + df["dia_li"]
     df["diem_khoi_d01"] = df["toan"] + df["ngu_van"] + df["diem_anh"]
 
-    # ---------------------------------------------------------
-    # BƯỚC 9: Loại bỏ dòng so_mon == 0
-    # ---------------------------------------------------------
+    # Loại bỏ dòng so_mon == 0
     so_mon_zero_mask = df["so_mon"] == 0
     dropped_so_mon_zero = int(so_mon_zero_mask.sum())
     df = df[~so_mon_zero_mask].copy()
 
     dup_key_count = int(df.duplicated(subset=["nam","chuong_trinh","sbd"], keep=False).sum())
 
-    # ---------------------------------------------------------
-    # BƯỚC 10: Xuất dữ liệu
-    # ---------------------------------------------------------
+    # Xuất dữ liệu
     print("[*] Đang lưu dữ liệu...")
     
     WIDE_COLS = [
@@ -350,9 +325,7 @@ def main():
     df_wide.to_csv(wide_path, index=False, float_format="%.2f")
     print(f" - Đã lưu WIDE dataset: {wide_path} ({len(df_wide)} dòng)")
 
-    # ---------------------------------------------------------
-    # BƯỚC 12: Ghi thống kê chạy thuật toán
-    # ---------------------------------------------------------
+    # Ghi thống kê chạy thuật toán
     print("[*] Đang sinh báo cáo thống kê...")
     
     stats_md = "# Thống kê chạy xử lý dữ liệu\n\n"
@@ -364,6 +337,8 @@ def main():
     stats_md += "## 2. Loại dữ liệu\n"
     stats_md += f"- **Số dòng bị loại do SBD lỗi (không đúng 8 chữ số)**: {dropped_invalid_sbd}\n"
     stats_md += f"- **Số dòng bị loại do mã tỉnh lạ (không có trong danh mục)**: {dropped_strange_province}\n"
+    if strange_new_provinces:
+        stats_md += f"  - **Các tên tỉnh 2026 không khớp**: {', '.join(strange_new_provinces)}\n"
     stats_md += f"- **Số dòng bị loại do số môn thi = 0**: {dropped_so_mon_zero}\n"
     stats_md += f"- **Số ô điểm bị set về NaN do ngoài khoảng [0, 10]**: {out_of_bounds_count}\n"
     stats_md += f"- **Số bản ghi trùng khóa (nam, chuong_trinh, sbd) — chỉ đếm, KHÔNG loại**: {dup_key_count}\n\n"
