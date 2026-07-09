@@ -2,7 +2,7 @@ from pydantic import BaseModel
 
 from fastapi import APIRouter
 
-from backend.app.services.log_service import load_logs, log_interaction
+from backend.app.services.log_service import clear_logs, delete_log, load_logs, log_interaction
 
 
 router = APIRouter()
@@ -16,6 +16,10 @@ class LogEventRequest(BaseModel):
     status: str
     output: str = ""
     event_type: str
+
+
+class DeleteLogRequest(BaseModel):
+    timestamp: str
 
 
 @router.get("")
@@ -35,3 +39,13 @@ def create_log_event(request: LogEventRequest) -> dict[str, bool]:
         event_type=request.event_type,
     )
     return {"success": ok}
+
+
+@router.post("/delete")
+def delete_log_event(request: DeleteLogRequest) -> dict[str, bool]:
+    return {"success": delete_log(request.timestamp)}
+
+
+@router.post("/clear")
+def clear_log_events() -> dict[str, bool]:
+    return {"success": clear_logs()}
