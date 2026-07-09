@@ -46,7 +46,18 @@ export function DashboardSelect({
         className="mt-1 flex w-full items-center justify-between gap-3 rounded-2xl border border-slate-200 bg-[#F5F7FB] px-3.5 py-2.5 text-left text-sm font-semibold normal-case tracking-normal text-[#0F172A] outline-none transition hover:border-[#AD88F1] hover:bg-white focus:border-[#826ACA] focus:bg-white disabled:cursor-not-allowed disabled:opacity-60"
       >
         <span className="min-w-0 truncate">{selected?.label ?? 'Chọn'}</span>
-        <span className={`text-[#826ACA] transition ${open ? 'rotate-180' : ''}`}>⌄</span>
+        <svg
+            className={`h-4 w-4 shrink-0 text-[#826ACA] transition-transform duration-200 ${open ? 'rotate-180' : ''}`}
+            viewBox="0 0 20 20"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden
+          >
+            <polyline points="5 8 10 13 15 8" />
+          </svg>
       </button>
       {open && (
         <div className="absolute left-0 right-0 z-30 mt-2 max-h-72 overflow-y-auto rounded-2xl border border-slate-200 bg-white p-1.5 shadow-xl shadow-[#00195A]/10">

@@ -65,7 +65,7 @@ export function YearRangeSlider({
       <span className="text-xs font-bold uppercase tracking-[0.12em] text-[#64748B]">
         Khoảng năm
       </span>
-      <div className="mt-1 flex w-[200px] items-center gap-2 rounded-2xl border border-slate-200 bg-[#F5F7FB] px-3 py-2.5 transition hover:border-[#AD88F1] hover:bg-white">
+      <div className="mt-1 flex w-[260px] items-center gap-2 rounded-2xl border border-slate-200 bg-[#F5F7FB] px-3 py-2.5 transition hover:border-[#AD88F1] hover:bg-white">
         {/* FROM year */}
         <span className="w-9 shrink-0 text-center text-xs font-extrabold text-[#594DA3]">{fromYear}</span>
 
