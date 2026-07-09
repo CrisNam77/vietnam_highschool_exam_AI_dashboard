@@ -290,51 +290,33 @@ def main():
 
     logging.info("Writing TS file...")
     
-    # We serialize arrays to JSON and assign to exports
-    def j(obj):
-        return json.dumps(obj, ensure_ascii=False, indent=2)
+    out_path = Path("frontend/src/data/data.json")
+    
+    final_data = {
+        "YEARS": YEARS,
+        "SUBJECTS": SUBJECTS,
+        "REGIONS": REGIONS,
+        "PROGRAMS": PROGRAMS,
+        "COMBINATIONS": COMBINATIONS,
+        "overviewKpis": overviewKpis,
+        "nationalAverageByYear": nat_avg_yr,
+        "candidatesByYear": candidates_yr,
+        "subjectAverages": subjectAverages,
+        "subjectYearMatrix": subjectYearMatrix,
+        "underFiveRates": underFiveRates,
+        "eightPlusRates": eightPlusRates,
+        "provinceRankings": provinceRankings,
+        "regionAverages": regionAverages,
+        "regionSubjectMatrix": regionSubjectMatrix,
+        "subjectDistributions": subjectDistributions,
+        "combinationDistributions": combinationDistributions,
+        "distributionStats": distributionStats
+    }
+    
+    with open(out_path, 'w', encoding='utf-8') as f:
+        json.dump(final_data, f, ensure_ascii=False, indent=2)
 
-    ts_content = f"""import type {{
-  KpiItem,
-  CombinationOption,
-  DistributionRecord,
-  DistributionStats,
-  ProvinceRanking,
-  Region,
-  RegionMetric,
-  Subject,
-  SubjectMetric,
-  SubjectYearMetric,
-  YearMetric,
-}} from '@/types/dashboard';
-
-// AUTO-GENERATED from final_data.csv via scripts/generate_dashboard_json.py
-// Do not edit manually.
-
-export const YEARS = {j(YEARS)} as const;
-export const SUBJECTS: Subject[] = {j(SUBJECTS)};
-export const REGIONS: Region[] = {j(REGIONS)};
-export const PROGRAMS = {j(PROGRAMS)} as const;
-export const COMBINATIONS: CombinationOption[] = {j(COMBINATIONS)};
-
-export const overviewKpis: KpiItem[] = {j(overviewKpis)};
-export const nationalAverageByYear: YearMetric[] = {j(nat_avg_yr)};
-export const candidatesByYear: YearMetric[] = {j(candidates_yr)};
-export const subjectAverages: SubjectMetric[] = {j(subjectAverages)};
-export const subjectYearMatrix: SubjectYearMetric[] = {j(subjectYearMatrix)};
-export const underFiveRates: SubjectMetric[] = {j(underFiveRates)};
-export const eightPlusRates: SubjectMetric[] = {j(eightPlusRates)};
-export const provinceRankings: ProvinceRanking[] = {j(provinceRankings)};
-export const regionAverages: RegionMetric[] = {j(regionAverages)};
-export const regionSubjectMatrix = {j(regionSubjectMatrix)};
-
-export const subjectDistributions: DistributionRecord[] = {j(subjectDistributions)};
-export const combinationDistributions: DistributionRecord[] = {j(combinationDistributions)};
-export const distributionStats: DistributionStats[] = {j(distributionStats)};
-"""
-
-    out_path.write_text(ts_content, encoding="utf-8")
-    logging.info(f"Successfully generated {out_path} ({len(ts_content)} bytes)")
+    logging.info(f"Successfully generated {out_path}")
 
 if __name__ == "__main__":
     main()
