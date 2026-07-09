@@ -243,3 +243,9 @@ outputs/tables/*
 logs/
 
 *.pdf
+
+# Local AI job specs and implementation notes
+job/
+
+# Hide root-level AI scratch/spec notes
+/ai_*.md
