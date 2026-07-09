@@ -1,8 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { candidatesByYear, nationalAverageByYear, overviewKpis, subjectAverages, subjectYearMatrix, YEARS } from '@/data/dashboardData';
-import type { YearOption } from '@/types/dashboard';
+import { candidatesByYear, nationalAverageByYear, overviewKpis, PROGRAMS, subjectAverages, subjectYearMatrix, YEARS } from '@/data/dashboardData';
+import type { Program, YearOption } from '@/types/dashboard';
 import { ChartCard, SimpleBarChart, SimpleLineChart } from './charts';
 import { DashboardShell } from './DashboardShell';
 import { FilterBar } from './FilterBar';
@@ -12,14 +12,16 @@ const COLORS = ['#00195A', '#594DA3', '#826ACA', '#AD88F1'];
 
 export function OverviewTab() {
   const [year, setYear] = useState<YearOption>('all');
+  const [program, setProgram] = useState<Program>('all');
+
   const scopedSubjectAverages = year === 'all' 
-    ? subjectAverages 
+    ? subjectAverages.filter(item => item.program === program)
     : subjectYearMatrix
-        .filter(item => item.year === year)
+        .filter(item => item.year === year && item.program === program)
         .map(item => ({ subjectId: item.subjectId, subjectName: item.subjectName, value: item.average }));
 
   const scopedCandidates = candidatesByYear
-    .filter(item => year === 'all' || item.year === year)
+    .filter(item => (year === 'all' || item.year === year) && item.program === program)
     .map(item => ({ label: String(item.year), value: item.value }));
 
   const average = scopedSubjectAverages.reduce((sum, item) => sum + item.value, 0) / (scopedSubjectAverages.length || 1);
@@ -51,8 +53,17 @@ export function OverviewTab() {
             options: [{ label: 'Tất cả', value: 'all' }, ...YEARS.map(item => ({ label: String(item), value: String(item) }))],
             onChange: value => setYear(value === 'all' ? 'all' : Number(value) as YearOption),
           },
+          {
+            label: 'Chương trình',
+            value: program,
+            options: [{ label: 'Tất cả', value: 'all' }, ...PROGRAMS.map(item => ({ label: item, value: item }))],
+            onChange: value => setProgram(value as Program),
+          },
         ]}
-        onReset={() => setYear('all')}
+        onReset={() => {
+          setYear('all');
+          setProgram('all');
+        }}
       />
 
       <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
@@ -68,7 +79,7 @@ export function OverviewTab() {
                 name: 'Điểm TB',
                 color: COLORS[1],
                 points: nationalAverageByYear
-                  .filter(item => year === 'all' || item.year === year)
+                  .filter(item => (year === 'all' || item.year === year) && item.program === program)
                   .map(item => ({ label: String(item.year), value: item.value })),
               },
             ]}

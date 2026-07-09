@@ -93,19 +93,26 @@ def main():
     total_candidates = len(df)
     total_provinces = df["ten_tinh"].nunique()
     
-    # nationalAverageByYear
+    # candidatesByYear and nationalAverageByYear
     nat_avg_yr = []
     candidates_yr = []
     
     for y in YEARS:
         df_y = df[df["nam"] == y]
-        candidates_yr.append({"year": y, "value": int(len(df_y))})
-        # overall avg is mean of all subject means for that year
-        subj_means = [df_y[sid].mean() for sid in SUBJECT_IDS if sid in df_y.columns]
-        val = np.nanmean(subj_means) if subj_means else 0
-        nat_avg_yr.append({"year": y, "value": round(float(val), 2)})
+        for p in PROGRAMS + ["all"]:
+            if p == "all":
+                df_yp = df_y
+            else:
+                p_code = "2006" if p == "CT2006" else "2018"
+                df_yp = df_y[df_y["chuong_trinh"] == p_code]
+                
+            if len(df_yp) > 0:
+                candidates_yr.append({"year": y, "program": p, "value": int(len(df_yp))})
+                subj_means = [df_yp[sid].mean() for sid in SUBJECT_IDS if sid in df_yp.columns]
+                val = np.nanmean(subj_means) if subj_means else 0
+                nat_avg_yr.append({"year": y, "program": p, "value": round(float(val), 2)})
         
-    overall_avg = np.mean([item["value"] for item in nat_avg_yr])
+    overall_avg = np.mean([item["value"] for item in nat_avg_yr if item.get("program") == "all"])
 
     overviewKpis = [
         {"label": "Tổng số thí sinh", "value": f"{total_candidates/1000000:.2f} triệu"},
@@ -116,34 +123,58 @@ def main():
 
     logging.info("Calculating subject stats...")
     subjectAverages = []
-    for s in SUBJECTS:
-        sid = s["id"]
-        if sid in df.columns:
-            val = df[sid].mean()
-            subjectAverages.append({"subjectId": sid, "subjectName": s["name"], "value": round(float(val), 2) if pd.notna(val) else 0})
+    for p in PROGRAMS + ["all"]:
+        if p == "all":
+            df_p = df
+        else:
+            p_code = "2006" if p == "CT2006" else "2018"
+            df_p = df[df["chuong_trinh"] == p_code]
+            
+        if len(df_p) > 0:
+            for s in SUBJECTS:
+                sid = s["id"]
+                if sid in df_p.columns:
+                    val = df_p[sid].mean()
+                    subjectAverages.append({
+                        "subjectId": sid, 
+                        "subjectName": s["name"], 
+                        "program": p,
+                        "value": round(float(val), 2) if pd.notna(val) else 0
+                    })
 
     subjectYearMatrix = []
     for y in YEARS:
         df_y = df[df["nam"] == y]
-        for s in SUBJECTS:
-            sid = s["id"]
-            if sid in df_y.columns:
-                series = df_y[sid].dropna()
-                if len(series) == 0:
-                    continue
-                avg = series.mean()
-                under5 = (series < 5).mean() * 100
-                eight_plus = (series >= 8).mean() * 100
-                perfect10 = int((series == 10).sum())
-                subjectYearMatrix.append({
-                    "subjectId": sid,
-                    "subjectName": s["name"],
-                    "year": y,
-                    "average": round(float(avg), 2),
-                    "underFive": round(float(under5), 1),
-                    "eightPlus": round(float(eight_plus), 1),
-                    "perfect10": perfect10
-                })
+        for p in PROGRAMS + ["all"]:
+            if p == "all":
+                df_yp = df_y
+            else:
+                p_code = "2006" if p == "CT2006" else "2018"
+                df_yp = df_y[df_y["chuong_trinh"] == p_code]
+            
+            if len(df_yp) == 0:
+                continue
+
+            for s in SUBJECTS:
+                sid = s["id"]
+                if sid in df_yp.columns:
+                    series = df_yp[sid].dropna()
+                    if len(series) == 0:
+                        continue
+                    avg = series.mean()
+                    under5 = (series < 5).mean() * 100
+                    eight_plus = (series >= 8).mean() * 100
+                    perfect10 = int((series == 10).sum())
+                    subjectYearMatrix.append({
+                        "subjectId": sid,
+                        "subjectName": s["name"],
+                        "year": y,
+                        "program": p,
+                        "average": round(float(avg), 2),
+                        "underFive": round(float(under5), 1),
+                        "eightPlus": round(float(eight_plus), 1),
+                        "perfect10": perfect10
+                    })
 
     underFiveRates = []
     eightPlusRates = []
