@@ -1,8 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { candidatesByYear, nationalAverageByYear, overviewKpis, PROGRAMS, subjectAverages, YEARS } from '@/data/dashboardData';
-import type { Program, YearOption } from '@/types/dashboard';
+import { candidatesByYear, nationalAverageByYear, overviewKpis, subjectAverages, subjectYearMatrix, YEARS } from '@/data/dashboardData';
+import type { YearOption } from '@/types/dashboard';
 import { ChartCard, SimpleBarChart, SimpleLineChart } from './charts';
 import { DashboardShell } from './DashboardShell';
 import { FilterBar } from './FilterBar';
@@ -12,22 +12,31 @@ const COLORS = ['#00195A', '#594DA3', '#826ACA', '#AD88F1'];
 
 export function OverviewTab() {
   const [year, setYear] = useState<YearOption>('all');
-  const [program, setProgram] = useState<Program>('all');
-
-  const scopedSubjectAverages = subjectAverages;
+  const scopedSubjectAverages = year === 'all' 
+    ? subjectAverages 
+    : subjectYearMatrix
+        .filter(item => item.year === year)
+        .map(item => ({ subjectId: item.subjectId, subjectName: item.subjectName, value: item.average }));
 
   const scopedCandidates = candidatesByYear
     .filter(item => year === 'all' || item.year === year)
-    .map(item => ({
-      label: String(item.year),
-      value: Math.round(item.value * (program === 'CT2006' ? 0.64 : program === 'CT2018' ? 0.36 : 1)),
-    }));
+    .map(item => ({ label: String(item.year), value: item.value }));
 
-  const average = scopedSubjectAverages.reduce((sum, item) => sum + item.value, 0) / scopedSubjectAverages.length;
+  const average = scopedSubjectAverages.reduce((sum, item) => sum + item.value, 0) / (scopedSubjectAverages.length || 1);
+  const totalCandidates = scopedCandidates.reduce((sum, item) => sum + item.value, 0);
 
   const kpis = overviewKpis.map(item => {
     if (item.label === 'Điểm TB toàn quốc') {
       return { ...item, value: average.toFixed(2) };
+    }
+    if (item.label === 'Tổng số thí sinh') {
+      const valStr = totalCandidates >= 1000000 
+        ? `${(totalCandidates / 1000000).toFixed(2)} triệu` 
+        : totalCandidates.toLocaleString('vi-VN');
+      return { ...item, value: valStr };
+    }
+    if (item.label === 'Giai đoạn') {
+      return { ...item, value: year === 'all' ? '2022-2026' : String(year) };
     }
     return item;
   });
@@ -42,17 +51,8 @@ export function OverviewTab() {
             options: [{ label: 'Tất cả', value: 'all' }, ...YEARS.map(item => ({ label: String(item), value: String(item) }))],
             onChange: value => setYear(value === 'all' ? 'all' : Number(value) as YearOption),
           },
-          {
-            label: 'Chương trình',
-            value: program,
-            options: [{ label: 'Tất cả', value: 'all' }, ...PROGRAMS.map(item => ({ label: item, value: item }))],
-            onChange: value => setProgram(value as Program),
-          },
         ]}
-        onReset={() => {
-          setYear('all');
-          setProgram('all');
-        }}
+        onReset={() => setYear('all')}
       />
 
       <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
