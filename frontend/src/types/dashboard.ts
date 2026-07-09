@@ -78,9 +78,17 @@ export interface LineSeries {
 export type DistributionKind = 'subject' | 'combination';
 
 export interface DistributionBin {
+  start: number;
+  end: number;
   label: string;
   count: number;
   percentage: number;
+}
+
+export interface CombinationOption {
+  id: string;
+  name: string;
+  subjects: string;
 }
 
 export interface DistributionStats {
@@ -92,13 +100,26 @@ export interface DistributionStats {
   mean: number;
   median: number;
   std: number;
+  mad: number;
   mode: number;
   underFiveRate?: number;
+  underFiveCount?: number;
   eightPlusRate?: number;
+  eightPlusCount?: number;
   under15Rate?: number;
+  underFifteenRate?: number;
+  underFifteenCount?: number;
   above24Rate?: number;
+  aboveTwentyFourRate?: number;
+  aboveTwentyFourCount?: number;
+  aboveTwentySevenRate?: number;
+  aboveTwentySevenCount?: number;
   perfectCount?: number;
+  zeroCount?: number;
+  belowOneCount?: number;
+  belowOneRate?: number;
   highScoreCount?: number;
+  maxScoreCount?: number;
 }
 
 export interface DistributionRecord {
@@ -106,5 +127,8 @@ export interface DistributionRecord {
   type: DistributionKind;
   key: string;
   name: string;
+  scoreMin: number;
+  scoreMax: number;
+  binSize: number;
   bins: DistributionBin[];
 }

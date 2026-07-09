@@ -1,5 +1,6 @@
 import type {
   KpiItem,
+  CombinationOption,
   DistributionRecord,
   DistributionStats,
   ProvinceRanking,
@@ -39,12 +40,19 @@ export const REGIONS: Region[] = [
 
 export const PROGRAMS = ['CT2006', 'CT2018'] as const;
 
-export const COMBINATIONS = [
-  { id: 'a00', name: 'A00' },
-  { id: 'a01', name: 'A01' },
-  { id: 'b00', name: 'B00' },
-  { id: 'c00', name: 'C00' },
-  { id: 'd01', name: 'D01' },
+export const COMBINATIONS: CombinationOption[] = [
+  { id: 'a00', name: 'A00', subjects: 'Toán, Vật lý, Hóa học' },
+  { id: 'a01', name: 'A01', subjects: 'Toán, Vật lý, Tiếng Anh' },
+  { id: 'a02', name: 'A02', subjects: 'Toán, Vật lý, Sinh học' },
+  { id: 'b00', name: 'B00', subjects: 'Toán, Hóa học, Sinh học' },
+  { id: 'b08', name: 'B08', subjects: 'Toán, Sinh học, Tiếng Anh' },
+  { id: 'c00', name: 'C00', subjects: 'Ngữ văn, Lịch sử, Địa lý' },
+  { id: 'c03', name: 'C03', subjects: 'Ngữ văn, Toán, Lịch sử' },
+  { id: 'c04', name: 'C04', subjects: 'Ngữ văn, Toán, Địa lý' },
+  { id: 'd01', name: 'D01', subjects: 'Toán, Ngữ văn, Tiếng Anh' },
+  { id: 'd07', name: 'D07', subjects: 'Toán, Hóa học, Tiếng Anh' },
+  { id: 'd14', name: 'D14', subjects: 'Ngữ văn, Lịch sử, Tiếng Anh' },
+  { id: 'd15', name: 'D15', subjects: 'Ngữ văn, Địa lý, Tiếng Anh' },
 ];
 
 export const overviewKpis: KpiItem[] = [
@@ -172,14 +180,25 @@ export const regionAverages: RegionMetric[] = REGIONS.flatMap((region, regionInd
 
 export const regionSubjectMatrix = regionAverages.filter(item => item.year === 2026);
 
-const subjectBins = ['0-1', '1-2', '2-3', '3-4', '4-5', '5-6', '6-7', '7-8', '8-9', '9-10'];
-const combinationBins = ['0-5', '5-10', '10-15', '15-20', '20-25', '25-30'];
+function createBins(scoreMin: number, scoreMax: number, binSize: number) {
+  const count = Math.round((scoreMax - scoreMin) / binSize);
+  return Array.from({ length: count }, (_, index) => {
+    const start = Number((scoreMin + index * binSize).toFixed(2));
+    const end = Number((start + binSize).toFixed(2));
+    return {
+      start,
+      end,
+      label: `${start.toFixed(binSize < 1 ? 2 : 0)}-${end.toFixed(binSize < 1 ? 2 : 0)}`,
+    };
+  });
+}
 
-function normalizeDistribution(weights: number[], total: number) {
+function normalizeDistribution(weights: number[], total: number, binMeta: ReturnType<typeof createBins>) {
   const sum = weights.reduce((acc, value) => acc + value, 0);
   return weights.map((weight, index) => {
     const percentage = Number(((weight / sum) * 100).toFixed(1));
     return {
+      ...binMeta[index],
       percentage,
       count: index === weights.length - 1
         ? Math.max(0, total - Math.round(weights.slice(0, -1).reduce((acc, item) => acc + (item / sum) * total, 0)))
@@ -188,37 +207,43 @@ function normalizeDistribution(weights: number[], total: number) {
   });
 }
 
-function subjectWeights(mean: number, yearIndex: number) {
-  return subjectBins.map((_, index) => {
-    const center = index + 0.5;
-    const spread = mean >= 7 ? 2.2 : mean < 5.7 ? 2.65 : 2.45;
+function subjectWeights(mean: number, yearIndex: number, bins: ReturnType<typeof createBins>) {
+  return bins.map(bin => {
+    const center = (bin.start + bin.end) / 2;
+    const spread = mean >= 7 ? 1.45 : mean < 5.7 ? 1.8 : 1.6;
     const base = Math.exp(-Math.pow(center - mean, 2) / (2 * spread));
     const highTail = center > 8 ? 1 + (mean - 6) * 0.08 : 1;
     return Math.max(0.15, base * highTail + yearIndex * 0.018);
   });
 }
 
-function combinationWeights(mean: number, yearIndex: number) {
-  return combinationBins.map((_, index) => {
-    const center = index * 5 + 2.5;
-    const spread = 20;
+function combinationWeights(mean: number, yearIndex: number, bins: ReturnType<typeof createBins>) {
+  return bins.map(bin => {
+    const center = (bin.start + bin.end) / 2;
+    const spread = 12;
     const base = Math.exp(-Math.pow(center - mean, 2) / (2 * spread));
     const highTail = center > 22 ? 1 + (mean - 19) * 0.05 : 1;
     return Math.max(0.12, base * highTail + yearIndex * 0.012);
   });
 }
 
+const subjectBinMeta = createBins(0, 10, 0.25);
+const combinationBinMeta = createBins(0, 30, 0.25);
+
 export const subjectDistributions: DistributionRecord[] = SUBJECTS.flatMap(subject =>
   YEARS.map((year, yearIndex) => {
     const metric = subjectYearMatrix.find(item => item.subjectId === subject.id && item.year === year);
     const total = 78000 + yearIndex * 4200 + SUBJECTS.findIndex(item => item.id === subject.id) * 1800;
-    const normalized = normalizeDistribution(subjectWeights(metric?.average ?? 6.2, yearIndex), total);
+    const normalized = normalizeDistribution(subjectWeights(metric?.average ?? 6.2, yearIndex, subjectBinMeta), total, subjectBinMeta);
     return {
       year,
       type: 'subject',
       key: subject.id,
       name: subject.name,
-      bins: subjectBins.map((label, index) => ({ label, ...normalized[index] })),
+      scoreMin: 0,
+      scoreMax: 10,
+      binSize: 0.25,
+      bins: normalized,
     };
   })
 );
@@ -226,22 +251,32 @@ export const subjectDistributions: DistributionRecord[] = SUBJECTS.flatMap(subje
 const combinationMeans: Record<string, number[]> = {
   a00: [20.2, 20.5, 20.8, 21.1, 21.4],
   a01: [18.7, 19.0, 19.2, 19.6, 19.9],
+  a02: [18.9, 19.2, 19.5, 19.8, 20.1],
   b00: [19.4, 19.7, 20.1, 20.2, 20.6],
+  b08: [18.2, 18.5, 18.7, 19.0, 19.3],
   c00: [20.1, 20.3, 20.7, 21.0, 21.3],
+  c03: [19.2, 19.5, 19.8, 20.0, 20.3],
+  c04: [19.6, 19.8, 20.1, 20.4, 20.7],
   d01: [18.1, 18.4, 18.7, 19.1, 19.4],
+  d07: [18.8, 19.1, 19.4, 19.7, 20.0],
+  d14: [18.5, 18.7, 19.0, 19.3, 19.6],
+  d15: [18.9, 19.2, 19.4, 19.7, 20.0],
 };
 
 export const combinationDistributions: DistributionRecord[] = COMBINATIONS.flatMap(combination =>
   YEARS.map((year, yearIndex) => {
     const mean = combinationMeans[combination.id][yearIndex];
     const total = 52000 + yearIndex * 3100 + COMBINATIONS.findIndex(item => item.id === combination.id) * 4600;
-    const normalized = normalizeDistribution(combinationWeights(mean, yearIndex), total);
+    const normalized = normalizeDistribution(combinationWeights(mean, yearIndex, combinationBinMeta), total, combinationBinMeta);
     return {
       year,
       type: 'combination',
       key: combination.id,
       name: combination.name,
-      bins: combinationBins.map((label, index) => ({ label, ...normalized[index] })),
+      scoreMin: 0,
+      scoreMax: 30,
+      binSize: 0.25,
+      bins: normalized,
     };
   })
 );
@@ -260,10 +295,16 @@ export const distributionStats: DistributionStats[] = [
         mean,
         median: Number((mean + 0.12).toFixed(2)),
         std: Number((1.55 + (7 - mean) * 0.08).toFixed(2)),
+        mad: Number((1.08 + (7 - mean) * 0.045).toFixed(2)),
         mode: Number((mean + 0.35).toFixed(1)),
+        underFiveCount: Math.round((78000 + yearIndex * 4200 + SUBJECTS.findIndex(item => item.id === subject.id) * 1800) * (metric?.underFive ?? 0) / 100),
         underFiveRate: metric?.underFive ?? 0,
+        eightPlusCount: Math.round((78000 + yearIndex * 4200 + SUBJECTS.findIndex(item => item.id === subject.id) * 1800) * (metric?.eightPlus ?? 0) / 100),
         eightPlusRate: metric?.eightPlus ?? 0,
         perfectCount: metric?.perfect10 ?? 0,
+        zeroCount: Math.round(80 + yearIndex * 9 + SUBJECTS.findIndex(item => item.id === subject.id) * 6),
+        belowOneCount: Math.round(450 + yearIndex * 18 + SUBJECTS.findIndex(item => item.id === subject.id) * 30),
+        belowOneRate: Number((0.42 + SUBJECTS.findIndex(item => item.id === subject.id) * 0.025).toFixed(2)),
       };
     })
   ),
@@ -279,10 +320,18 @@ export const distributionStats: DistributionStats[] = [
         mean,
         median: Number((mean + 0.25).toFixed(2)),
         std: Number((3.25 + (21 - mean) * 0.06).toFixed(2)),
+        mad: Number((2.15 + (21 - mean) * 0.035).toFixed(2)),
         mode: Number((mean + 0.7).toFixed(1)),
+        underFifteenCount: Math.round((52000 + yearIndex * 3100 + COMBINATIONS.findIndex(item => item.id === combination.id) * 4600) * Math.max(4, 36 - mean * 1.35) / 100),
+        underFifteenRate: Number(Math.max(4, 36 - mean * 1.35).toFixed(1)),
         under15Rate: Number(Math.max(4, 36 - mean * 1.35).toFixed(1)),
+        aboveTwentyFourCount: Math.round((52000 + yearIndex * 3100 + COMBINATIONS.findIndex(item => item.id === combination.id) * 4600) * Math.max(6, mean * 2.1 - 29) / 100),
+        aboveTwentyFourRate: Number(Math.max(6, mean * 2.1 - 29).toFixed(1)),
         above24Rate: Number(Math.max(6, mean * 2.1 - 29).toFixed(1)),
+        aboveTwentySevenCount: Math.round(Math.max(900, (mean - 17) * 1400 + yearIndex * 220)),
+        aboveTwentySevenRate: Number(Math.max(1.3, (mean - 17) * 0.55).toFixed(1)),
         highScoreCount: Math.round(Math.max(900, (mean - 17) * 1400 + yearIndex * 220)),
+        maxScoreCount: Math.round(Math.max(20, (mean - 18) * 22 + yearIndex * 6)),
       };
     })
   ),
