@@ -16,8 +16,17 @@ const metricLabels: Record<MetricKey, string> = {
   perfect10: 'Số điểm 10',
 };
 
-const representativeSubjects = ['gdcd', 'tieng_anh', 'toan', 'ngu_van'];
-const palette = ['#00195A', '#594DA3', '#826ACA', '#AD88F1', '#31327E'];
+const subjectPalette: Record<string, string> = {
+  toan: '#00195A',
+  ngu_van: '#31327E',
+  tieng_anh: '#594DA3',
+  vat_ly: '#826ACA',
+  hoa_hoc: '#AD88F1',
+  sinh_hoc: '#7C3AED',
+  lich_su: '#4F46E5',
+  dia_ly: '#2563EB',
+  gdcd: '#0F766E',
+};
 
 export function SubjectTrendTab() {
   const [fromYear, setFromYear] = useState(2022);
@@ -25,9 +34,11 @@ export function SubjectTrendTab() {
   const [subjectId, setSubjectId] = useState('all');
   const [metric, setMetric] = useState<MetricKey>('average');
 
-  const yearRange = YEARS.filter(year => year >= Math.min(fromYear, toYear) && year <= Math.max(fromYear, toYear));
+  const startYear = Math.min(fromYear, toYear);
+  const endYear = Math.max(fromYear, toYear);
+  const yearRange = YEARS.filter(year => year >= startYear && year <= endYear);
   const lineSubjects = subjectId === 'all'
-    ? SUBJECTS.filter(subject => representativeSubjects.includes(subject.id))
+    ? SUBJECTS
     : SUBJECTS.filter(subject => subject.id === subjectId);
 
   const heatmapRows = SUBJECTS.map(subject => ({
@@ -42,11 +53,11 @@ export function SubjectTrendTab() {
 
   const strongestMove = useMemo(() => {
     return SUBJECTS.map(subject => {
-      const first = subjectYearMatrix.find(item => item.subjectId === subject.id && item.year === yearRange[0]);
-      const last = subjectYearMatrix.find(item => item.subjectId === subject.id && item.year === yearRange[yearRange.length - 1]);
+      const first = subjectYearMatrix.find(item => item.subjectId === subject.id && item.year === startYear);
+      const last = subjectYearMatrix.find(item => item.subjectId === subject.id && item.year === endYear);
       return { name: subject.name, diff: Math.abs((last?.average ?? 0) - (first?.average ?? 0)) };
     }).sort((a, b) => b.diff - a.diff)[0];
-  }, [yearRange]);
+  }, [startYear, endYear]);
 
   return (
     <DashboardShell
@@ -90,15 +101,15 @@ export function SubjectTrendTab() {
 
       <div className="flex flex-wrap gap-2">
         <InsightChip label="Biến động rõ" value={strongestMove.name} />
-        <InsightChip label="Line chart" value={subjectId === 'all' ? '4 môn tiêu biểu' : '1 môn đã chọn'} />
+        <InsightChip label="Line chart" value={subjectId === 'all' ? '9 môn' : '1 môn đã chọn'} />
         <InsightChip label="Chỉ số" value={metricLabels[metric]} />
       </div>
 
       <ChartCard title={`Xu hướng ${metricLabels[metric].toLowerCase()} theo môn`}>
         <SimpleLineChart
-          series={lineSubjects.map((subject, index) => ({
+          series={lineSubjects.map(subject => ({
             name: subject.name,
-            color: palette[index % palette.length],
+            color: subjectPalette[subject.id] ?? '#594DA3',
             points: yearRange.map(year => {
               const row = subjectYearMatrix.find(item => item.subjectId === subject.id && item.year === year);
               return { label: String(year), value: row?.[metric] ?? 0 };

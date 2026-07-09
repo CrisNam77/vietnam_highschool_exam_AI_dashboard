@@ -607,25 +607,41 @@ function ChatTab({
 function HistoryTab() {
   const [logs, setLogs] = useState<LogEntry[]>([]);
   const [loading, setLoading] = useState(true);
+  const [logsError, setLogsError] = useState('');
 
   useEffect(() => {
-    callApi('GET', '/api/logs').then(data => { setLogs(data ?? []); setLoading(false); });
+    callApi('GET', '/api/logs').then(data => {
+      if (Array.isArray(data)) {
+        setLogs(data);
+        setLogsError('');
+      } else {
+        setLogs([]);
+        setLogsError('Chưa tải được lịch sử. Hãy kiểm tra backend tại http://localhost:8001.');
+      }
+      setLoading(false);
+    });
   }, []);
 
   const formatTime = (ts: string) => {
     try { return new Date(ts).toLocaleString('vi-VN'); } catch { return ts; }
   };
+  const safeLogs = Array.isArray(logs) ? logs : [];
 
   return (
     <div className="space-y-4">
       <p className="text-slate-500 text-sm">Kho lưu trữ toàn bộ các phiên làm việc. Bấm vào từng phiên để xem chi tiết.</p>
       {loading && <p className="text-slate-400 text-sm">Đang tải lịch sử...</p>}
-      {!loading && logs.length === 0 && (
+      {!loading && logsError && (
+        <div className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-medium leading-6 text-slate-500">
+          {logsError}
+        </div>
+      )}
+      {!loading && !logsError && safeLogs.length === 0 && (
         <div className="text-center py-16 text-slate-400 text-sm">
           Chưa có lịch sử. Hãy thực hiện một phân tích ở tab Giao tiếp AI.
         </div>
       )}
-      {[...logs].reverse().map((log, i) => (
+      {[...safeLogs].reverse().map((log, i) => (
         <details key={i} className="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden group">
           <summary className="flex items-center gap-3 px-5 py-4 cursor-pointer select-none hover:bg-slate-50 transition-colors list-none">
             <span className={`w-2 h-2 rounded-full flex-shrink-0 ${log.status === 'success' ? 'bg-emerald-400' : 'bg-red-400'}`} />
@@ -805,19 +821,6 @@ export default function Home() {
         </div>
 
         <nav className="space-y-2">
-          <button onClick={startNewChat} className="flex w-full items-center justify-center gap-2 rounded-xl border border-indigo-400/25 bg-indigo-500/10 px-3 py-2.5 text-left text-[13px] font-semibold text-indigo-200 transition-all hover:border-indigo-300/50 hover:bg-indigo-500/20 hover:text-white">
-            <SidebarIcon name="new" />
-            <span>New chat</span>
-          </button>
-          <div className="relative">
-            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500"><SidebarIcon name="search" /></span>
-            <input
-              value={sessionSearch}
-              onChange={e => setSessionSearch(e.target.value)}
-              placeholder="Tìm kiếm đoạn chat..."
-              className="w-full rounded-xl border border-white/10 bg-white/5 py-2.5 pl-10 pr-3 text-[12.5px] text-slate-200 outline-none transition-all placeholder:text-slate-500 focus:border-indigo-400/50 focus:bg-white/10"
-            />
-          </div>
           <button onClick={() => setActiveTab('overview')} className={`sidebar-nav-item ${activeTab === 'overview' ? 'sidebar-item-active text-white' : 'text-slate-400 hover:bg-white/5 hover:text-slate-200'}`}>
             <SidebarIcon name="chart" />
             <span>Tổng quan</span>
@@ -838,31 +841,18 @@ export default function Home() {
 
         <div className="mx-2 my-4 border-t border-white/5" />
 
-        <div className="min-h-0 flex-1">
-          <p className="mb-2 px-2 text-[10px] font-bold uppercase tracking-widest text-slate-600">Hôm nay</p>
-          <div className="custom-scrollbar h-full space-y-1 overflow-y-auto pr-1">
-            {visibleSessions.length === 0 && (
-              <div className="px-3 py-6 text-center text-[12px] italic leading-relaxed text-slate-600">
-                {sessionSearch ? 'Không tìm thấy đoạn chat.' : 'Chưa có hội thoại nào.'}
-              </div>
-            )}
-            {visibleSessions.map(session => (
-              <button
-                key={session.id}
-                onClick={() => { setActiveSessionId(session.id); setActiveTab('assistant'); }}
-                className={`group relative flex w-full items-center rounded-xl px-3 py-2.5 text-left transition-all ${
-                  activeSessionId === session.id && activeTab === 'assistant'
-                    ? 'sidebar-item-active text-white'
-                    : 'text-slate-400 hover:bg-white/5 hover:text-slate-200'
-                }`}
-              >
-                <SidebarIcon name="data" />
-                <div className="ml-2.5 min-w-0 flex-1">
-                  <span className="block truncate text-[12.5px] font-medium">{session.title}</span>
-                </div>
-                <span className="ml-2 flex-shrink-0 text-[10px] text-slate-600">{formatSessionTime(session.updatedAt)}</span>
-              </button>
-            ))}
+        <div className="mx-2 grid gap-2 rounded-2xl border border-white/10 bg-white/5 p-3 text-xs font-semibold text-slate-300">
+          <div className="flex items-center justify-between">
+            <span>Giai đoạn</span>
+            <span className="text-white">2022-2026</span>
+          </div>
+          <div className="flex items-center justify-between">
+            <span>Môn chính</span>
+            <span className="text-white">9</span>
+          </div>
+          <div className="flex items-center justify-between">
+            <span>Tab phân tích</span>
+            <span className="text-white">3</span>
           </div>
         </div>
       </aside>
@@ -891,6 +881,54 @@ export default function Home() {
                   />
                 </section>
                 <aside className="min-h-0 overflow-y-auto rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+                  <div className="mb-4 rounded-2xl border border-slate-200 bg-slate-50 p-3">
+                    <div className="mb-3 flex items-center justify-between gap-2">
+                      <div>
+                        <h2 className="text-sm font-bold text-slate-950">Trợ lý AI</h2>
+                        <p className="mt-0.5 text-xs font-medium text-slate-500">Sinh mã, duyệt code và thực thi phân tích.</p>
+                      </div>
+                      <button
+                        onClick={startNewChat}
+                        className="flex shrink-0 items-center gap-1.5 rounded-xl bg-[#594DA3] px-3 py-2 text-xs font-bold text-white transition hover:bg-[#31327E]"
+                      >
+                        <SidebarIcon name="new" />
+                        <span>Cuộc trò chuyện mới</span>
+                      </button>
+                    </div>
+                    <div className="relative">
+                      <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"><SidebarIcon name="search" /></span>
+                      <input
+                        value={sessionSearch}
+                        onChange={e => setSessionSearch(e.target.value)}
+                        placeholder="Tìm kiếm hội thoại..."
+                        className="w-full rounded-xl border border-slate-200 bg-white py-2.5 pl-10 pr-3 text-[12.5px] font-medium text-slate-700 outline-none transition placeholder:text-slate-400 focus:border-[#826ACA]"
+                      />
+                    </div>
+                    <div className="custom-scrollbar mt-3 max-h-44 space-y-1 overflow-y-auto pr-1">
+                      {visibleSessions.length === 0 && (
+                        <div className="px-3 py-4 text-center text-[12px] italic leading-relaxed text-slate-400">
+                          {sessionSearch ? 'Không tìm thấy hội thoại.' : 'Chưa có hội thoại nào.'}
+                        </div>
+                      )}
+                      {visibleSessions.map(session => (
+                        <button
+                          key={session.id}
+                          onClick={() => { setActiveSessionId(session.id); setActiveTab('assistant'); }}
+                          className={`group relative flex w-full items-center rounded-xl px-3 py-2.5 text-left transition-all ${
+                            activeSessionId === session.id
+                              ? 'bg-white text-[#31327E] shadow-sm'
+                              : 'text-slate-500 hover:bg-white hover:text-[#31327E]'
+                          }`}
+                        >
+                          <SidebarIcon name="data" />
+                          <div className="ml-2.5 min-w-0 flex-1">
+                            <span className="block truncate text-[12.5px] font-semibold">{session.title}</span>
+                          </div>
+                          <span className="ml-2 flex-shrink-0 text-[10px] text-slate-400">{formatSessionTime(session.updatedAt)}</span>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
                   <h2 className="mb-3 text-sm font-bold text-slate-950">Lịch sử tương tác AI</h2>
                   <HistoryTab />
                 </aside>
