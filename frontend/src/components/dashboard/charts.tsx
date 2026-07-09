@@ -27,7 +27,7 @@ export function ChartCard({ title, children }: { title: string; children: ReactN
 }
 
 export function SimpleLineChart({ series, valueMode = 'score' }: { series: LineSeries[]; valueMode?: 'score' | 'percent' | 'count' }) {
-  const allValues = series.flatMap(item => item.points.map(point => point.value)).filter(v => !Number.isNaN(v));
+  const allValues = series.flatMap(item => item.points.map(point => point.value)).filter(v => typeof v === 'number' && !Number.isNaN(v));
   const min = Math.min(...allValues) - 0.15;
   const max = Math.max(...allValues) + 0.15;
   const width = 640;
@@ -66,7 +66,7 @@ export function SimpleLineChart({ series, valueMode = 'score' }: { series: LineS
           </text>
         ))}
         {series.map(item => {
-          const validPoints = item.points.map((p, i) => ({ ...p, originalIndex: i })).filter(p => !Number.isNaN(p.value));
+          const validPoints = item.points.map((p, i) => ({ ...p, originalIndex: i })).filter(p => typeof p.value === 'number' && !Number.isNaN(p.value));
           const path = validPoints
             .map((point, i) => `${i === 0 ? 'M' : 'L'} ${xFor(point.originalIndex, item.points.length)} ${yFor(point.value)}`)
             .join(' ');
