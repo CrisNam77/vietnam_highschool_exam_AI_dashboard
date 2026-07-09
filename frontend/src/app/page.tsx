@@ -9,6 +9,11 @@ import vscDarkPlus from 'react-syntax-highlighter/dist/cjs/styles/prism/vsc-dark
 import tsx from 'react-syntax-highlighter/dist/cjs/languages/prism/tsx';
 import python from 'react-syntax-highlighter/dist/cjs/languages/prism/python';
 import bash from 'react-syntax-highlighter/dist/cjs/languages/prism/bash';
+import { DistributionTab } from '@/components/dashboard/DistributionTab';
+import { OverviewTab } from '@/components/dashboard/OverviewTab';
+import { RegionTab } from '@/components/dashboard/RegionTab';
+import { SubjectTrendTab } from '@/components/dashboard/SubjectTrendTab';
+import type { Tab as DashboardTab } from '@/types/dashboard';
 
 SyntaxHighlighter.registerLanguage('tsx', tsx);
 SyntaxHighlighter.registerLanguage('python', python);
@@ -348,13 +353,13 @@ function ResultPanel({
   const isCodeSectionOpen = codeOpen || isEditingCode;
 
   return (
-    <section className="result-reveal overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm shadow-slate-200/70">
-      <div className="flex items-center justify-between border-b border-slate-200 bg-white px-4 py-3">
+    <section className="result-reveal overflow-hidden rounded-2xl border border-[#DDE3EE] bg-white shadow-sm shadow-slate-300/60">
+      <div className="flex items-center justify-between border-b border-[#E6EBF3] bg-white px-4 py-3">
         <div>
           <h3 className="text-[15px] font-bold tracking-tight text-slate-950">Phân tích</h3>
         </div>
       </div>
-      <div className="grid gap-3 bg-slate-100/60 p-3 xl:grid-cols-[minmax(0,0.85fr)_minmax(34rem,1.15fr)]">
+      <div className="grid gap-3 bg-[#F5F7FB] p-3 xl:grid-cols-[minmax(0,0.85fr)_minmax(34rem,1.15fr)]">
         {errorText && (
           <div className="xl:col-span-2 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm leading-6 text-red-700">
             <div className="font-bold text-red-800">Lỗi thực thi</div>
@@ -362,7 +367,7 @@ function ResultPanel({
           </div>
         )}
         {narrativeText && (
-          <div className="min-w-0 rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
+          <div className="min-w-0 rounded-xl border border-[#DDE3EE] bg-white p-5 shadow-sm">
             <div className="mb-3 text-[11px] font-bold uppercase tracking-[0.14em] text-slate-500">Kết quả & insight</div>
             <div className="custom-scrollbar overflow-x-auto">
               <OutputMarkdown>{narrativeText}</OutputMarkdown>
@@ -373,7 +378,7 @@ function ResultPanel({
           <div className="min-w-0 space-y-3">
             {code && (
               <details
-                className="rounded-xl border border-slate-200 bg-white"
+                className="rounded-xl border border-[#DDE3EE] bg-white"
                 open={isCodeSectionOpen}
                 onToggle={e => setCodeOpen(e.currentTarget.open)}
               >
@@ -404,7 +409,7 @@ function ResultPanel({
                         setCodeOpen(true);
                         onEditCode();
                       }}
-                      className="rounded-md px-2 py-1 text-xs font-semibold text-slate-700 transition-colors hover:bg-slate-100"
+                      className="rounded-md px-2 py-1 text-xs font-semibold text-[#594DA3] transition-colors hover:bg-[#F3F0FF]"
                     >
                       Chỉnh sửa
                     </button>
@@ -428,7 +433,7 @@ function ResultPanel({
                           <button
                             onClick={onRerunCode}
                             disabled={rerunExecuting || !editingCodeText.trim()}
-                            className="rounded-lg bg-slate-900 px-4 py-2 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-slate-800 disabled:cursor-not-allowed disabled:bg-slate-300"
+                            className="rounded-lg bg-[#00195A] px-4 py-2 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-[#31327E] disabled:cursor-not-allowed disabled:bg-slate-300"
                           >
                             {rerunExecuting ? 'Đang thực thi...' : 'Thực thi lại'}
                           </button>
@@ -456,12 +461,12 @@ function ResultPanel({
               </details>
             )}
             {plot_b64 && (
-              <div className="rounded-xl border border-slate-200 bg-white p-3 shadow-sm">
+              <div className="rounded-xl border border-[#DDE3EE] bg-white p-3 shadow-sm">
                 <div className="mb-2 flex items-center justify-between gap-2">
                   <div className="text-[11px] font-bold uppercase tracking-[0.14em] text-slate-500">Biểu đồ</div>
                   <button
                     onClick={() => setZoomedPlot(true)}
-                    className="rounded-md px-2 py-1 text-xs font-semibold text-slate-700 transition-colors hover:bg-slate-100"
+                    className="rounded-md px-2 py-1 text-xs font-semibold text-[#594DA3] transition-colors hover:bg-[#F3F0FF]"
                   >
                     Phóng to
                   </button>
@@ -481,7 +486,7 @@ function ResultPanel({
               </div>
             )}
             {tableText && (
-              <div className="rounded-xl border border-slate-200 bg-white p-3 shadow-sm">
+              <div className="rounded-xl border border-[#DDE3EE] bg-white p-3 shadow-sm">
                 <div className="mb-2 text-[11px] font-bold uppercase tracking-[0.14em] text-slate-500">Bảng</div>
                 <div className="custom-scrollbar max-h-[28rem] overflow-auto">
                   <OutputMarkdown>{tableText}</OutputMarkdown>
@@ -489,7 +494,7 @@ function ResultPanel({
               </div>
             )}
             {logText && (
-              <details className="overflow-hidden rounded-xl border border-slate-200 bg-white">
+              <details className="overflow-hidden rounded-xl border border-[#DDE3EE] bg-white">
                 <summary className="cursor-pointer select-none px-3.5 py-2.5 text-[11px] font-bold uppercase tracking-[0.14em] text-slate-500 transition-colors hover:bg-slate-50">
                   Log
                 </summary>
@@ -574,7 +579,7 @@ const SidebarIcon = ({ name }: { name: 'new' | 'search' | 'history' | 'api' | 'd
   );
 };
 
-const ActionIcon = ({ name }: { name: 'copy' | 'edit' | 'like' | 'dislike' | 'check' }) => {
+const ActionIcon = ({ name }: { name: 'copy' | 'edit' | 'like' | 'dislike' | 'check' | 'trash' }) => {
   const common = { fill: 'none', stroke: 'currentColor', strokeWidth: 1.75, strokeLinecap: 'round' as const, strokeLinejoin: 'round' as const };
   return (
     <svg width="21" height="21" viewBox="0 0 24 24" aria-hidden="true" {...common}>
@@ -583,6 +588,7 @@ const ActionIcon = ({ name }: { name: 'copy' | 'edit' | 'like' | 'dislike' | 'ch
       {name === 'like' && <><path d="M7.5 11.5v8"/><path d="M7.5 18.5H5.75A2.25 2.25 0 0 1 3.5 16.25v-2.5a2.25 2.25 0 0 1 2.25-2.25H7.5"/><path d="M7.5 11.5 11.2 4.8a1.7 1.7 0 0 1 3.2.9v3.1h3.45a2.65 2.65 0 0 1 2.55 3.35l-1.05 4.1a3 3 0 0 1-2.9 2.25H7.5"/></>}
       {name === 'dislike' && <><path d="M16.5 12.5v-8"/><path d="M16.5 5.5h1.75a2.25 2.25 0 0 1 2.25 2.25v2.5a2.25 2.25 0 0 1-2.25 2.25H16.5"/><path d="M16.5 12.5 12.8 19.2a1.7 1.7 0 0 1-3.2-.9v-3.1H6.15a2.65 2.65 0 0 1-2.55-3.35l1.05-4.1A3 3 0 0 1 7.55 5.5h8.95"/></>}
       {name === 'check' && <path d="m5.5 12.5 4 4 9-9"/>}
+      {name === 'trash' && <><path d="M4 7h16"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M6 7l1 14h10l1-14"/><path d="M9 7V4h6v3"/></>}
     </svg>
   );
 };
@@ -775,15 +781,15 @@ function ChatTab({
     <div className="flex h-full min-h-0 flex-col">
       {isEmpty ? (
         <div className="flex flex-1 flex-col items-center justify-center px-4 pb-12 text-center">
-          <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-slate-900 to-slate-700 shadow-lg shadow-slate-300/60">
+          <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-[#5B6CFF] to-[#826ACA] shadow-lg shadow-[#826ACA]/25">
             <SparkleIcon size={20} color="white" />
           </div>
-          <h2 className="mb-2 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">Bạn muốn phân tích gì?</h2>
-          <p className="max-w-md text-sm leading-6 text-slate-500">Hỏi tự nhiên về điểm thi, mình sẽ chuẩn bị mã để bạn duyệt trước khi chạy.</p>
+          <h2 className="mb-2 text-2xl font-bold tracking-tight text-[#071636] sm:text-3xl">Bạn muốn phân tích gì?</h2>
+          <p className="max-w-md text-sm leading-6 text-[#6F7C91]">Hỏi tự nhiên về điểm thi, mình sẽ chuẩn bị mã để bạn duyệt trước khi chạy.</p>
           <div className="mt-7 grid w-full max-w-6xl grid-cols-1 gap-3 md:grid-cols-3">
             {suggestedPrompts.map((p, i) => (
               <button key={i} onClick={() => sendPrompt(p)}
-                className="prompt-starter min-h-12 w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-left text-[12px] font-semibold leading-5 text-slate-600 shadow-sm transition-all hover:border-slate-400 hover:bg-slate-100/70 hover:text-slate-950 lg:text-[13px]">
+                className="prompt-starter min-h-12 w-full rounded-2xl border border-[#DDE3EE] bg-white px-4 py-3 text-left text-[12px] font-semibold leading-5 text-[#6F7C91] shadow-sm transition-all hover:border-[#C7B7F5] hover:bg-[#F3F0FF] hover:text-[#071636] lg:text-[13px]">
                 {p}
               </button>
             ))}
@@ -795,7 +801,7 @@ function ChatTab({
             <div key={i} className="group message-animate px-3 py-4 sm:px-6 sm:py-5">
               <div className={`mx-auto flex max-w-[84rem] gap-2 sm:gap-3 ${msg.role === 'user' ? 'justify-end' : 'flex-row'}`}>
               {msg.role === 'assistant' && (
-                <div className="mt-2 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-slate-900 to-slate-700 shadow-md shadow-slate-300/60">
+                <div className="mt-2 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-[#5B6CFF] to-[#826ACA] shadow-md shadow-[#826ACA]/20">
                   <SparkleIcon size={14} color="white" />
                 </div>
               )}
@@ -803,7 +809,7 @@ function ChatTab({
                 {msg.role === 'user' ? (
                   <>
                     {editingIndex === i ? (
-                      <div className="w-[min(42rem,calc(100vw-5rem))] rounded-2xl rounded-tr-sm border border-slate-300 bg-white p-2 shadow-lg shadow-slate-200/60 ring-4 ring-slate-100">
+                      <div className="w-[min(42rem,calc(100vw-5rem))] rounded-2xl rounded-tr-sm border border-[#DDE3EE] bg-white p-2 shadow-lg shadow-slate-300/50 ring-4 ring-[#F3F0FF]">
                         <textarea
                           autoFocus
                           value={editingText}
@@ -818,7 +824,7 @@ function ChatTab({
                               setEditingText('');
                             }
                           }}
-                          className="custom-scrollbar max-h-48 min-h-28 w-full resize-none rounded-xl border-0 bg-slate-50 px-4 py-3 text-[15px] leading-7 text-slate-900 outline-none placeholder:text-slate-400"
+                          className="custom-scrollbar max-h-48 min-h-28 w-full resize-none rounded-xl border-0 bg-[#F5F7FB] px-4 py-3 text-[15px] leading-7 text-[#071636] outline-none placeholder:text-slate-400"
                           rows={Math.max(4, Math.min(7, editingText.split('\n').length + 1))}
                         />
                         <div className="mt-2 flex items-center justify-end gap-2">
@@ -834,14 +840,14 @@ function ChatTab({
                           <button
                             onClick={submitEditedMessage}
                             disabled={!editingText.trim()}
-                            className="rounded-lg bg-slate-900 px-3 py-1.5 text-xs font-semibold text-white shadow-sm transition-colors hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-50"
+                            className="rounded-lg bg-[#00195A] px-3 py-1.5 text-xs font-semibold text-white shadow-sm transition-colors hover:bg-[#31327E] disabled:cursor-not-allowed disabled:opacity-50"
                           >
                             Gửi lại
                           </button>
                         </div>
                       </div>
                     ) : (
-                      <div className="rounded-2xl rounded-tr-sm bg-gradient-to-br from-slate-900 to-slate-700 px-4 py-3 text-sm leading-relaxed text-white shadow-md shadow-slate-200 sm:px-5 sm:py-3.5">
+                      <div className="rounded-2xl rounded-tr-sm bg-gradient-to-br from-[#00195A] to-[#31327E] px-4 py-3 text-sm leading-relaxed text-white shadow-md shadow-[#00195A]/15 sm:px-5 sm:py-3.5">
                         {msg.content}
                       </div>
                     )}
@@ -859,7 +865,7 @@ function ChatTab({
                     </div>
                   </>
                 ) : (
-                  <div className={`${msg.output || msg.errorText || msg.logText || msg.plot_b64 || msg.code ? 'w-full text-sm leading-relaxed text-slate-800' : 'w-full rounded-3xl bg-transparent px-0 py-2 text-sm leading-relaxed text-slate-800 sm:px-5 sm:py-4'}`}>
+                  <div className={`${msg.output || msg.errorText || msg.logText || msg.plot_b64 || msg.code ? 'w-full text-sm leading-relaxed text-slate-800' : 'w-full rounded-2xl border border-[#DDE3EE] bg-white px-4 py-3 text-sm leading-relaxed text-[#4B5568] shadow-sm shadow-slate-300/40 sm:px-5 sm:py-4'}`}>
                     {msg.output || msg.errorText || msg.logText || msg.plot_b64 || msg.code ? (
                       <ResultPanel
                         summary={msg.content}
@@ -954,18 +960,18 @@ function ChatTab({
 
           {pending && (
             <div className="mx-auto flex w-full max-w-[84rem] gap-3 px-3 py-5 sm:gap-4 sm:px-4">
-              <div className="mt-1 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-slate-900 to-slate-700 shadow-md shadow-slate-300/60">
+              <div className="mt-1 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-[#5B6CFF] to-[#826ACA] shadow-md shadow-[#826ACA]/20">
                 <SparkleIcon size={14} color="white" />
               </div>
-              <div className="min-w-0 flex-1 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
-                <div className="border-b border-slate-200 px-4 py-3 sm:px-5">
+              <div className="min-w-0 flex-1 overflow-hidden rounded-2xl border border-[#DDE3EE] bg-white shadow-sm">
+                <div className="border-b border-[#E6EBF3] px-4 py-3 sm:px-5">
                   <div>
                     <div className="text-[11px] font-bold uppercase tracking-[0.16em] text-amber-600">Chờ duyệt</div>
                     <h3 className="mt-1 text-sm font-bold text-slate-950">Mã Python AI đề xuất</h3>
                   </div>
                 </div>
-                <div className="space-y-3 bg-slate-50/70 p-3 sm:p-4">
-                  <details className="rounded-xl border border-slate-200 bg-white">
+                <div className="space-y-3 bg-[#F5F7FB] p-3 sm:p-4">
+                  <details className="rounded-xl border border-[#DDE3EE] bg-white">
                     <summary className="cursor-pointer select-none px-3.5 py-2.5 text-[11px] font-bold uppercase tracking-[0.14em] text-slate-500 transition-colors hover:bg-slate-50">
                       Phân tích câu hỏi
                     </summary>
@@ -997,14 +1003,14 @@ function ChatTab({
                     <button
                       onClick={handleCancel}
                       disabled={executing}
-                      className="rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-600 transition-colors hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-60"
+                      className="rounded-lg border border-[#DDE3EE] bg-white px-3 py-2 text-sm font-semibold text-[#6F7C91] transition-colors hover:bg-[#F3F0FF] disabled:cursor-not-allowed disabled:opacity-60"
                     >
                       Hủy
                     </button>
                     <button
                       onClick={handleAccept}
                       disabled={executing || !editedCode.trim()}
-                      className="rounded-lg bg-slate-900 px-4 py-2 text-sm font-semibold text-white shadow-sm shadow-slate-200 transition-colors hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-60"
+                      className="rounded-lg bg-[#00195A] px-4 py-2 text-sm font-semibold text-white shadow-sm shadow-[#00195A]/15 transition-colors hover:bg-[#31327E] disabled:cursor-not-allowed disabled:opacity-60"
                     >
                       {executing ? 'Đang chạy' : 'Duyệt & chạy'}
                     </button>
@@ -1019,7 +1025,7 @@ function ChatTab({
         </div>
       )}
 
-      <div className="mt-auto bg-gradient-to-t from-slate-50 via-slate-50 to-transparent px-3 pb-3 pt-8 sm:px-4 sm:pb-4">
+      <div className="mt-auto bg-gradient-to-t from-[#F5F7FB] via-[#F5F7FB] to-transparent px-3 pb-3 pt-8 sm:px-4 sm:pb-4">
         {!isEmpty && suggestedPrompts.length > 0 && (
           <div className="mx-auto mb-2 grid max-w-5xl grid-cols-1 gap-2 px-1 md:grid-cols-3">
             {suggestedPrompts.slice(0, 3).map((p, i) => (
@@ -1027,20 +1033,20 @@ function ChatTab({
                 key={i}
                 onClick={() => sendPrompt(p)}
                 disabled={loading}
-                className="min-h-10 rounded-full border border-slate-200 bg-white/85 px-3 py-1.5 text-left text-[11px] font-semibold leading-4 text-slate-500 shadow-sm transition-all hover:border-slate-400 hover:bg-slate-100 hover:text-slate-950 disabled:cursor-not-allowed disabled:opacity-50"
+                className="min-h-10 rounded-full border border-[#DDE3EE] bg-white/90 px-3 py-1.5 text-left text-[11px] font-semibold leading-4 text-[#6F7C91] shadow-sm transition-all hover:border-[#C7B7F5] hover:bg-[#F3F0FF] hover:text-[#071636] disabled:cursor-not-allowed disabled:opacity-50"
               >
                 {p}
               </button>
             ))}
           </div>
         )}
-        <div className="input-glow mx-auto flex max-w-3xl items-end gap-2 rounded-[1.4rem] border border-slate-200 bg-white px-3 py-2.5 shadow-xl shadow-slate-200/30 transition-all sm:rounded-3xl sm:px-4 sm:py-3">
+        <div className="input-glow mx-auto flex max-w-3xl items-end gap-2 rounded-[1.4rem] border border-[#DDE3EE] bg-white px-3 py-2.5 shadow-xl shadow-slate-300/30 transition-all sm:rounded-3xl sm:px-4 sm:py-3">
           <textarea value={input} onChange={e => setInput(e.target.value)}
             onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendPrompt(input); }}}
             placeholder="Hỏi về điểm thi..."
-            rows={1} className="custom-scrollbar max-h-36 min-h-10 flex-1 resize-none bg-transparent px-1 py-2 text-[15px] leading-relaxed text-slate-800 outline-none placeholder-slate-400" />
+            rows={1} className="custom-scrollbar max-h-36 min-h-10 flex-1 resize-none bg-transparent px-1 py-2 text-[15px] leading-relaxed text-[#071636] outline-none placeholder-slate-400" />
           <button onClick={() => sendPrompt(input)} disabled={loading || !input.trim()}
-            className={`flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-slate-900 to-slate-700 text-white shadow-md transition-all active:scale-95 disabled:opacity-40 ${input.trim() ? 'send-btn-ready' : ''}`}>
+            className={`flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-[#00195A] to-[#31327E] text-white shadow-md transition-all active:scale-95 disabled:opacity-40 ${input.trim() ? 'send-btn-ready' : ''}`}>
             <SendIcon />
           </button>
         </div>
@@ -1057,8 +1063,21 @@ function HistoryTab() {
   const visibleLogs = logs.filter(log => log.event_type !== 'generate');
 
   useEffect(() => {
-    callApi('GET', '/api/logs').then(data => { setLogs(data ?? []); setLoading(false); });
+    callApi('GET', '/api/logs').then(data => {
+      setLogs(Array.isArray(data) ? data : []);
+      setLoading(false);
+    });
   }, []);
+
+  const deleteHistoryLog = async (timestamp: string) => {
+    setLogs(prev => prev.filter(log => log.timestamp !== timestamp));
+    await callApi('POST', '/api/logs/delete', { timestamp });
+  };
+
+  const clearHistoryLogs = async () => {
+    setLogs([]);
+    await callApi('POST', '/api/logs/clear');
+  };
 
   const formatTime = (ts: string) => {
     try { return new Date(ts).toLocaleString('vi-VN'); } catch { return ts; }
@@ -1089,7 +1108,18 @@ function HistoryTab() {
 
   return (
     <div className="space-y-4">
-      <h2 className="px-1 text-base font-bold text-slate-950">History</h2>
+      <div className="flex items-center justify-between gap-3 px-1">
+        <h2 className="text-base font-bold text-slate-950">History</h2>
+        {visibleLogs.length > 0 && (
+          <button
+            onClick={clearHistoryLogs}
+            className="flex items-center gap-2 rounded-lg border border-[#DDE3EE] bg-white px-3 py-2 text-xs font-bold text-[#594DA3] shadow-sm transition hover:bg-[#F3F0FF]"
+          >
+            <ActionIcon name="trash" />
+            <span>Xóa tất cả</span>
+          </button>
+        )}
+      </div>
       {loading && <p className="text-slate-400 text-sm">Đang tải lịch sử...</p>}
       {!loading && visibleLogs.length === 0 && (
         <div className="text-center py-16 text-slate-400 text-sm">
@@ -1103,7 +1133,7 @@ function HistoryTab() {
         const narrativeText = removeOrphanDetailHeading(rawNarrativeText, Boolean(tableText));
         return (
         <details key={i} className="group overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition-shadow open:shadow-md">
-          <summary className="grid cursor-pointer list-none grid-cols-1 gap-3 px-5 py-4 transition-colors hover:bg-slate-50 sm:grid-cols-[7.5rem_minmax(0,1fr)_1.5rem] sm:items-center">
+          <summary className="grid cursor-pointer list-none grid-cols-1 gap-3 px-5 py-4 transition-colors hover:bg-slate-50 sm:grid-cols-[7.5rem_minmax(0,1fr)_2rem_1.5rem] sm:items-center">
             <div className="flex sm:justify-center">
               <span className={`inline-flex min-w-[5.75rem] justify-center rounded-full border px-3 py-1.5 text-[11px] font-bold ${statusMeta.className}`}>
                 {statusMeta.label}
@@ -1119,6 +1149,17 @@ function HistoryTab() {
                 {log.model && <span className="max-w-full truncate rounded-md border border-slate-200 bg-white px-2 py-0.5">{log.model}</span>}
               </div>
             </div>
+            <button
+              onClick={event => {
+                event.preventDefault();
+                event.stopPropagation();
+                deleteHistoryLog(log.timestamp);
+              }}
+              title="Xóa log"
+              className="hidden h-8 w-8 items-center justify-center rounded-lg text-slate-400 transition hover:bg-[#F3F0FF] hover:text-[#594DA3] sm:flex"
+            >
+              <ActionIcon name="trash" />
+            </button>
             <svg className="hidden h-4 w-4 justify-self-end text-slate-400 transition-transform group-open:rotate-180 sm:block" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
           </summary>
           <div className="grid gap-3 border-t border-slate-100 bg-slate-50/70 px-5 py-5 xl:grid-cols-[minmax(0,0.9fr)_minmax(30rem,1.1fr)]">
@@ -1253,7 +1294,7 @@ function ApiTab() {
 }
 
 // ── Main Page ─────────────────────────────────────────────
-type Tab = 'chat' | 'history' | 'api';
+type AssistantTab = 'chat' | 'history' | 'api';
 const CHAT_SESSIONS_KEY = 'examdata_ai_chat_sessions';
 const EMPTY_CHAT_SESSION: ChatSession = {
   id: 'chat-empty',
@@ -1327,7 +1368,9 @@ function loadChatSessions() {
 }
 
 export default function Home() {
-  const [activeTab, setActiveTab] = useState<Tab>('chat');
+  const [dashboardTab, setDashboardTab] = useState<DashboardTab>('overview');
+  const [assistantOpen, setAssistantOpen] = useState(false);
+  const [activeTab, setActiveTab] = useState<AssistantTab>('chat');
   const [sessions, setSessions] = useState<ChatSession[]>([EMPTY_CHAT_SESSION]);
   const [activeSessionId, setActiveSessionId] = useState(EMPTY_CHAT_SESSION.id);
   const [sessionSearch, setSessionSearch] = useState('');
@@ -1358,6 +1401,27 @@ export default function Home() {
     setSessions(prev => [newSession, ...prev.filter(session => session.messages.length > 0)]);
     setActiveSessionId(newSession.id);
     setActiveTab('chat');
+    setAssistantOpen(true);
+  }, []);
+
+  const deleteSession = useCallback((sessionId: string) => {
+    setSessions(prev => {
+      const remaining = prev.filter(session => session.id !== sessionId);
+      const nextSessions = remaining.length > 0 ? remaining : [createChatSession()];
+      if (activeSessionId === sessionId) {
+        setActiveSessionId(nextSessions[0].id);
+        setActiveTab('chat');
+      }
+      return nextSessions;
+    });
+  }, [activeSessionId]);
+
+  const clearSessions = useCallback(() => {
+    const newSession = createChatSession();
+    setSessions([newSession]);
+    setActiveSessionId(newSession.id);
+    setSessionSearch('');
+    setActiveTab('chat');
   }, []);
 
   const updateActiveSession = useCallback((messages: Message[]) => {
@@ -1387,58 +1451,129 @@ export default function Home() {
   const mainOffsetClass = sidebarCollapsed ? 'ml-[80px]' : 'ml-[272px]';
 
   return (
-    <div className="min-h-screen bg-slate-50 font-sans text-slate-900">
-      <aside className={`fixed inset-y-0 left-0 z-20 hidden ${sidebarWidthClass} flex-col border-r border-slate-200 bg-white px-3 py-4 text-slate-700 shadow-xl shadow-slate-200/70 transition-all duration-200 md:flex`}>
+    <>
+      <div className={`min-h-screen bg-[#F5F7FB] font-sans text-slate-900 ${assistantOpen ? 'hidden' : ''}`}>
+        <aside className="fixed inset-y-0 left-0 z-20 flex w-[272px] flex-col border-r border-white/5 px-3 py-4 text-slate-300 shadow-2xl shadow-slate-950/10" style={{ background: 'linear-gradient(180deg, #00195A 0%, #31327E 100%)' }}>
+          <div className="mb-4 flex h-12 items-center px-2">
+            <div className="flex items-center gap-2.5">
+              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-600 to-blue-500 shadow-lg shadow-indigo-500/20">
+                <SparkleIcon size={16} color="white" />
+              </div>
+              <div>
+                <p className="text-sm font-bold tracking-tight text-white">ExamData AI</p>
+                <p className="mt-0.5 text-[9px] font-semibold uppercase tracking-[0.18em] text-indigo-300">Analytics</p>
+              </div>
+            </div>
+          </div>
+
+          <nav className="space-y-2">
+            <button onClick={() => setDashboardTab('overview')} className={`sidebar-nav-item ${dashboardTab === 'overview' ? 'sidebar-item-active text-white' : 'text-slate-400 hover:bg-white/5 hover:text-slate-200'}`}>
+              <SidebarIcon name="chart" />
+              <span>Tổng quan</span>
+            </button>
+            <button onClick={() => setDashboardTab('trends')} className={`sidebar-nav-item ${dashboardTab === 'trends' ? 'sidebar-item-active text-white' : 'text-slate-400 hover:bg-white/5 hover:text-slate-200'}`}>
+              <SidebarIcon name="distribution" />
+              <span>Xu hướng & Môn học</span>
+            </button>
+            <button onClick={() => setDashboardTab('distribution')} className={`sidebar-nav-item ${dashboardTab === 'distribution' ? 'sidebar-item-active text-white' : 'text-slate-400 hover:bg-white/5 hover:text-slate-200'}`}>
+              <SidebarIcon name="correlation" />
+              <span>Phổ điểm & Tổ hợp</span>
+            </button>
+            <button onClick={() => setDashboardTab('regions')} className={`sidebar-nav-item ${dashboardTab === 'regions' ? 'sidebar-item-active text-white' : 'text-slate-400 hover:bg-white/5 hover:text-slate-200'}`}>
+              <SidebarIcon name="map" />
+              <span>Địa phương & Vùng miền</span>
+            </button>
+            <button onClick={() => { setAssistantOpen(true); setActiveTab('chat'); }} className="sidebar-nav-item text-slate-400 hover:bg-white/5 hover:text-slate-200">
+              <SidebarIcon name="data" />
+              <span>Trợ lý AI</span>
+            </button>
+          </nav>
+
+          <div className="mx-2 my-4 border-t border-white/5" />
+        </aside>
+
+        <main className="ml-[272px] h-screen overflow-hidden bg-[#F5F7FB]">
+          <div className="flex h-full flex-col">
+            <div className="min-h-0 flex-1">
+              {dashboardTab === 'overview' && <OverviewTab />}
+              {dashboardTab === 'trends' && <SubjectTrendTab />}
+              {dashboardTab === 'distribution' && <DistributionTab />}
+              {dashboardTab === 'regions' && <RegionTab />}
+            </div>
+          </div>
+        </main>
+      </div>
+
+      <div className={`min-h-screen bg-[#F5F7FB] font-sans text-slate-900 ${assistantOpen ? '' : 'hidden'}`}>
+      <aside className={`fixed inset-y-0 left-0 z-20 hidden ${sidebarWidthClass} flex-col border-r border-white/5 px-3 py-4 text-slate-300 shadow-2xl shadow-slate-950/10 transition-all duration-200 md:flex`} style={{ background: 'linear-gradient(180deg, #00195A 0%, #31327E 100%)' }}>
         <div className={`mb-4 flex h-12 items-center ${sidebarCollapsed ? 'justify-center' : 'justify-between px-2'}`}>
           <div className="flex items-center gap-2.5">
-            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-slate-900 shadow-sm">
+            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-[#5B6CFF] to-[#826ACA] shadow-lg shadow-[#826ACA]/20">
               <SparkleIcon size={16} color="white" />
             </div>
             <div className={sidebarCollapsed ? 'hidden' : ''}>
-              <p className="text-sm font-bold tracking-tight text-slate-950">ExamData AI</p>
+              <p className="text-sm font-bold tracking-tight text-white">ExamData AI</p>
+              <p className="mt-0.5 text-[9px] font-semibold uppercase tracking-[0.18em] text-indigo-300">Assistant</p>
             </div>
           </div>
           <button
             aria-label={sidebarCollapsed ? 'Mở rộng sidebar' : 'Thu gọn sidebar'}
             onClick={() => setSidebarCollapsed(prev => !prev)}
-            className={`${sidebarCollapsed ? 'absolute left-1/2 top-16 -translate-x-1/2' : ''} flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 transition-colors hover:bg-slate-100 hover:text-slate-700`}
+            className={`${sidebarCollapsed ? 'absolute left-1/2 top-16 -translate-x-1/2' : ''} flex h-8 w-8 items-center justify-center rounded-lg text-indigo-200 transition-colors hover:bg-white/10 hover:text-white`}
           >
             <SidebarIcon name="panel" />
           </button>
         </div>
 
         <nav className="space-y-2">
-          <button aria-label="New chat" onClick={startNewChat} className={`flex w-full items-center justify-center gap-2 rounded-lg border border-slate-300 bg-slate-900 px-3 py-2.5 text-left text-[13px] font-semibold text-white shadow-sm transition-colors hover:bg-slate-800 ${sidebarCollapsed ? 'mt-10 h-11 px-0' : ''}`}>
+          <button
+            aria-label="Back to dashboard"
+            onClick={() => setAssistantOpen(false)}
+            className={`flex w-full items-center justify-center gap-2 rounded-lg border border-white/15 bg-white/10 px-3 py-2.5 text-left text-[13px] font-semibold text-slate-100 shadow-sm transition-colors hover:bg-white/20 ${sidebarCollapsed ? 'mt-10 h-11 px-0' : ''}`}
+          >
+            <span className="text-base leading-none">←</span>
+            {!sidebarCollapsed && <span>Dashboard</span>}
+          </button>
+          <button aria-label="New chat" onClick={startNewChat} className={`flex w-full items-center justify-center gap-2 rounded-lg border border-white/15 bg-white px-3 py-2.5 text-left text-[13px] font-semibold text-[#00195A] shadow-sm transition-colors hover:bg-[#F3F0FF] ${sidebarCollapsed ? 'mt-10 h-11 px-0' : ''}`}>
             <SidebarIcon name="new" />
             {!sidebarCollapsed && <span>New</span>}
           </button>
           {!sidebarCollapsed && <div className="relative">
-            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"><SidebarIcon name="search" /></span>
+            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-indigo-200"><SidebarIcon name="search" /></span>
             <input
               value={sessionSearch}
               onChange={e => setSessionSearch(e.target.value)}
               placeholder="Tìm chat..."
-              className="w-full rounded-xl border border-slate-200 bg-slate-50 py-2.5 pl-10 pr-3 text-[12.5px] text-slate-800 outline-none transition-all placeholder:text-slate-400 focus:border-slate-400 focus:bg-white focus:ring-2 focus:ring-slate-200"
+              className="w-full rounded-xl border border-white/15 bg-white/10 py-2.5 pl-10 pr-3 text-[12.5px] text-white outline-none transition-all placeholder:text-indigo-200/70 focus:border-white/40 focus:bg-white/15 focus:ring-2 focus:ring-white/10"
             />
           </div>}
-          <button aria-label="Chat" onClick={() => setActiveTab('chat')} className={`sidebar-nav-item ${sidebarCollapsed ? 'justify-center px-0' : ''} ${activeTab === 'chat' ? 'sidebar-item-active text-slate-900' : 'text-slate-500 hover:bg-slate-100 hover:text-slate-900'}`}>
+          <button aria-label="Chat" onClick={() => setActiveTab('chat')} className={`sidebar-nav-item ${sidebarCollapsed ? 'justify-center px-0' : ''} ${activeTab === 'chat' ? 'sidebar-item-active text-white' : 'text-slate-400 hover:bg-white/5 hover:text-slate-200'}`}>
             <SidebarIcon name="data" />
             {!sidebarCollapsed && <span>Chat</span>}
           </button>
-          <button aria-label="History" onClick={() => setActiveTab('history')} className={`sidebar-nav-item ${sidebarCollapsed ? 'justify-center px-0' : ''} ${activeTab === 'history' ? 'sidebar-item-active text-slate-900' : 'text-slate-500 hover:bg-slate-100 hover:text-slate-900'}`}>
+          <button aria-label="History" onClick={() => setActiveTab('history')} className={`sidebar-nav-item ${sidebarCollapsed ? 'justify-center px-0' : ''} ${activeTab === 'history' ? 'sidebar-item-active text-white' : 'text-slate-400 hover:bg-white/5 hover:text-slate-200'}`}>
             <SidebarIcon name="history" />
             {!sidebarCollapsed && <span>History</span>}
           </button>
-          <button aria-label="API" onClick={() => setActiveTab('api')} className={`sidebar-nav-item ${sidebarCollapsed ? 'justify-center px-0' : ''} ${activeTab === 'api' ? 'sidebar-item-active text-slate-900' : 'text-slate-500 hover:bg-slate-100 hover:text-slate-900'}`}>
+          <button aria-label="API" onClick={() => setActiveTab('api')} className={`sidebar-nav-item ${sidebarCollapsed ? 'justify-center px-0' : ''} ${activeTab === 'api' ? 'sidebar-item-active text-white' : 'text-slate-400 hover:bg-white/5 hover:text-slate-200'}`}>
             <SidebarIcon name="api" />
             {!sidebarCollapsed && <span>API</span>}
           </button>
         </nav>
 
-        <div className="mx-2 my-4 border-t border-slate-200" />
+        <div className="mx-2 my-4 border-t border-white/5" />
 
         <div className={`min-h-0 flex-1 ${sidebarCollapsed ? 'hidden' : ''}`}>
           <div className="custom-scrollbar h-full space-y-4 overflow-y-auto pr-1">
+            {visibleSessions.length > 0 && (
+              <button
+                onClick={clearSessions}
+                className="flex w-full items-center justify-center gap-2 rounded-xl border border-white/10 px-3 py-2 text-[12px] font-semibold text-indigo-100 transition hover:bg-white/10 hover:text-white"
+              >
+                <ActionIcon name="trash" />
+                <span>Xóa lịch sử chat</span>
+              </button>
+            )}
             {visibleSessions.length === 0 && (
               <div className="px-3 py-6 text-center text-[12px] italic leading-relaxed text-slate-400">
                 {sessionSearch ? 'Không tìm thấy đoạn chat.' : 'Chưa có hội thoại nào.'}
@@ -1446,26 +1581,37 @@ export default function Home() {
             )}
             {groupedVisibleSessions.map(group => (
               <div key={group.label} className="space-y-1">
-                <p className="px-2 text-[10px] font-bold uppercase tracking-widest text-slate-400">{group.label}</p>
+                <p className="px-2 text-[10px] font-bold uppercase tracking-widest text-indigo-200/70">{group.label}</p>
                 <div className="space-y-1">
                   {group.sessions.map(session => {
                     const isActiveSession = activeSessionId === session.id;
                     return (
-                      <button
+                      <div
                         key={session.id}
-                        onClick={() => { setActiveSessionId(session.id); setActiveTab('chat'); }}
                         className={`group relative flex w-full items-center rounded-xl px-3 py-2.5 text-left transition-all ${
                           isActiveSession
-                            ? 'sidebar-item-active text-slate-900'
-                            : 'text-slate-500 hover:bg-slate-100 hover:text-slate-900'
+                            ? 'sidebar-item-active text-[#00195A]'
+                            : 'text-slate-400 hover:bg-white/5 hover:text-slate-200'
                         }`}
                       >
                         <SidebarIcon name="data" />
                         <div className="ml-2.5 min-w-0 flex-1">
-                          <span className={`block truncate text-[12.5px] ${isActiveSession ? 'font-bold' : 'font-medium'}`}>{session.title}</span>
+                          <button
+                            onClick={() => { setActiveSessionId(session.id); setActiveTab('chat'); }}
+                            className={`block w-full truncate text-left text-[12.5px] ${isActiveSession ? 'font-bold' : 'font-medium'}`}
+                          >
+                            {session.title}
+                          </button>
                         </div>
-                        <span className={`ml-2 flex-shrink-0 text-[10px] ${isActiveSession ? 'font-semibold text-slate-600' : 'text-slate-400'}`}>{formatSessionTime(session.updatedAt)}</span>
-                      </button>
+                        <span className={`ml-2 flex-shrink-0 text-[10px] ${isActiveSession ? 'font-semibold text-[#594DA3]' : 'text-indigo-200/70'}`}>{formatSessionTime(session.updatedAt)}</span>
+                        <button
+                          onClick={() => deleteSession(session.id)}
+                          title="Xóa hội thoại"
+                          className={`ml-1 flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-lg opacity-0 transition group-hover:opacity-100 ${isActiveSession ? 'text-[#594DA3] hover:bg-[#F3F0FF]' : 'text-indigo-200 hover:bg-white/10 hover:text-white'}`}
+                        >
+                          <ActionIcon name="trash" />
+                        </button>
+                      </div>
                     );
                   })}
                 </div>
@@ -1475,29 +1621,42 @@ export default function Home() {
         </div>
       </aside>
 
-      <main className={`${mainOffsetClass} h-screen overflow-hidden bg-slate-50 transition-all duration-200 max-md:ml-0`}>
+      <main className={`${mainOffsetClass} h-screen overflow-hidden bg-[#F5F7FB] transition-all duration-200 max-md:ml-0`}>
         <div className="flex h-full flex-col">
-          <div className="border-b border-slate-200/70 bg-white/80 px-4 pb-3 pt-4 backdrop-blur sm:px-8 sm:pt-5">
-            <p className="text-xs font-bold uppercase tracking-[0.18em] text-slate-400">
-              {activeTab === 'chat' ? 'Chat' : activeTab === 'history' ? 'History' : 'API'}
-            </p>
-            <h1 className="mt-1 text-xl font-extrabold tracking-tight text-slate-950 sm:text-2xl">
-              ExamData AI
-            </h1>
+          <div className="border-b border-[#DDE3EE] bg-[#F5F7FB]/90 px-4 pb-3 pt-4 backdrop-blur sm:px-8 sm:pt-5">
+            <div className="flex items-center justify-between gap-3">
+              <div>
+                <p className="text-xs font-bold uppercase tracking-[0.18em] text-slate-400">
+                  {activeTab === 'chat' ? 'Chat' : activeTab === 'history' ? 'History' : 'API'}
+                </p>
+                <h1 className="mt-1 text-xl font-extrabold tracking-tight text-[#071636] sm:text-2xl">
+                  ExamData AI
+                </h1>
+              </div>
+              <button
+                onClick={() => setAssistantOpen(false)}
+                className="rounded-lg border border-[#C7B7F5] bg-white px-3 py-2 text-sm font-bold text-[#594DA3] shadow-sm transition hover:bg-[#F3F0FF]"
+              >
+                ← Về dashboard
+              </button>
+            </div>
           </div>
           <div className="min-h-0 flex-1">
-            {activeTab === 'chat' && activeSession && (
+            <div className={activeTab === 'chat' ? 'h-full min-h-0' : 'hidden'}>
+              {activeSession && (
               <ChatTab
                 key={activeSession.id}
                 initialMessages={activeSession.messages}
                 onMessagesChange={updateActiveSession}
               />
-            )}
+              )}
+            </div>
             {activeTab === 'history' && <div className="h-full overflow-y-auto px-4 pb-6 pt-4 sm:px-8"><HistoryTab /></div>}
             {activeTab === 'api' && <div className="h-full overflow-y-auto px-4 pb-6 pt-4 sm:px-8"><ApiTab /></div>}
           </div>
         </div>
       </main>
-    </div>
+      </div>
+    </>
   );
 }
