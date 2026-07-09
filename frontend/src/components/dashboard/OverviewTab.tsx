@@ -14,6 +14,24 @@ export function OverviewTab() {
   const [year, setYear] = useState<YearOption>('all');
   const [program, setProgram] = useState<Program>('all');
 
+  // Derive which years actually have data for the selected program
+  const availableYears = candidatesByYear
+    .filter(item => item.program === program)
+    .map(item => item.year)
+    .sort((a, b) => a - b);
+
+  // When program changes: keep year if still valid, else reset to 'all'
+  const handleProgramChange = (nextProgram: string) => {
+    const p = nextProgram as Program;
+    setProgram(p);
+    if (year !== 'all') {
+      const yearsForP = candidatesByYear
+        .filter(item => item.program === p)
+        .map(item => item.year);
+      if (!yearsForP.includes(year as number)) setYear('all');
+    }
+  };
+
   const scopedSubjectAverages = year === 'all' 
     ? subjectAverages.filter(item => item.program === program)
     : subjectYearMatrix
@@ -50,14 +68,17 @@ export function OverviewTab() {
           {
             label: 'Năm',
             value: String(year),
-            options: [{ label: 'Tất cả', value: 'all' }, ...YEARS.map(item => ({ label: String(item), value: String(item) }))],
+            options: [
+              { label: 'Tất cả', value: 'all' },
+              ...availableYears.map(y => ({ label: String(y), value: String(y) })),
+            ],
             onChange: value => setYear(value === 'all' ? 'all' : Number(value) as YearOption),
           },
           {
             label: 'Chương trình',
             value: program,
             options: [{ label: 'Tất cả', value: 'all' }, ...PROGRAMS.map(item => ({ label: item, value: item }))],
-            onChange: value => setProgram(value as Program),
+            onChange: handleProgramChange,
           },
         ]}
         onReset={() => {
