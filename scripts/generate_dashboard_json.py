@@ -23,14 +23,22 @@ SUBJECTS = [
 ]
 SUBJECT_IDS = [s["id"] for s in SUBJECTS]
 REGIONS = [
-    {"id": "dbsh", "name": "ĐB sông Hồng"},
+    {"id": "dbsh", "name": "Đồng bằng sông Hồng"},
     {"id": "dnb", "name": "Đông Nam Bộ"},
-    {"id": "btb", "name": "Bắc Trung Bộ"},
-    {"id": "dhntb", "name": "DH Nam Trung Bộ"},
-    {"id": "dbscl", "name": "ĐB sông Cửu Long"},
+    {"id": "btbtb", "name": "Bắc Trung Bộ & Duyên hải miền Trung"},
+    {"id": "dbscl", "name": "Đồng bằng sông Cửu Long"},
     {"id": "tn", "name": "Tây Nguyên"},
-    {"id": "tdmnpb", "name": "TD & MN phía Bắc"},
+    {"id": "tdmnpb", "name": "Trung du & Miền núi phía Bắc"},
 ]
+# Maps exact vung_mien values in CSV -> region ID
+CSV_REGION_TO_ID = {
+    "Đồng bằng sông Hồng": "dbsh",
+    "Đông Nam Bộ": "dnb",
+    "Bắc Trung Bộ và Duyên hải miền Trung": "btbtb",
+    "Đồng bằng sông Cửu Long": "dbscl",
+    "Tây Nguyên": "tn",
+    "Trung du và miền núi phía Bắc": "tdmnpb",
+}
 PROGRAMS = ["CT2006", "CT2018"]
 COMBINATIONS = [
     {"id": "a00", "name": "A00", "subjects": "Toán, Vật lý, Hóa học"},
@@ -222,12 +230,11 @@ def main():
                             "average": round(float(row[sid]), 2)
                         })
 
-    # Map region names to IDs
-    name_to_id = {r["name"]: r["id"] for r in REGIONS}
+    # Map CSV vung_mien names (full) to region IDs
     for item in provinceRankings:
-        item["regionId"] = name_to_id.get(item["regionName"], "other")
+        item["regionId"] = CSV_REGION_TO_ID.get(item["regionName"], "other")
     for item in regionAverages:
-        item["regionId"] = name_to_id.get(item["regionName"], "other")
+        item["regionId"] = CSV_REGION_TO_ID.get(item["regionName"], "other")
 
     regionSubjectMatrix = [item for item in regionAverages if item["year"] == max(YEARS)]
 

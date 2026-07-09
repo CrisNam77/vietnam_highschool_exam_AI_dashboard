@@ -47,23 +47,19 @@ const data: any = {
   "REGIONS": [
     {
       "id": "dbsh",
-      "name": "ĐB sông Hồng"
+      "name": "Đồng bằng sông Hồng"
     },
     {
       "id": "dnb",
       "name": "Đông Nam Bộ"
     },
     {
-      "id": "btb",
-      "name": "Bắc Trung Bộ"
-    },
-    {
-      "id": "dhntb",
-      "name": "DH Nam Trung Bộ"
+      "id": "btbtb",
+      "name": "Bắc Trung Bộ & Duyên hải miền Trung"
     },
     {
       "id": "dbscl",
-      "name": "ĐB sông Cửu Long"
+      "name": "Đồng bằng sông Cửu Long"
     },
     {
       "id": "tn",
@@ -71,7 +67,7 @@ const data: any = {
     },
     {
       "id": "tdmnpb",
-      "name": "TD & MN phía Bắc"
+      "name": "Trung du & Miền núi phía Bắc"
     }
   ],
   "PROGRAMS": [
@@ -1347,7 +1343,7 @@ const data: any = {
   "provinceRankings": [
     {
       "province": "An Giang",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2022,
       "subjectId": "toan",
@@ -1357,7 +1353,7 @@ const data: any = {
     },
     {
       "province": "Bắc Ninh",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2022,
       "subjectId": "toan",
@@ -1367,7 +1363,7 @@ const data: any = {
     },
     {
       "province": "Cao Bằng",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2022,
       "subjectId": "toan",
@@ -1377,7 +1373,7 @@ const data: any = {
     },
     {
       "province": "Cà Mau",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2022,
       "subjectId": "toan",
@@ -1387,7 +1383,7 @@ const data: any = {
     },
     {
       "province": "Cần Thơ",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2022,
       "subjectId": "toan",
@@ -1407,7 +1403,7 @@ const data: any = {
     },
     {
       "province": "Huế",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2022,
       "subjectId": "toan",
@@ -1417,7 +1413,7 @@ const data: any = {
     },
     {
       "province": "Hà Nội",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2022,
       "subjectId": "toan",
@@ -1427,7 +1423,7 @@ const data: any = {
     },
     {
       "province": "Hà Tĩnh",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2022,
       "subjectId": "toan",
@@ -1437,7 +1433,7 @@ const data: any = {
     },
     {
       "province": "Hưng Yên",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2022,
       "subjectId": "toan",
@@ -1447,7 +1443,7 @@ const data: any = {
     },
     {
       "province": "Hải Phòng",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2022,
       "subjectId": "toan",
@@ -1467,7 +1463,7 @@ const data: any = {
     },
     {
       "province": "Khánh Hòa",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2022,
       "subjectId": "toan",
@@ -1477,7 +1473,7 @@ const data: any = {
     },
     {
       "province": "Lai Châu",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2022,
       "subjectId": "toan",
@@ -1487,7 +1483,7 @@ const data: any = {
     },
     {
       "province": "Lào Cai",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2022,
       "subjectId": "toan",
@@ -1507,7 +1503,7 @@ const data: any = {
     },
     {
       "province": "Lạng Sơn",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2022,
       "subjectId": "toan",
@@ -1517,7 +1513,7 @@ const data: any = {
     },
     {
       "province": "Nghệ An",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2022,
       "subjectId": "toan",
@@ -1527,7 +1523,7 @@ const data: any = {
     },
     {
       "province": "Ninh Bình",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2022,
       "subjectId": "toan",
@@ -1537,7 +1533,7 @@ const data: any = {
     },
     {
       "province": "Phú Thọ",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2022,
       "subjectId": "toan",
@@ -1547,7 +1543,7 @@ const data: any = {
     },
     {
       "province": "Quảng Ngãi",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2022,
       "subjectId": "toan",
@@ -1557,7 +1553,7 @@ const data: any = {
     },
     {
       "province": "Quảng Ninh",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2022,
       "subjectId": "toan",
@@ -1567,7 +1563,7 @@ const data: any = {
     },
     {
       "province": "Quảng Trị",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2022,
       "subjectId": "toan",
@@ -1577,7 +1573,7 @@ const data: any = {
     },
     {
       "province": "Sơn La",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2022,
       "subjectId": "toan",
@@ -1587,7 +1583,7 @@ const data: any = {
     },
     {
       "province": "Thanh Hóa",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2022,
       "subjectId": "toan",
@@ -1597,7 +1593,7 @@ const data: any = {
     },
     {
       "province": "Thái Nguyên",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2022,
       "subjectId": "toan",
@@ -1607,7 +1603,7 @@ const data: any = {
     },
     {
       "province": "Tuyên Quang",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2022,
       "subjectId": "toan",
@@ -1627,7 +1623,7 @@ const data: any = {
     },
     {
       "province": "Vĩnh Long",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2022,
       "subjectId": "toan",
@@ -1637,7 +1633,7 @@ const data: any = {
     },
     {
       "province": "Điện Biên",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2022,
       "subjectId": "toan",
@@ -1647,7 +1643,7 @@ const data: any = {
     },
     {
       "province": "Đà Nẵng",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2022,
       "subjectId": "toan",
@@ -1677,7 +1673,7 @@ const data: any = {
     },
     {
       "province": "Đồng Tháp",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2022,
       "subjectId": "toan",
@@ -1687,7 +1683,7 @@ const data: any = {
     },
     {
       "province": "An Giang",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2022,
       "subjectId": "ngu_van",
@@ -1697,7 +1693,7 @@ const data: any = {
     },
     {
       "province": "Bắc Ninh",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2022,
       "subjectId": "ngu_van",
@@ -1707,7 +1703,7 @@ const data: any = {
     },
     {
       "province": "Cao Bằng",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2022,
       "subjectId": "ngu_van",
@@ -1717,7 +1713,7 @@ const data: any = {
     },
     {
       "province": "Cà Mau",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2022,
       "subjectId": "ngu_van",
@@ -1727,7 +1723,7 @@ const data: any = {
     },
     {
       "province": "Cần Thơ",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2022,
       "subjectId": "ngu_van",
@@ -1747,7 +1743,7 @@ const data: any = {
     },
     {
       "province": "Huế",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2022,
       "subjectId": "ngu_van",
@@ -1757,7 +1753,7 @@ const data: any = {
     },
     {
       "province": "Hà Nội",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2022,
       "subjectId": "ngu_van",
@@ -1767,7 +1763,7 @@ const data: any = {
     },
     {
       "province": "Hà Tĩnh",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2022,
       "subjectId": "ngu_van",
@@ -1777,7 +1773,7 @@ const data: any = {
     },
     {
       "province": "Hưng Yên",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2022,
       "subjectId": "ngu_van",
@@ -1787,7 +1783,7 @@ const data: any = {
     },
     {
       "province": "Hải Phòng",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2022,
       "subjectId": "ngu_van",
@@ -1807,7 +1803,7 @@ const data: any = {
     },
     {
       "province": "Khánh Hòa",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2022,
       "subjectId": "ngu_van",
@@ -1817,7 +1813,7 @@ const data: any = {
     },
     {
       "province": "Lai Châu",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2022,
       "subjectId": "ngu_van",
@@ -1827,7 +1823,7 @@ const data: any = {
     },
     {
       "province": "Lào Cai",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2022,
       "subjectId": "ngu_van",
@@ -1847,7 +1843,7 @@ const data: any = {
     },
     {
       "province": "Lạng Sơn",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2022,
       "subjectId": "ngu_van",
@@ -1857,7 +1853,7 @@ const data: any = {
     },
     {
       "province": "Nghệ An",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2022,
       "subjectId": "ngu_van",
@@ -1867,7 +1863,7 @@ const data: any = {
     },
     {
       "province": "Ninh Bình",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2022,
       "subjectId": "ngu_van",
@@ -1877,7 +1873,7 @@ const data: any = {
     },
     {
       "province": "Phú Thọ",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2022,
       "subjectId": "ngu_van",
@@ -1887,7 +1883,7 @@ const data: any = {
     },
     {
       "province": "Quảng Ngãi",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2022,
       "subjectId": "ngu_van",
@@ -1897,7 +1893,7 @@ const data: any = {
     },
     {
       "province": "Quảng Ninh",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2022,
       "subjectId": "ngu_van",
@@ -1907,7 +1903,7 @@ const data: any = {
     },
     {
       "province": "Quảng Trị",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2022,
       "subjectId": "ngu_van",
@@ -1917,7 +1913,7 @@ const data: any = {
     },
     {
       "province": "Sơn La",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2022,
       "subjectId": "ngu_van",
@@ -1927,7 +1923,7 @@ const data: any = {
     },
     {
       "province": "Thanh Hóa",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2022,
       "subjectId": "ngu_van",
@@ -1937,7 +1933,7 @@ const data: any = {
     },
     {
       "province": "Thái Nguyên",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2022,
       "subjectId": "ngu_van",
@@ -1947,7 +1943,7 @@ const data: any = {
     },
     {
       "province": "Tuyên Quang",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2022,
       "subjectId": "ngu_van",
@@ -1967,7 +1963,7 @@ const data: any = {
     },
     {
       "province": "Vĩnh Long",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2022,
       "subjectId": "ngu_van",
@@ -1977,7 +1973,7 @@ const data: any = {
     },
     {
       "province": "Điện Biên",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2022,
       "subjectId": "ngu_van",
@@ -1987,7 +1983,7 @@ const data: any = {
     },
     {
       "province": "Đà Nẵng",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2022,
       "subjectId": "ngu_van",
@@ -2017,7 +2013,7 @@ const data: any = {
     },
     {
       "province": "Đồng Tháp",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2022,
       "subjectId": "ngu_van",
@@ -2027,7 +2023,7 @@ const data: any = {
     },
     {
       "province": "An Giang",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2022,
       "subjectId": "vat_li",
@@ -2037,7 +2033,7 @@ const data: any = {
     },
     {
       "province": "Bắc Ninh",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2022,
       "subjectId": "vat_li",
@@ -2047,7 +2043,7 @@ const data: any = {
     },
     {
       "province": "Cao Bằng",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2022,
       "subjectId": "vat_li",
@@ -2057,7 +2053,7 @@ const data: any = {
     },
     {
       "province": "Cà Mau",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2022,
       "subjectId": "vat_li",
@@ -2067,7 +2063,7 @@ const data: any = {
     },
     {
       "province": "Cần Thơ",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2022,
       "subjectId": "vat_li",
@@ -2087,7 +2083,7 @@ const data: any = {
     },
     {
       "province": "Huế",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2022,
       "subjectId": "vat_li",
@@ -2097,7 +2093,7 @@ const data: any = {
     },
     {
       "province": "Hà Nội",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2022,
       "subjectId": "vat_li",
@@ -2107,7 +2103,7 @@ const data: any = {
     },
     {
       "province": "Hà Tĩnh",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2022,
       "subjectId": "vat_li",
@@ -2117,7 +2113,7 @@ const data: any = {
     },
     {
       "province": "Hưng Yên",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2022,
       "subjectId": "vat_li",
@@ -2127,7 +2123,7 @@ const data: any = {
     },
     {
       "province": "Hải Phòng",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2022,
       "subjectId": "vat_li",
@@ -2147,7 +2143,7 @@ const data: any = {
     },
     {
       "province": "Khánh Hòa",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2022,
       "subjectId": "vat_li",
@@ -2157,7 +2153,7 @@ const data: any = {
     },
     {
       "province": "Lai Châu",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2022,
       "subjectId": "vat_li",
@@ -2167,7 +2163,7 @@ const data: any = {
     },
     {
       "province": "Lào Cai",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2022,
       "subjectId": "vat_li",
@@ -2187,7 +2183,7 @@ const data: any = {
     },
     {
       "province": "Lạng Sơn",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2022,
       "subjectId": "vat_li",
@@ -2197,7 +2193,7 @@ const data: any = {
     },
     {
       "province": "Nghệ An",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2022,
       "subjectId": "vat_li",
@@ -2207,7 +2203,7 @@ const data: any = {
     },
     {
       "province": "Ninh Bình",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2022,
       "subjectId": "vat_li",
@@ -2217,7 +2213,7 @@ const data: any = {
     },
     {
       "province": "Phú Thọ",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2022,
       "subjectId": "vat_li",
@@ -2227,7 +2223,7 @@ const data: any = {
     },
     {
       "province": "Quảng Ngãi",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2022,
       "subjectId": "vat_li",
@@ -2237,7 +2233,7 @@ const data: any = {
     },
     {
       "province": "Quảng Ninh",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2022,
       "subjectId": "vat_li",
@@ -2247,7 +2243,7 @@ const data: any = {
     },
     {
       "province": "Quảng Trị",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2022,
       "subjectId": "vat_li",
@@ -2257,7 +2253,7 @@ const data: any = {
     },
     {
       "province": "Sơn La",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2022,
       "subjectId": "vat_li",
@@ -2267,7 +2263,7 @@ const data: any = {
     },
     {
       "province": "Thanh Hóa",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2022,
       "subjectId": "vat_li",
@@ -2277,7 +2273,7 @@ const data: any = {
     },
     {
       "province": "Thái Nguyên",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2022,
       "subjectId": "vat_li",
@@ -2287,7 +2283,7 @@ const data: any = {
     },
     {
       "province": "Tuyên Quang",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2022,
       "subjectId": "vat_li",
@@ -2307,7 +2303,7 @@ const data: any = {
     },
     {
       "province": "Vĩnh Long",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2022,
       "subjectId": "vat_li",
@@ -2317,7 +2313,7 @@ const data: any = {
     },
     {
       "province": "Điện Biên",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2022,
       "subjectId": "vat_li",
@@ -2327,7 +2323,7 @@ const data: any = {
     },
     {
       "province": "Đà Nẵng",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2022,
       "subjectId": "vat_li",
@@ -2357,7 +2353,7 @@ const data: any = {
     },
     {
       "province": "Đồng Tháp",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2022,
       "subjectId": "vat_li",
@@ -2367,7 +2363,7 @@ const data: any = {
     },
     {
       "province": "An Giang",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2022,
       "subjectId": "hoa_hoc",
@@ -2377,7 +2373,7 @@ const data: any = {
     },
     {
       "province": "Bắc Ninh",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2022,
       "subjectId": "hoa_hoc",
@@ -2387,7 +2383,7 @@ const data: any = {
     },
     {
       "province": "Cao Bằng",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2022,
       "subjectId": "hoa_hoc",
@@ -2397,7 +2393,7 @@ const data: any = {
     },
     {
       "province": "Cà Mau",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2022,
       "subjectId": "hoa_hoc",
@@ -2407,7 +2403,7 @@ const data: any = {
     },
     {
       "province": "Cần Thơ",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2022,
       "subjectId": "hoa_hoc",
@@ -2427,7 +2423,7 @@ const data: any = {
     },
     {
       "province": "Huế",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2022,
       "subjectId": "hoa_hoc",
@@ -2437,7 +2433,7 @@ const data: any = {
     },
     {
       "province": "Hà Nội",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2022,
       "subjectId": "hoa_hoc",
@@ -2447,7 +2443,7 @@ const data: any = {
     },
     {
       "province": "Hà Tĩnh",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2022,
       "subjectId": "hoa_hoc",
@@ -2457,7 +2453,7 @@ const data: any = {
     },
     {
       "province": "Hưng Yên",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2022,
       "subjectId": "hoa_hoc",
@@ -2467,7 +2463,7 @@ const data: any = {
     },
     {
       "province": "Hải Phòng",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2022,
       "subjectId": "hoa_hoc",
@@ -2487,7 +2483,7 @@ const data: any = {
     },
     {
       "province": "Khánh Hòa",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2022,
       "subjectId": "hoa_hoc",
@@ -2497,7 +2493,7 @@ const data: any = {
     },
     {
       "province": "Lai Châu",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2022,
       "subjectId": "hoa_hoc",
@@ -2507,7 +2503,7 @@ const data: any = {
     },
     {
       "province": "Lào Cai",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2022,
       "subjectId": "hoa_hoc",
@@ -2527,7 +2523,7 @@ const data: any = {
     },
     {
       "province": "Lạng Sơn",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2022,
       "subjectId": "hoa_hoc",
@@ -2537,7 +2533,7 @@ const data: any = {
     },
     {
       "province": "Nghệ An",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2022,
       "subjectId": "hoa_hoc",
@@ -2547,7 +2543,7 @@ const data: any = {
     },
     {
       "province": "Ninh Bình",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2022,
       "subjectId": "hoa_hoc",
@@ -2557,7 +2553,7 @@ const data: any = {
     },
     {
       "province": "Phú Thọ",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2022,
       "subjectId": "hoa_hoc",
@@ -2567,7 +2563,7 @@ const data: any = {
     },
     {
       "province": "Quảng Ngãi",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2022,
       "subjectId": "hoa_hoc",
@@ -2577,7 +2573,7 @@ const data: any = {
     },
     {
       "province": "Quảng Ninh",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2022,
       "subjectId": "hoa_hoc",
@@ -2587,7 +2583,7 @@ const data: any = {
     },
     {
       "province": "Quảng Trị",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2022,
       "subjectId": "hoa_hoc",
@@ -2597,7 +2593,7 @@ const data: any = {
     },
     {
       "province": "Sơn La",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2022,
       "subjectId": "hoa_hoc",
@@ -2607,7 +2603,7 @@ const data: any = {
     },
     {
       "province": "Thanh Hóa",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2022,
       "subjectId": "hoa_hoc",
@@ -2617,7 +2613,7 @@ const data: any = {
     },
     {
       "province": "Thái Nguyên",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2022,
       "subjectId": "hoa_hoc",
@@ -2627,7 +2623,7 @@ const data: any = {
     },
     {
       "province": "Tuyên Quang",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2022,
       "subjectId": "hoa_hoc",
@@ -2647,7 +2643,7 @@ const data: any = {
     },
     {
       "province": "Vĩnh Long",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2022,
       "subjectId": "hoa_hoc",
@@ -2657,7 +2653,7 @@ const data: any = {
     },
     {
       "province": "Điện Biên",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2022,
       "subjectId": "hoa_hoc",
@@ -2667,7 +2663,7 @@ const data: any = {
     },
     {
       "province": "Đà Nẵng",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2022,
       "subjectId": "hoa_hoc",
@@ -2697,7 +2693,7 @@ const data: any = {
     },
     {
       "province": "Đồng Tháp",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2022,
       "subjectId": "hoa_hoc",
@@ -2707,7 +2703,7 @@ const data: any = {
     },
     {
       "province": "An Giang",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2022,
       "subjectId": "sinh_hoc",
@@ -2717,7 +2713,7 @@ const data: any = {
     },
     {
       "province": "Bắc Ninh",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2022,
       "subjectId": "sinh_hoc",
@@ -2727,7 +2723,7 @@ const data: any = {
     },
     {
       "province": "Cao Bằng",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2022,
       "subjectId": "sinh_hoc",
@@ -2737,7 +2733,7 @@ const data: any = {
     },
     {
       "province": "Cà Mau",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2022,
       "subjectId": "sinh_hoc",
@@ -2747,7 +2743,7 @@ const data: any = {
     },
     {
       "province": "Cần Thơ",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2022,
       "subjectId": "sinh_hoc",
@@ -2767,7 +2763,7 @@ const data: any = {
     },
     {
       "province": "Huế",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2022,
       "subjectId": "sinh_hoc",
@@ -2777,7 +2773,7 @@ const data: any = {
     },
     {
       "province": "Hà Nội",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2022,
       "subjectId": "sinh_hoc",
@@ -2787,7 +2783,7 @@ const data: any = {
     },
     {
       "province": "Hà Tĩnh",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2022,
       "subjectId": "sinh_hoc",
@@ -2797,7 +2793,7 @@ const data: any = {
     },
     {
       "province": "Hưng Yên",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2022,
       "subjectId": "sinh_hoc",
@@ -2807,7 +2803,7 @@ const data: any = {
     },
     {
       "province": "Hải Phòng",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2022,
       "subjectId": "sinh_hoc",
@@ -2827,7 +2823,7 @@ const data: any = {
     },
     {
       "province": "Khánh Hòa",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2022,
       "subjectId": "sinh_hoc",
@@ -2837,7 +2833,7 @@ const data: any = {
     },
     {
       "province": "Lai Châu",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2022,
       "subjectId": "sinh_hoc",
@@ -2847,7 +2843,7 @@ const data: any = {
     },
     {
       "province": "Lào Cai",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2022,
       "subjectId": "sinh_hoc",
@@ -2867,7 +2863,7 @@ const data: any = {
     },
     {
       "province": "Lạng Sơn",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2022,
       "subjectId": "sinh_hoc",
@@ -2877,7 +2873,7 @@ const data: any = {
     },
     {
       "province": "Nghệ An",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2022,
       "subjectId": "sinh_hoc",
@@ -2887,7 +2883,7 @@ const data: any = {
     },
     {
       "province": "Ninh Bình",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2022,
       "subjectId": "sinh_hoc",
@@ -2897,7 +2893,7 @@ const data: any = {
     },
     {
       "province": "Phú Thọ",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2022,
       "subjectId": "sinh_hoc",
@@ -2907,7 +2903,7 @@ const data: any = {
     },
     {
       "province": "Quảng Ngãi",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2022,
       "subjectId": "sinh_hoc",
@@ -2917,7 +2913,7 @@ const data: any = {
     },
     {
       "province": "Quảng Ninh",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2022,
       "subjectId": "sinh_hoc",
@@ -2927,7 +2923,7 @@ const data: any = {
     },
     {
       "province": "Quảng Trị",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2022,
       "subjectId": "sinh_hoc",
@@ -2937,7 +2933,7 @@ const data: any = {
     },
     {
       "province": "Sơn La",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2022,
       "subjectId": "sinh_hoc",
@@ -2947,7 +2943,7 @@ const data: any = {
     },
     {
       "province": "Thanh Hóa",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2022,
       "subjectId": "sinh_hoc",
@@ -2957,7 +2953,7 @@ const data: any = {
     },
     {
       "province": "Thái Nguyên",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2022,
       "subjectId": "sinh_hoc",
@@ -2967,7 +2963,7 @@ const data: any = {
     },
     {
       "province": "Tuyên Quang",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2022,
       "subjectId": "sinh_hoc",
@@ -2987,7 +2983,7 @@ const data: any = {
     },
     {
       "province": "Vĩnh Long",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2022,
       "subjectId": "sinh_hoc",
@@ -2997,7 +2993,7 @@ const data: any = {
     },
     {
       "province": "Điện Biên",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2022,
       "subjectId": "sinh_hoc",
@@ -3007,7 +3003,7 @@ const data: any = {
     },
     {
       "province": "Đà Nẵng",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2022,
       "subjectId": "sinh_hoc",
@@ -3037,7 +3033,7 @@ const data: any = {
     },
     {
       "province": "Đồng Tháp",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2022,
       "subjectId": "sinh_hoc",
@@ -3047,7 +3043,7 @@ const data: any = {
     },
     {
       "province": "An Giang",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2022,
       "subjectId": "lich_su",
@@ -3057,7 +3053,7 @@ const data: any = {
     },
     {
       "province": "Bắc Ninh",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2022,
       "subjectId": "lich_su",
@@ -3067,7 +3063,7 @@ const data: any = {
     },
     {
       "province": "Cao Bằng",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2022,
       "subjectId": "lich_su",
@@ -3077,7 +3073,7 @@ const data: any = {
     },
     {
       "province": "Cà Mau",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2022,
       "subjectId": "lich_su",
@@ -3087,7 +3083,7 @@ const data: any = {
     },
     {
       "province": "Cần Thơ",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2022,
       "subjectId": "lich_su",
@@ -3107,7 +3103,7 @@ const data: any = {
     },
     {
       "province": "Huế",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2022,
       "subjectId": "lich_su",
@@ -3117,7 +3113,7 @@ const data: any = {
     },
     {
       "province": "Hà Nội",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2022,
       "subjectId": "lich_su",
@@ -3127,7 +3123,7 @@ const data: any = {
     },
     {
       "province": "Hà Tĩnh",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2022,
       "subjectId": "lich_su",
@@ -3137,7 +3133,7 @@ const data: any = {
     },
     {
       "province": "Hưng Yên",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2022,
       "subjectId": "lich_su",
@@ -3147,7 +3143,7 @@ const data: any = {
     },
     {
       "province": "Hải Phòng",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2022,
       "subjectId": "lich_su",
@@ -3167,7 +3163,7 @@ const data: any = {
     },
     {
       "province": "Khánh Hòa",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2022,
       "subjectId": "lich_su",
@@ -3177,7 +3173,7 @@ const data: any = {
     },
     {
       "province": "Lai Châu",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2022,
       "subjectId": "lich_su",
@@ -3187,7 +3183,7 @@ const data: any = {
     },
     {
       "province": "Lào Cai",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2022,
       "subjectId": "lich_su",
@@ -3207,7 +3203,7 @@ const data: any = {
     },
     {
       "province": "Lạng Sơn",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2022,
       "subjectId": "lich_su",
@@ -3217,7 +3213,7 @@ const data: any = {
     },
     {
       "province": "Nghệ An",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2022,
       "subjectId": "lich_su",
@@ -3227,7 +3223,7 @@ const data: any = {
     },
     {
       "province": "Ninh Bình",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2022,
       "subjectId": "lich_su",
@@ -3237,7 +3233,7 @@ const data: any = {
     },
     {
       "province": "Phú Thọ",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2022,
       "subjectId": "lich_su",
@@ -3247,7 +3243,7 @@ const data: any = {
     },
     {
       "province": "Quảng Ngãi",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2022,
       "subjectId": "lich_su",
@@ -3257,7 +3253,7 @@ const data: any = {
     },
     {
       "province": "Quảng Ninh",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2022,
       "subjectId": "lich_su",
@@ -3267,7 +3263,7 @@ const data: any = {
     },
     {
       "province": "Quảng Trị",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2022,
       "subjectId": "lich_su",
@@ -3277,7 +3273,7 @@ const data: any = {
     },
     {
       "province": "Sơn La",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2022,
       "subjectId": "lich_su",
@@ -3287,7 +3283,7 @@ const data: any = {
     },
     {
       "province": "Thanh Hóa",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2022,
       "subjectId": "lich_su",
@@ -3297,7 +3293,7 @@ const data: any = {
     },
     {
       "province": "Thái Nguyên",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2022,
       "subjectId": "lich_su",
@@ -3307,7 +3303,7 @@ const data: any = {
     },
     {
       "province": "Tuyên Quang",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2022,
       "subjectId": "lich_su",
@@ -3327,7 +3323,7 @@ const data: any = {
     },
     {
       "province": "Vĩnh Long",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2022,
       "subjectId": "lich_su",
@@ -3337,7 +3333,7 @@ const data: any = {
     },
     {
       "province": "Điện Biên",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2022,
       "subjectId": "lich_su",
@@ -3347,7 +3343,7 @@ const data: any = {
     },
     {
       "province": "Đà Nẵng",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2022,
       "subjectId": "lich_su",
@@ -3377,7 +3373,7 @@ const data: any = {
     },
     {
       "province": "Đồng Tháp",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2022,
       "subjectId": "lich_su",
@@ -3387,7 +3383,7 @@ const data: any = {
     },
     {
       "province": "An Giang",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2022,
       "subjectId": "dia_li",
@@ -3397,7 +3393,7 @@ const data: any = {
     },
     {
       "province": "Bắc Ninh",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2022,
       "subjectId": "dia_li",
@@ -3407,7 +3403,7 @@ const data: any = {
     },
     {
       "province": "Cao Bằng",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2022,
       "subjectId": "dia_li",
@@ -3417,7 +3413,7 @@ const data: any = {
     },
     {
       "province": "Cà Mau",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2022,
       "subjectId": "dia_li",
@@ -3427,7 +3423,7 @@ const data: any = {
     },
     {
       "province": "Cần Thơ",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2022,
       "subjectId": "dia_li",
@@ -3447,7 +3443,7 @@ const data: any = {
     },
     {
       "province": "Huế",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2022,
       "subjectId": "dia_li",
@@ -3457,7 +3453,7 @@ const data: any = {
     },
     {
       "province": "Hà Nội",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2022,
       "subjectId": "dia_li",
@@ -3467,7 +3463,7 @@ const data: any = {
     },
     {
       "province": "Hà Tĩnh",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2022,
       "subjectId": "dia_li",
@@ -3477,7 +3473,7 @@ const data: any = {
     },
     {
       "province": "Hưng Yên",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2022,
       "subjectId": "dia_li",
@@ -3487,7 +3483,7 @@ const data: any = {
     },
     {
       "province": "Hải Phòng",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2022,
       "subjectId": "dia_li",
@@ -3507,7 +3503,7 @@ const data: any = {
     },
     {
       "province": "Khánh Hòa",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2022,
       "subjectId": "dia_li",
@@ -3517,7 +3513,7 @@ const data: any = {
     },
     {
       "province": "Lai Châu",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2022,
       "subjectId": "dia_li",
@@ -3527,7 +3523,7 @@ const data: any = {
     },
     {
       "province": "Lào Cai",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2022,
       "subjectId": "dia_li",
@@ -3547,7 +3543,7 @@ const data: any = {
     },
     {
       "province": "Lạng Sơn",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2022,
       "subjectId": "dia_li",
@@ -3557,7 +3553,7 @@ const data: any = {
     },
     {
       "province": "Nghệ An",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2022,
       "subjectId": "dia_li",
@@ -3567,7 +3563,7 @@ const data: any = {
     },
     {
       "province": "Ninh Bình",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2022,
       "subjectId": "dia_li",
@@ -3577,7 +3573,7 @@ const data: any = {
     },
     {
       "province": "Phú Thọ",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2022,
       "subjectId": "dia_li",
@@ -3587,7 +3583,7 @@ const data: any = {
     },
     {
       "province": "Quảng Ngãi",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2022,
       "subjectId": "dia_li",
@@ -3597,7 +3593,7 @@ const data: any = {
     },
     {
       "province": "Quảng Ninh",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2022,
       "subjectId": "dia_li",
@@ -3607,7 +3603,7 @@ const data: any = {
     },
     {
       "province": "Quảng Trị",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2022,
       "subjectId": "dia_li",
@@ -3617,7 +3613,7 @@ const data: any = {
     },
     {
       "province": "Sơn La",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2022,
       "subjectId": "dia_li",
@@ -3627,7 +3623,7 @@ const data: any = {
     },
     {
       "province": "Thanh Hóa",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2022,
       "subjectId": "dia_li",
@@ -3637,7 +3633,7 @@ const data: any = {
     },
     {
       "province": "Thái Nguyên",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2022,
       "subjectId": "dia_li",
@@ -3647,7 +3643,7 @@ const data: any = {
     },
     {
       "province": "Tuyên Quang",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2022,
       "subjectId": "dia_li",
@@ -3667,7 +3663,7 @@ const data: any = {
     },
     {
       "province": "Vĩnh Long",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2022,
       "subjectId": "dia_li",
@@ -3677,7 +3673,7 @@ const data: any = {
     },
     {
       "province": "Điện Biên",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2022,
       "subjectId": "dia_li",
@@ -3687,7 +3683,7 @@ const data: any = {
     },
     {
       "province": "Đà Nẵng",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2022,
       "subjectId": "dia_li",
@@ -3717,7 +3713,7 @@ const data: any = {
     },
     {
       "province": "Đồng Tháp",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2022,
       "subjectId": "dia_li",
@@ -3727,7 +3723,7 @@ const data: any = {
     },
     {
       "province": "An Giang",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2022,
       "subjectId": "gdcd",
@@ -3737,7 +3733,7 @@ const data: any = {
     },
     {
       "province": "Bắc Ninh",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2022,
       "subjectId": "gdcd",
@@ -3747,7 +3743,7 @@ const data: any = {
     },
     {
       "province": "Cao Bằng",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2022,
       "subjectId": "gdcd",
@@ -3757,7 +3753,7 @@ const data: any = {
     },
     {
       "province": "Cà Mau",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2022,
       "subjectId": "gdcd",
@@ -3767,7 +3763,7 @@ const data: any = {
     },
     {
       "province": "Cần Thơ",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2022,
       "subjectId": "gdcd",
@@ -3787,7 +3783,7 @@ const data: any = {
     },
     {
       "province": "Huế",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2022,
       "subjectId": "gdcd",
@@ -3797,7 +3793,7 @@ const data: any = {
     },
     {
       "province": "Hà Nội",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2022,
       "subjectId": "gdcd",
@@ -3807,7 +3803,7 @@ const data: any = {
     },
     {
       "province": "Hà Tĩnh",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2022,
       "subjectId": "gdcd",
@@ -3817,7 +3813,7 @@ const data: any = {
     },
     {
       "province": "Hưng Yên",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2022,
       "subjectId": "gdcd",
@@ -3827,7 +3823,7 @@ const data: any = {
     },
     {
       "province": "Hải Phòng",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2022,
       "subjectId": "gdcd",
@@ -3847,7 +3843,7 @@ const data: any = {
     },
     {
       "province": "Khánh Hòa",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2022,
       "subjectId": "gdcd",
@@ -3857,7 +3853,7 @@ const data: any = {
     },
     {
       "province": "Lai Châu",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2022,
       "subjectId": "gdcd",
@@ -3867,7 +3863,7 @@ const data: any = {
     },
     {
       "province": "Lào Cai",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2022,
       "subjectId": "gdcd",
@@ -3887,7 +3883,7 @@ const data: any = {
     },
     {
       "province": "Lạng Sơn",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2022,
       "subjectId": "gdcd",
@@ -3897,7 +3893,7 @@ const data: any = {
     },
     {
       "province": "Nghệ An",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2022,
       "subjectId": "gdcd",
@@ -3907,7 +3903,7 @@ const data: any = {
     },
     {
       "province": "Ninh Bình",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2022,
       "subjectId": "gdcd",
@@ -3917,7 +3913,7 @@ const data: any = {
     },
     {
       "province": "Phú Thọ",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2022,
       "subjectId": "gdcd",
@@ -3927,7 +3923,7 @@ const data: any = {
     },
     {
       "province": "Quảng Ngãi",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2022,
       "subjectId": "gdcd",
@@ -3937,7 +3933,7 @@ const data: any = {
     },
     {
       "province": "Quảng Ninh",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2022,
       "subjectId": "gdcd",
@@ -3947,7 +3943,7 @@ const data: any = {
     },
     {
       "province": "Quảng Trị",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2022,
       "subjectId": "gdcd",
@@ -3957,7 +3953,7 @@ const data: any = {
     },
     {
       "province": "Sơn La",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2022,
       "subjectId": "gdcd",
@@ -3967,7 +3963,7 @@ const data: any = {
     },
     {
       "province": "Thanh Hóa",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2022,
       "subjectId": "gdcd",
@@ -3977,7 +3973,7 @@ const data: any = {
     },
     {
       "province": "Thái Nguyên",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2022,
       "subjectId": "gdcd",
@@ -3987,7 +3983,7 @@ const data: any = {
     },
     {
       "province": "Tuyên Quang",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2022,
       "subjectId": "gdcd",
@@ -4007,7 +4003,7 @@ const data: any = {
     },
     {
       "province": "Vĩnh Long",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2022,
       "subjectId": "gdcd",
@@ -4017,7 +4013,7 @@ const data: any = {
     },
     {
       "province": "Điện Biên",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2022,
       "subjectId": "gdcd",
@@ -4027,7 +4023,7 @@ const data: any = {
     },
     {
       "province": "Đà Nẵng",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2022,
       "subjectId": "gdcd",
@@ -4057,7 +4053,7 @@ const data: any = {
     },
     {
       "province": "Đồng Tháp",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2022,
       "subjectId": "gdcd",
@@ -4067,7 +4063,7 @@ const data: any = {
     },
     {
       "province": "An Giang",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2023,
       "subjectId": "toan",
@@ -4077,7 +4073,7 @@ const data: any = {
     },
     {
       "province": "Bắc Ninh",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2023,
       "subjectId": "toan",
@@ -4087,7 +4083,7 @@ const data: any = {
     },
     {
       "province": "Cao Bằng",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2023,
       "subjectId": "toan",
@@ -4097,7 +4093,7 @@ const data: any = {
     },
     {
       "province": "Cà Mau",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2023,
       "subjectId": "toan",
@@ -4107,7 +4103,7 @@ const data: any = {
     },
     {
       "province": "Cần Thơ",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2023,
       "subjectId": "toan",
@@ -4127,7 +4123,7 @@ const data: any = {
     },
     {
       "province": "Huế",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2023,
       "subjectId": "toan",
@@ -4137,7 +4133,7 @@ const data: any = {
     },
     {
       "province": "Hà Nội",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2023,
       "subjectId": "toan",
@@ -4147,7 +4143,7 @@ const data: any = {
     },
     {
       "province": "Hà Tĩnh",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2023,
       "subjectId": "toan",
@@ -4157,7 +4153,7 @@ const data: any = {
     },
     {
       "province": "Hưng Yên",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2023,
       "subjectId": "toan",
@@ -4167,7 +4163,7 @@ const data: any = {
     },
     {
       "province": "Hải Phòng",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2023,
       "subjectId": "toan",
@@ -4187,7 +4183,7 @@ const data: any = {
     },
     {
       "province": "Khánh Hòa",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2023,
       "subjectId": "toan",
@@ -4197,7 +4193,7 @@ const data: any = {
     },
     {
       "province": "Lai Châu",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2023,
       "subjectId": "toan",
@@ -4207,7 +4203,7 @@ const data: any = {
     },
     {
       "province": "Lào Cai",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2023,
       "subjectId": "toan",
@@ -4227,7 +4223,7 @@ const data: any = {
     },
     {
       "province": "Lạng Sơn",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2023,
       "subjectId": "toan",
@@ -4237,7 +4233,7 @@ const data: any = {
     },
     {
       "province": "Nghệ An",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2023,
       "subjectId": "toan",
@@ -4247,7 +4243,7 @@ const data: any = {
     },
     {
       "province": "Ninh Bình",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2023,
       "subjectId": "toan",
@@ -4257,7 +4253,7 @@ const data: any = {
     },
     {
       "province": "Phú Thọ",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2023,
       "subjectId": "toan",
@@ -4267,7 +4263,7 @@ const data: any = {
     },
     {
       "province": "Quảng Ngãi",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2023,
       "subjectId": "toan",
@@ -4277,7 +4273,7 @@ const data: any = {
     },
     {
       "province": "Quảng Ninh",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2023,
       "subjectId": "toan",
@@ -4287,7 +4283,7 @@ const data: any = {
     },
     {
       "province": "Quảng Trị",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2023,
       "subjectId": "toan",
@@ -4297,7 +4293,7 @@ const data: any = {
     },
     {
       "province": "Sơn La",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2023,
       "subjectId": "toan",
@@ -4307,7 +4303,7 @@ const data: any = {
     },
     {
       "province": "Thanh Hóa",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2023,
       "subjectId": "toan",
@@ -4317,7 +4313,7 @@ const data: any = {
     },
     {
       "province": "Thái Nguyên",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2023,
       "subjectId": "toan",
@@ -4327,7 +4323,7 @@ const data: any = {
     },
     {
       "province": "Tuyên Quang",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2023,
       "subjectId": "toan",
@@ -4347,7 +4343,7 @@ const data: any = {
     },
     {
       "province": "Vĩnh Long",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2023,
       "subjectId": "toan",
@@ -4357,7 +4353,7 @@ const data: any = {
     },
     {
       "province": "Điện Biên",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2023,
       "subjectId": "toan",
@@ -4367,7 +4363,7 @@ const data: any = {
     },
     {
       "province": "Đà Nẵng",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2023,
       "subjectId": "toan",
@@ -4397,7 +4393,7 @@ const data: any = {
     },
     {
       "province": "Đồng Tháp",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2023,
       "subjectId": "toan",
@@ -4407,7 +4403,7 @@ const data: any = {
     },
     {
       "province": "An Giang",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2023,
       "subjectId": "ngu_van",
@@ -4417,7 +4413,7 @@ const data: any = {
     },
     {
       "province": "Bắc Ninh",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2023,
       "subjectId": "ngu_van",
@@ -4427,7 +4423,7 @@ const data: any = {
     },
     {
       "province": "Cao Bằng",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2023,
       "subjectId": "ngu_van",
@@ -4437,7 +4433,7 @@ const data: any = {
     },
     {
       "province": "Cà Mau",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2023,
       "subjectId": "ngu_van",
@@ -4447,7 +4443,7 @@ const data: any = {
     },
     {
       "province": "Cần Thơ",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2023,
       "subjectId": "ngu_van",
@@ -4467,7 +4463,7 @@ const data: any = {
     },
     {
       "province": "Huế",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2023,
       "subjectId": "ngu_van",
@@ -4477,7 +4473,7 @@ const data: any = {
     },
     {
       "province": "Hà Nội",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2023,
       "subjectId": "ngu_van",
@@ -4487,7 +4483,7 @@ const data: any = {
     },
     {
       "province": "Hà Tĩnh",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2023,
       "subjectId": "ngu_van",
@@ -4497,7 +4493,7 @@ const data: any = {
     },
     {
       "province": "Hưng Yên",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2023,
       "subjectId": "ngu_van",
@@ -4507,7 +4503,7 @@ const data: any = {
     },
     {
       "province": "Hải Phòng",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2023,
       "subjectId": "ngu_van",
@@ -4527,7 +4523,7 @@ const data: any = {
     },
     {
       "province": "Khánh Hòa",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2023,
       "subjectId": "ngu_van",
@@ -4537,7 +4533,7 @@ const data: any = {
     },
     {
       "province": "Lai Châu",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2023,
       "subjectId": "ngu_van",
@@ -4547,7 +4543,7 @@ const data: any = {
     },
     {
       "province": "Lào Cai",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2023,
       "subjectId": "ngu_van",
@@ -4567,7 +4563,7 @@ const data: any = {
     },
     {
       "province": "Lạng Sơn",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2023,
       "subjectId": "ngu_van",
@@ -4577,7 +4573,7 @@ const data: any = {
     },
     {
       "province": "Nghệ An",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2023,
       "subjectId": "ngu_van",
@@ -4587,7 +4583,7 @@ const data: any = {
     },
     {
       "province": "Ninh Bình",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2023,
       "subjectId": "ngu_van",
@@ -4597,7 +4593,7 @@ const data: any = {
     },
     {
       "province": "Phú Thọ",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2023,
       "subjectId": "ngu_van",
@@ -4607,7 +4603,7 @@ const data: any = {
     },
     {
       "province": "Quảng Ngãi",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2023,
       "subjectId": "ngu_van",
@@ -4617,7 +4613,7 @@ const data: any = {
     },
     {
       "province": "Quảng Ninh",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2023,
       "subjectId": "ngu_van",
@@ -4627,7 +4623,7 @@ const data: any = {
     },
     {
       "province": "Quảng Trị",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2023,
       "subjectId": "ngu_van",
@@ -4637,7 +4633,7 @@ const data: any = {
     },
     {
       "province": "Sơn La",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2023,
       "subjectId": "ngu_van",
@@ -4647,7 +4643,7 @@ const data: any = {
     },
     {
       "province": "Thanh Hóa",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2023,
       "subjectId": "ngu_van",
@@ -4657,7 +4653,7 @@ const data: any = {
     },
     {
       "province": "Thái Nguyên",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2023,
       "subjectId": "ngu_van",
@@ -4667,7 +4663,7 @@ const data: any = {
     },
     {
       "province": "Tuyên Quang",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2023,
       "subjectId": "ngu_van",
@@ -4687,7 +4683,7 @@ const data: any = {
     },
     {
       "province": "Vĩnh Long",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2023,
       "subjectId": "ngu_van",
@@ -4697,7 +4693,7 @@ const data: any = {
     },
     {
       "province": "Điện Biên",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2023,
       "subjectId": "ngu_van",
@@ -4707,7 +4703,7 @@ const data: any = {
     },
     {
       "province": "Đà Nẵng",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2023,
       "subjectId": "ngu_van",
@@ -4737,7 +4733,7 @@ const data: any = {
     },
     {
       "province": "Đồng Tháp",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2023,
       "subjectId": "ngu_van",
@@ -4747,7 +4743,7 @@ const data: any = {
     },
     {
       "province": "An Giang",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2023,
       "subjectId": "vat_li",
@@ -4757,7 +4753,7 @@ const data: any = {
     },
     {
       "province": "Bắc Ninh",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2023,
       "subjectId": "vat_li",
@@ -4767,7 +4763,7 @@ const data: any = {
     },
     {
       "province": "Cao Bằng",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2023,
       "subjectId": "vat_li",
@@ -4777,7 +4773,7 @@ const data: any = {
     },
     {
       "province": "Cà Mau",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2023,
       "subjectId": "vat_li",
@@ -4787,7 +4783,7 @@ const data: any = {
     },
     {
       "province": "Cần Thơ",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2023,
       "subjectId": "vat_li",
@@ -4807,7 +4803,7 @@ const data: any = {
     },
     {
       "province": "Huế",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2023,
       "subjectId": "vat_li",
@@ -4817,7 +4813,7 @@ const data: any = {
     },
     {
       "province": "Hà Nội",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2023,
       "subjectId": "vat_li",
@@ -4827,7 +4823,7 @@ const data: any = {
     },
     {
       "province": "Hà Tĩnh",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2023,
       "subjectId": "vat_li",
@@ -4837,7 +4833,7 @@ const data: any = {
     },
     {
       "province": "Hưng Yên",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2023,
       "subjectId": "vat_li",
@@ -4847,7 +4843,7 @@ const data: any = {
     },
     {
       "province": "Hải Phòng",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2023,
       "subjectId": "vat_li",
@@ -4867,7 +4863,7 @@ const data: any = {
     },
     {
       "province": "Khánh Hòa",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2023,
       "subjectId": "vat_li",
@@ -4877,7 +4873,7 @@ const data: any = {
     },
     {
       "province": "Lai Châu",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2023,
       "subjectId": "vat_li",
@@ -4887,7 +4883,7 @@ const data: any = {
     },
     {
       "province": "Lào Cai",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2023,
       "subjectId": "vat_li",
@@ -4907,7 +4903,7 @@ const data: any = {
     },
     {
       "province": "Lạng Sơn",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2023,
       "subjectId": "vat_li",
@@ -4917,7 +4913,7 @@ const data: any = {
     },
     {
       "province": "Nghệ An",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2023,
       "subjectId": "vat_li",
@@ -4927,7 +4923,7 @@ const data: any = {
     },
     {
       "province": "Ninh Bình",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2023,
       "subjectId": "vat_li",
@@ -4937,7 +4933,7 @@ const data: any = {
     },
     {
       "province": "Phú Thọ",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2023,
       "subjectId": "vat_li",
@@ -4947,7 +4943,7 @@ const data: any = {
     },
     {
       "province": "Quảng Ngãi",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2023,
       "subjectId": "vat_li",
@@ -4957,7 +4953,7 @@ const data: any = {
     },
     {
       "province": "Quảng Ninh",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2023,
       "subjectId": "vat_li",
@@ -4967,7 +4963,7 @@ const data: any = {
     },
     {
       "province": "Quảng Trị",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2023,
       "subjectId": "vat_li",
@@ -4977,7 +4973,7 @@ const data: any = {
     },
     {
       "province": "Sơn La",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2023,
       "subjectId": "vat_li",
@@ -4987,7 +4983,7 @@ const data: any = {
     },
     {
       "province": "Thanh Hóa",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2023,
       "subjectId": "vat_li",
@@ -4997,7 +4993,7 @@ const data: any = {
     },
     {
       "province": "Thái Nguyên",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2023,
       "subjectId": "vat_li",
@@ -5007,7 +5003,7 @@ const data: any = {
     },
     {
       "province": "Tuyên Quang",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2023,
       "subjectId": "vat_li",
@@ -5027,7 +5023,7 @@ const data: any = {
     },
     {
       "province": "Vĩnh Long",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2023,
       "subjectId": "vat_li",
@@ -5037,7 +5033,7 @@ const data: any = {
     },
     {
       "province": "Điện Biên",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2023,
       "subjectId": "vat_li",
@@ -5047,7 +5043,7 @@ const data: any = {
     },
     {
       "province": "Đà Nẵng",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2023,
       "subjectId": "vat_li",
@@ -5077,7 +5073,7 @@ const data: any = {
     },
     {
       "province": "Đồng Tháp",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2023,
       "subjectId": "vat_li",
@@ -5087,7 +5083,7 @@ const data: any = {
     },
     {
       "province": "An Giang",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2023,
       "subjectId": "hoa_hoc",
@@ -5097,7 +5093,7 @@ const data: any = {
     },
     {
       "province": "Bắc Ninh",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2023,
       "subjectId": "hoa_hoc",
@@ -5107,7 +5103,7 @@ const data: any = {
     },
     {
       "province": "Cao Bằng",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2023,
       "subjectId": "hoa_hoc",
@@ -5117,7 +5113,7 @@ const data: any = {
     },
     {
       "province": "Cà Mau",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2023,
       "subjectId": "hoa_hoc",
@@ -5127,7 +5123,7 @@ const data: any = {
     },
     {
       "province": "Cần Thơ",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2023,
       "subjectId": "hoa_hoc",
@@ -5147,7 +5143,7 @@ const data: any = {
     },
     {
       "province": "Huế",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2023,
       "subjectId": "hoa_hoc",
@@ -5157,7 +5153,7 @@ const data: any = {
     },
     {
       "province": "Hà Nội",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2023,
       "subjectId": "hoa_hoc",
@@ -5167,7 +5163,7 @@ const data: any = {
     },
     {
       "province": "Hà Tĩnh",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2023,
       "subjectId": "hoa_hoc",
@@ -5177,7 +5173,7 @@ const data: any = {
     },
     {
       "province": "Hưng Yên",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2023,
       "subjectId": "hoa_hoc",
@@ -5187,7 +5183,7 @@ const data: any = {
     },
     {
       "province": "Hải Phòng",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2023,
       "subjectId": "hoa_hoc",
@@ -5207,7 +5203,7 @@ const data: any = {
     },
     {
       "province": "Khánh Hòa",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2023,
       "subjectId": "hoa_hoc",
@@ -5217,7 +5213,7 @@ const data: any = {
     },
     {
       "province": "Lai Châu",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2023,
       "subjectId": "hoa_hoc",
@@ -5227,7 +5223,7 @@ const data: any = {
     },
     {
       "province": "Lào Cai",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2023,
       "subjectId": "hoa_hoc",
@@ -5247,7 +5243,7 @@ const data: any = {
     },
     {
       "province": "Lạng Sơn",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2023,
       "subjectId": "hoa_hoc",
@@ -5257,7 +5253,7 @@ const data: any = {
     },
     {
       "province": "Nghệ An",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2023,
       "subjectId": "hoa_hoc",
@@ -5267,7 +5263,7 @@ const data: any = {
     },
     {
       "province": "Ninh Bình",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2023,
       "subjectId": "hoa_hoc",
@@ -5277,7 +5273,7 @@ const data: any = {
     },
     {
       "province": "Phú Thọ",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2023,
       "subjectId": "hoa_hoc",
@@ -5287,7 +5283,7 @@ const data: any = {
     },
     {
       "province": "Quảng Ngãi",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2023,
       "subjectId": "hoa_hoc",
@@ -5297,7 +5293,7 @@ const data: any = {
     },
     {
       "province": "Quảng Ninh",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2023,
       "subjectId": "hoa_hoc",
@@ -5307,7 +5303,7 @@ const data: any = {
     },
     {
       "province": "Quảng Trị",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2023,
       "subjectId": "hoa_hoc",
@@ -5317,7 +5313,7 @@ const data: any = {
     },
     {
       "province": "Sơn La",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2023,
       "subjectId": "hoa_hoc",
@@ -5327,7 +5323,7 @@ const data: any = {
     },
     {
       "province": "Thanh Hóa",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2023,
       "subjectId": "hoa_hoc",
@@ -5337,7 +5333,7 @@ const data: any = {
     },
     {
       "province": "Thái Nguyên",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2023,
       "subjectId": "hoa_hoc",
@@ -5347,7 +5343,7 @@ const data: any = {
     },
     {
       "province": "Tuyên Quang",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2023,
       "subjectId": "hoa_hoc",
@@ -5367,7 +5363,7 @@ const data: any = {
     },
     {
       "province": "Vĩnh Long",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2023,
       "subjectId": "hoa_hoc",
@@ -5377,7 +5373,7 @@ const data: any = {
     },
     {
       "province": "Điện Biên",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2023,
       "subjectId": "hoa_hoc",
@@ -5387,7 +5383,7 @@ const data: any = {
     },
     {
       "province": "Đà Nẵng",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2023,
       "subjectId": "hoa_hoc",
@@ -5417,7 +5413,7 @@ const data: any = {
     },
     {
       "province": "Đồng Tháp",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2023,
       "subjectId": "hoa_hoc",
@@ -5427,7 +5423,7 @@ const data: any = {
     },
     {
       "province": "An Giang",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2023,
       "subjectId": "sinh_hoc",
@@ -5437,7 +5433,7 @@ const data: any = {
     },
     {
       "province": "Bắc Ninh",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2023,
       "subjectId": "sinh_hoc",
@@ -5447,7 +5443,7 @@ const data: any = {
     },
     {
       "province": "Cao Bằng",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2023,
       "subjectId": "sinh_hoc",
@@ -5457,7 +5453,7 @@ const data: any = {
     },
     {
       "province": "Cà Mau",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2023,
       "subjectId": "sinh_hoc",
@@ -5467,7 +5463,7 @@ const data: any = {
     },
     {
       "province": "Cần Thơ",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2023,
       "subjectId": "sinh_hoc",
@@ -5487,7 +5483,7 @@ const data: any = {
     },
     {
       "province": "Huế",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2023,
       "subjectId": "sinh_hoc",
@@ -5497,7 +5493,7 @@ const data: any = {
     },
     {
       "province": "Hà Nội",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2023,
       "subjectId": "sinh_hoc",
@@ -5507,7 +5503,7 @@ const data: any = {
     },
     {
       "province": "Hà Tĩnh",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2023,
       "subjectId": "sinh_hoc",
@@ -5517,7 +5513,7 @@ const data: any = {
     },
     {
       "province": "Hưng Yên",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2023,
       "subjectId": "sinh_hoc",
@@ -5527,7 +5523,7 @@ const data: any = {
     },
     {
       "province": "Hải Phòng",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2023,
       "subjectId": "sinh_hoc",
@@ -5547,7 +5543,7 @@ const data: any = {
     },
     {
       "province": "Khánh Hòa",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2023,
       "subjectId": "sinh_hoc",
@@ -5557,7 +5553,7 @@ const data: any = {
     },
     {
       "province": "Lai Châu",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2023,
       "subjectId": "sinh_hoc",
@@ -5567,7 +5563,7 @@ const data: any = {
     },
     {
       "province": "Lào Cai",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2023,
       "subjectId": "sinh_hoc",
@@ -5587,7 +5583,7 @@ const data: any = {
     },
     {
       "province": "Lạng Sơn",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2023,
       "subjectId": "sinh_hoc",
@@ -5597,7 +5593,7 @@ const data: any = {
     },
     {
       "province": "Nghệ An",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2023,
       "subjectId": "sinh_hoc",
@@ -5607,7 +5603,7 @@ const data: any = {
     },
     {
       "province": "Ninh Bình",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2023,
       "subjectId": "sinh_hoc",
@@ -5617,7 +5613,7 @@ const data: any = {
     },
     {
       "province": "Phú Thọ",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2023,
       "subjectId": "sinh_hoc",
@@ -5627,7 +5623,7 @@ const data: any = {
     },
     {
       "province": "Quảng Ngãi",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2023,
       "subjectId": "sinh_hoc",
@@ -5637,7 +5633,7 @@ const data: any = {
     },
     {
       "province": "Quảng Ninh",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2023,
       "subjectId": "sinh_hoc",
@@ -5647,7 +5643,7 @@ const data: any = {
     },
     {
       "province": "Quảng Trị",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2023,
       "subjectId": "sinh_hoc",
@@ -5657,7 +5653,7 @@ const data: any = {
     },
     {
       "province": "Sơn La",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2023,
       "subjectId": "sinh_hoc",
@@ -5667,7 +5663,7 @@ const data: any = {
     },
     {
       "province": "Thanh Hóa",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2023,
       "subjectId": "sinh_hoc",
@@ -5677,7 +5673,7 @@ const data: any = {
     },
     {
       "province": "Thái Nguyên",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2023,
       "subjectId": "sinh_hoc",
@@ -5687,7 +5683,7 @@ const data: any = {
     },
     {
       "province": "Tuyên Quang",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2023,
       "subjectId": "sinh_hoc",
@@ -5707,7 +5703,7 @@ const data: any = {
     },
     {
       "province": "Vĩnh Long",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2023,
       "subjectId": "sinh_hoc",
@@ -5717,7 +5713,7 @@ const data: any = {
     },
     {
       "province": "Điện Biên",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2023,
       "subjectId": "sinh_hoc",
@@ -5727,7 +5723,7 @@ const data: any = {
     },
     {
       "province": "Đà Nẵng",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2023,
       "subjectId": "sinh_hoc",
@@ -5757,7 +5753,7 @@ const data: any = {
     },
     {
       "province": "Đồng Tháp",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2023,
       "subjectId": "sinh_hoc",
@@ -5767,7 +5763,7 @@ const data: any = {
     },
     {
       "province": "An Giang",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2023,
       "subjectId": "lich_su",
@@ -5777,7 +5773,7 @@ const data: any = {
     },
     {
       "province": "Bắc Ninh",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2023,
       "subjectId": "lich_su",
@@ -5787,7 +5783,7 @@ const data: any = {
     },
     {
       "province": "Cao Bằng",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2023,
       "subjectId": "lich_su",
@@ -5797,7 +5793,7 @@ const data: any = {
     },
     {
       "province": "Cà Mau",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2023,
       "subjectId": "lich_su",
@@ -5807,7 +5803,7 @@ const data: any = {
     },
     {
       "province": "Cần Thơ",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2023,
       "subjectId": "lich_su",
@@ -5827,7 +5823,7 @@ const data: any = {
     },
     {
       "province": "Huế",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2023,
       "subjectId": "lich_su",
@@ -5837,7 +5833,7 @@ const data: any = {
     },
     {
       "province": "Hà Nội",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2023,
       "subjectId": "lich_su",
@@ -5847,7 +5843,7 @@ const data: any = {
     },
     {
       "province": "Hà Tĩnh",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2023,
       "subjectId": "lich_su",
@@ -5857,7 +5853,7 @@ const data: any = {
     },
     {
       "province": "Hưng Yên",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2023,
       "subjectId": "lich_su",
@@ -5867,7 +5863,7 @@ const data: any = {
     },
     {
       "province": "Hải Phòng",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2023,
       "subjectId": "lich_su",
@@ -5887,7 +5883,7 @@ const data: any = {
     },
     {
       "province": "Khánh Hòa",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2023,
       "subjectId": "lich_su",
@@ -5897,7 +5893,7 @@ const data: any = {
     },
     {
       "province": "Lai Châu",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2023,
       "subjectId": "lich_su",
@@ -5907,7 +5903,7 @@ const data: any = {
     },
     {
       "province": "Lào Cai",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2023,
       "subjectId": "lich_su",
@@ -5927,7 +5923,7 @@ const data: any = {
     },
     {
       "province": "Lạng Sơn",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2023,
       "subjectId": "lich_su",
@@ -5937,7 +5933,7 @@ const data: any = {
     },
     {
       "province": "Nghệ An",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2023,
       "subjectId": "lich_su",
@@ -5947,7 +5943,7 @@ const data: any = {
     },
     {
       "province": "Ninh Bình",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2023,
       "subjectId": "lich_su",
@@ -5957,7 +5953,7 @@ const data: any = {
     },
     {
       "province": "Phú Thọ",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2023,
       "subjectId": "lich_su",
@@ -5967,7 +5963,7 @@ const data: any = {
     },
     {
       "province": "Quảng Ngãi",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2023,
       "subjectId": "lich_su",
@@ -5977,7 +5973,7 @@ const data: any = {
     },
     {
       "province": "Quảng Ninh",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2023,
       "subjectId": "lich_su",
@@ -5987,7 +5983,7 @@ const data: any = {
     },
     {
       "province": "Quảng Trị",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2023,
       "subjectId": "lich_su",
@@ -5997,7 +5993,7 @@ const data: any = {
     },
     {
       "province": "Sơn La",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2023,
       "subjectId": "lich_su",
@@ -6007,7 +6003,7 @@ const data: any = {
     },
     {
       "province": "Thanh Hóa",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2023,
       "subjectId": "lich_su",
@@ -6017,7 +6013,7 @@ const data: any = {
     },
     {
       "province": "Thái Nguyên",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2023,
       "subjectId": "lich_su",
@@ -6027,7 +6023,7 @@ const data: any = {
     },
     {
       "province": "Tuyên Quang",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2023,
       "subjectId": "lich_su",
@@ -6047,7 +6043,7 @@ const data: any = {
     },
     {
       "province": "Vĩnh Long",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2023,
       "subjectId": "lich_su",
@@ -6057,7 +6053,7 @@ const data: any = {
     },
     {
       "province": "Điện Biên",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2023,
       "subjectId": "lich_su",
@@ -6067,7 +6063,7 @@ const data: any = {
     },
     {
       "province": "Đà Nẵng",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2023,
       "subjectId": "lich_su",
@@ -6097,7 +6093,7 @@ const data: any = {
     },
     {
       "province": "Đồng Tháp",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2023,
       "subjectId": "lich_su",
@@ -6107,7 +6103,7 @@ const data: any = {
     },
     {
       "province": "An Giang",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2023,
       "subjectId": "dia_li",
@@ -6117,7 +6113,7 @@ const data: any = {
     },
     {
       "province": "Bắc Ninh",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2023,
       "subjectId": "dia_li",
@@ -6127,7 +6123,7 @@ const data: any = {
     },
     {
       "province": "Cao Bằng",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2023,
       "subjectId": "dia_li",
@@ -6137,7 +6133,7 @@ const data: any = {
     },
     {
       "province": "Cà Mau",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2023,
       "subjectId": "dia_li",
@@ -6147,7 +6143,7 @@ const data: any = {
     },
     {
       "province": "Cần Thơ",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2023,
       "subjectId": "dia_li",
@@ -6167,7 +6163,7 @@ const data: any = {
     },
     {
       "province": "Huế",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2023,
       "subjectId": "dia_li",
@@ -6177,7 +6173,7 @@ const data: any = {
     },
     {
       "province": "Hà Nội",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2023,
       "subjectId": "dia_li",
@@ -6187,7 +6183,7 @@ const data: any = {
     },
     {
       "province": "Hà Tĩnh",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2023,
       "subjectId": "dia_li",
@@ -6197,7 +6193,7 @@ const data: any = {
     },
     {
       "province": "Hưng Yên",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2023,
       "subjectId": "dia_li",
@@ -6207,7 +6203,7 @@ const data: any = {
     },
     {
       "province": "Hải Phòng",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2023,
       "subjectId": "dia_li",
@@ -6227,7 +6223,7 @@ const data: any = {
     },
     {
       "province": "Khánh Hòa",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2023,
       "subjectId": "dia_li",
@@ -6237,7 +6233,7 @@ const data: any = {
     },
     {
       "province": "Lai Châu",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2023,
       "subjectId": "dia_li",
@@ -6247,7 +6243,7 @@ const data: any = {
     },
     {
       "province": "Lào Cai",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2023,
       "subjectId": "dia_li",
@@ -6267,7 +6263,7 @@ const data: any = {
     },
     {
       "province": "Lạng Sơn",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2023,
       "subjectId": "dia_li",
@@ -6277,7 +6273,7 @@ const data: any = {
     },
     {
       "province": "Nghệ An",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2023,
       "subjectId": "dia_li",
@@ -6287,7 +6283,7 @@ const data: any = {
     },
     {
       "province": "Ninh Bình",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2023,
       "subjectId": "dia_li",
@@ -6297,7 +6293,7 @@ const data: any = {
     },
     {
       "province": "Phú Thọ",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2023,
       "subjectId": "dia_li",
@@ -6307,7 +6303,7 @@ const data: any = {
     },
     {
       "province": "Quảng Ngãi",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2023,
       "subjectId": "dia_li",
@@ -6317,7 +6313,7 @@ const data: any = {
     },
     {
       "province": "Quảng Ninh",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2023,
       "subjectId": "dia_li",
@@ -6327,7 +6323,7 @@ const data: any = {
     },
     {
       "province": "Quảng Trị",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2023,
       "subjectId": "dia_li",
@@ -6337,7 +6333,7 @@ const data: any = {
     },
     {
       "province": "Sơn La",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2023,
       "subjectId": "dia_li",
@@ -6347,7 +6343,7 @@ const data: any = {
     },
     {
       "province": "Thanh Hóa",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2023,
       "subjectId": "dia_li",
@@ -6357,7 +6353,7 @@ const data: any = {
     },
     {
       "province": "Thái Nguyên",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2023,
       "subjectId": "dia_li",
@@ -6367,7 +6363,7 @@ const data: any = {
     },
     {
       "province": "Tuyên Quang",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2023,
       "subjectId": "dia_li",
@@ -6387,7 +6383,7 @@ const data: any = {
     },
     {
       "province": "Vĩnh Long",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2023,
       "subjectId": "dia_li",
@@ -6397,7 +6393,7 @@ const data: any = {
     },
     {
       "province": "Điện Biên",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2023,
       "subjectId": "dia_li",
@@ -6407,7 +6403,7 @@ const data: any = {
     },
     {
       "province": "Đà Nẵng",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2023,
       "subjectId": "dia_li",
@@ -6437,7 +6433,7 @@ const data: any = {
     },
     {
       "province": "Đồng Tháp",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2023,
       "subjectId": "dia_li",
@@ -6447,7 +6443,7 @@ const data: any = {
     },
     {
       "province": "An Giang",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2023,
       "subjectId": "gdcd",
@@ -6457,7 +6453,7 @@ const data: any = {
     },
     {
       "province": "Bắc Ninh",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2023,
       "subjectId": "gdcd",
@@ -6467,7 +6463,7 @@ const data: any = {
     },
     {
       "province": "Cao Bằng",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2023,
       "subjectId": "gdcd",
@@ -6477,7 +6473,7 @@ const data: any = {
     },
     {
       "province": "Cà Mau",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2023,
       "subjectId": "gdcd",
@@ -6487,7 +6483,7 @@ const data: any = {
     },
     {
       "province": "Cần Thơ",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2023,
       "subjectId": "gdcd",
@@ -6507,7 +6503,7 @@ const data: any = {
     },
     {
       "province": "Huế",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2023,
       "subjectId": "gdcd",
@@ -6517,7 +6513,7 @@ const data: any = {
     },
     {
       "province": "Hà Nội",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2023,
       "subjectId": "gdcd",
@@ -6527,7 +6523,7 @@ const data: any = {
     },
     {
       "province": "Hà Tĩnh",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2023,
       "subjectId": "gdcd",
@@ -6537,7 +6533,7 @@ const data: any = {
     },
     {
       "province": "Hưng Yên",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2023,
       "subjectId": "gdcd",
@@ -6547,7 +6543,7 @@ const data: any = {
     },
     {
       "province": "Hải Phòng",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2023,
       "subjectId": "gdcd",
@@ -6567,7 +6563,7 @@ const data: any = {
     },
     {
       "province": "Khánh Hòa",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2023,
       "subjectId": "gdcd",
@@ -6577,7 +6573,7 @@ const data: any = {
     },
     {
       "province": "Lai Châu",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2023,
       "subjectId": "gdcd",
@@ -6587,7 +6583,7 @@ const data: any = {
     },
     {
       "province": "Lào Cai",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2023,
       "subjectId": "gdcd",
@@ -6607,7 +6603,7 @@ const data: any = {
     },
     {
       "province": "Lạng Sơn",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2023,
       "subjectId": "gdcd",
@@ -6617,7 +6613,7 @@ const data: any = {
     },
     {
       "province": "Nghệ An",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2023,
       "subjectId": "gdcd",
@@ -6627,7 +6623,7 @@ const data: any = {
     },
     {
       "province": "Ninh Bình",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2023,
       "subjectId": "gdcd",
@@ -6637,7 +6633,7 @@ const data: any = {
     },
     {
       "province": "Phú Thọ",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2023,
       "subjectId": "gdcd",
@@ -6647,7 +6643,7 @@ const data: any = {
     },
     {
       "province": "Quảng Ngãi",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2023,
       "subjectId": "gdcd",
@@ -6657,7 +6653,7 @@ const data: any = {
     },
     {
       "province": "Quảng Ninh",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2023,
       "subjectId": "gdcd",
@@ -6667,7 +6663,7 @@ const data: any = {
     },
     {
       "province": "Quảng Trị",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2023,
       "subjectId": "gdcd",
@@ -6677,7 +6673,7 @@ const data: any = {
     },
     {
       "province": "Sơn La",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2023,
       "subjectId": "gdcd",
@@ -6687,7 +6683,7 @@ const data: any = {
     },
     {
       "province": "Thanh Hóa",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2023,
       "subjectId": "gdcd",
@@ -6697,7 +6693,7 @@ const data: any = {
     },
     {
       "province": "Thái Nguyên",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2023,
       "subjectId": "gdcd",
@@ -6707,7 +6703,7 @@ const data: any = {
     },
     {
       "province": "Tuyên Quang",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2023,
       "subjectId": "gdcd",
@@ -6727,7 +6723,7 @@ const data: any = {
     },
     {
       "province": "Vĩnh Long",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2023,
       "subjectId": "gdcd",
@@ -6737,7 +6733,7 @@ const data: any = {
     },
     {
       "province": "Điện Biên",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2023,
       "subjectId": "gdcd",
@@ -6747,7 +6743,7 @@ const data: any = {
     },
     {
       "province": "Đà Nẵng",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2023,
       "subjectId": "gdcd",
@@ -6777,7 +6773,7 @@ const data: any = {
     },
     {
       "province": "Đồng Tháp",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2023,
       "subjectId": "gdcd",
@@ -6787,7 +6783,7 @@ const data: any = {
     },
     {
       "province": "An Giang",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2024,
       "subjectId": "toan",
@@ -6797,7 +6793,7 @@ const data: any = {
     },
     {
       "province": "Bắc Ninh",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2024,
       "subjectId": "toan",
@@ -6807,7 +6803,7 @@ const data: any = {
     },
     {
       "province": "Cao Bằng",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2024,
       "subjectId": "toan",
@@ -6817,7 +6813,7 @@ const data: any = {
     },
     {
       "province": "Cà Mau",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2024,
       "subjectId": "toan",
@@ -6827,7 +6823,7 @@ const data: any = {
     },
     {
       "province": "Cần Thơ",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2024,
       "subjectId": "toan",
@@ -6847,7 +6843,7 @@ const data: any = {
     },
     {
       "province": "Huế",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2024,
       "subjectId": "toan",
@@ -6857,7 +6853,7 @@ const data: any = {
     },
     {
       "province": "Hà Nội",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2024,
       "subjectId": "toan",
@@ -6867,7 +6863,7 @@ const data: any = {
     },
     {
       "province": "Hà Tĩnh",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2024,
       "subjectId": "toan",
@@ -6877,7 +6873,7 @@ const data: any = {
     },
     {
       "province": "Hưng Yên",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2024,
       "subjectId": "toan",
@@ -6887,7 +6883,7 @@ const data: any = {
     },
     {
       "province": "Hải Phòng",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2024,
       "subjectId": "toan",
@@ -6907,7 +6903,7 @@ const data: any = {
     },
     {
       "province": "Khánh Hòa",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2024,
       "subjectId": "toan",
@@ -6917,7 +6913,7 @@ const data: any = {
     },
     {
       "province": "Lai Châu",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2024,
       "subjectId": "toan",
@@ -6927,7 +6923,7 @@ const data: any = {
     },
     {
       "province": "Lào Cai",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2024,
       "subjectId": "toan",
@@ -6947,7 +6943,7 @@ const data: any = {
     },
     {
       "province": "Lạng Sơn",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2024,
       "subjectId": "toan",
@@ -6957,7 +6953,7 @@ const data: any = {
     },
     {
       "province": "Nghệ An",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2024,
       "subjectId": "toan",
@@ -6967,7 +6963,7 @@ const data: any = {
     },
     {
       "province": "Ninh Bình",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2024,
       "subjectId": "toan",
@@ -6977,7 +6973,7 @@ const data: any = {
     },
     {
       "province": "Phú Thọ",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2024,
       "subjectId": "toan",
@@ -6987,7 +6983,7 @@ const data: any = {
     },
     {
       "province": "Quảng Ngãi",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2024,
       "subjectId": "toan",
@@ -6997,7 +6993,7 @@ const data: any = {
     },
     {
       "province": "Quảng Ninh",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2024,
       "subjectId": "toan",
@@ -7007,7 +7003,7 @@ const data: any = {
     },
     {
       "province": "Quảng Trị",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2024,
       "subjectId": "toan",
@@ -7017,7 +7013,7 @@ const data: any = {
     },
     {
       "province": "Sơn La",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2024,
       "subjectId": "toan",
@@ -7027,7 +7023,7 @@ const data: any = {
     },
     {
       "province": "Thanh Hóa",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2024,
       "subjectId": "toan",
@@ -7037,7 +7033,7 @@ const data: any = {
     },
     {
       "province": "Thái Nguyên",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2024,
       "subjectId": "toan",
@@ -7047,7 +7043,7 @@ const data: any = {
     },
     {
       "province": "Tuyên Quang",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2024,
       "subjectId": "toan",
@@ -7067,7 +7063,7 @@ const data: any = {
     },
     {
       "province": "Vĩnh Long",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2024,
       "subjectId": "toan",
@@ -7077,7 +7073,7 @@ const data: any = {
     },
     {
       "province": "Điện Biên",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2024,
       "subjectId": "toan",
@@ -7087,7 +7083,7 @@ const data: any = {
     },
     {
       "province": "Đà Nẵng",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2024,
       "subjectId": "toan",
@@ -7117,7 +7113,7 @@ const data: any = {
     },
     {
       "province": "Đồng Tháp",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2024,
       "subjectId": "toan",
@@ -7127,7 +7123,7 @@ const data: any = {
     },
     {
       "province": "An Giang",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2024,
       "subjectId": "ngu_van",
@@ -7137,7 +7133,7 @@ const data: any = {
     },
     {
       "province": "Bắc Ninh",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2024,
       "subjectId": "ngu_van",
@@ -7147,7 +7143,7 @@ const data: any = {
     },
     {
       "province": "Cao Bằng",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2024,
       "subjectId": "ngu_van",
@@ -7157,7 +7153,7 @@ const data: any = {
     },
     {
       "province": "Cà Mau",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2024,
       "subjectId": "ngu_van",
@@ -7167,7 +7163,7 @@ const data: any = {
     },
     {
       "province": "Cần Thơ",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2024,
       "subjectId": "ngu_van",
@@ -7187,7 +7183,7 @@ const data: any = {
     },
     {
       "province": "Huế",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2024,
       "subjectId": "ngu_van",
@@ -7197,7 +7193,7 @@ const data: any = {
     },
     {
       "province": "Hà Nội",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2024,
       "subjectId": "ngu_van",
@@ -7207,7 +7203,7 @@ const data: any = {
     },
     {
       "province": "Hà Tĩnh",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2024,
       "subjectId": "ngu_van",
@@ -7217,7 +7213,7 @@ const data: any = {
     },
     {
       "province": "Hưng Yên",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2024,
       "subjectId": "ngu_van",
@@ -7227,7 +7223,7 @@ const data: any = {
     },
     {
       "province": "Hải Phòng",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2024,
       "subjectId": "ngu_van",
@@ -7247,7 +7243,7 @@ const data: any = {
     },
     {
       "province": "Khánh Hòa",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2024,
       "subjectId": "ngu_van",
@@ -7257,7 +7253,7 @@ const data: any = {
     },
     {
       "province": "Lai Châu",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2024,
       "subjectId": "ngu_van",
@@ -7267,7 +7263,7 @@ const data: any = {
     },
     {
       "province": "Lào Cai",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2024,
       "subjectId": "ngu_van",
@@ -7287,7 +7283,7 @@ const data: any = {
     },
     {
       "province": "Lạng Sơn",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2024,
       "subjectId": "ngu_van",
@@ -7297,7 +7293,7 @@ const data: any = {
     },
     {
       "province": "Nghệ An",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2024,
       "subjectId": "ngu_van",
@@ -7307,7 +7303,7 @@ const data: any = {
     },
     {
       "province": "Ninh Bình",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2024,
       "subjectId": "ngu_van",
@@ -7317,7 +7313,7 @@ const data: any = {
     },
     {
       "province": "Phú Thọ",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2024,
       "subjectId": "ngu_van",
@@ -7327,7 +7323,7 @@ const data: any = {
     },
     {
       "province": "Quảng Ngãi",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2024,
       "subjectId": "ngu_van",
@@ -7337,7 +7333,7 @@ const data: any = {
     },
     {
       "province": "Quảng Ninh",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2024,
       "subjectId": "ngu_van",
@@ -7347,7 +7343,7 @@ const data: any = {
     },
     {
       "province": "Quảng Trị",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2024,
       "subjectId": "ngu_van",
@@ -7357,7 +7353,7 @@ const data: any = {
     },
     {
       "province": "Sơn La",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2024,
       "subjectId": "ngu_van",
@@ -7367,7 +7363,7 @@ const data: any = {
     },
     {
       "province": "Thanh Hóa",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2024,
       "subjectId": "ngu_van",
@@ -7377,7 +7373,7 @@ const data: any = {
     },
     {
       "province": "Thái Nguyên",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2024,
       "subjectId": "ngu_van",
@@ -7387,7 +7383,7 @@ const data: any = {
     },
     {
       "province": "Tuyên Quang",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2024,
       "subjectId": "ngu_van",
@@ -7407,7 +7403,7 @@ const data: any = {
     },
     {
       "province": "Vĩnh Long",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2024,
       "subjectId": "ngu_van",
@@ -7417,7 +7413,7 @@ const data: any = {
     },
     {
       "province": "Điện Biên",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2024,
       "subjectId": "ngu_van",
@@ -7427,7 +7423,7 @@ const data: any = {
     },
     {
       "province": "Đà Nẵng",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2024,
       "subjectId": "ngu_van",
@@ -7457,7 +7453,7 @@ const data: any = {
     },
     {
       "province": "Đồng Tháp",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2024,
       "subjectId": "ngu_van",
@@ -7467,7 +7463,7 @@ const data: any = {
     },
     {
       "province": "An Giang",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2024,
       "subjectId": "vat_li",
@@ -7477,7 +7473,7 @@ const data: any = {
     },
     {
       "province": "Bắc Ninh",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2024,
       "subjectId": "vat_li",
@@ -7487,7 +7483,7 @@ const data: any = {
     },
     {
       "province": "Cao Bằng",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2024,
       "subjectId": "vat_li",
@@ -7497,7 +7493,7 @@ const data: any = {
     },
     {
       "province": "Cà Mau",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2024,
       "subjectId": "vat_li",
@@ -7507,7 +7503,7 @@ const data: any = {
     },
     {
       "province": "Cần Thơ",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2024,
       "subjectId": "vat_li",
@@ -7527,7 +7523,7 @@ const data: any = {
     },
     {
       "province": "Huế",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2024,
       "subjectId": "vat_li",
@@ -7537,7 +7533,7 @@ const data: any = {
     },
     {
       "province": "Hà Nội",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2024,
       "subjectId": "vat_li",
@@ -7547,7 +7543,7 @@ const data: any = {
     },
     {
       "province": "Hà Tĩnh",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2024,
       "subjectId": "vat_li",
@@ -7557,7 +7553,7 @@ const data: any = {
     },
     {
       "province": "Hưng Yên",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2024,
       "subjectId": "vat_li",
@@ -7567,7 +7563,7 @@ const data: any = {
     },
     {
       "province": "Hải Phòng",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2024,
       "subjectId": "vat_li",
@@ -7587,7 +7583,7 @@ const data: any = {
     },
     {
       "province": "Khánh Hòa",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2024,
       "subjectId": "vat_li",
@@ -7597,7 +7593,7 @@ const data: any = {
     },
     {
       "province": "Lai Châu",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2024,
       "subjectId": "vat_li",
@@ -7607,7 +7603,7 @@ const data: any = {
     },
     {
       "province": "Lào Cai",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2024,
       "subjectId": "vat_li",
@@ -7627,7 +7623,7 @@ const data: any = {
     },
     {
       "province": "Lạng Sơn",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2024,
       "subjectId": "vat_li",
@@ -7637,7 +7633,7 @@ const data: any = {
     },
     {
       "province": "Nghệ An",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2024,
       "subjectId": "vat_li",
@@ -7647,7 +7643,7 @@ const data: any = {
     },
     {
       "province": "Ninh Bình",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2024,
       "subjectId": "vat_li",
@@ -7657,7 +7653,7 @@ const data: any = {
     },
     {
       "province": "Phú Thọ",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2024,
       "subjectId": "vat_li",
@@ -7667,7 +7663,7 @@ const data: any = {
     },
     {
       "province": "Quảng Ngãi",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2024,
       "subjectId": "vat_li",
@@ -7677,7 +7673,7 @@ const data: any = {
     },
     {
       "province": "Quảng Ninh",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2024,
       "subjectId": "vat_li",
@@ -7687,7 +7683,7 @@ const data: any = {
     },
     {
       "province": "Quảng Trị",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2024,
       "subjectId": "vat_li",
@@ -7697,7 +7693,7 @@ const data: any = {
     },
     {
       "province": "Sơn La",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2024,
       "subjectId": "vat_li",
@@ -7707,7 +7703,7 @@ const data: any = {
     },
     {
       "province": "Thanh Hóa",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2024,
       "subjectId": "vat_li",
@@ -7717,7 +7713,7 @@ const data: any = {
     },
     {
       "province": "Thái Nguyên",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2024,
       "subjectId": "vat_li",
@@ -7727,7 +7723,7 @@ const data: any = {
     },
     {
       "province": "Tuyên Quang",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2024,
       "subjectId": "vat_li",
@@ -7747,7 +7743,7 @@ const data: any = {
     },
     {
       "province": "Vĩnh Long",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2024,
       "subjectId": "vat_li",
@@ -7757,7 +7753,7 @@ const data: any = {
     },
     {
       "province": "Điện Biên",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2024,
       "subjectId": "vat_li",
@@ -7767,7 +7763,7 @@ const data: any = {
     },
     {
       "province": "Đà Nẵng",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2024,
       "subjectId": "vat_li",
@@ -7797,7 +7793,7 @@ const data: any = {
     },
     {
       "province": "Đồng Tháp",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2024,
       "subjectId": "vat_li",
@@ -7807,7 +7803,7 @@ const data: any = {
     },
     {
       "province": "An Giang",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2024,
       "subjectId": "hoa_hoc",
@@ -7817,7 +7813,7 @@ const data: any = {
     },
     {
       "province": "Bắc Ninh",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2024,
       "subjectId": "hoa_hoc",
@@ -7827,7 +7823,7 @@ const data: any = {
     },
     {
       "province": "Cao Bằng",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2024,
       "subjectId": "hoa_hoc",
@@ -7837,7 +7833,7 @@ const data: any = {
     },
     {
       "province": "Cà Mau",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2024,
       "subjectId": "hoa_hoc",
@@ -7847,7 +7843,7 @@ const data: any = {
     },
     {
       "province": "Cần Thơ",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2024,
       "subjectId": "hoa_hoc",
@@ -7867,7 +7863,7 @@ const data: any = {
     },
     {
       "province": "Huế",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2024,
       "subjectId": "hoa_hoc",
@@ -7877,7 +7873,7 @@ const data: any = {
     },
     {
       "province": "Hà Nội",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2024,
       "subjectId": "hoa_hoc",
@@ -7887,7 +7883,7 @@ const data: any = {
     },
     {
       "province": "Hà Tĩnh",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2024,
       "subjectId": "hoa_hoc",
@@ -7897,7 +7893,7 @@ const data: any = {
     },
     {
       "province": "Hưng Yên",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2024,
       "subjectId": "hoa_hoc",
@@ -7907,7 +7903,7 @@ const data: any = {
     },
     {
       "province": "Hải Phòng",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2024,
       "subjectId": "hoa_hoc",
@@ -7927,7 +7923,7 @@ const data: any = {
     },
     {
       "province": "Khánh Hòa",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2024,
       "subjectId": "hoa_hoc",
@@ -7937,7 +7933,7 @@ const data: any = {
     },
     {
       "province": "Lai Châu",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2024,
       "subjectId": "hoa_hoc",
@@ -7947,7 +7943,7 @@ const data: any = {
     },
     {
       "province": "Lào Cai",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2024,
       "subjectId": "hoa_hoc",
@@ -7967,7 +7963,7 @@ const data: any = {
     },
     {
       "province": "Lạng Sơn",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2024,
       "subjectId": "hoa_hoc",
@@ -7977,7 +7973,7 @@ const data: any = {
     },
     {
       "province": "Nghệ An",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2024,
       "subjectId": "hoa_hoc",
@@ -7987,7 +7983,7 @@ const data: any = {
     },
     {
       "province": "Ninh Bình",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2024,
       "subjectId": "hoa_hoc",
@@ -7997,7 +7993,7 @@ const data: any = {
     },
     {
       "province": "Phú Thọ",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2024,
       "subjectId": "hoa_hoc",
@@ -8007,7 +8003,7 @@ const data: any = {
     },
     {
       "province": "Quảng Ngãi",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2024,
       "subjectId": "hoa_hoc",
@@ -8017,7 +8013,7 @@ const data: any = {
     },
     {
       "province": "Quảng Ninh",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2024,
       "subjectId": "hoa_hoc",
@@ -8027,7 +8023,7 @@ const data: any = {
     },
     {
       "province": "Quảng Trị",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2024,
       "subjectId": "hoa_hoc",
@@ -8037,7 +8033,7 @@ const data: any = {
     },
     {
       "province": "Sơn La",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2024,
       "subjectId": "hoa_hoc",
@@ -8047,7 +8043,7 @@ const data: any = {
     },
     {
       "province": "Thanh Hóa",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2024,
       "subjectId": "hoa_hoc",
@@ -8057,7 +8053,7 @@ const data: any = {
     },
     {
       "province": "Thái Nguyên",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2024,
       "subjectId": "hoa_hoc",
@@ -8067,7 +8063,7 @@ const data: any = {
     },
     {
       "province": "Tuyên Quang",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2024,
       "subjectId": "hoa_hoc",
@@ -8087,7 +8083,7 @@ const data: any = {
     },
     {
       "province": "Vĩnh Long",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2024,
       "subjectId": "hoa_hoc",
@@ -8097,7 +8093,7 @@ const data: any = {
     },
     {
       "province": "Điện Biên",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2024,
       "subjectId": "hoa_hoc",
@@ -8107,7 +8103,7 @@ const data: any = {
     },
     {
       "province": "Đà Nẵng",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2024,
       "subjectId": "hoa_hoc",
@@ -8137,7 +8133,7 @@ const data: any = {
     },
     {
       "province": "Đồng Tháp",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2024,
       "subjectId": "hoa_hoc",
@@ -8147,7 +8143,7 @@ const data: any = {
     },
     {
       "province": "An Giang",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2024,
       "subjectId": "sinh_hoc",
@@ -8157,7 +8153,7 @@ const data: any = {
     },
     {
       "province": "Bắc Ninh",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2024,
       "subjectId": "sinh_hoc",
@@ -8167,7 +8163,7 @@ const data: any = {
     },
     {
       "province": "Cao Bằng",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2024,
       "subjectId": "sinh_hoc",
@@ -8177,7 +8173,7 @@ const data: any = {
     },
     {
       "province": "Cà Mau",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2024,
       "subjectId": "sinh_hoc",
@@ -8187,7 +8183,7 @@ const data: any = {
     },
     {
       "province": "Cần Thơ",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2024,
       "subjectId": "sinh_hoc",
@@ -8207,7 +8203,7 @@ const data: any = {
     },
     {
       "province": "Huế",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2024,
       "subjectId": "sinh_hoc",
@@ -8217,7 +8213,7 @@ const data: any = {
     },
     {
       "province": "Hà Nội",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2024,
       "subjectId": "sinh_hoc",
@@ -8227,7 +8223,7 @@ const data: any = {
     },
     {
       "province": "Hà Tĩnh",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2024,
       "subjectId": "sinh_hoc",
@@ -8237,7 +8233,7 @@ const data: any = {
     },
     {
       "province": "Hưng Yên",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2024,
       "subjectId": "sinh_hoc",
@@ -8247,7 +8243,7 @@ const data: any = {
     },
     {
       "province": "Hải Phòng",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2024,
       "subjectId": "sinh_hoc",
@@ -8267,7 +8263,7 @@ const data: any = {
     },
     {
       "province": "Khánh Hòa",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2024,
       "subjectId": "sinh_hoc",
@@ -8277,7 +8273,7 @@ const data: any = {
     },
     {
       "province": "Lai Châu",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2024,
       "subjectId": "sinh_hoc",
@@ -8287,7 +8283,7 @@ const data: any = {
     },
     {
       "province": "Lào Cai",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2024,
       "subjectId": "sinh_hoc",
@@ -8307,7 +8303,7 @@ const data: any = {
     },
     {
       "province": "Lạng Sơn",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2024,
       "subjectId": "sinh_hoc",
@@ -8317,7 +8313,7 @@ const data: any = {
     },
     {
       "province": "Nghệ An",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2024,
       "subjectId": "sinh_hoc",
@@ -8327,7 +8323,7 @@ const data: any = {
     },
     {
       "province": "Ninh Bình",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2024,
       "subjectId": "sinh_hoc",
@@ -8337,7 +8333,7 @@ const data: any = {
     },
     {
       "province": "Phú Thọ",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2024,
       "subjectId": "sinh_hoc",
@@ -8347,7 +8343,7 @@ const data: any = {
     },
     {
       "province": "Quảng Ngãi",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2024,
       "subjectId": "sinh_hoc",
@@ -8357,7 +8353,7 @@ const data: any = {
     },
     {
       "province": "Quảng Ninh",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2024,
       "subjectId": "sinh_hoc",
@@ -8367,7 +8363,7 @@ const data: any = {
     },
     {
       "province": "Quảng Trị",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2024,
       "subjectId": "sinh_hoc",
@@ -8377,7 +8373,7 @@ const data: any = {
     },
     {
       "province": "Sơn La",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2024,
       "subjectId": "sinh_hoc",
@@ -8387,7 +8383,7 @@ const data: any = {
     },
     {
       "province": "Thanh Hóa",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2024,
       "subjectId": "sinh_hoc",
@@ -8397,7 +8393,7 @@ const data: any = {
     },
     {
       "province": "Thái Nguyên",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2024,
       "subjectId": "sinh_hoc",
@@ -8407,7 +8403,7 @@ const data: any = {
     },
     {
       "province": "Tuyên Quang",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2024,
       "subjectId": "sinh_hoc",
@@ -8427,7 +8423,7 @@ const data: any = {
     },
     {
       "province": "Vĩnh Long",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2024,
       "subjectId": "sinh_hoc",
@@ -8437,7 +8433,7 @@ const data: any = {
     },
     {
       "province": "Điện Biên",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2024,
       "subjectId": "sinh_hoc",
@@ -8447,7 +8443,7 @@ const data: any = {
     },
     {
       "province": "Đà Nẵng",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2024,
       "subjectId": "sinh_hoc",
@@ -8477,7 +8473,7 @@ const data: any = {
     },
     {
       "province": "Đồng Tháp",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2024,
       "subjectId": "sinh_hoc",
@@ -8487,7 +8483,7 @@ const data: any = {
     },
     {
       "province": "An Giang",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2024,
       "subjectId": "lich_su",
@@ -8497,7 +8493,7 @@ const data: any = {
     },
     {
       "province": "Bắc Ninh",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2024,
       "subjectId": "lich_su",
@@ -8507,7 +8503,7 @@ const data: any = {
     },
     {
       "province": "Cao Bằng",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2024,
       "subjectId": "lich_su",
@@ -8517,7 +8513,7 @@ const data: any = {
     },
     {
       "province": "Cà Mau",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2024,
       "subjectId": "lich_su",
@@ -8527,7 +8523,7 @@ const data: any = {
     },
     {
       "province": "Cần Thơ",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2024,
       "subjectId": "lich_su",
@@ -8547,7 +8543,7 @@ const data: any = {
     },
     {
       "province": "Huế",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2024,
       "subjectId": "lich_su",
@@ -8557,7 +8553,7 @@ const data: any = {
     },
     {
       "province": "Hà Nội",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2024,
       "subjectId": "lich_su",
@@ -8567,7 +8563,7 @@ const data: any = {
     },
     {
       "province": "Hà Tĩnh",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2024,
       "subjectId": "lich_su",
@@ -8577,7 +8573,7 @@ const data: any = {
     },
     {
       "province": "Hưng Yên",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2024,
       "subjectId": "lich_su",
@@ -8587,7 +8583,7 @@ const data: any = {
     },
     {
       "province": "Hải Phòng",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2024,
       "subjectId": "lich_su",
@@ -8607,7 +8603,7 @@ const data: any = {
     },
     {
       "province": "Khánh Hòa",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2024,
       "subjectId": "lich_su",
@@ -8617,7 +8613,7 @@ const data: any = {
     },
     {
       "province": "Lai Châu",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2024,
       "subjectId": "lich_su",
@@ -8627,7 +8623,7 @@ const data: any = {
     },
     {
       "province": "Lào Cai",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2024,
       "subjectId": "lich_su",
@@ -8647,7 +8643,7 @@ const data: any = {
     },
     {
       "province": "Lạng Sơn",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2024,
       "subjectId": "lich_su",
@@ -8657,7 +8653,7 @@ const data: any = {
     },
     {
       "province": "Nghệ An",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2024,
       "subjectId": "lich_su",
@@ -8667,7 +8663,7 @@ const data: any = {
     },
     {
       "province": "Ninh Bình",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2024,
       "subjectId": "lich_su",
@@ -8677,7 +8673,7 @@ const data: any = {
     },
     {
       "province": "Phú Thọ",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2024,
       "subjectId": "lich_su",
@@ -8687,7 +8683,7 @@ const data: any = {
     },
     {
       "province": "Quảng Ngãi",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2024,
       "subjectId": "lich_su",
@@ -8697,7 +8693,7 @@ const data: any = {
     },
     {
       "province": "Quảng Ninh",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2024,
       "subjectId": "lich_su",
@@ -8707,7 +8703,7 @@ const data: any = {
     },
     {
       "province": "Quảng Trị",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2024,
       "subjectId": "lich_su",
@@ -8717,7 +8713,7 @@ const data: any = {
     },
     {
       "province": "Sơn La",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2024,
       "subjectId": "lich_su",
@@ -8727,7 +8723,7 @@ const data: any = {
     },
     {
       "province": "Thanh Hóa",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2024,
       "subjectId": "lich_su",
@@ -8737,7 +8733,7 @@ const data: any = {
     },
     {
       "province": "Thái Nguyên",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2024,
       "subjectId": "lich_su",
@@ -8747,7 +8743,7 @@ const data: any = {
     },
     {
       "province": "Tuyên Quang",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2024,
       "subjectId": "lich_su",
@@ -8767,7 +8763,7 @@ const data: any = {
     },
     {
       "province": "Vĩnh Long",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2024,
       "subjectId": "lich_su",
@@ -8777,7 +8773,7 @@ const data: any = {
     },
     {
       "province": "Điện Biên",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2024,
       "subjectId": "lich_su",
@@ -8787,7 +8783,7 @@ const data: any = {
     },
     {
       "province": "Đà Nẵng",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2024,
       "subjectId": "lich_su",
@@ -8817,7 +8813,7 @@ const data: any = {
     },
     {
       "province": "Đồng Tháp",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2024,
       "subjectId": "lich_su",
@@ -8827,7 +8823,7 @@ const data: any = {
     },
     {
       "province": "An Giang",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2024,
       "subjectId": "dia_li",
@@ -8837,7 +8833,7 @@ const data: any = {
     },
     {
       "province": "Bắc Ninh",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2024,
       "subjectId": "dia_li",
@@ -8847,7 +8843,7 @@ const data: any = {
     },
     {
       "province": "Cao Bằng",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2024,
       "subjectId": "dia_li",
@@ -8857,7 +8853,7 @@ const data: any = {
     },
     {
       "province": "Cà Mau",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2024,
       "subjectId": "dia_li",
@@ -8867,7 +8863,7 @@ const data: any = {
     },
     {
       "province": "Cần Thơ",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2024,
       "subjectId": "dia_li",
@@ -8887,7 +8883,7 @@ const data: any = {
     },
     {
       "province": "Huế",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2024,
       "subjectId": "dia_li",
@@ -8897,7 +8893,7 @@ const data: any = {
     },
     {
       "province": "Hà Nội",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2024,
       "subjectId": "dia_li",
@@ -8907,7 +8903,7 @@ const data: any = {
     },
     {
       "province": "Hà Tĩnh",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2024,
       "subjectId": "dia_li",
@@ -8917,7 +8913,7 @@ const data: any = {
     },
     {
       "province": "Hưng Yên",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2024,
       "subjectId": "dia_li",
@@ -8927,7 +8923,7 @@ const data: any = {
     },
     {
       "province": "Hải Phòng",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2024,
       "subjectId": "dia_li",
@@ -8947,7 +8943,7 @@ const data: any = {
     },
     {
       "province": "Khánh Hòa",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2024,
       "subjectId": "dia_li",
@@ -8957,7 +8953,7 @@ const data: any = {
     },
     {
       "province": "Lai Châu",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2024,
       "subjectId": "dia_li",
@@ -8967,7 +8963,7 @@ const data: any = {
     },
     {
       "province": "Lào Cai",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2024,
       "subjectId": "dia_li",
@@ -8987,7 +8983,7 @@ const data: any = {
     },
     {
       "province": "Lạng Sơn",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2024,
       "subjectId": "dia_li",
@@ -8997,7 +8993,7 @@ const data: any = {
     },
     {
       "province": "Nghệ An",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2024,
       "subjectId": "dia_li",
@@ -9007,7 +9003,7 @@ const data: any = {
     },
     {
       "province": "Ninh Bình",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2024,
       "subjectId": "dia_li",
@@ -9017,7 +9013,7 @@ const data: any = {
     },
     {
       "province": "Phú Thọ",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2024,
       "subjectId": "dia_li",
@@ -9027,7 +9023,7 @@ const data: any = {
     },
     {
       "province": "Quảng Ngãi",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2024,
       "subjectId": "dia_li",
@@ -9037,7 +9033,7 @@ const data: any = {
     },
     {
       "province": "Quảng Ninh",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2024,
       "subjectId": "dia_li",
@@ -9047,7 +9043,7 @@ const data: any = {
     },
     {
       "province": "Quảng Trị",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2024,
       "subjectId": "dia_li",
@@ -9057,7 +9053,7 @@ const data: any = {
     },
     {
       "province": "Sơn La",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2024,
       "subjectId": "dia_li",
@@ -9067,7 +9063,7 @@ const data: any = {
     },
     {
       "province": "Thanh Hóa",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2024,
       "subjectId": "dia_li",
@@ -9077,7 +9073,7 @@ const data: any = {
     },
     {
       "province": "Thái Nguyên",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2024,
       "subjectId": "dia_li",
@@ -9087,7 +9083,7 @@ const data: any = {
     },
     {
       "province": "Tuyên Quang",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2024,
       "subjectId": "dia_li",
@@ -9107,7 +9103,7 @@ const data: any = {
     },
     {
       "province": "Vĩnh Long",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2024,
       "subjectId": "dia_li",
@@ -9117,7 +9113,7 @@ const data: any = {
     },
     {
       "province": "Điện Biên",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2024,
       "subjectId": "dia_li",
@@ -9127,7 +9123,7 @@ const data: any = {
     },
     {
       "province": "Đà Nẵng",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2024,
       "subjectId": "dia_li",
@@ -9157,7 +9153,7 @@ const data: any = {
     },
     {
       "province": "Đồng Tháp",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2024,
       "subjectId": "dia_li",
@@ -9167,7 +9163,7 @@ const data: any = {
     },
     {
       "province": "An Giang",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2024,
       "subjectId": "gdcd",
@@ -9177,7 +9173,7 @@ const data: any = {
     },
     {
       "province": "Bắc Ninh",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2024,
       "subjectId": "gdcd",
@@ -9187,7 +9183,7 @@ const data: any = {
     },
     {
       "province": "Cao Bằng",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2024,
       "subjectId": "gdcd",
@@ -9197,7 +9193,7 @@ const data: any = {
     },
     {
       "province": "Cà Mau",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2024,
       "subjectId": "gdcd",
@@ -9207,7 +9203,7 @@ const data: any = {
     },
     {
       "province": "Cần Thơ",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2024,
       "subjectId": "gdcd",
@@ -9227,7 +9223,7 @@ const data: any = {
     },
     {
       "province": "Huế",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2024,
       "subjectId": "gdcd",
@@ -9237,7 +9233,7 @@ const data: any = {
     },
     {
       "province": "Hà Nội",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2024,
       "subjectId": "gdcd",
@@ -9247,7 +9243,7 @@ const data: any = {
     },
     {
       "province": "Hà Tĩnh",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2024,
       "subjectId": "gdcd",
@@ -9257,7 +9253,7 @@ const data: any = {
     },
     {
       "province": "Hưng Yên",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2024,
       "subjectId": "gdcd",
@@ -9267,7 +9263,7 @@ const data: any = {
     },
     {
       "province": "Hải Phòng",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2024,
       "subjectId": "gdcd",
@@ -9287,7 +9283,7 @@ const data: any = {
     },
     {
       "province": "Khánh Hòa",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2024,
       "subjectId": "gdcd",
@@ -9297,7 +9293,7 @@ const data: any = {
     },
     {
       "province": "Lai Châu",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2024,
       "subjectId": "gdcd",
@@ -9307,7 +9303,7 @@ const data: any = {
     },
     {
       "province": "Lào Cai",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2024,
       "subjectId": "gdcd",
@@ -9327,7 +9323,7 @@ const data: any = {
     },
     {
       "province": "Lạng Sơn",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2024,
       "subjectId": "gdcd",
@@ -9337,7 +9333,7 @@ const data: any = {
     },
     {
       "province": "Nghệ An",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2024,
       "subjectId": "gdcd",
@@ -9347,7 +9343,7 @@ const data: any = {
     },
     {
       "province": "Ninh Bình",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2024,
       "subjectId": "gdcd",
@@ -9357,7 +9353,7 @@ const data: any = {
     },
     {
       "province": "Phú Thọ",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2024,
       "subjectId": "gdcd",
@@ -9367,7 +9363,7 @@ const data: any = {
     },
     {
       "province": "Quảng Ngãi",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2024,
       "subjectId": "gdcd",
@@ -9377,7 +9373,7 @@ const data: any = {
     },
     {
       "province": "Quảng Ninh",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2024,
       "subjectId": "gdcd",
@@ -9387,7 +9383,7 @@ const data: any = {
     },
     {
       "province": "Quảng Trị",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2024,
       "subjectId": "gdcd",
@@ -9397,7 +9393,7 @@ const data: any = {
     },
     {
       "province": "Sơn La",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2024,
       "subjectId": "gdcd",
@@ -9407,7 +9403,7 @@ const data: any = {
     },
     {
       "province": "Thanh Hóa",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2024,
       "subjectId": "gdcd",
@@ -9417,7 +9413,7 @@ const data: any = {
     },
     {
       "province": "Thái Nguyên",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2024,
       "subjectId": "gdcd",
@@ -9427,7 +9423,7 @@ const data: any = {
     },
     {
       "province": "Tuyên Quang",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2024,
       "subjectId": "gdcd",
@@ -9447,7 +9443,7 @@ const data: any = {
     },
     {
       "province": "Vĩnh Long",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2024,
       "subjectId": "gdcd",
@@ -9457,7 +9453,7 @@ const data: any = {
     },
     {
       "province": "Điện Biên",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2024,
       "subjectId": "gdcd",
@@ -9467,7 +9463,7 @@ const data: any = {
     },
     {
       "province": "Đà Nẵng",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2024,
       "subjectId": "gdcd",
@@ -9497,7 +9493,7 @@ const data: any = {
     },
     {
       "province": "Đồng Tháp",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2024,
       "subjectId": "gdcd",
@@ -9507,7 +9503,7 @@ const data: any = {
     },
     {
       "province": "An Giang",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2025,
       "subjectId": "toan",
@@ -9517,7 +9513,7 @@ const data: any = {
     },
     {
       "province": "Bắc Ninh",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2025,
       "subjectId": "toan",
@@ -9527,7 +9523,7 @@ const data: any = {
     },
     {
       "province": "Cao Bằng",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2025,
       "subjectId": "toan",
@@ -9537,7 +9533,7 @@ const data: any = {
     },
     {
       "province": "Cà Mau",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2025,
       "subjectId": "toan",
@@ -9547,7 +9543,7 @@ const data: any = {
     },
     {
       "province": "Cần Thơ",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2025,
       "subjectId": "toan",
@@ -9567,7 +9563,7 @@ const data: any = {
     },
     {
       "province": "Huế",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2025,
       "subjectId": "toan",
@@ -9577,7 +9573,7 @@ const data: any = {
     },
     {
       "province": "Hà Nội",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2025,
       "subjectId": "toan",
@@ -9587,7 +9583,7 @@ const data: any = {
     },
     {
       "province": "Hà Tĩnh",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2025,
       "subjectId": "toan",
@@ -9597,7 +9593,7 @@ const data: any = {
     },
     {
       "province": "Hưng Yên",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2025,
       "subjectId": "toan",
@@ -9607,7 +9603,7 @@ const data: any = {
     },
     {
       "province": "Hải Phòng",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2025,
       "subjectId": "toan",
@@ -9627,7 +9623,7 @@ const data: any = {
     },
     {
       "province": "Khánh Hòa",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2025,
       "subjectId": "toan",
@@ -9637,7 +9633,7 @@ const data: any = {
     },
     {
       "province": "Lai Châu",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2025,
       "subjectId": "toan",
@@ -9647,7 +9643,7 @@ const data: any = {
     },
     {
       "province": "Lào Cai",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2025,
       "subjectId": "toan",
@@ -9667,7 +9663,7 @@ const data: any = {
     },
     {
       "province": "Lạng Sơn",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2025,
       "subjectId": "toan",
@@ -9677,7 +9673,7 @@ const data: any = {
     },
     {
       "province": "Nghệ An",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2025,
       "subjectId": "toan",
@@ -9687,7 +9683,7 @@ const data: any = {
     },
     {
       "province": "Ninh Bình",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2025,
       "subjectId": "toan",
@@ -9697,7 +9693,7 @@ const data: any = {
     },
     {
       "province": "Phú Thọ",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2025,
       "subjectId": "toan",
@@ -9707,7 +9703,7 @@ const data: any = {
     },
     {
       "province": "Quảng Ngãi",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2025,
       "subjectId": "toan",
@@ -9717,7 +9713,7 @@ const data: any = {
     },
     {
       "province": "Quảng Ninh",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2025,
       "subjectId": "toan",
@@ -9727,7 +9723,7 @@ const data: any = {
     },
     {
       "province": "Quảng Trị",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2025,
       "subjectId": "toan",
@@ -9737,7 +9733,7 @@ const data: any = {
     },
     {
       "province": "Sơn La",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2025,
       "subjectId": "toan",
@@ -9747,7 +9743,7 @@ const data: any = {
     },
     {
       "province": "Thanh Hóa",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2025,
       "subjectId": "toan",
@@ -9757,7 +9753,7 @@ const data: any = {
     },
     {
       "province": "Thái Nguyên",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2025,
       "subjectId": "toan",
@@ -9767,7 +9763,7 @@ const data: any = {
     },
     {
       "province": "Tuyên Quang",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2025,
       "subjectId": "toan",
@@ -9787,7 +9783,7 @@ const data: any = {
     },
     {
       "province": "Vĩnh Long",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2025,
       "subjectId": "toan",
@@ -9797,7 +9793,7 @@ const data: any = {
     },
     {
       "province": "Điện Biên",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2025,
       "subjectId": "toan",
@@ -9807,7 +9803,7 @@ const data: any = {
     },
     {
       "province": "Đà Nẵng",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2025,
       "subjectId": "toan",
@@ -9837,7 +9833,7 @@ const data: any = {
     },
     {
       "province": "Đồng Tháp",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2025,
       "subjectId": "toan",
@@ -9847,7 +9843,7 @@ const data: any = {
     },
     {
       "province": "An Giang",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2025,
       "subjectId": "ngu_van",
@@ -9857,7 +9853,7 @@ const data: any = {
     },
     {
       "province": "Bắc Ninh",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2025,
       "subjectId": "ngu_van",
@@ -9867,7 +9863,7 @@ const data: any = {
     },
     {
       "province": "Cao Bằng",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2025,
       "subjectId": "ngu_van",
@@ -9877,7 +9873,7 @@ const data: any = {
     },
     {
       "province": "Cà Mau",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2025,
       "subjectId": "ngu_van",
@@ -9887,7 +9883,7 @@ const data: any = {
     },
     {
       "province": "Cần Thơ",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2025,
       "subjectId": "ngu_van",
@@ -9907,7 +9903,7 @@ const data: any = {
     },
     {
       "province": "Huế",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2025,
       "subjectId": "ngu_van",
@@ -9917,7 +9913,7 @@ const data: any = {
     },
     {
       "province": "Hà Nội",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2025,
       "subjectId": "ngu_van",
@@ -9927,7 +9923,7 @@ const data: any = {
     },
     {
       "province": "Hà Tĩnh",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2025,
       "subjectId": "ngu_van",
@@ -9937,7 +9933,7 @@ const data: any = {
     },
     {
       "province": "Hưng Yên",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2025,
       "subjectId": "ngu_van",
@@ -9947,7 +9943,7 @@ const data: any = {
     },
     {
       "province": "Hải Phòng",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2025,
       "subjectId": "ngu_van",
@@ -9967,7 +9963,7 @@ const data: any = {
     },
     {
       "province": "Khánh Hòa",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2025,
       "subjectId": "ngu_van",
@@ -9977,7 +9973,7 @@ const data: any = {
     },
     {
       "province": "Lai Châu",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2025,
       "subjectId": "ngu_van",
@@ -9987,7 +9983,7 @@ const data: any = {
     },
     {
       "province": "Lào Cai",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2025,
       "subjectId": "ngu_van",
@@ -10007,7 +10003,7 @@ const data: any = {
     },
     {
       "province": "Lạng Sơn",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2025,
       "subjectId": "ngu_van",
@@ -10017,7 +10013,7 @@ const data: any = {
     },
     {
       "province": "Nghệ An",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2025,
       "subjectId": "ngu_van",
@@ -10027,7 +10023,7 @@ const data: any = {
     },
     {
       "province": "Ninh Bình",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2025,
       "subjectId": "ngu_van",
@@ -10037,7 +10033,7 @@ const data: any = {
     },
     {
       "province": "Phú Thọ",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2025,
       "subjectId": "ngu_van",
@@ -10047,7 +10043,7 @@ const data: any = {
     },
     {
       "province": "Quảng Ngãi",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2025,
       "subjectId": "ngu_van",
@@ -10057,7 +10053,7 @@ const data: any = {
     },
     {
       "province": "Quảng Ninh",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2025,
       "subjectId": "ngu_van",
@@ -10067,7 +10063,7 @@ const data: any = {
     },
     {
       "province": "Quảng Trị",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2025,
       "subjectId": "ngu_van",
@@ -10077,7 +10073,7 @@ const data: any = {
     },
     {
       "province": "Sơn La",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2025,
       "subjectId": "ngu_van",
@@ -10087,7 +10083,7 @@ const data: any = {
     },
     {
       "province": "Thanh Hóa",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2025,
       "subjectId": "ngu_van",
@@ -10097,7 +10093,7 @@ const data: any = {
     },
     {
       "province": "Thái Nguyên",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2025,
       "subjectId": "ngu_van",
@@ -10107,7 +10103,7 @@ const data: any = {
     },
     {
       "province": "Tuyên Quang",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2025,
       "subjectId": "ngu_van",
@@ -10127,7 +10123,7 @@ const data: any = {
     },
     {
       "province": "Vĩnh Long",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2025,
       "subjectId": "ngu_van",
@@ -10137,7 +10133,7 @@ const data: any = {
     },
     {
       "province": "Điện Biên",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2025,
       "subjectId": "ngu_van",
@@ -10147,7 +10143,7 @@ const data: any = {
     },
     {
       "province": "Đà Nẵng",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2025,
       "subjectId": "ngu_van",
@@ -10177,7 +10173,7 @@ const data: any = {
     },
     {
       "province": "Đồng Tháp",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2025,
       "subjectId": "ngu_van",
@@ -10187,7 +10183,7 @@ const data: any = {
     },
     {
       "province": "An Giang",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2025,
       "subjectId": "vat_li",
@@ -10197,7 +10193,7 @@ const data: any = {
     },
     {
       "province": "Bắc Ninh",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2025,
       "subjectId": "vat_li",
@@ -10207,7 +10203,7 @@ const data: any = {
     },
     {
       "province": "Cao Bằng",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2025,
       "subjectId": "vat_li",
@@ -10217,7 +10213,7 @@ const data: any = {
     },
     {
       "province": "Cà Mau",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2025,
       "subjectId": "vat_li",
@@ -10227,7 +10223,7 @@ const data: any = {
     },
     {
       "province": "Cần Thơ",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2025,
       "subjectId": "vat_li",
@@ -10247,7 +10243,7 @@ const data: any = {
     },
     {
       "province": "Huế",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2025,
       "subjectId": "vat_li",
@@ -10257,7 +10253,7 @@ const data: any = {
     },
     {
       "province": "Hà Nội",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2025,
       "subjectId": "vat_li",
@@ -10267,7 +10263,7 @@ const data: any = {
     },
     {
       "province": "Hà Tĩnh",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2025,
       "subjectId": "vat_li",
@@ -10277,7 +10273,7 @@ const data: any = {
     },
     {
       "province": "Hưng Yên",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2025,
       "subjectId": "vat_li",
@@ -10287,7 +10283,7 @@ const data: any = {
     },
     {
       "province": "Hải Phòng",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2025,
       "subjectId": "vat_li",
@@ -10307,7 +10303,7 @@ const data: any = {
     },
     {
       "province": "Khánh Hòa",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2025,
       "subjectId": "vat_li",
@@ -10317,7 +10313,7 @@ const data: any = {
     },
     {
       "province": "Lai Châu",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2025,
       "subjectId": "vat_li",
@@ -10327,7 +10323,7 @@ const data: any = {
     },
     {
       "province": "Lào Cai",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2025,
       "subjectId": "vat_li",
@@ -10347,7 +10343,7 @@ const data: any = {
     },
     {
       "province": "Lạng Sơn",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2025,
       "subjectId": "vat_li",
@@ -10357,7 +10353,7 @@ const data: any = {
     },
     {
       "province": "Nghệ An",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2025,
       "subjectId": "vat_li",
@@ -10367,7 +10363,7 @@ const data: any = {
     },
     {
       "province": "Ninh Bình",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2025,
       "subjectId": "vat_li",
@@ -10377,7 +10373,7 @@ const data: any = {
     },
     {
       "province": "Phú Thọ",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2025,
       "subjectId": "vat_li",
@@ -10387,7 +10383,7 @@ const data: any = {
     },
     {
       "province": "Quảng Ngãi",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2025,
       "subjectId": "vat_li",
@@ -10397,7 +10393,7 @@ const data: any = {
     },
     {
       "province": "Quảng Ninh",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2025,
       "subjectId": "vat_li",
@@ -10407,7 +10403,7 @@ const data: any = {
     },
     {
       "province": "Quảng Trị",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2025,
       "subjectId": "vat_li",
@@ -10417,7 +10413,7 @@ const data: any = {
     },
     {
       "province": "Sơn La",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2025,
       "subjectId": "vat_li",
@@ -10427,7 +10423,7 @@ const data: any = {
     },
     {
       "province": "Thanh Hóa",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2025,
       "subjectId": "vat_li",
@@ -10437,7 +10433,7 @@ const data: any = {
     },
     {
       "province": "Thái Nguyên",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2025,
       "subjectId": "vat_li",
@@ -10447,7 +10443,7 @@ const data: any = {
     },
     {
       "province": "Tuyên Quang",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2025,
       "subjectId": "vat_li",
@@ -10467,7 +10463,7 @@ const data: any = {
     },
     {
       "province": "Vĩnh Long",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2025,
       "subjectId": "vat_li",
@@ -10477,7 +10473,7 @@ const data: any = {
     },
     {
       "province": "Điện Biên",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2025,
       "subjectId": "vat_li",
@@ -10487,7 +10483,7 @@ const data: any = {
     },
     {
       "province": "Đà Nẵng",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2025,
       "subjectId": "vat_li",
@@ -10517,7 +10513,7 @@ const data: any = {
     },
     {
       "province": "Đồng Tháp",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2025,
       "subjectId": "vat_li",
@@ -10527,7 +10523,7 @@ const data: any = {
     },
     {
       "province": "An Giang",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2025,
       "subjectId": "hoa_hoc",
@@ -10537,7 +10533,7 @@ const data: any = {
     },
     {
       "province": "Bắc Ninh",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2025,
       "subjectId": "hoa_hoc",
@@ -10547,7 +10543,7 @@ const data: any = {
     },
     {
       "province": "Cao Bằng",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2025,
       "subjectId": "hoa_hoc",
@@ -10557,7 +10553,7 @@ const data: any = {
     },
     {
       "province": "Cà Mau",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2025,
       "subjectId": "hoa_hoc",
@@ -10567,7 +10563,7 @@ const data: any = {
     },
     {
       "province": "Cần Thơ",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2025,
       "subjectId": "hoa_hoc",
@@ -10587,7 +10583,7 @@ const data: any = {
     },
     {
       "province": "Huế",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2025,
       "subjectId": "hoa_hoc",
@@ -10597,7 +10593,7 @@ const data: any = {
     },
     {
       "province": "Hà Nội",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2025,
       "subjectId": "hoa_hoc",
@@ -10607,7 +10603,7 @@ const data: any = {
     },
     {
       "province": "Hà Tĩnh",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2025,
       "subjectId": "hoa_hoc",
@@ -10617,7 +10613,7 @@ const data: any = {
     },
     {
       "province": "Hưng Yên",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2025,
       "subjectId": "hoa_hoc",
@@ -10627,7 +10623,7 @@ const data: any = {
     },
     {
       "province": "Hải Phòng",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2025,
       "subjectId": "hoa_hoc",
@@ -10647,7 +10643,7 @@ const data: any = {
     },
     {
       "province": "Khánh Hòa",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2025,
       "subjectId": "hoa_hoc",
@@ -10657,7 +10653,7 @@ const data: any = {
     },
     {
       "province": "Lai Châu",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2025,
       "subjectId": "hoa_hoc",
@@ -10667,7 +10663,7 @@ const data: any = {
     },
     {
       "province": "Lào Cai",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2025,
       "subjectId": "hoa_hoc",
@@ -10687,7 +10683,7 @@ const data: any = {
     },
     {
       "province": "Lạng Sơn",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2025,
       "subjectId": "hoa_hoc",
@@ -10697,7 +10693,7 @@ const data: any = {
     },
     {
       "province": "Nghệ An",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2025,
       "subjectId": "hoa_hoc",
@@ -10707,7 +10703,7 @@ const data: any = {
     },
     {
       "province": "Ninh Bình",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2025,
       "subjectId": "hoa_hoc",
@@ -10717,7 +10713,7 @@ const data: any = {
     },
     {
       "province": "Phú Thọ",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2025,
       "subjectId": "hoa_hoc",
@@ -10727,7 +10723,7 @@ const data: any = {
     },
     {
       "province": "Quảng Ngãi",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2025,
       "subjectId": "hoa_hoc",
@@ -10737,7 +10733,7 @@ const data: any = {
     },
     {
       "province": "Quảng Ninh",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2025,
       "subjectId": "hoa_hoc",
@@ -10747,7 +10743,7 @@ const data: any = {
     },
     {
       "province": "Quảng Trị",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2025,
       "subjectId": "hoa_hoc",
@@ -10757,7 +10753,7 @@ const data: any = {
     },
     {
       "province": "Sơn La",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2025,
       "subjectId": "hoa_hoc",
@@ -10767,7 +10763,7 @@ const data: any = {
     },
     {
       "province": "Thanh Hóa",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2025,
       "subjectId": "hoa_hoc",
@@ -10777,7 +10773,7 @@ const data: any = {
     },
     {
       "province": "Thái Nguyên",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2025,
       "subjectId": "hoa_hoc",
@@ -10787,7 +10783,7 @@ const data: any = {
     },
     {
       "province": "Tuyên Quang",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2025,
       "subjectId": "hoa_hoc",
@@ -10807,7 +10803,7 @@ const data: any = {
     },
     {
       "province": "Vĩnh Long",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2025,
       "subjectId": "hoa_hoc",
@@ -10817,7 +10813,7 @@ const data: any = {
     },
     {
       "province": "Điện Biên",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2025,
       "subjectId": "hoa_hoc",
@@ -10827,7 +10823,7 @@ const data: any = {
     },
     {
       "province": "Đà Nẵng",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2025,
       "subjectId": "hoa_hoc",
@@ -10857,7 +10853,7 @@ const data: any = {
     },
     {
       "province": "Đồng Tháp",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2025,
       "subjectId": "hoa_hoc",
@@ -10867,7 +10863,7 @@ const data: any = {
     },
     {
       "province": "An Giang",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2025,
       "subjectId": "sinh_hoc",
@@ -10877,7 +10873,7 @@ const data: any = {
     },
     {
       "province": "Bắc Ninh",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2025,
       "subjectId": "sinh_hoc",
@@ -10887,7 +10883,7 @@ const data: any = {
     },
     {
       "province": "Cao Bằng",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2025,
       "subjectId": "sinh_hoc",
@@ -10897,7 +10893,7 @@ const data: any = {
     },
     {
       "province": "Cà Mau",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2025,
       "subjectId": "sinh_hoc",
@@ -10907,7 +10903,7 @@ const data: any = {
     },
     {
       "province": "Cần Thơ",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2025,
       "subjectId": "sinh_hoc",
@@ -10927,7 +10923,7 @@ const data: any = {
     },
     {
       "province": "Huế",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2025,
       "subjectId": "sinh_hoc",
@@ -10937,7 +10933,7 @@ const data: any = {
     },
     {
       "province": "Hà Nội",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2025,
       "subjectId": "sinh_hoc",
@@ -10947,7 +10943,7 @@ const data: any = {
     },
     {
       "province": "Hà Tĩnh",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2025,
       "subjectId": "sinh_hoc",
@@ -10957,7 +10953,7 @@ const data: any = {
     },
     {
       "province": "Hưng Yên",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2025,
       "subjectId": "sinh_hoc",
@@ -10967,7 +10963,7 @@ const data: any = {
     },
     {
       "province": "Hải Phòng",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2025,
       "subjectId": "sinh_hoc",
@@ -10987,7 +10983,7 @@ const data: any = {
     },
     {
       "province": "Khánh Hòa",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2025,
       "subjectId": "sinh_hoc",
@@ -10997,7 +10993,7 @@ const data: any = {
     },
     {
       "province": "Lai Châu",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2025,
       "subjectId": "sinh_hoc",
@@ -11007,7 +11003,7 @@ const data: any = {
     },
     {
       "province": "Lào Cai",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2025,
       "subjectId": "sinh_hoc",
@@ -11027,7 +11023,7 @@ const data: any = {
     },
     {
       "province": "Lạng Sơn",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2025,
       "subjectId": "sinh_hoc",
@@ -11037,7 +11033,7 @@ const data: any = {
     },
     {
       "province": "Nghệ An",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2025,
       "subjectId": "sinh_hoc",
@@ -11047,7 +11043,7 @@ const data: any = {
     },
     {
       "province": "Ninh Bình",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2025,
       "subjectId": "sinh_hoc",
@@ -11057,7 +11053,7 @@ const data: any = {
     },
     {
       "province": "Phú Thọ",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2025,
       "subjectId": "sinh_hoc",
@@ -11067,7 +11063,7 @@ const data: any = {
     },
     {
       "province": "Quảng Ngãi",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2025,
       "subjectId": "sinh_hoc",
@@ -11077,7 +11073,7 @@ const data: any = {
     },
     {
       "province": "Quảng Ninh",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2025,
       "subjectId": "sinh_hoc",
@@ -11087,7 +11083,7 @@ const data: any = {
     },
     {
       "province": "Quảng Trị",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2025,
       "subjectId": "sinh_hoc",
@@ -11097,7 +11093,7 @@ const data: any = {
     },
     {
       "province": "Sơn La",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2025,
       "subjectId": "sinh_hoc",
@@ -11107,7 +11103,7 @@ const data: any = {
     },
     {
       "province": "Thanh Hóa",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2025,
       "subjectId": "sinh_hoc",
@@ -11117,7 +11113,7 @@ const data: any = {
     },
     {
       "province": "Thái Nguyên",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2025,
       "subjectId": "sinh_hoc",
@@ -11127,7 +11123,7 @@ const data: any = {
     },
     {
       "province": "Tuyên Quang",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2025,
       "subjectId": "sinh_hoc",
@@ -11147,7 +11143,7 @@ const data: any = {
     },
     {
       "province": "Vĩnh Long",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2025,
       "subjectId": "sinh_hoc",
@@ -11157,7 +11153,7 @@ const data: any = {
     },
     {
       "province": "Điện Biên",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2025,
       "subjectId": "sinh_hoc",
@@ -11167,7 +11163,7 @@ const data: any = {
     },
     {
       "province": "Đà Nẵng",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2025,
       "subjectId": "sinh_hoc",
@@ -11197,7 +11193,7 @@ const data: any = {
     },
     {
       "province": "Đồng Tháp",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2025,
       "subjectId": "sinh_hoc",
@@ -11207,7 +11203,7 @@ const data: any = {
     },
     {
       "province": "An Giang",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2025,
       "subjectId": "lich_su",
@@ -11217,7 +11213,7 @@ const data: any = {
     },
     {
       "province": "Bắc Ninh",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2025,
       "subjectId": "lich_su",
@@ -11227,7 +11223,7 @@ const data: any = {
     },
     {
       "province": "Cao Bằng",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2025,
       "subjectId": "lich_su",
@@ -11237,7 +11233,7 @@ const data: any = {
     },
     {
       "province": "Cà Mau",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2025,
       "subjectId": "lich_su",
@@ -11247,7 +11243,7 @@ const data: any = {
     },
     {
       "province": "Cần Thơ",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2025,
       "subjectId": "lich_su",
@@ -11267,7 +11263,7 @@ const data: any = {
     },
     {
       "province": "Huế",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2025,
       "subjectId": "lich_su",
@@ -11277,7 +11273,7 @@ const data: any = {
     },
     {
       "province": "Hà Nội",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2025,
       "subjectId": "lich_su",
@@ -11287,7 +11283,7 @@ const data: any = {
     },
     {
       "province": "Hà Tĩnh",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2025,
       "subjectId": "lich_su",
@@ -11297,7 +11293,7 @@ const data: any = {
     },
     {
       "province": "Hưng Yên",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2025,
       "subjectId": "lich_su",
@@ -11307,7 +11303,7 @@ const data: any = {
     },
     {
       "province": "Hải Phòng",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2025,
       "subjectId": "lich_su",
@@ -11327,7 +11323,7 @@ const data: any = {
     },
     {
       "province": "Khánh Hòa",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2025,
       "subjectId": "lich_su",
@@ -11337,7 +11333,7 @@ const data: any = {
     },
     {
       "province": "Lai Châu",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2025,
       "subjectId": "lich_su",
@@ -11347,7 +11343,7 @@ const data: any = {
     },
     {
       "province": "Lào Cai",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2025,
       "subjectId": "lich_su",
@@ -11367,7 +11363,7 @@ const data: any = {
     },
     {
       "province": "Lạng Sơn",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2025,
       "subjectId": "lich_su",
@@ -11377,7 +11373,7 @@ const data: any = {
     },
     {
       "province": "Nghệ An",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2025,
       "subjectId": "lich_su",
@@ -11387,7 +11383,7 @@ const data: any = {
     },
     {
       "province": "Ninh Bình",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2025,
       "subjectId": "lich_su",
@@ -11397,7 +11393,7 @@ const data: any = {
     },
     {
       "province": "Phú Thọ",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2025,
       "subjectId": "lich_su",
@@ -11407,7 +11403,7 @@ const data: any = {
     },
     {
       "province": "Quảng Ngãi",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2025,
       "subjectId": "lich_su",
@@ -11417,7 +11413,7 @@ const data: any = {
     },
     {
       "province": "Quảng Ninh",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2025,
       "subjectId": "lich_su",
@@ -11427,7 +11423,7 @@ const data: any = {
     },
     {
       "province": "Quảng Trị",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2025,
       "subjectId": "lich_su",
@@ -11437,7 +11433,7 @@ const data: any = {
     },
     {
       "province": "Sơn La",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2025,
       "subjectId": "lich_su",
@@ -11447,7 +11443,7 @@ const data: any = {
     },
     {
       "province": "Thanh Hóa",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2025,
       "subjectId": "lich_su",
@@ -11457,7 +11453,7 @@ const data: any = {
     },
     {
       "province": "Thái Nguyên",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2025,
       "subjectId": "lich_su",
@@ -11467,7 +11463,7 @@ const data: any = {
     },
     {
       "province": "Tuyên Quang",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2025,
       "subjectId": "lich_su",
@@ -11487,7 +11483,7 @@ const data: any = {
     },
     {
       "province": "Vĩnh Long",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2025,
       "subjectId": "lich_su",
@@ -11497,7 +11493,7 @@ const data: any = {
     },
     {
       "province": "Điện Biên",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2025,
       "subjectId": "lich_su",
@@ -11507,7 +11503,7 @@ const data: any = {
     },
     {
       "province": "Đà Nẵng",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2025,
       "subjectId": "lich_su",
@@ -11537,7 +11533,7 @@ const data: any = {
     },
     {
       "province": "Đồng Tháp",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2025,
       "subjectId": "lich_su",
@@ -11547,7 +11543,7 @@ const data: any = {
     },
     {
       "province": "An Giang",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2025,
       "subjectId": "dia_li",
@@ -11557,7 +11553,7 @@ const data: any = {
     },
     {
       "province": "Bắc Ninh",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2025,
       "subjectId": "dia_li",
@@ -11567,7 +11563,7 @@ const data: any = {
     },
     {
       "province": "Cao Bằng",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2025,
       "subjectId": "dia_li",
@@ -11577,7 +11573,7 @@ const data: any = {
     },
     {
       "province": "Cà Mau",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2025,
       "subjectId": "dia_li",
@@ -11587,7 +11583,7 @@ const data: any = {
     },
     {
       "province": "Cần Thơ",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2025,
       "subjectId": "dia_li",
@@ -11607,7 +11603,7 @@ const data: any = {
     },
     {
       "province": "Huế",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2025,
       "subjectId": "dia_li",
@@ -11617,7 +11613,7 @@ const data: any = {
     },
     {
       "province": "Hà Nội",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2025,
       "subjectId": "dia_li",
@@ -11627,7 +11623,7 @@ const data: any = {
     },
     {
       "province": "Hà Tĩnh",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2025,
       "subjectId": "dia_li",
@@ -11637,7 +11633,7 @@ const data: any = {
     },
     {
       "province": "Hưng Yên",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2025,
       "subjectId": "dia_li",
@@ -11647,7 +11643,7 @@ const data: any = {
     },
     {
       "province": "Hải Phòng",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2025,
       "subjectId": "dia_li",
@@ -11667,7 +11663,7 @@ const data: any = {
     },
     {
       "province": "Khánh Hòa",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2025,
       "subjectId": "dia_li",
@@ -11677,7 +11673,7 @@ const data: any = {
     },
     {
       "province": "Lai Châu",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2025,
       "subjectId": "dia_li",
@@ -11687,7 +11683,7 @@ const data: any = {
     },
     {
       "province": "Lào Cai",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2025,
       "subjectId": "dia_li",
@@ -11707,7 +11703,7 @@ const data: any = {
     },
     {
       "province": "Lạng Sơn",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2025,
       "subjectId": "dia_li",
@@ -11717,7 +11713,7 @@ const data: any = {
     },
     {
       "province": "Nghệ An",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2025,
       "subjectId": "dia_li",
@@ -11727,7 +11723,7 @@ const data: any = {
     },
     {
       "province": "Ninh Bình",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2025,
       "subjectId": "dia_li",
@@ -11737,7 +11733,7 @@ const data: any = {
     },
     {
       "province": "Phú Thọ",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2025,
       "subjectId": "dia_li",
@@ -11747,7 +11743,7 @@ const data: any = {
     },
     {
       "province": "Quảng Ngãi",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2025,
       "subjectId": "dia_li",
@@ -11757,7 +11753,7 @@ const data: any = {
     },
     {
       "province": "Quảng Ninh",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2025,
       "subjectId": "dia_li",
@@ -11767,7 +11763,7 @@ const data: any = {
     },
     {
       "province": "Quảng Trị",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2025,
       "subjectId": "dia_li",
@@ -11777,7 +11773,7 @@ const data: any = {
     },
     {
       "province": "Sơn La",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2025,
       "subjectId": "dia_li",
@@ -11787,7 +11783,7 @@ const data: any = {
     },
     {
       "province": "Thanh Hóa",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2025,
       "subjectId": "dia_li",
@@ -11797,7 +11793,7 @@ const data: any = {
     },
     {
       "province": "Thái Nguyên",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2025,
       "subjectId": "dia_li",
@@ -11807,7 +11803,7 @@ const data: any = {
     },
     {
       "province": "Tuyên Quang",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2025,
       "subjectId": "dia_li",
@@ -11827,7 +11823,7 @@ const data: any = {
     },
     {
       "province": "Vĩnh Long",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2025,
       "subjectId": "dia_li",
@@ -11837,7 +11833,7 @@ const data: any = {
     },
     {
       "province": "Điện Biên",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2025,
       "subjectId": "dia_li",
@@ -11847,7 +11843,7 @@ const data: any = {
     },
     {
       "province": "Đà Nẵng",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2025,
       "subjectId": "dia_li",
@@ -11877,7 +11873,7 @@ const data: any = {
     },
     {
       "province": "Đồng Tháp",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2025,
       "subjectId": "dia_li",
@@ -11887,7 +11883,7 @@ const data: any = {
     },
     {
       "province": "An Giang",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2025,
       "subjectId": "gdcd",
@@ -11897,7 +11893,7 @@ const data: any = {
     },
     {
       "province": "Bắc Ninh",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2025,
       "subjectId": "gdcd",
@@ -11907,7 +11903,7 @@ const data: any = {
     },
     {
       "province": "Cao Bằng",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2025,
       "subjectId": "gdcd",
@@ -11917,7 +11913,7 @@ const data: any = {
     },
     {
       "province": "Cà Mau",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2025,
       "subjectId": "gdcd",
@@ -11927,7 +11923,7 @@ const data: any = {
     },
     {
       "province": "Cần Thơ",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2025,
       "subjectId": "gdcd",
@@ -11947,7 +11943,7 @@ const data: any = {
     },
     {
       "province": "Huế",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2025,
       "subjectId": "gdcd",
@@ -11957,7 +11953,7 @@ const data: any = {
     },
     {
       "province": "Hà Nội",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2025,
       "subjectId": "gdcd",
@@ -11967,7 +11963,7 @@ const data: any = {
     },
     {
       "province": "Hà Tĩnh",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2025,
       "subjectId": "gdcd",
@@ -11977,7 +11973,7 @@ const data: any = {
     },
     {
       "province": "Hưng Yên",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2025,
       "subjectId": "gdcd",
@@ -11987,7 +11983,7 @@ const data: any = {
     },
     {
       "province": "Hải Phòng",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2025,
       "subjectId": "gdcd",
@@ -12007,7 +12003,7 @@ const data: any = {
     },
     {
       "province": "Khánh Hòa",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2025,
       "subjectId": "gdcd",
@@ -12017,7 +12013,7 @@ const data: any = {
     },
     {
       "province": "Lai Châu",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2025,
       "subjectId": "gdcd",
@@ -12027,7 +12023,7 @@ const data: any = {
     },
     {
       "province": "Lào Cai",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2025,
       "subjectId": "gdcd",
@@ -12047,7 +12043,7 @@ const data: any = {
     },
     {
       "province": "Lạng Sơn",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2025,
       "subjectId": "gdcd",
@@ -12057,7 +12053,7 @@ const data: any = {
     },
     {
       "province": "Nghệ An",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2025,
       "subjectId": "gdcd",
@@ -12067,7 +12063,7 @@ const data: any = {
     },
     {
       "province": "Ninh Bình",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2025,
       "subjectId": "gdcd",
@@ -12077,7 +12073,7 @@ const data: any = {
     },
     {
       "province": "Phú Thọ",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2025,
       "subjectId": "gdcd",
@@ -12087,7 +12083,7 @@ const data: any = {
     },
     {
       "province": "Quảng Ngãi",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2025,
       "subjectId": "gdcd",
@@ -12097,7 +12093,7 @@ const data: any = {
     },
     {
       "province": "Quảng Ninh",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2025,
       "subjectId": "gdcd",
@@ -12107,7 +12103,7 @@ const data: any = {
     },
     {
       "province": "Quảng Trị",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2025,
       "subjectId": "gdcd",
@@ -12117,7 +12113,7 @@ const data: any = {
     },
     {
       "province": "Sơn La",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2025,
       "subjectId": "gdcd",
@@ -12127,7 +12123,7 @@ const data: any = {
     },
     {
       "province": "Thanh Hóa",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2025,
       "subjectId": "gdcd",
@@ -12137,7 +12133,7 @@ const data: any = {
     },
     {
       "province": "Thái Nguyên",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2025,
       "subjectId": "gdcd",
@@ -12147,7 +12143,7 @@ const data: any = {
     },
     {
       "province": "Tuyên Quang",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2025,
       "subjectId": "gdcd",
@@ -12167,7 +12163,7 @@ const data: any = {
     },
     {
       "province": "Vĩnh Long",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2025,
       "subjectId": "gdcd",
@@ -12177,7 +12173,7 @@ const data: any = {
     },
     {
       "province": "Điện Biên",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2025,
       "subjectId": "gdcd",
@@ -12187,7 +12183,7 @@ const data: any = {
     },
     {
       "province": "Đà Nẵng",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2025,
       "subjectId": "gdcd",
@@ -12217,7 +12213,7 @@ const data: any = {
     },
     {
       "province": "Đồng Tháp",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2025,
       "subjectId": "gdcd",
@@ -12227,7 +12223,7 @@ const data: any = {
     },
     {
       "province": "Bắc Ninh",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2026,
       "subjectId": "toan",
@@ -12237,7 +12233,7 @@ const data: any = {
     },
     {
       "province": "Cao Bằng",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2026,
       "subjectId": "toan",
@@ -12247,7 +12243,7 @@ const data: any = {
     },
     {
       "province": "Cà Mau",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2026,
       "subjectId": "toan",
@@ -12257,7 +12253,7 @@ const data: any = {
     },
     {
       "province": "Cần Thơ",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2026,
       "subjectId": "toan",
@@ -12277,7 +12273,7 @@ const data: any = {
     },
     {
       "province": "Huế",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2026,
       "subjectId": "toan",
@@ -12287,7 +12283,7 @@ const data: any = {
     },
     {
       "province": "Hà Nội",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2026,
       "subjectId": "toan",
@@ -12297,7 +12293,7 @@ const data: any = {
     },
     {
       "province": "Hà Tĩnh",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2026,
       "subjectId": "toan",
@@ -12307,7 +12303,7 @@ const data: any = {
     },
     {
       "province": "Hưng Yên",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2026,
       "subjectId": "toan",
@@ -12317,7 +12313,7 @@ const data: any = {
     },
     {
       "province": "Hải Phòng",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2026,
       "subjectId": "toan",
@@ -12337,7 +12333,7 @@ const data: any = {
     },
     {
       "province": "Khánh Hòa",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2026,
       "subjectId": "toan",
@@ -12347,7 +12343,7 @@ const data: any = {
     },
     {
       "province": "Lai Châu",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2026,
       "subjectId": "toan",
@@ -12357,7 +12353,7 @@ const data: any = {
     },
     {
       "province": "Lào Cai",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2026,
       "subjectId": "toan",
@@ -12377,7 +12373,7 @@ const data: any = {
     },
     {
       "province": "Lạng Sơn",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2026,
       "subjectId": "toan",
@@ -12387,7 +12383,7 @@ const data: any = {
     },
     {
       "province": "Nghệ An",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2026,
       "subjectId": "toan",
@@ -12397,7 +12393,7 @@ const data: any = {
     },
     {
       "province": "Ninh Bình",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2026,
       "subjectId": "toan",
@@ -12407,7 +12403,7 @@ const data: any = {
     },
     {
       "province": "Phú Thọ",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2026,
       "subjectId": "toan",
@@ -12417,7 +12413,7 @@ const data: any = {
     },
     {
       "province": "Quảng Ngãi",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2026,
       "subjectId": "toan",
@@ -12427,7 +12423,7 @@ const data: any = {
     },
     {
       "province": "Quảng Ninh",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2026,
       "subjectId": "toan",
@@ -12437,7 +12433,7 @@ const data: any = {
     },
     {
       "province": "Quảng Trị",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2026,
       "subjectId": "toan",
@@ -12447,7 +12443,7 @@ const data: any = {
     },
     {
       "province": "Sơn La",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2026,
       "subjectId": "toan",
@@ -12457,7 +12453,7 @@ const data: any = {
     },
     {
       "province": "Thanh Hóa",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2026,
       "subjectId": "toan",
@@ -12467,7 +12463,7 @@ const data: any = {
     },
     {
       "province": "Thái Nguyên",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2026,
       "subjectId": "toan",
@@ -12477,7 +12473,7 @@ const data: any = {
     },
     {
       "province": "Tuyên Quang",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2026,
       "subjectId": "toan",
@@ -12497,7 +12493,7 @@ const data: any = {
     },
     {
       "province": "Vĩnh Long",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2026,
       "subjectId": "toan",
@@ -12507,7 +12503,7 @@ const data: any = {
     },
     {
       "province": "Điện Biên",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2026,
       "subjectId": "toan",
@@ -12517,7 +12513,7 @@ const data: any = {
     },
     {
       "province": "Đà Nẵng",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2026,
       "subjectId": "toan",
@@ -12547,7 +12543,7 @@ const data: any = {
     },
     {
       "province": "Bắc Ninh",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2026,
       "subjectId": "ngu_van",
@@ -12557,7 +12553,7 @@ const data: any = {
     },
     {
       "province": "Cao Bằng",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2026,
       "subjectId": "ngu_van",
@@ -12567,7 +12563,7 @@ const data: any = {
     },
     {
       "province": "Cà Mau",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2026,
       "subjectId": "ngu_van",
@@ -12577,7 +12573,7 @@ const data: any = {
     },
     {
       "province": "Cần Thơ",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2026,
       "subjectId": "ngu_van",
@@ -12597,7 +12593,7 @@ const data: any = {
     },
     {
       "province": "Huế",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2026,
       "subjectId": "ngu_van",
@@ -12607,7 +12603,7 @@ const data: any = {
     },
     {
       "province": "Hà Nội",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2026,
       "subjectId": "ngu_van",
@@ -12617,7 +12613,7 @@ const data: any = {
     },
     {
       "province": "Hà Tĩnh",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2026,
       "subjectId": "ngu_van",
@@ -12627,7 +12623,7 @@ const data: any = {
     },
     {
       "province": "Hưng Yên",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2026,
       "subjectId": "ngu_van",
@@ -12637,7 +12633,7 @@ const data: any = {
     },
     {
       "province": "Hải Phòng",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2026,
       "subjectId": "ngu_van",
@@ -12657,7 +12653,7 @@ const data: any = {
     },
     {
       "province": "Khánh Hòa",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2026,
       "subjectId": "ngu_van",
@@ -12667,7 +12663,7 @@ const data: any = {
     },
     {
       "province": "Lai Châu",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2026,
       "subjectId": "ngu_van",
@@ -12677,7 +12673,7 @@ const data: any = {
     },
     {
       "province": "Lào Cai",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2026,
       "subjectId": "ngu_van",
@@ -12697,7 +12693,7 @@ const data: any = {
     },
     {
       "province": "Lạng Sơn",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2026,
       "subjectId": "ngu_van",
@@ -12707,7 +12703,7 @@ const data: any = {
     },
     {
       "province": "Nghệ An",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2026,
       "subjectId": "ngu_van",
@@ -12717,7 +12713,7 @@ const data: any = {
     },
     {
       "province": "Ninh Bình",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2026,
       "subjectId": "ngu_van",
@@ -12727,7 +12723,7 @@ const data: any = {
     },
     {
       "province": "Phú Thọ",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2026,
       "subjectId": "ngu_van",
@@ -12737,7 +12733,7 @@ const data: any = {
     },
     {
       "province": "Quảng Ngãi",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2026,
       "subjectId": "ngu_van",
@@ -12747,7 +12743,7 @@ const data: any = {
     },
     {
       "province": "Quảng Ninh",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2026,
       "subjectId": "ngu_van",
@@ -12757,7 +12753,7 @@ const data: any = {
     },
     {
       "province": "Quảng Trị",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2026,
       "subjectId": "ngu_van",
@@ -12767,7 +12763,7 @@ const data: any = {
     },
     {
       "province": "Sơn La",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2026,
       "subjectId": "ngu_van",
@@ -12777,7 +12773,7 @@ const data: any = {
     },
     {
       "province": "Thanh Hóa",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2026,
       "subjectId": "ngu_van",
@@ -12787,7 +12783,7 @@ const data: any = {
     },
     {
       "province": "Thái Nguyên",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2026,
       "subjectId": "ngu_van",
@@ -12797,7 +12793,7 @@ const data: any = {
     },
     {
       "province": "Tuyên Quang",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2026,
       "subjectId": "ngu_van",
@@ -12817,7 +12813,7 @@ const data: any = {
     },
     {
       "province": "Vĩnh Long",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2026,
       "subjectId": "ngu_van",
@@ -12827,7 +12823,7 @@ const data: any = {
     },
     {
       "province": "Điện Biên",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2026,
       "subjectId": "ngu_van",
@@ -12837,7 +12833,7 @@ const data: any = {
     },
     {
       "province": "Đà Nẵng",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2026,
       "subjectId": "ngu_van",
@@ -12867,7 +12863,7 @@ const data: any = {
     },
     {
       "province": "Bắc Ninh",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2026,
       "subjectId": "vat_li",
@@ -12877,7 +12873,7 @@ const data: any = {
     },
     {
       "province": "Cao Bằng",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2026,
       "subjectId": "vat_li",
@@ -12887,7 +12883,7 @@ const data: any = {
     },
     {
       "province": "Cà Mau",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2026,
       "subjectId": "vat_li",
@@ -12897,7 +12893,7 @@ const data: any = {
     },
     {
       "province": "Cần Thơ",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2026,
       "subjectId": "vat_li",
@@ -12917,7 +12913,7 @@ const data: any = {
     },
     {
       "province": "Huế",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2026,
       "subjectId": "vat_li",
@@ -12927,7 +12923,7 @@ const data: any = {
     },
     {
       "province": "Hà Nội",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2026,
       "subjectId": "vat_li",
@@ -12937,7 +12933,7 @@ const data: any = {
     },
     {
       "province": "Hà Tĩnh",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2026,
       "subjectId": "vat_li",
@@ -12947,7 +12943,7 @@ const data: any = {
     },
     {
       "province": "Hưng Yên",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2026,
       "subjectId": "vat_li",
@@ -12957,7 +12953,7 @@ const data: any = {
     },
     {
       "province": "Hải Phòng",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2026,
       "subjectId": "vat_li",
@@ -12977,7 +12973,7 @@ const data: any = {
     },
     {
       "province": "Khánh Hòa",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2026,
       "subjectId": "vat_li",
@@ -12987,7 +12983,7 @@ const data: any = {
     },
     {
       "province": "Lai Châu",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2026,
       "subjectId": "vat_li",
@@ -12997,7 +12993,7 @@ const data: any = {
     },
     {
       "province": "Lào Cai",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2026,
       "subjectId": "vat_li",
@@ -13017,7 +13013,7 @@ const data: any = {
     },
     {
       "province": "Lạng Sơn",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2026,
       "subjectId": "vat_li",
@@ -13027,7 +13023,7 @@ const data: any = {
     },
     {
       "province": "Nghệ An",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2026,
       "subjectId": "vat_li",
@@ -13037,7 +13033,7 @@ const data: any = {
     },
     {
       "province": "Ninh Bình",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2026,
       "subjectId": "vat_li",
@@ -13047,7 +13043,7 @@ const data: any = {
     },
     {
       "province": "Phú Thọ",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2026,
       "subjectId": "vat_li",
@@ -13057,7 +13053,7 @@ const data: any = {
     },
     {
       "province": "Quảng Ngãi",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2026,
       "subjectId": "vat_li",
@@ -13067,7 +13063,7 @@ const data: any = {
     },
     {
       "province": "Quảng Ninh",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2026,
       "subjectId": "vat_li",
@@ -13077,7 +13073,7 @@ const data: any = {
     },
     {
       "province": "Quảng Trị",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2026,
       "subjectId": "vat_li",
@@ -13087,7 +13083,7 @@ const data: any = {
     },
     {
       "province": "Sơn La",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2026,
       "subjectId": "vat_li",
@@ -13097,7 +13093,7 @@ const data: any = {
     },
     {
       "province": "Thanh Hóa",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2026,
       "subjectId": "vat_li",
@@ -13107,7 +13103,7 @@ const data: any = {
     },
     {
       "province": "Thái Nguyên",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2026,
       "subjectId": "vat_li",
@@ -13117,7 +13113,7 @@ const data: any = {
     },
     {
       "province": "Tuyên Quang",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2026,
       "subjectId": "vat_li",
@@ -13137,7 +13133,7 @@ const data: any = {
     },
     {
       "province": "Vĩnh Long",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2026,
       "subjectId": "vat_li",
@@ -13147,7 +13143,7 @@ const data: any = {
     },
     {
       "province": "Điện Biên",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2026,
       "subjectId": "vat_li",
@@ -13157,7 +13153,7 @@ const data: any = {
     },
     {
       "province": "Đà Nẵng",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2026,
       "subjectId": "vat_li",
@@ -13187,7 +13183,7 @@ const data: any = {
     },
     {
       "province": "Bắc Ninh",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2026,
       "subjectId": "hoa_hoc",
@@ -13197,7 +13193,7 @@ const data: any = {
     },
     {
       "province": "Cao Bằng",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2026,
       "subjectId": "hoa_hoc",
@@ -13207,7 +13203,7 @@ const data: any = {
     },
     {
       "province": "Cà Mau",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2026,
       "subjectId": "hoa_hoc",
@@ -13217,7 +13213,7 @@ const data: any = {
     },
     {
       "province": "Cần Thơ",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2026,
       "subjectId": "hoa_hoc",
@@ -13237,7 +13233,7 @@ const data: any = {
     },
     {
       "province": "Huế",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2026,
       "subjectId": "hoa_hoc",
@@ -13247,7 +13243,7 @@ const data: any = {
     },
     {
       "province": "Hà Nội",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2026,
       "subjectId": "hoa_hoc",
@@ -13257,7 +13253,7 @@ const data: any = {
     },
     {
       "province": "Hà Tĩnh",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2026,
       "subjectId": "hoa_hoc",
@@ -13267,7 +13263,7 @@ const data: any = {
     },
     {
       "province": "Hưng Yên",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2026,
       "subjectId": "hoa_hoc",
@@ -13277,7 +13273,7 @@ const data: any = {
     },
     {
       "province": "Hải Phòng",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2026,
       "subjectId": "hoa_hoc",
@@ -13297,7 +13293,7 @@ const data: any = {
     },
     {
       "province": "Khánh Hòa",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2026,
       "subjectId": "hoa_hoc",
@@ -13307,7 +13303,7 @@ const data: any = {
     },
     {
       "province": "Lai Châu",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2026,
       "subjectId": "hoa_hoc",
@@ -13317,7 +13313,7 @@ const data: any = {
     },
     {
       "province": "Lào Cai",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2026,
       "subjectId": "hoa_hoc",
@@ -13337,7 +13333,7 @@ const data: any = {
     },
     {
       "province": "Lạng Sơn",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2026,
       "subjectId": "hoa_hoc",
@@ -13347,7 +13343,7 @@ const data: any = {
     },
     {
       "province": "Nghệ An",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2026,
       "subjectId": "hoa_hoc",
@@ -13357,7 +13353,7 @@ const data: any = {
     },
     {
       "province": "Ninh Bình",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2026,
       "subjectId": "hoa_hoc",
@@ -13367,7 +13363,7 @@ const data: any = {
     },
     {
       "province": "Phú Thọ",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2026,
       "subjectId": "hoa_hoc",
@@ -13377,7 +13373,7 @@ const data: any = {
     },
     {
       "province": "Quảng Ngãi",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2026,
       "subjectId": "hoa_hoc",
@@ -13387,7 +13383,7 @@ const data: any = {
     },
     {
       "province": "Quảng Ninh",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2026,
       "subjectId": "hoa_hoc",
@@ -13397,7 +13393,7 @@ const data: any = {
     },
     {
       "province": "Quảng Trị",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2026,
       "subjectId": "hoa_hoc",
@@ -13407,7 +13403,7 @@ const data: any = {
     },
     {
       "province": "Sơn La",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2026,
       "subjectId": "hoa_hoc",
@@ -13417,7 +13413,7 @@ const data: any = {
     },
     {
       "province": "Thanh Hóa",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2026,
       "subjectId": "hoa_hoc",
@@ -13427,7 +13423,7 @@ const data: any = {
     },
     {
       "province": "Thái Nguyên",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2026,
       "subjectId": "hoa_hoc",
@@ -13437,7 +13433,7 @@ const data: any = {
     },
     {
       "province": "Tuyên Quang",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2026,
       "subjectId": "hoa_hoc",
@@ -13457,7 +13453,7 @@ const data: any = {
     },
     {
       "province": "Vĩnh Long",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2026,
       "subjectId": "hoa_hoc",
@@ -13467,7 +13463,7 @@ const data: any = {
     },
     {
       "province": "Điện Biên",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2026,
       "subjectId": "hoa_hoc",
@@ -13477,7 +13473,7 @@ const data: any = {
     },
     {
       "province": "Đà Nẵng",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2026,
       "subjectId": "hoa_hoc",
@@ -13507,7 +13503,7 @@ const data: any = {
     },
     {
       "province": "Bắc Ninh",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2026,
       "subjectId": "sinh_hoc",
@@ -13517,7 +13513,7 @@ const data: any = {
     },
     {
       "province": "Cao Bằng",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2026,
       "subjectId": "sinh_hoc",
@@ -13527,7 +13523,7 @@ const data: any = {
     },
     {
       "province": "Cà Mau",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2026,
       "subjectId": "sinh_hoc",
@@ -13537,7 +13533,7 @@ const data: any = {
     },
     {
       "province": "Cần Thơ",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2026,
       "subjectId": "sinh_hoc",
@@ -13557,7 +13553,7 @@ const data: any = {
     },
     {
       "province": "Huế",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2026,
       "subjectId": "sinh_hoc",
@@ -13567,7 +13563,7 @@ const data: any = {
     },
     {
       "province": "Hà Nội",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2026,
       "subjectId": "sinh_hoc",
@@ -13577,7 +13573,7 @@ const data: any = {
     },
     {
       "province": "Hà Tĩnh",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2026,
       "subjectId": "sinh_hoc",
@@ -13587,7 +13583,7 @@ const data: any = {
     },
     {
       "province": "Hưng Yên",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2026,
       "subjectId": "sinh_hoc",
@@ -13597,7 +13593,7 @@ const data: any = {
     },
     {
       "province": "Hải Phòng",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2026,
       "subjectId": "sinh_hoc",
@@ -13617,7 +13613,7 @@ const data: any = {
     },
     {
       "province": "Khánh Hòa",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2026,
       "subjectId": "sinh_hoc",
@@ -13627,7 +13623,7 @@ const data: any = {
     },
     {
       "province": "Lai Châu",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2026,
       "subjectId": "sinh_hoc",
@@ -13637,7 +13633,7 @@ const data: any = {
     },
     {
       "province": "Lào Cai",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2026,
       "subjectId": "sinh_hoc",
@@ -13657,7 +13653,7 @@ const data: any = {
     },
     {
       "province": "Lạng Sơn",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2026,
       "subjectId": "sinh_hoc",
@@ -13667,7 +13663,7 @@ const data: any = {
     },
     {
       "province": "Nghệ An",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2026,
       "subjectId": "sinh_hoc",
@@ -13677,7 +13673,7 @@ const data: any = {
     },
     {
       "province": "Ninh Bình",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2026,
       "subjectId": "sinh_hoc",
@@ -13687,7 +13683,7 @@ const data: any = {
     },
     {
       "province": "Phú Thọ",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2026,
       "subjectId": "sinh_hoc",
@@ -13697,7 +13693,7 @@ const data: any = {
     },
     {
       "province": "Quảng Ngãi",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2026,
       "subjectId": "sinh_hoc",
@@ -13707,7 +13703,7 @@ const data: any = {
     },
     {
       "province": "Quảng Ninh",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2026,
       "subjectId": "sinh_hoc",
@@ -13717,7 +13713,7 @@ const data: any = {
     },
     {
       "province": "Quảng Trị",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2026,
       "subjectId": "sinh_hoc",
@@ -13727,7 +13723,7 @@ const data: any = {
     },
     {
       "province": "Sơn La",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2026,
       "subjectId": "sinh_hoc",
@@ -13737,7 +13733,7 @@ const data: any = {
     },
     {
       "province": "Thanh Hóa",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2026,
       "subjectId": "sinh_hoc",
@@ -13747,7 +13743,7 @@ const data: any = {
     },
     {
       "province": "Thái Nguyên",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2026,
       "subjectId": "sinh_hoc",
@@ -13757,7 +13753,7 @@ const data: any = {
     },
     {
       "province": "Tuyên Quang",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2026,
       "subjectId": "sinh_hoc",
@@ -13777,7 +13773,7 @@ const data: any = {
     },
     {
       "province": "Vĩnh Long",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2026,
       "subjectId": "sinh_hoc",
@@ -13787,7 +13783,7 @@ const data: any = {
     },
     {
       "province": "Điện Biên",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2026,
       "subjectId": "sinh_hoc",
@@ -13797,7 +13793,7 @@ const data: any = {
     },
     {
       "province": "Đà Nẵng",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2026,
       "subjectId": "sinh_hoc",
@@ -13827,7 +13823,7 @@ const data: any = {
     },
     {
       "province": "Bắc Ninh",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2026,
       "subjectId": "lich_su",
@@ -13837,7 +13833,7 @@ const data: any = {
     },
     {
       "province": "Cao Bằng",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2026,
       "subjectId": "lich_su",
@@ -13847,7 +13843,7 @@ const data: any = {
     },
     {
       "province": "Cà Mau",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2026,
       "subjectId": "lich_su",
@@ -13857,7 +13853,7 @@ const data: any = {
     },
     {
       "province": "Cần Thơ",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2026,
       "subjectId": "lich_su",
@@ -13877,7 +13873,7 @@ const data: any = {
     },
     {
       "province": "Huế",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2026,
       "subjectId": "lich_su",
@@ -13887,7 +13883,7 @@ const data: any = {
     },
     {
       "province": "Hà Nội",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2026,
       "subjectId": "lich_su",
@@ -13897,7 +13893,7 @@ const data: any = {
     },
     {
       "province": "Hà Tĩnh",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2026,
       "subjectId": "lich_su",
@@ -13907,7 +13903,7 @@ const data: any = {
     },
     {
       "province": "Hưng Yên",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2026,
       "subjectId": "lich_su",
@@ -13917,7 +13913,7 @@ const data: any = {
     },
     {
       "province": "Hải Phòng",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2026,
       "subjectId": "lich_su",
@@ -13937,7 +13933,7 @@ const data: any = {
     },
     {
       "province": "Khánh Hòa",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2026,
       "subjectId": "lich_su",
@@ -13947,7 +13943,7 @@ const data: any = {
     },
     {
       "province": "Lai Châu",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2026,
       "subjectId": "lich_su",
@@ -13957,7 +13953,7 @@ const data: any = {
     },
     {
       "province": "Lào Cai",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2026,
       "subjectId": "lich_su",
@@ -13977,7 +13973,7 @@ const data: any = {
     },
     {
       "province": "Lạng Sơn",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2026,
       "subjectId": "lich_su",
@@ -13987,7 +13983,7 @@ const data: any = {
     },
     {
       "province": "Nghệ An",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2026,
       "subjectId": "lich_su",
@@ -13997,7 +13993,7 @@ const data: any = {
     },
     {
       "province": "Ninh Bình",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2026,
       "subjectId": "lich_su",
@@ -14007,7 +14003,7 @@ const data: any = {
     },
     {
       "province": "Phú Thọ",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2026,
       "subjectId": "lich_su",
@@ -14017,7 +14013,7 @@ const data: any = {
     },
     {
       "province": "Quảng Ngãi",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2026,
       "subjectId": "lich_su",
@@ -14027,7 +14023,7 @@ const data: any = {
     },
     {
       "province": "Quảng Ninh",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2026,
       "subjectId": "lich_su",
@@ -14037,7 +14033,7 @@ const data: any = {
     },
     {
       "province": "Quảng Trị",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2026,
       "subjectId": "lich_su",
@@ -14047,7 +14043,7 @@ const data: any = {
     },
     {
       "province": "Sơn La",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2026,
       "subjectId": "lich_su",
@@ -14057,7 +14053,7 @@ const data: any = {
     },
     {
       "province": "Thanh Hóa",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2026,
       "subjectId": "lich_su",
@@ -14067,7 +14063,7 @@ const data: any = {
     },
     {
       "province": "Thái Nguyên",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2026,
       "subjectId": "lich_su",
@@ -14077,7 +14073,7 @@ const data: any = {
     },
     {
       "province": "Tuyên Quang",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2026,
       "subjectId": "lich_su",
@@ -14097,7 +14093,7 @@ const data: any = {
     },
     {
       "province": "Vĩnh Long",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2026,
       "subjectId": "lich_su",
@@ -14107,7 +14103,7 @@ const data: any = {
     },
     {
       "province": "Điện Biên",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2026,
       "subjectId": "lich_su",
@@ -14117,7 +14113,7 @@ const data: any = {
     },
     {
       "province": "Đà Nẵng",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2026,
       "subjectId": "lich_su",
@@ -14147,7 +14143,7 @@ const data: any = {
     },
     {
       "province": "Bắc Ninh",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2026,
       "subjectId": "dia_li",
@@ -14157,7 +14153,7 @@ const data: any = {
     },
     {
       "province": "Cao Bằng",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2026,
       "subjectId": "dia_li",
@@ -14167,7 +14163,7 @@ const data: any = {
     },
     {
       "province": "Cà Mau",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2026,
       "subjectId": "dia_li",
@@ -14177,7 +14173,7 @@ const data: any = {
     },
     {
       "province": "Cần Thơ",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2026,
       "subjectId": "dia_li",
@@ -14197,7 +14193,7 @@ const data: any = {
     },
     {
       "province": "Huế",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2026,
       "subjectId": "dia_li",
@@ -14207,7 +14203,7 @@ const data: any = {
     },
     {
       "province": "Hà Nội",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2026,
       "subjectId": "dia_li",
@@ -14217,7 +14213,7 @@ const data: any = {
     },
     {
       "province": "Hà Tĩnh",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2026,
       "subjectId": "dia_li",
@@ -14227,7 +14223,7 @@ const data: any = {
     },
     {
       "province": "Hưng Yên",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2026,
       "subjectId": "dia_li",
@@ -14237,7 +14233,7 @@ const data: any = {
     },
     {
       "province": "Hải Phòng",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2026,
       "subjectId": "dia_li",
@@ -14257,7 +14253,7 @@ const data: any = {
     },
     {
       "province": "Khánh Hòa",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2026,
       "subjectId": "dia_li",
@@ -14267,7 +14263,7 @@ const data: any = {
     },
     {
       "province": "Lai Châu",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2026,
       "subjectId": "dia_li",
@@ -14277,7 +14273,7 @@ const data: any = {
     },
     {
       "province": "Lào Cai",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2026,
       "subjectId": "dia_li",
@@ -14297,7 +14293,7 @@ const data: any = {
     },
     {
       "province": "Lạng Sơn",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2026,
       "subjectId": "dia_li",
@@ -14307,7 +14303,7 @@ const data: any = {
     },
     {
       "province": "Nghệ An",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2026,
       "subjectId": "dia_li",
@@ -14317,7 +14313,7 @@ const data: any = {
     },
     {
       "province": "Ninh Bình",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2026,
       "subjectId": "dia_li",
@@ -14327,7 +14323,7 @@ const data: any = {
     },
     {
       "province": "Phú Thọ",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2026,
       "subjectId": "dia_li",
@@ -14337,7 +14333,7 @@ const data: any = {
     },
     {
       "province": "Quảng Ngãi",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2026,
       "subjectId": "dia_li",
@@ -14347,7 +14343,7 @@ const data: any = {
     },
     {
       "province": "Quảng Ninh",
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2026,
       "subjectId": "dia_li",
@@ -14357,7 +14353,7 @@ const data: any = {
     },
     {
       "province": "Quảng Trị",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2026,
       "subjectId": "dia_li",
@@ -14367,7 +14363,7 @@ const data: any = {
     },
     {
       "province": "Sơn La",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2026,
       "subjectId": "dia_li",
@@ -14377,7 +14373,7 @@ const data: any = {
     },
     {
       "province": "Thanh Hóa",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2026,
       "subjectId": "dia_li",
@@ -14387,7 +14383,7 @@ const data: any = {
     },
     {
       "province": "Thái Nguyên",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2026,
       "subjectId": "dia_li",
@@ -14397,7 +14393,7 @@ const data: any = {
     },
     {
       "province": "Tuyên Quang",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2026,
       "subjectId": "dia_li",
@@ -14417,7 +14413,7 @@ const data: any = {
     },
     {
       "province": "Vĩnh Long",
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2026,
       "subjectId": "dia_li",
@@ -14427,7 +14423,7 @@ const data: any = {
     },
     {
       "province": "Điện Biên",
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2026,
       "subjectId": "dia_li",
@@ -14437,7 +14433,7 @@ const data: any = {
     },
     {
       "province": "Đà Nẵng",
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2026,
       "subjectId": "dia_li",
@@ -14468,7 +14464,7 @@ const data: any = {
   ],
   "regionAverages": [
     {
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2022,
       "subjectId": "toan",
@@ -14476,7 +14472,7 @@ const data: any = {
       "average": 6.31
     },
     {
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2022,
       "subjectId": "toan",
@@ -14500,7 +14496,7 @@ const data: any = {
       "average": 6.79
     },
     {
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2022,
       "subjectId": "toan",
@@ -14508,7 +14504,7 @@ const data: any = {
       "average": 6.35
     },
     {
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2022,
       "subjectId": "toan",
@@ -14516,7 +14512,7 @@ const data: any = {
       "average": 6.78
     },
     {
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2022,
       "subjectId": "ngu_van",
@@ -14524,7 +14520,7 @@ const data: any = {
       "average": 6.61
     },
     {
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2022,
       "subjectId": "ngu_van",
@@ -14548,7 +14544,7 @@ const data: any = {
       "average": 6.3
     },
     {
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2022,
       "subjectId": "ngu_van",
@@ -14556,7 +14552,7 @@ const data: any = {
       "average": 6.43
     },
     {
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2022,
       "subjectId": "ngu_van",
@@ -14564,7 +14560,7 @@ const data: any = {
       "average": 6.8
     },
     {
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2022,
       "subjectId": "vat_li",
@@ -14572,7 +14568,7 @@ const data: any = {
       "average": 6.87
     },
     {
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2022,
       "subjectId": "vat_li",
@@ -14596,7 +14592,7 @@ const data: any = {
       "average": 6.49
     },
     {
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2022,
       "subjectId": "vat_li",
@@ -14604,7 +14600,7 @@ const data: any = {
       "average": 6.42
     },
     {
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2022,
       "subjectId": "vat_li",
@@ -14612,7 +14608,7 @@ const data: any = {
       "average": 7.04
     },
     {
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2022,
       "subjectId": "hoa_hoc",
@@ -14620,7 +14616,7 @@ const data: any = {
       "average": 6.84
     },
     {
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2022,
       "subjectId": "hoa_hoc",
@@ -14644,7 +14640,7 @@ const data: any = {
       "average": 6.55
     },
     {
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2022,
       "subjectId": "hoa_hoc",
@@ -14652,7 +14648,7 @@ const data: any = {
       "average": 6.55
     },
     {
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2022,
       "subjectId": "hoa_hoc",
@@ -14660,7 +14656,7 @@ const data: any = {
       "average": 6.81
     },
     {
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2022,
       "subjectId": "sinh_hoc",
@@ -14668,7 +14664,7 @@ const data: any = {
       "average": 4.84
     },
     {
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2022,
       "subjectId": "sinh_hoc",
@@ -14692,7 +14688,7 @@ const data: any = {
       "average": 4.96
     },
     {
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2022,
       "subjectId": "sinh_hoc",
@@ -14700,7 +14696,7 @@ const data: any = {
       "average": 5.31
     },
     {
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2022,
       "subjectId": "sinh_hoc",
@@ -14708,7 +14704,7 @@ const data: any = {
       "average": 4.98
     },
     {
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2022,
       "subjectId": "lich_su",
@@ -14716,7 +14712,7 @@ const data: any = {
       "average": 6.2
     },
     {
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2022,
       "subjectId": "lich_su",
@@ -14740,7 +14736,7 @@ const data: any = {
       "average": 6.28
     },
     {
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2022,
       "subjectId": "lich_su",
@@ -14748,7 +14744,7 @@ const data: any = {
       "average": 6.33
     },
     {
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2022,
       "subjectId": "lich_su",
@@ -14756,7 +14752,7 @@ const data: any = {
       "average": 6.55
     },
     {
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2022,
       "subjectId": "dia_li",
@@ -14764,7 +14760,7 @@ const data: any = {
       "average": 6.57
     },
     {
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2022,
       "subjectId": "dia_li",
@@ -14788,7 +14784,7 @@ const data: any = {
       "average": 6.66
     },
     {
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2022,
       "subjectId": "dia_li",
@@ -14796,7 +14792,7 @@ const data: any = {
       "average": 6.75
     },
     {
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2022,
       "subjectId": "dia_li",
@@ -14804,7 +14800,7 @@ const data: any = {
       "average": 6.78
     },
     {
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2022,
       "subjectId": "gdcd",
@@ -14812,7 +14808,7 @@ const data: any = {
       "average": 7.86
     },
     {
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2022,
       "subjectId": "gdcd",
@@ -14836,7 +14832,7 @@ const data: any = {
       "average": 8.12
     },
     {
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2022,
       "subjectId": "gdcd",
@@ -14844,7 +14840,7 @@ const data: any = {
       "average": 8.15
     },
     {
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2022,
       "subjectId": "gdcd",
@@ -14852,7 +14848,7 @@ const data: any = {
       "average": 8.18
     },
     {
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2023,
       "subjectId": "toan",
@@ -14860,7 +14856,7 @@ const data: any = {
       "average": 6.06
     },
     {
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2023,
       "subjectId": "toan",
@@ -14884,7 +14880,7 @@ const data: any = {
       "average": 6.64
     },
     {
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2023,
       "subjectId": "toan",
@@ -14892,7 +14888,7 @@ const data: any = {
       "average": 6.15
     },
     {
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2023,
       "subjectId": "toan",
@@ -14900,7 +14896,7 @@ const data: any = {
       "average": 6.57
     },
     {
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2023,
       "subjectId": "ngu_van",
@@ -14908,7 +14904,7 @@ const data: any = {
       "average": 6.98
     },
     {
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2023,
       "subjectId": "ngu_van",
@@ -14932,7 +14928,7 @@ const data: any = {
       "average": 6.54
     },
     {
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2023,
       "subjectId": "ngu_van",
@@ -14940,7 +14936,7 @@ const data: any = {
       "average": 6.92
     },
     {
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2023,
       "subjectId": "ngu_van",
@@ -14948,7 +14944,7 @@ const data: any = {
       "average": 7.21
     },
     {
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2023,
       "subjectId": "vat_li",
@@ -14956,7 +14952,7 @@ const data: any = {
       "average": 6.68
     },
     {
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2023,
       "subjectId": "vat_li",
@@ -14980,7 +14976,7 @@ const data: any = {
       "average": 6.37
     },
     {
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2023,
       "subjectId": "vat_li",
@@ -14988,7 +14984,7 @@ const data: any = {
       "average": 6.27
     },
     {
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2023,
       "subjectId": "vat_li",
@@ -14996,7 +14992,7 @@ const data: any = {
       "average": 6.89
     },
     {
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2023,
       "subjectId": "hoa_hoc",
@@ -15004,7 +15000,7 @@ const data: any = {
       "average": 6.78
     },
     {
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2023,
       "subjectId": "hoa_hoc",
@@ -15028,7 +15024,7 @@ const data: any = {
       "average": 6.68
     },
     {
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2023,
       "subjectId": "hoa_hoc",
@@ -15036,7 +15032,7 @@ const data: any = {
       "average": 6.73
     },
     {
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2023,
       "subjectId": "hoa_hoc",
@@ -15044,7 +15040,7 @@ const data: any = {
       "average": 6.77
     },
     {
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2023,
       "subjectId": "sinh_hoc",
@@ -15052,7 +15048,7 @@ const data: any = {
       "average": 6.21
     },
     {
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2023,
       "subjectId": "sinh_hoc",
@@ -15076,7 +15072,7 @@ const data: any = {
       "average": 6.42
     },
     {
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2023,
       "subjectId": "sinh_hoc",
@@ -15084,7 +15080,7 @@ const data: any = {
       "average": 6.68
     },
     {
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2023,
       "subjectId": "sinh_hoc",
@@ -15092,7 +15088,7 @@ const data: any = {
       "average": 6.3
     },
     {
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2023,
       "subjectId": "lich_su",
@@ -15100,7 +15096,7 @@ const data: any = {
       "average": 5.94
     },
     {
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2023,
       "subjectId": "lich_su",
@@ -15124,7 +15120,7 @@ const data: any = {
       "average": 6.04
     },
     {
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2023,
       "subjectId": "lich_su",
@@ -15132,7 +15128,7 @@ const data: any = {
       "average": 6.08
     },
     {
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2023,
       "subjectId": "lich_su",
@@ -15140,7 +15136,7 @@ const data: any = {
       "average": 6.11
     },
     {
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2023,
       "subjectId": "dia_li",
@@ -15148,7 +15144,7 @@ const data: any = {
       "average": 6.06
     },
     {
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2023,
       "subjectId": "dia_li",
@@ -15172,7 +15168,7 @@ const data: any = {
       "average": 6.15
     },
     {
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2023,
       "subjectId": "dia_li",
@@ -15180,7 +15176,7 @@ const data: any = {
       "average": 6.19
     },
     {
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2023,
       "subjectId": "dia_li",
@@ -15188,7 +15184,7 @@ const data: any = {
       "average": 6.21
     },
     {
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2023,
       "subjectId": "gdcd",
@@ -15196,7 +15192,7 @@ const data: any = {
       "average": 8.11
     },
     {
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2023,
       "subjectId": "gdcd",
@@ -15220,7 +15216,7 @@ const data: any = {
       "average": 8.48
     },
     {
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2023,
       "subjectId": "gdcd",
@@ -15228,7 +15224,7 @@ const data: any = {
       "average": 8.41
     },
     {
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2023,
       "subjectId": "gdcd",
@@ -15236,7 +15232,7 @@ const data: any = {
       "average": 8.44
     },
     {
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2024,
       "subjectId": "toan",
@@ -15244,7 +15240,7 @@ const data: any = {
       "average": 6.32
     },
     {
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2024,
       "subjectId": "toan",
@@ -15268,7 +15264,7 @@ const data: any = {
       "average": 6.77
     },
     {
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2024,
       "subjectId": "toan",
@@ -15276,7 +15272,7 @@ const data: any = {
       "average": 6.34
     },
     {
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2024,
       "subjectId": "toan",
@@ -15284,7 +15280,7 @@ const data: any = {
       "average": 6.74
     },
     {
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2024,
       "subjectId": "ngu_van",
@@ -15292,7 +15288,7 @@ const data: any = {
       "average": 7.35
     },
     {
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2024,
       "subjectId": "ngu_van",
@@ -15316,7 +15312,7 @@ const data: any = {
       "average": 6.81
     },
     {
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2024,
       "subjectId": "ngu_van",
@@ -15324,7 +15320,7 @@ const data: any = {
       "average": 7.28
     },
     {
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2024,
       "subjectId": "ngu_van",
@@ -15332,7 +15328,7 @@ const data: any = {
       "average": 7.7
     },
     {
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2024,
       "subjectId": "vat_li",
@@ -15340,7 +15336,7 @@ const data: any = {
       "average": 6.78
     },
     {
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2024,
       "subjectId": "vat_li",
@@ -15364,7 +15360,7 @@ const data: any = {
       "average": 6.45
     },
     {
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2024,
       "subjectId": "vat_li",
@@ -15372,7 +15368,7 @@ const data: any = {
       "average": 6.42
     },
     {
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2024,
       "subjectId": "vat_li",
@@ -15380,7 +15376,7 @@ const data: any = {
       "average": 6.96
     },
     {
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2024,
       "subjectId": "hoa_hoc",
@@ -15388,7 +15384,7 @@ const data: any = {
       "average": 6.83
     },
     {
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2024,
       "subjectId": "hoa_hoc",
@@ -15412,7 +15408,7 @@ const data: any = {
       "average": 6.55
     },
     {
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2024,
       "subjectId": "hoa_hoc",
@@ -15420,7 +15416,7 @@ const data: any = {
       "average": 6.65
     },
     {
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2024,
       "subjectId": "hoa_hoc",
@@ -15428,7 +15424,7 @@ const data: any = {
       "average": 6.7
     },
     {
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2024,
       "subjectId": "sinh_hoc",
@@ -15436,7 +15432,7 @@ const data: any = {
       "average": 6.15
     },
     {
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2024,
       "subjectId": "sinh_hoc",
@@ -15460,7 +15456,7 @@ const data: any = {
       "average": 6.26
     },
     {
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2024,
       "subjectId": "sinh_hoc",
@@ -15468,7 +15464,7 @@ const data: any = {
       "average": 6.54
     },
     {
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2024,
       "subjectId": "sinh_hoc",
@@ -15476,7 +15472,7 @@ const data: any = {
       "average": 6.23
     },
     {
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2024,
       "subjectId": "lich_su",
@@ -15484,7 +15480,7 @@ const data: any = {
       "average": 6.47
     },
     {
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2024,
       "subjectId": "lich_su",
@@ -15508,7 +15504,7 @@ const data: any = {
       "average": 6.54
     },
     {
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2024,
       "subjectId": "lich_su",
@@ -15516,7 +15512,7 @@ const data: any = {
       "average": 6.61
     },
     {
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2024,
       "subjectId": "lich_su",
@@ -15524,7 +15520,7 @@ const data: any = {
       "average": 6.71
     },
     {
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2024,
       "subjectId": "dia_li",
@@ -15532,7 +15528,7 @@ const data: any = {
       "average": 7.09
     },
     {
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2024,
       "subjectId": "dia_li",
@@ -15556,7 +15552,7 @@ const data: any = {
       "average": 7.19
     },
     {
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2024,
       "subjectId": "dia_li",
@@ -15564,7 +15560,7 @@ const data: any = {
       "average": 7.28
     },
     {
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2024,
       "subjectId": "dia_li",
@@ -15572,7 +15568,7 @@ const data: any = {
       "average": 7.29
     },
     {
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2024,
       "subjectId": "gdcd",
@@ -15580,7 +15576,7 @@ const data: any = {
       "average": 8.0
     },
     {
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2024,
       "subjectId": "gdcd",
@@ -15604,7 +15600,7 @@ const data: any = {
       "average": 8.26
     },
     {
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2024,
       "subjectId": "gdcd",
@@ -15612,7 +15608,7 @@ const data: any = {
       "average": 8.23
     },
     {
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2024,
       "subjectId": "gdcd",
@@ -15620,7 +15616,7 @@ const data: any = {
       "average": 8.33
     },
     {
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2025,
       "subjectId": "toan",
@@ -15628,7 +15624,7 @@ const data: any = {
       "average": 4.74
     },
     {
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2025,
       "subjectId": "toan",
@@ -15652,7 +15648,7 @@ const data: any = {
       "average": 5.04
     },
     {
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2025,
       "subjectId": "toan",
@@ -15660,7 +15656,7 @@ const data: any = {
       "average": 4.44
     },
     {
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2025,
       "subjectId": "toan",
@@ -15668,7 +15664,7 @@ const data: any = {
       "average": 5.16
     },
     {
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2025,
       "subjectId": "ngu_van",
@@ -15676,7 +15672,7 @@ const data: any = {
       "average": 7.21
     },
     {
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2025,
       "subjectId": "ngu_van",
@@ -15700,7 +15696,7 @@ const data: any = {
       "average": 6.89
     },
     {
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2025,
       "subjectId": "ngu_van",
@@ -15708,7 +15704,7 @@ const data: any = {
       "average": 6.98
     },
     {
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2025,
       "subjectId": "ngu_van",
@@ -15716,7 +15712,7 @@ const data: any = {
       "average": 7.19
     },
     {
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2025,
       "subjectId": "vat_li",
@@ -15724,7 +15720,7 @@ const data: any = {
       "average": 7.01
     },
     {
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2025,
       "subjectId": "vat_li",
@@ -15748,7 +15744,7 @@ const data: any = {
       "average": 6.9
     },
     {
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2025,
       "subjectId": "vat_li",
@@ -15756,7 +15752,7 @@ const data: any = {
       "average": 6.7
     },
     {
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2025,
       "subjectId": "vat_li",
@@ -15764,7 +15760,7 @@ const data: any = {
       "average": 7.2
     },
     {
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2025,
       "subjectId": "hoa_hoc",
@@ -15772,7 +15768,7 @@ const data: any = {
       "average": 6.21
     },
     {
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2025,
       "subjectId": "hoa_hoc",
@@ -15796,7 +15792,7 @@ const data: any = {
       "average": 5.88
     },
     {
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2025,
       "subjectId": "hoa_hoc",
@@ -15804,7 +15800,7 @@ const data: any = {
       "average": 5.75
     },
     {
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2025,
       "subjectId": "hoa_hoc",
@@ -15812,7 +15808,7 @@ const data: any = {
       "average": 6.4
     },
     {
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2025,
       "subjectId": "sinh_hoc",
@@ -15820,7 +15816,7 @@ const data: any = {
       "average": 5.67
     },
     {
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2025,
       "subjectId": "sinh_hoc",
@@ -15844,7 +15840,7 @@ const data: any = {
       "average": 6.12
     },
     {
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2025,
       "subjectId": "sinh_hoc",
@@ -15852,7 +15848,7 @@ const data: any = {
       "average": 5.73
     },
     {
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2025,
       "subjectId": "sinh_hoc",
@@ -15860,7 +15856,7 @@ const data: any = {
       "average": 6.17
     },
     {
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2025,
       "subjectId": "lich_su",
@@ -15868,7 +15864,7 @@ const data: any = {
       "average": 6.48
     },
     {
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2025,
       "subjectId": "lich_su",
@@ -15892,7 +15888,7 @@ const data: any = {
       "average": 6.48
     },
     {
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2025,
       "subjectId": "lich_su",
@@ -15900,7 +15896,7 @@ const data: any = {
       "average": 6.54
     },
     {
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2025,
       "subjectId": "lich_su",
@@ -15908,7 +15904,7 @@ const data: any = {
       "average": 6.64
     },
     {
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2025,
       "subjectId": "dia_li",
@@ -15916,7 +15912,7 @@ const data: any = {
       "average": 6.63
     },
     {
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2025,
       "subjectId": "dia_li",
@@ -15940,7 +15936,7 @@ const data: any = {
       "average": 6.65
     },
     {
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2025,
       "subjectId": "dia_li",
@@ -15948,7 +15944,7 @@ const data: any = {
       "average": 6.69
     },
     {
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2025,
       "subjectId": "dia_li",
@@ -15956,7 +15952,7 @@ const data: any = {
       "average": 6.67
     },
     {
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2025,
       "subjectId": "gdcd",
@@ -15964,7 +15960,7 @@ const data: any = {
       "average": 7.6
     },
     {
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2025,
       "subjectId": "gdcd",
@@ -15988,7 +15984,7 @@ const data: any = {
       "average": 7.61
     },
     {
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2025,
       "subjectId": "gdcd",
@@ -15996,7 +15992,7 @@ const data: any = {
       "average": 8.0
     },
     {
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2025,
       "subjectId": "gdcd",
@@ -16004,7 +16000,7 @@ const data: any = {
       "average": 7.7
     },
     {
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2026,
       "subjectId": "toan",
@@ -16012,7 +16008,7 @@ const data: any = {
       "average": 5.62
     },
     {
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2026,
       "subjectId": "toan",
@@ -16036,7 +16032,7 @@ const data: any = {
       "average": 5.93
     },
     {
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2026,
       "subjectId": "toan",
@@ -16044,7 +16040,7 @@ const data: any = {
       "average": 5.11
     },
     {
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2026,
       "subjectId": "toan",
@@ -16052,7 +16048,7 @@ const data: any = {
       "average": 6.05
     },
     {
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2026,
       "subjectId": "ngu_van",
@@ -16060,7 +16056,7 @@ const data: any = {
       "average": 6.63
     },
     {
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2026,
       "subjectId": "ngu_van",
@@ -16084,7 +16080,7 @@ const data: any = {
       "average": 6.25
     },
     {
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2026,
       "subjectId": "ngu_van",
@@ -16092,7 +16088,7 @@ const data: any = {
       "average": 5.85
     },
     {
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2026,
       "subjectId": "ngu_van",
@@ -16100,7 +16096,7 @@ const data: any = {
       "average": 6.9
     },
     {
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2026,
       "subjectId": "vat_li",
@@ -16108,7 +16104,7 @@ const data: any = {
       "average": 5.69
     },
     {
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2026,
       "subjectId": "vat_li",
@@ -16132,7 +16128,7 @@ const data: any = {
       "average": 5.39
     },
     {
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2026,
       "subjectId": "vat_li",
@@ -16140,7 +16136,7 @@ const data: any = {
       "average": 5.04
     },
     {
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2026,
       "subjectId": "vat_li",
@@ -16148,7 +16144,7 @@ const data: any = {
       "average": 5.9
     },
     {
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2026,
       "subjectId": "hoa_hoc",
@@ -16156,7 +16152,7 @@ const data: any = {
       "average": 6.49
     },
     {
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2026,
       "subjectId": "hoa_hoc",
@@ -16180,7 +16176,7 @@ const data: any = {
       "average": 6.16
     },
     {
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2026,
       "subjectId": "hoa_hoc",
@@ -16188,7 +16184,7 @@ const data: any = {
       "average": 5.98
     },
     {
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2026,
       "subjectId": "hoa_hoc",
@@ -16196,7 +16192,7 @@ const data: any = {
       "average": 6.46
     },
     {
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2026,
       "subjectId": "sinh_hoc",
@@ -16204,7 +16200,7 @@ const data: any = {
       "average": 5.87
     },
     {
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2026,
       "subjectId": "sinh_hoc",
@@ -16228,7 +16224,7 @@ const data: any = {
       "average": 6.1
     },
     {
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2026,
       "subjectId": "sinh_hoc",
@@ -16236,7 +16232,7 @@ const data: any = {
       "average": 5.6
     },
     {
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2026,
       "subjectId": "sinh_hoc",
@@ -16244,7 +16240,7 @@ const data: any = {
       "average": 6.36
     },
     {
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2026,
       "subjectId": "lich_su",
@@ -16252,7 +16248,7 @@ const data: any = {
       "average": 6.16
     },
     {
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2026,
       "subjectId": "lich_su",
@@ -16276,7 +16272,7 @@ const data: any = {
       "average": 6.17
     },
     {
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2026,
       "subjectId": "lich_su",
@@ -16284,7 +16280,7 @@ const data: any = {
       "average": 6.08
     },
     {
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2026,
       "subjectId": "lich_su",
@@ -16292,7 +16288,7 @@ const data: any = {
       "average": 6.32
     },
     {
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2026,
       "subjectId": "dia_li",
@@ -16300,7 +16296,7 @@ const data: any = {
       "average": 5.1
     },
     {
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2026,
       "subjectId": "dia_li",
@@ -16324,7 +16320,7 @@ const data: any = {
       "average": 5.09
     },
     {
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2026,
       "subjectId": "dia_li",
@@ -16332,7 +16328,7 @@ const data: any = {
       "average": 5.0
     },
     {
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2026,
       "subjectId": "dia_li",
@@ -16342,7 +16338,7 @@ const data: any = {
   ],
   "regionSubjectMatrix": [
     {
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2026,
       "subjectId": "toan",
@@ -16350,7 +16346,7 @@ const data: any = {
       "average": 5.62
     },
     {
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2026,
       "subjectId": "toan",
@@ -16374,7 +16370,7 @@ const data: any = {
       "average": 5.93
     },
     {
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2026,
       "subjectId": "toan",
@@ -16382,7 +16378,7 @@ const data: any = {
       "average": 5.11
     },
     {
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2026,
       "subjectId": "toan",
@@ -16390,7 +16386,7 @@ const data: any = {
       "average": 6.05
     },
     {
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2026,
       "subjectId": "ngu_van",
@@ -16398,7 +16394,7 @@ const data: any = {
       "average": 6.63
     },
     {
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2026,
       "subjectId": "ngu_van",
@@ -16422,7 +16418,7 @@ const data: any = {
       "average": 6.25
     },
     {
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2026,
       "subjectId": "ngu_van",
@@ -16430,7 +16426,7 @@ const data: any = {
       "average": 5.85
     },
     {
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2026,
       "subjectId": "ngu_van",
@@ -16438,7 +16434,7 @@ const data: any = {
       "average": 6.9
     },
     {
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2026,
       "subjectId": "vat_li",
@@ -16446,7 +16442,7 @@ const data: any = {
       "average": 5.69
     },
     {
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2026,
       "subjectId": "vat_li",
@@ -16470,7 +16466,7 @@ const data: any = {
       "average": 5.39
     },
     {
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2026,
       "subjectId": "vat_li",
@@ -16478,7 +16474,7 @@ const data: any = {
       "average": 5.04
     },
     {
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2026,
       "subjectId": "vat_li",
@@ -16486,7 +16482,7 @@ const data: any = {
       "average": 5.9
     },
     {
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2026,
       "subjectId": "hoa_hoc",
@@ -16494,7 +16490,7 @@ const data: any = {
       "average": 6.49
     },
     {
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2026,
       "subjectId": "hoa_hoc",
@@ -16518,7 +16514,7 @@ const data: any = {
       "average": 6.16
     },
     {
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2026,
       "subjectId": "hoa_hoc",
@@ -16526,7 +16522,7 @@ const data: any = {
       "average": 5.98
     },
     {
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2026,
       "subjectId": "hoa_hoc",
@@ -16534,7 +16530,7 @@ const data: any = {
       "average": 6.46
     },
     {
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2026,
       "subjectId": "sinh_hoc",
@@ -16542,7 +16538,7 @@ const data: any = {
       "average": 5.87
     },
     {
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2026,
       "subjectId": "sinh_hoc",
@@ -16566,7 +16562,7 @@ const data: any = {
       "average": 6.1
     },
     {
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2026,
       "subjectId": "sinh_hoc",
@@ -16574,7 +16570,7 @@ const data: any = {
       "average": 5.6
     },
     {
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2026,
       "subjectId": "sinh_hoc",
@@ -16582,7 +16578,7 @@ const data: any = {
       "average": 6.36
     },
     {
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2026,
       "subjectId": "lich_su",
@@ -16590,7 +16586,7 @@ const data: any = {
       "average": 6.16
     },
     {
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2026,
       "subjectId": "lich_su",
@@ -16614,7 +16610,7 @@ const data: any = {
       "average": 6.17
     },
     {
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2026,
       "subjectId": "lich_su",
@@ -16622,7 +16618,7 @@ const data: any = {
       "average": 6.08
     },
     {
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2026,
       "subjectId": "lich_su",
@@ -16630,7 +16626,7 @@ const data: any = {
       "average": 6.32
     },
     {
-      "regionId": "other",
+      "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2026,
       "subjectId": "dia_li",
@@ -16638,7 +16634,7 @@ const data: any = {
       "average": 5.1
     },
     {
-      "regionId": "other",
+      "regionId": "tdmnpb",
       "regionName": "Trung du và miền núi phía Bắc",
       "year": 2026,
       "subjectId": "dia_li",
@@ -16662,7 +16658,7 @@ const data: any = {
       "average": 5.09
     },
     {
-      "regionId": "other",
+      "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2026,
       "subjectId": "dia_li",
@@ -16670,7 +16666,7 @@ const data: any = {
       "average": 5.0
     },
     {
-      "regionId": "other",
+      "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2026,
       "subjectId": "dia_li",
