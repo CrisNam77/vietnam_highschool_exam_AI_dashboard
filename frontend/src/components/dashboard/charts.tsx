@@ -27,7 +27,7 @@ export function ChartCard({ title, children }: { title: string; children: ReactN
 }
 
 export function SimpleLineChart({ series, valueMode = 'score' }: { series: LineSeries[]; valueMode?: 'score' | 'percent' | 'count' }) {
-  const allValues = series.flatMap(item => item.points.map(point => point.value));
+  const allValues = series.flatMap(item => item.points.map(point => point.value)).filter(v => !Number.isNaN(v));
   const min = Math.min(...allValues) - 0.15;
   const max = Math.max(...allValues) + 0.15;
   const width = 640;
@@ -66,14 +66,15 @@ export function SimpleLineChart({ series, valueMode = 'score' }: { series: LineS
           </text>
         ))}
         {series.map(item => {
-          const path = item.points
-            .map((point, index) => `${index === 0 ? 'M' : 'L'} ${xFor(index, item.points.length)} ${yFor(point.value)}`)
+          const validPoints = item.points.map((p, i) => ({ ...p, originalIndex: i })).filter(p => !Number.isNaN(p.value));
+          const path = validPoints
+            .map((point, i) => `${i === 0 ? 'M' : 'L'} ${xFor(point.originalIndex, item.points.length)} ${yFor(point.value)}`)
             .join(' ');
           return (
             <g key={item.name}>
               <path d={path} fill="none" stroke={item.color} strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-              {item.points.map((point, index) => (
-                <circle key={`${item.name}-${point.label}`} cx={xFor(index, item.points.length)} cy={yFor(point.value)} r="4" fill="white" stroke={item.color} strokeWidth="2" />
+              {validPoints.map((point) => (
+                <circle key={`${item.name}-${point.label}`} cx={xFor(point.originalIndex, item.points.length)} cy={yFor(point.value)} r="4" fill="white" stroke={item.color} strokeWidth="2" />
               ))}
             </g>
           );

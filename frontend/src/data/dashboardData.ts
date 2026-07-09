@@ -160,7 +160,7 @@ export const COMBINATIONS: CombinationOption[] = [
 export const overviewKpis: KpiItem[] = [
   {
     "label": "Tổng số thí sinh",
-    "value": "4.23 triệu"
+    "value": "5.36 triệu"
   },
   {
     "label": "Số tỉnh/thành",
@@ -172,7 +172,7 @@ export const overviewKpis: KpiItem[] = [
   },
   {
     "label": "Điểm TB toàn quốc",
-    "value": "nan"
+    "value": "6.49"
   }
 ];
 export const nationalAverageByYear: YearMetric[] = [
@@ -194,7 +194,7 @@ export const nationalAverageByYear: YearMetric[] = [
   },
   {
     "year": 2026,
-    "value": NaN
+    "value": 5.88
   }
 ];
 export const candidatesByYear: YearMetric[] = [
@@ -216,29 +216,29 @@ export const candidatesByYear: YearMetric[] = [
   },
   {
     "year": 2026,
-    "value": 0
+    "value": 1131975
   }
 ];
 export const subjectAverages: SubjectMetric[] = [
   {
     "subjectId": "toan",
     "subjectName": "Toán",
-    "value": 5.95
+    "value": 5.9
   },
   {
     "subjectId": "ngu_van",
     "subjectName": "Ngữ văn",
-    "value": 6.91
+    "value": 6.82
   },
   {
     "subjectId": "vat_li",
     "subjectName": "Vật lý",
-    "value": 6.74
+    "value": 6.5
   },
   {
     "subjectId": "hoa_hoc",
     "subjectName": "Hóa học",
-    "value": 6.58
+    "value": 6.54
   },
   {
     "subjectId": "sinh_hoc",
@@ -248,12 +248,12 @@ export const subjectAverages: SubjectMetric[] = [
   {
     "subjectId": "lich_su",
     "subjectName": "Lịch sử",
-    "value": 6.35
+    "value": 6.33
   },
   {
     "subjectId": "dia_li",
     "subjectName": "Địa lý",
-    "value": 6.67
+    "value": 6.45
   },
   {
     "subjectId": "gdcd",
@@ -549,10 +549,145 @@ export const subjectYearMatrix: SubjectYearMetric[] = [
     "underFive": 5.2,
     "eightPlus": 52.3,
     "perfect10": 34
+  },
+  {
+    "subjectId": "toan",
+    "subjectName": "Toán",
+    "year": 2026,
+    "average": 5.67,
+    "underFive": 37.6,
+    "eightPlus": 16.1,
+    "perfect10": 4145
+  },
+  {
+    "subjectId": "ngu_van",
+    "subjectName": "Ngữ văn",
+    "year": 2026,
+    "average": 6.49,
+    "underFive": 11.4,
+    "eightPlus": 13.8,
+    "perfect10": 0
+  },
+  {
+    "subjectId": "vat_li",
+    "subjectName": "Vật lý",
+    "year": 2026,
+    "average": 5.58,
+    "underFive": 38.9,
+    "eightPlus": 11.1,
+    "perfect10": 184
+  },
+  {
+    "subjectId": "hoa_hoc",
+    "subjectName": "Hóa học",
+    "year": 2026,
+    "average": 6.3,
+    "underFive": 21.7,
+    "eightPlus": 18.2,
+    "perfect10": 399
+  },
+  {
+    "subjectId": "sinh_hoc",
+    "subjectName": "Sinh học",
+    "year": 2026,
+    "average": 5.85,
+    "underFive": 31.5,
+    "eightPlus": 13.2,
+    "perfect10": 121
+  },
+  {
+    "subjectId": "lich_su",
+    "subjectName": "Lịch sử",
+    "year": 2026,
+    "average": 6.18,
+    "underFive": 26.0,
+    "eightPlus": 18.7,
+    "perfect10": 2348
+  },
+  {
+    "subjectId": "dia_li",
+    "subjectName": "Địa lý",
+    "year": 2026,
+    "average": 5.1,
+    "underFive": 47.2,
+    "eightPlus": 4.2,
+    "perfect10": 52
   }
 ];
-export const underFiveRates: SubjectMetric[] = [];
-export const eightPlusRates: SubjectMetric[] = [];
+export const underFiveRates: SubjectMetric[] = [
+  {
+    "subjectId": "toan",
+    "subjectName": "Toán",
+    "value": 37.6
+  },
+  {
+    "subjectId": "ngu_van",
+    "subjectName": "Ngữ văn",
+    "value": 11.4
+  },
+  {
+    "subjectId": "vat_li",
+    "subjectName": "Vật lý",
+    "value": 38.9
+  },
+  {
+    "subjectId": "hoa_hoc",
+    "subjectName": "Hóa học",
+    "value": 21.7
+  },
+  {
+    "subjectId": "sinh_hoc",
+    "subjectName": "Sinh học",
+    "value": 31.5
+  },
+  {
+    "subjectId": "lich_su",
+    "subjectName": "Lịch sử",
+    "value": 26.0
+  },
+  {
+    "subjectId": "dia_li",
+    "subjectName": "Địa lý",
+    "value": 47.2
+  }
+];
+export const eightPlusRates: SubjectMetric[] = [
+  {
+    "subjectId": "toan",
+    "subjectName": "Toán",
+    "value": 16.1
+  },
+  {
+    "subjectId": "ngu_van",
+    "subjectName": "Ngữ văn",
+    "value": 13.8
+  },
+  {
+    "subjectId": "vat_li",
+    "subjectName": "Vật lý",
+    "value": 11.1
+  },
+  {
+    "subjectId": "hoa_hoc",
+    "subjectName": "Hóa học",
+    "value": 18.2
+  },
+  {
+    "subjectId": "sinh_hoc",
+    "subjectName": "Sinh học",
+    "value": 13.2
+  },
+  {
+    "subjectId": "lich_su",
+    "subjectName": "Lịch sử",
+    "value": 18.7
+  },
+  {
+    "subjectId": "dia_li",
+    "subjectName": "Địa lý",
+    "value": 4.2
+  }
+];
 export const provinceRankings: ProvinceRanking[] = [
   {
     "province": "An Giang",
@@ -11433,6 +11568,2246 @@ export const provinceRankings: ProvinceRanking[] = [
     "subjectName": "GDCD",
     "average": 7.94,
     "candidates": 103
+  },
+  {
+    "province": "Bắc Ninh",
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Hồng",
+    "year": 2026,
+    "subjectId": "toan",
+    "subjectName": "Toán",
+    "average": 5.82,
+    "candidates": 43447
+  },
+  {
+    "province": "Cao Bằng",
+    "regionId": "other",
+    "regionName": "Trung du và miền núi phía Bắc",
+    "year": 2026,
+    "subjectId": "toan",
+    "subjectName": "Toán",
+    "average": 4.76,
+    "candidates": 5324
+  },
+  {
+    "province": "Cà Mau",
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Cửu Long",
+    "year": 2026,
+    "subjectId": "toan",
+    "subjectName": "Toán",
+    "average": 5.15,
+    "candidates": 19265
+  },
+  {
+    "province": "Cần Thơ",
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Cửu Long",
+    "year": 2026,
+    "subjectId": "toan",
+    "subjectName": "Toán",
+    "average": 5.07,
+    "candidates": 33446
+  },
+  {
+    "province": "Gia Lai",
+    "regionId": "tn",
+    "regionName": "Tây Nguyên",
+    "year": 2026,
+    "subjectId": "toan",
+    "subjectName": "Toán",
+    "average": 5.43,
+    "candidates": 36829
+  },
+  {
+    "province": "Huế",
+    "regionId": "other",
+    "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+    "year": 2026,
+    "subjectId": "toan",
+    "subjectName": "Toán",
+    "average": 5.8,
+    "candidates": 13812
+  },
+  {
+    "province": "Hà Nội",
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Hồng",
+    "year": 2026,
+    "subjectId": "toan",
+    "subjectName": "Toán",
+    "average": 6.16,
+    "candidates": 125070
+  },
+  {
+    "province": "Hà Tĩnh",
+    "regionId": "other",
+    "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+    "year": 2026,
+    "subjectId": "toan",
+    "subjectName": "Toán",
+    "average": 5.98,
+    "candidates": 18283
+  },
+  {
+    "province": "Hưng Yên",
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Hồng",
+    "year": 2026,
+    "subjectId": "toan",
+    "subjectName": "Toán",
+    "average": 5.99,
+    "candidates": 42860
+  },
+  {
+    "province": "Hải Phòng",
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Hồng",
+    "year": 2026,
+    "subjectId": "toan",
+    "subjectName": "Toán",
+    "average": 6.01,
+    "candidates": 56499
+  },
+  {
+    "province": "Hồ Chí Minh",
+    "regionId": "dnb",
+    "regionName": "Đông Nam Bộ",
+    "year": 2026,
+    "subjectId": "toan",
+    "subjectName": "Toán",
+    "average": 6.19,
+    "candidates": 138465
+  },
+  {
+    "province": "Khánh Hòa",
+    "regionId": "other",
+    "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+    "year": 2026,
+    "subjectId": "toan",
+    "subjectName": "Toán",
+    "average": 5.37,
+    "candidates": 21648
+  },
+  {
+    "province": "Lai Châu",
+    "regionId": "other",
+    "regionName": "Trung du và miền núi phía Bắc",
+    "year": 2026,
+    "subjectId": "toan",
+    "subjectName": "Toán",
+    "average": 4.72,
+    "candidates": 4497
+  },
+  {
+    "province": "Lào Cai",
+    "regionId": "other",
+    "regionName": "Trung du và miền núi phía Bắc",
+    "year": 2026,
+    "subjectId": "toan",
+    "subjectName": "Toán",
+    "average": 4.88,
+    "candidates": 19338
+  },
+  {
+    "province": "Lâm Đồng",
+    "regionId": "tn",
+    "regionName": "Tây Nguyên",
+    "year": 2026,
+    "subjectId": "toan",
+    "subjectName": "Toán",
+    "average": 5.36,
+    "candidates": 40563
+  },
+  {
+    "province": "Lạng Sơn",
+    "regionId": "other",
+    "regionName": "Trung du và miền núi phía Bắc",
+    "year": 2026,
+    "subjectId": "toan",
+    "subjectName": "Toán",
+    "average": 4.8,
+    "candidates": 9788
+  },
+  {
+    "province": "Nghệ An",
+    "regionId": "other",
+    "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+    "year": 2026,
+    "subjectId": "toan",
+    "subjectName": "Toán",
+    "average": 5.9,
+    "candidates": 41207
+  },
+  {
+    "province": "Ninh Bình",
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Hồng",
+    "year": 2026,
+    "subjectId": "toan",
+    "subjectName": "Toán",
+    "average": 6.26,
+    "candidates": 47818
+  },
+  {
+    "province": "Phú Thọ",
+    "regionId": "other",
+    "regionName": "Trung du và miền núi phía Bắc",
+    "year": 2026,
+    "subjectId": "toan",
+    "subjectName": "Toán",
+    "average": 5.7,
+    "candidates": 46961
+  },
+  {
+    "province": "Quảng Ngãi",
+    "regionId": "other",
+    "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+    "year": 2026,
+    "subjectId": "toan",
+    "subjectName": "Toán",
+    "average": 5.52,
+    "candidates": 21130
+  },
+  {
+    "province": "Quảng Ninh",
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Hồng",
+    "year": 2026,
+    "subjectId": "toan",
+    "subjectName": "Toán",
+    "average": 5.51,
+    "candidates": 20383
+  },
+  {
+    "province": "Quảng Trị",
+    "regionId": "other",
+    "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+    "year": 2026,
+    "subjectId": "toan",
+    "subjectName": "Toán",
+    "average": 5.42,
+    "candidates": 21231
+  },
+  {
+    "province": "Sơn La",
+    "regionId": "other",
+    "regionName": "Trung du và miền núi phía Bắc",
+    "year": 2026,
+    "subjectId": "toan",
+    "subjectName": "Toán",
+    "average": 4.25,
+    "candidates": 13449
+  },
+  {
+    "province": "Thanh Hóa",
+    "regionId": "other",
+    "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+    "year": 2026,
+    "subjectId": "toan",
+    "subjectName": "Toán",
+    "average": 5.37,
+    "candidates": 41632
+  },
+  {
+    "province": "Thái Nguyên",
+    "regionId": "other",
+    "regionName": "Trung du và miền núi phía Bắc",
+    "year": 2026,
+    "subjectId": "toan",
+    "subjectName": "Toán",
+    "average": 5.13,
+    "candidates": 22192
+  },
+  {
+    "province": "Tuyên Quang",
+    "regionId": "other",
+    "regionName": "Trung du và miền núi phía Bắc",
+    "year": 2026,
+    "subjectId": "toan",
+    "subjectName": "Toán",
+    "average": 5.07,
+    "candidates": 17589
+  },
+  {
+    "province": "Tây Ninh",
+    "regionId": "dnb",
+    "regionName": "Đông Nam Bộ",
+    "year": 2026,
+    "subjectId": "toan",
+    "subjectName": "Toán",
+    "average": 5.46,
+    "candidates": 28594
+  },
+  {
+    "province": "Vĩnh Long",
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Cửu Long",
+    "year": 2026,
+    "subjectId": "toan",
+    "subjectName": "Toán",
+    "average": 5.13,
+    "candidates": 35931
+  },
+  {
+    "province": "Điện Biên",
+    "regionId": "other",
+    "regionName": "Trung du và miền núi phía Bắc",
+    "year": 2026,
+    "subjectId": "toan",
+    "subjectName": "Toán",
+    "average": 4.46,
+    "candidates": 7467
+  },
+  {
+    "province": "Đà Nẵng",
+    "regionId": "other",
+    "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+    "year": 2026,
+    "subjectId": "toan",
+    "subjectName": "Toán",
+    "average": 5.67,
+    "candidates": 34952
+  },
+  {
+    "province": "Đắk Lắk",
+    "regionId": "tn",
+    "regionName": "Tây Nguyên",
+    "year": 2026,
+    "subjectId": "toan",
+    "subjectName": "Toán",
+    "average": 5.14,
+    "candidates": 34774
+  },
+  {
+    "province": "Đồng Nai",
+    "regionId": "dnb",
+    "regionName": "Đông Nam Bộ",
+    "year": 2026,
+    "subjectId": "toan",
+    "subjectName": "Toán",
+    "average": 5.51,
+    "candidates": 52159
+  },
+  {
+    "province": "Bắc Ninh",
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Hồng",
+    "year": 2026,
+    "subjectId": "ngu_van",
+    "subjectName": "Ngữ văn",
+    "average": 6.34,
+    "candidates": 43425
+  },
+  {
+    "province": "Cao Bằng",
+    "regionId": "other",
+    "regionName": "Trung du và miền núi phía Bắc",
+    "year": 2026,
+    "subjectId": "ngu_van",
+    "subjectName": "Ngữ văn",
+    "average": 6.04,
+    "candidates": 5497
+  },
+  {
+    "province": "Cà Mau",
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Cửu Long",
+    "year": 2026,
+    "subjectId": "ngu_van",
+    "subjectName": "Ngữ văn",
+    "average": 6.56,
+    "candidates": 19371
+  },
+  {
+    "province": "Cần Thơ",
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Cửu Long",
+    "year": 2026,
+    "subjectId": "ngu_van",
+    "subjectName": "Ngữ văn",
+    "average": 6.36,
+    "candidates": 33613
+  },
+  {
+    "province": "Gia Lai",
+    "regionId": "tn",
+    "regionName": "Tây Nguyên",
+    "year": 2026,
+    "subjectId": "ngu_van",
+    "subjectName": "Ngữ văn",
+    "average": 6.17,
+    "candidates": 37065
+  },
+  {
+    "province": "Huế",
+    "regionId": "other",
+    "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+    "year": 2026,
+    "subjectId": "ngu_van",
+    "subjectName": "Ngữ văn",
+    "average": 6.52,
+    "candidates": 13907
+  },
+  {
+    "province": "Hà Nội",
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Hồng",
+    "year": 2026,
+    "subjectId": "ngu_van",
+    "subjectName": "Ngữ văn",
+    "average": 7.02,
+    "candidates": 125615
+  },
+  {
+    "province": "Hà Tĩnh",
+    "regionId": "other",
+    "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+    "year": 2026,
+    "subjectId": "ngu_van",
+    "subjectName": "Ngữ văn",
+    "average": 6.98,
+    "candidates": 18318
+  },
+  {
+    "province": "Hưng Yên",
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Hồng",
+    "year": 2026,
+    "subjectId": "ngu_van",
+    "subjectName": "Ngữ văn",
+    "average": 6.56,
+    "candidates": 42816
+  },
+  {
+    "province": "Hải Phòng",
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Hồng",
+    "year": 2026,
+    "subjectId": "ngu_van",
+    "subjectName": "Ngữ văn",
+    "average": 7.25,
+    "candidates": 56416
+  },
+  {
+    "province": "Hồ Chí Minh",
+    "regionId": "dnb",
+    "regionName": "Đông Nam Bộ",
+    "year": 2026,
+    "subjectId": "ngu_van",
+    "subjectName": "Ngữ văn",
+    "average": 6.59,
+    "candidates": 137743
+  },
+  {
+    "province": "Khánh Hòa",
+    "regionId": "other",
+    "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+    "year": 2026,
+    "subjectId": "ngu_van",
+    "subjectName": "Ngữ văn",
+    "average": 6.45,
+    "candidates": 21686
+  },
+  {
+    "province": "Lai Châu",
+    "regionId": "other",
+    "regionName": "Trung du và miền núi phía Bắc",
+    "year": 2026,
+    "subjectId": "ngu_van",
+    "subjectName": "Ngữ văn",
+    "average": 6.63,
+    "candidates": 4580
+  },
+  {
+    "province": "Lào Cai",
+    "regionId": "other",
+    "regionName": "Trung du và miền núi phía Bắc",
+    "year": 2026,
+    "subjectId": "ngu_van",
+    "subjectName": "Ngữ văn",
+    "average": 6.17,
+    "candidates": 19596
+  },
+  {
+    "province": "Lâm Đồng",
+    "regionId": "tn",
+    "regionName": "Tây Nguyên",
+    "year": 2026,
+    "subjectId": "ngu_van",
+    "subjectName": "Ngữ văn",
+    "average": 6.61,
+    "candidates": 40625
+  },
+  {
+    "province": "Lạng Sơn",
+    "regionId": "other",
+    "regionName": "Trung du và miền núi phía Bắc",
+    "year": 2026,
+    "subjectId": "ngu_van",
+    "subjectName": "Ngữ văn",
+    "average": 5.87,
+    "candidates": 9922
+  },
+  {
+    "province": "Nghệ An",
+    "regionId": "other",
+    "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+    "year": 2026,
+    "subjectId": "ngu_van",
+    "subjectName": "Ngữ văn",
+    "average": 7.03,
+    "candidates": 41300
+  },
+  {
+    "province": "Ninh Bình",
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Hồng",
+    "year": 2026,
+    "subjectId": "ngu_van",
+    "subjectName": "Ngữ văn",
+    "average": 7.26,
+    "candidates": 47706
+  },
+  {
+    "province": "Phú Thọ",
+    "regionId": "other",
+    "regionName": "Trung du và miền núi phía Bắc",
+    "year": 2026,
+    "subjectId": "ngu_van",
+    "subjectName": "Ngữ văn",
+    "average": 6.75,
+    "candidates": 47312
+  },
+  {
+    "province": "Quảng Ngãi",
+    "regionId": "other",
+    "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+    "year": 2026,
+    "subjectId": "ngu_van",
+    "subjectName": "Ngữ văn",
+    "average": 6.59,
+    "candidates": 21325
+  },
+  {
+    "province": "Quảng Ninh",
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Hồng",
+    "year": 2026,
+    "subjectId": "ngu_van",
+    "subjectName": "Ngữ văn",
+    "average": 6.33,
+    "candidates": 20491
+  },
+  {
+    "province": "Quảng Trị",
+    "regionId": "other",
+    "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+    "year": 2026,
+    "subjectId": "ngu_van",
+    "subjectName": "Ngữ văn",
+    "average": 6.6,
+    "candidates": 21303
+  },
+  {
+    "province": "Sơn La",
+    "regionId": "other",
+    "regionName": "Trung du và miền núi phía Bắc",
+    "year": 2026,
+    "subjectId": "ngu_van",
+    "subjectName": "Ngữ văn",
+    "average": 5.39,
+    "candidates": 14026
+  },
+  {
+    "province": "Thanh Hóa",
+    "regionId": "other",
+    "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+    "year": 2026,
+    "subjectId": "ngu_van",
+    "subjectName": "Ngữ văn",
+    "average": 7.0,
+    "candidates": 42144
+  },
+  {
+    "province": "Thái Nguyên",
+    "regionId": "other",
+    "regionName": "Trung du và miền núi phía Bắc",
+    "year": 2026,
+    "subjectId": "ngu_van",
+    "subjectName": "Ngữ văn",
+    "average": 6.64,
+    "candidates": 22311
+  },
+  {
+    "province": "Tuyên Quang",
+    "regionId": "other",
+    "regionName": "Trung du và miền núi phía Bắc",
+    "year": 2026,
+    "subjectId": "ngu_van",
+    "subjectName": "Ngữ văn",
+    "average": 6.18,
+    "candidates": 17896
+  },
+  {
+    "province": "Tây Ninh",
+    "regionId": "dnb",
+    "regionName": "Đông Nam Bộ",
+    "year": 2026,
+    "subjectId": "ngu_van",
+    "subjectName": "Ngữ văn",
+    "average": 5.54,
+    "candidates": 28838
+  },
+  {
+    "province": "Vĩnh Long",
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Cửu Long",
+    "year": 2026,
+    "subjectId": "ngu_van",
+    "subjectName": "Ngữ văn",
+    "average": 5.0,
+    "candidates": 36084
+  },
+  {
+    "province": "Điện Biên",
+    "regionId": "other",
+    "regionName": "Trung du và miền núi phía Bắc",
+    "year": 2026,
+    "subjectId": "ngu_van",
+    "subjectName": "Ngữ văn",
+    "average": 6.32,
+    "candidates": 7855
+  },
+  {
+    "province": "Đà Nẵng",
+    "regionId": "other",
+    "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+    "year": 2026,
+    "subjectId": "ngu_van",
+    "subjectName": "Ngữ văn",
+    "average": 5.76,
+    "candidates": 35015
+  },
+  {
+    "province": "Đắk Lắk",
+    "regionId": "tn",
+    "regionName": "Tây Nguyên",
+    "year": 2026,
+    "subjectId": "ngu_van",
+    "subjectName": "Ngữ văn",
+    "average": 5.67,
+    "candidates": 34951
+  },
+  {
+    "province": "Đồng Nai",
+    "regionId": "dnb",
+    "regionName": "Đông Nam Bộ",
+    "year": 2026,
+    "subjectId": "ngu_van",
+    "subjectName": "Ngữ văn",
+    "average": 5.74,
+    "candidates": 52096
+  },
+  {
+    "province": "Bắc Ninh",
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Hồng",
+    "year": 2026,
+    "subjectId": "vat_li",
+    "subjectName": "Vật lý",
+    "average": 5.84,
+    "candidates": 13890
+  },
+  {
+    "province": "Cao Bằng",
+    "regionId": "other",
+    "regionName": "Trung du và miền núi phía Bắc",
+    "year": 2026,
+    "subjectId": "vat_li",
+    "subjectName": "Vật lý",
+    "average": 4.9,
+    "candidates": 1273
+  },
+  {
+    "province": "Cà Mau",
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Cửu Long",
+    "year": 2026,
+    "subjectId": "vat_li",
+    "subjectName": "Vật lý",
+    "average": 5.05,
+    "candidates": 5901
+  },
+  {
+    "province": "Cần Thơ",
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Cửu Long",
+    "year": 2026,
+    "subjectId": "vat_li",
+    "subjectName": "Vật lý",
+    "average": 5.0,
+    "candidates": 10058
+  },
+  {
+    "province": "Gia Lai",
+    "regionId": "tn",
+    "regionName": "Tây Nguyên",
+    "year": 2026,
+    "subjectId": "vat_li",
+    "subjectName": "Vật lý",
+    "average": 5.42,
+    "candidates": 12653
+  },
+  {
+    "province": "Huế",
+    "regionId": "other",
+    "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+    "year": 2026,
+    "subjectId": "vat_li",
+    "subjectName": "Vật lý",
+    "average": 5.83,
+    "candidates": 4481
+  },
+  {
+    "province": "Hà Nội",
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Hồng",
+    "year": 2026,
+    "subjectId": "vat_li",
+    "subjectName": "Vật lý",
+    "average": 6.02,
+    "candidates": 37540
+  },
+  {
+    "province": "Hà Tĩnh",
+    "regionId": "other",
+    "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+    "year": 2026,
+    "subjectId": "vat_li",
+    "subjectName": "Vật lý",
+    "average": 6.25,
+    "candidates": 4554
+  },
+  {
+    "province": "Hưng Yên",
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Hồng",
+    "year": 2026,
+    "subjectId": "vat_li",
+    "subjectName": "Vật lý",
+    "average": 5.73,
+    "candidates": 14930
+  },
+  {
+    "province": "Hải Phòng",
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Hồng",
+    "year": 2026,
+    "subjectId": "vat_li",
+    "subjectName": "Vật lý",
+    "average": 5.81,
+    "candidates": 18630
+  },
+  {
+    "province": "Hồ Chí Minh",
+    "regionId": "dnb",
+    "regionName": "Đông Nam Bộ",
+    "year": 2026,
+    "subjectId": "vat_li",
+    "subjectName": "Vật lý",
+    "average": 5.48,
+    "candidates": 63486
+  },
+  {
+    "province": "Khánh Hòa",
+    "regionId": "other",
+    "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+    "year": 2026,
+    "subjectId": "vat_li",
+    "subjectName": "Vật lý",
+    "average": 5.28,
+    "candidates": 7982
+  },
+  {
+    "province": "Lai Châu",
+    "regionId": "other",
+    "regionName": "Trung du và miền núi phía Bắc",
+    "year": 2026,
+    "subjectId": "vat_li",
+    "subjectName": "Vật lý",
+    "average": 4.95,
+    "candidates": 989
+  },
+  {
+    "province": "Lào Cai",
+    "regionId": "other",
+    "regionName": "Trung du và miền núi phía Bắc",
+    "year": 2026,
+    "subjectId": "vat_li",
+    "subjectName": "Vật lý",
+    "average": 5.38,
+    "candidates": 3213
+  },
+  {
+    "province": "Lâm Đồng",
+    "regionId": "tn",
+    "regionName": "Tây Nguyên",
+    "year": 2026,
+    "subjectId": "vat_li",
+    "subjectName": "Vật lý",
+    "average": 5.24,
+    "candidates": 13864
+  },
+  {
+    "province": "Lạng Sơn",
+    "regionId": "other",
+    "regionName": "Trung du và miền núi phía Bắc",
+    "year": 2026,
+    "subjectId": "vat_li",
+    "subjectName": "Vật lý",
+    "average": 5.13,
+    "candidates": 2088
+  },
+  {
+    "province": "Nghệ An",
+    "regionId": "other",
+    "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+    "year": 2026,
+    "subjectId": "vat_li",
+    "subjectName": "Vật lý",
+    "average": 6.05,
+    "candidates": 10960
+  },
+  {
+    "province": "Ninh Bình",
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Hồng",
+    "year": 2026,
+    "subjectId": "vat_li",
+    "subjectName": "Vật lý",
+    "average": 5.93,
+    "candidates": 18399
+  },
+  {
+    "province": "Phú Thọ",
+    "regionId": "other",
+    "regionName": "Trung du và miền núi phía Bắc",
+    "year": 2026,
+    "subjectId": "vat_li",
+    "subjectName": "Vật lý",
+    "average": 6.06,
+    "candidates": 10141
+  },
+  {
+    "province": "Quảng Ngãi",
+    "regionId": "other",
+    "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+    "year": 2026,
+    "subjectId": "vat_li",
+    "subjectName": "Vật lý",
+    "average": 5.43,
+    "candidates": 7429
+  },
+  {
+    "province": "Quảng Ninh",
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Hồng",
+    "year": 2026,
+    "subjectId": "vat_li",
+    "subjectName": "Vật lý",
+    "average": 6.0,
+    "candidates": 4471
+  },
+  {
+    "province": "Quảng Trị",
+    "regionId": "other",
+    "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+    "year": 2026,
+    "subjectId": "vat_li",
+    "subjectName": "Vật lý",
+    "average": 5.58,
+    "candidates": 5851
+  },
+  {
+    "province": "Sơn La",
+    "regionId": "other",
+    "regionName": "Trung du và miền núi phía Bắc",
+    "year": 2026,
+    "subjectId": "vat_li",
+    "subjectName": "Vật lý",
+    "average": 5.31,
+    "candidates": 1668
+  },
+  {
+    "province": "Thanh Hóa",
+    "regionId": "other",
+    "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+    "year": 2026,
+    "subjectId": "vat_li",
+    "subjectName": "Vật lý",
+    "average": 5.72,
+    "candidates": 10305
+  },
+  {
+    "province": "Thái Nguyên",
+    "regionId": "other",
+    "regionName": "Trung du và miền núi phía Bắc",
+    "year": 2026,
+    "subjectId": "vat_li",
+    "subjectName": "Vật lý",
+    "average": 5.48,
+    "candidates": 5068
+  },
+  {
+    "province": "Tuyên Quang",
+    "regionId": "other",
+    "regionName": "Trung du và miền núi phía Bắc",
+    "year": 2026,
+    "subjectId": "vat_li",
+    "subjectName": "Vật lý",
+    "average": 5.83,
+    "candidates": 2678
+  },
+  {
+    "province": "Tây Ninh",
+    "regionId": "dnb",
+    "regionName": "Đông Nam Bộ",
+    "year": 2026,
+    "subjectId": "vat_li",
+    "subjectName": "Vật lý",
+    "average": 5.07,
+    "candidates": 11369
+  },
+  {
+    "province": "Vĩnh Long",
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Cửu Long",
+    "year": 2026,
+    "subjectId": "vat_li",
+    "subjectName": "Vật lý",
+    "average": 5.08,
+    "candidates": 11434
+  },
+  {
+    "province": "Điện Biên",
+    "regionId": "other",
+    "regionName": "Trung du và miền núi phía Bắc",
+    "year": 2026,
+    "subjectId": "vat_li",
+    "subjectName": "Vật lý",
+    "average": 5.02,
+    "candidates": 1072
+  },
+  {
+    "province": "Đà Nẵng",
+    "regionId": "other",
+    "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+    "year": 2026,
+    "subjectId": "vat_li",
+    "subjectName": "Vật lý",
+    "average": 5.59,
+    "candidates": 14053
+  },
+  {
+    "province": "Đắk Lắk",
+    "regionId": "tn",
+    "regionName": "Tây Nguyên",
+    "year": 2026,
+    "subjectId": "vat_li",
+    "subjectName": "Vật lý",
+    "average": 5.24,
+    "candidates": 10749
+  },
+  {
+    "province": "Đồng Nai",
+    "regionId": "dnb",
+    "regionName": "Đông Nam Bộ",
+    "year": 2026,
+    "subjectId": "vat_li",
+    "subjectName": "Vật lý",
+    "average": 5.3,
+    "candidates": 18875
+  },
+  {
+    "province": "Bắc Ninh",
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Hồng",
+    "year": 2026,
+    "subjectId": "hoa_hoc",
+    "subjectName": "Hóa học",
+    "average": 6.36,
+    "candidates": 9412
+  },
+  {
+    "province": "Cao Bằng",
+    "regionId": "other",
+    "regionName": "Trung du và miền núi phía Bắc",
+    "year": 2026,
+    "subjectId": "hoa_hoc",
+    "subjectName": "Hóa học",
+    "average": 6.07,
+    "candidates": 695
+  },
+  {
+    "province": "Cà Mau",
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Cửu Long",
+    "year": 2026,
+    "subjectId": "hoa_hoc",
+    "subjectName": "Hóa học",
+    "average": 5.83,
+    "candidates": 4856
+  },
+  {
+    "province": "Cần Thơ",
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Cửu Long",
+    "year": 2026,
+    "subjectId": "hoa_hoc",
+    "subjectName": "Hóa học",
+    "average": 6.0,
+    "candidates": 7879
+  },
+  {
+    "province": "Gia Lai",
+    "regionId": "tn",
+    "regionName": "Tây Nguyên",
+    "year": 2026,
+    "subjectId": "hoa_hoc",
+    "subjectName": "Hóa học",
+    "average": 6.33,
+    "candidates": 8159
+  },
+  {
+    "province": "Huế",
+    "regionId": "other",
+    "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+    "year": 2026,
+    "subjectId": "hoa_hoc",
+    "subjectName": "Hóa học",
+    "average": 6.76,
+    "candidates": 3101
+  },
+  {
+    "province": "Hà Nội",
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Hồng",
+    "year": 2026,
+    "subjectId": "hoa_hoc",
+    "subjectName": "Hóa học",
+    "average": 6.56,
+    "candidates": 17852
+  },
+  {
+    "province": "Hà Tĩnh",
+    "regionId": "other",
+    "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+    "year": 2026,
+    "subjectId": "hoa_hoc",
+    "subjectName": "Hóa học",
+    "average": 6.9,
+    "candidates": 3400
+  },
+  {
+    "province": "Hưng Yên",
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Hồng",
+    "year": 2026,
+    "subjectId": "hoa_hoc",
+    "subjectName": "Hóa học",
+    "average": 6.41,
+    "candidates": 10027
+  },
+  {
+    "province": "Hải Phòng",
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Hồng",
+    "year": 2026,
+    "subjectId": "hoa_hoc",
+    "subjectName": "Hóa học",
+    "average": 6.44,
+    "candidates": 10204
+  },
+  {
+    "province": "Hồ Chí Minh",
+    "regionId": "dnb",
+    "regionName": "Đông Nam Bộ",
+    "year": 2026,
+    "subjectId": "hoa_hoc",
+    "subjectName": "Hóa học",
+    "average": 6.23,
+    "candidates": 37581
+  },
+  {
+    "province": "Khánh Hòa",
+    "regionId": "other",
+    "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+    "year": 2026,
+    "subjectId": "hoa_hoc",
+    "subjectName": "Hóa học",
+    "average": 6.21,
+    "candidates": 4525
+  },
+  {
+    "province": "Lai Châu",
+    "regionId": "other",
+    "regionName": "Trung du và miền núi phía Bắc",
+    "year": 2026,
+    "subjectId": "hoa_hoc",
+    "subjectName": "Hóa học",
+    "average": 5.72,
+    "candidates": 739
+  },
+  {
+    "province": "Lào Cai",
+    "regionId": "other",
+    "regionName": "Trung du và miền núi phía Bắc",
+    "year": 2026,
+    "subjectId": "hoa_hoc",
+    "subjectName": "Hóa học",
+    "average": 6.23,
+    "candidates": 2158
+  },
+  {
+    "province": "Lâm Đồng",
+    "regionId": "tn",
+    "regionName": "Tây Nguyên",
+    "year": 2026,
+    "subjectId": "hoa_hoc",
+    "subjectName": "Hóa học",
+    "average": 6.14,
+    "candidates": 8705
+  },
+  {
+    "province": "Lạng Sơn",
+    "regionId": "other",
+    "regionName": "Trung du và miền núi phía Bắc",
+    "year": 2026,
+    "subjectId": "hoa_hoc",
+    "subjectName": "Hóa học",
+    "average": 5.97,
+    "candidates": 1253
+  },
+  {
+    "province": "Nghệ An",
+    "regionId": "other",
+    "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+    "year": 2026,
+    "subjectId": "hoa_hoc",
+    "subjectName": "Hóa học",
+    "average": 6.76,
+    "candidates": 8835
+  },
+  {
+    "province": "Ninh Bình",
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Hồng",
+    "year": 2026,
+    "subjectId": "hoa_hoc",
+    "subjectName": "Hóa học",
+    "average": 6.39,
+    "candidates": 14262
+  },
+  {
+    "province": "Phú Thọ",
+    "regionId": "other",
+    "regionName": "Trung du và miền núi phía Bắc",
+    "year": 2026,
+    "subjectId": "hoa_hoc",
+    "subjectName": "Hóa học",
+    "average": 6.54,
+    "candidates": 7438
+  },
+  {
+    "province": "Quảng Ngãi",
+    "regionId": "other",
+    "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+    "year": 2026,
+    "subjectId": "hoa_hoc",
+    "subjectName": "Hóa học",
+    "average": 6.38,
+    "candidates": 4702
+  },
+  {
+    "province": "Quảng Ninh",
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Hồng",
+    "year": 2026,
+    "subjectId": "hoa_hoc",
+    "subjectName": "Hóa học",
+    "average": 6.65,
+    "candidates": 2348
+  },
+  {
+    "province": "Quảng Trị",
+    "regionId": "other",
+    "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+    "year": 2026,
+    "subjectId": "hoa_hoc",
+    "subjectName": "Hóa học",
+    "average": 6.5,
+    "candidates": 3762
+  },
+  {
+    "province": "Sơn La",
+    "regionId": "other",
+    "regionName": "Trung du và miền núi phía Bắc",
+    "year": 2026,
+    "subjectId": "hoa_hoc",
+    "subjectName": "Hóa học",
+    "average": 5.84,
+    "candidates": 1397
+  },
+  {
+    "province": "Thanh Hóa",
+    "regionId": "other",
+    "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+    "year": 2026,
+    "subjectId": "hoa_hoc",
+    "subjectName": "Hóa học",
+    "average": 6.16,
+    "candidates": 8435
+  },
+  {
+    "province": "Thái Nguyên",
+    "regionId": "other",
+    "regionName": "Trung du và miền núi phía Bắc",
+    "year": 2026,
+    "subjectId": "hoa_hoc",
+    "subjectName": "Hóa học",
+    "average": 6.31,
+    "candidates": 3520
+  },
+  {
+    "province": "Tuyên Quang",
+    "regionId": "other",
+    "regionName": "Trung du và miền núi phía Bắc",
+    "year": 2026,
+    "subjectId": "hoa_hoc",
+    "subjectName": "Hóa học",
+    "average": 6.77,
+    "candidates": 2058
+  },
+  {
+    "province": "Tây Ninh",
+    "regionId": "dnb",
+    "regionName": "Đông Nam Bộ",
+    "year": 2026,
+    "subjectId": "hoa_hoc",
+    "subjectName": "Hóa học",
+    "average": 5.91,
+    "candidates": 8056
+  },
+  {
+    "province": "Vĩnh Long",
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Cửu Long",
+    "year": 2026,
+    "subjectId": "hoa_hoc",
+    "subjectName": "Hóa học",
+    "average": 6.05,
+    "candidates": 8513
+  },
+  {
+    "province": "Điện Biên",
+    "regionId": "other",
+    "regionName": "Trung du và miền núi phía Bắc",
+    "year": 2026,
+    "subjectId": "hoa_hoc",
+    "subjectName": "Hóa học",
+    "average": 5.73,
+    "candidates": 937
+  },
+  {
+    "province": "Đà Nẵng",
+    "regionId": "other",
+    "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+    "year": 2026,
+    "subjectId": "hoa_hoc",
+    "subjectName": "Hóa học",
+    "average": 6.45,
+    "candidates": 8437
+  },
+  {
+    "province": "Đắk Lắk",
+    "regionId": "tn",
+    "regionName": "Tây Nguyên",
+    "year": 2026,
+    "subjectId": "hoa_hoc",
+    "subjectName": "Hóa học",
+    "average": 6.01,
+    "candidates": 7788
+  },
+  {
+    "province": "Đồng Nai",
+    "regionId": "dnb",
+    "regionName": "Đông Nam Bộ",
+    "year": 2026,
+    "subjectId": "hoa_hoc",
+    "subjectName": "Hóa học",
+    "average": 6.09,
+    "candidates": 11339
+  },
+  {
+    "province": "Bắc Ninh",
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Hồng",
+    "year": 2026,
+    "subjectId": "sinh_hoc",
+    "subjectName": "Sinh học",
+    "average": 6.91,
+    "candidates": 1011
+  },
+  {
+    "province": "Cao Bằng",
+    "regionId": "other",
+    "regionName": "Trung du và miền núi phía Bắc",
+    "year": 2026,
+    "subjectId": "sinh_hoc",
+    "subjectName": "Sinh học",
+    "average": 4.49,
+    "candidates": 497
+  },
+  {
+    "province": "Cà Mau",
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Cửu Long",
+    "year": 2026,
+    "subjectId": "sinh_hoc",
+    "subjectName": "Sinh học",
+    "average": 5.53,
+    "candidates": 2211
+  },
+  {
+    "province": "Cần Thơ",
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Cửu Long",
+    "year": 2026,
+    "subjectId": "sinh_hoc",
+    "subjectName": "Sinh học",
+    "average": 5.77,
+    "candidates": 3575
+  },
+  {
+    "province": "Gia Lai",
+    "regionId": "tn",
+    "regionName": "Tây Nguyên",
+    "year": 2026,
+    "subjectId": "sinh_hoc",
+    "subjectName": "Sinh học",
+    "average": 5.82,
+    "candidates": 1848
+  },
+  {
+    "province": "Huế",
+    "regionId": "other",
+    "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+    "year": 2026,
+    "subjectId": "sinh_hoc",
+    "subjectName": "Sinh học",
+    "average": 6.01,
+    "candidates": 1013
+  },
+  {
+    "province": "Hà Nội",
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Hồng",
+    "year": 2026,
+    "subjectId": "sinh_hoc",
+    "subjectName": "Sinh học",
+    "average": 6.45,
+    "candidates": 3928
+  },
+  {
+    "province": "Hà Tĩnh",
+    "regionId": "other",
+    "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+    "year": 2026,
+    "subjectId": "sinh_hoc",
+    "subjectName": "Sinh học",
+    "average": 6.23,
+    "candidates": 928
+  },
+  {
+    "province": "Hưng Yên",
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Hồng",
+    "year": 2026,
+    "subjectId": "sinh_hoc",
+    "subjectName": "Sinh học",
+    "average": 5.99,
+    "candidates": 1601
+  },
+  {
+    "province": "Hải Phòng",
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Hồng",
+    "year": 2026,
+    "subjectId": "sinh_hoc",
+    "subjectName": "Sinh học",
+    "average": 6.7,
+    "candidates": 1259
+  },
+  {
+    "province": "Hồ Chí Minh",
+    "regionId": "dnb",
+    "regionName": "Đông Nam Bộ",
+    "year": 2026,
+    "subjectId": "sinh_hoc",
+    "subjectName": "Sinh học",
+    "average": 6.25,
+    "candidates": 10829
+  },
+  {
+    "province": "Khánh Hòa",
+    "regionId": "other",
+    "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+    "year": 2026,
+    "subjectId": "sinh_hoc",
+    "subjectName": "Sinh học",
+    "average": 5.83,
+    "candidates": 1007
+  },
+  {
+    "province": "Lai Châu",
+    "regionId": "other",
+    "regionName": "Trung du và miền núi phía Bắc",
+    "year": 2026,
+    "subjectId": "sinh_hoc",
+    "subjectName": "Sinh học",
+    "average": 4.87,
+    "candidates": 448
+  },
+  {
+    "province": "Lào Cai",
+    "regionId": "other",
+    "regionName": "Trung du và miền núi phía Bắc",
+    "year": 2026,
+    "subjectId": "sinh_hoc",
+    "subjectName": "Sinh học",
+    "average": 4.94,
+    "candidates": 1718
+  },
+  {
+    "province": "Lâm Đồng",
+    "regionId": "tn",
+    "regionName": "Tây Nguyên",
+    "year": 2026,
+    "subjectId": "sinh_hoc",
+    "subjectName": "Sinh học",
+    "average": 5.82,
+    "candidates": 2431
+  },
+  {
+    "province": "Lạng Sơn",
+    "regionId": "other",
+    "regionName": "Trung du và miền núi phía Bắc",
+    "year": 2026,
+    "subjectId": "sinh_hoc",
+    "subjectName": "Sinh học",
+    "average": 5.29,
+    "candidates": 457
+  },
+  {
+    "province": "Nghệ An",
+    "regionId": "other",
+    "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+    "year": 2026,
+    "subjectId": "sinh_hoc",
+    "subjectName": "Sinh học",
+    "average": 5.58,
+    "candidates": 2941
+  },
+  {
+    "province": "Ninh Bình",
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Hồng",
+    "year": 2026,
+    "subjectId": "sinh_hoc",
+    "subjectName": "Sinh học",
+    "average": 6.13,
+    "candidates": 2070
+  },
+  {
+    "province": "Phú Thọ",
+    "regionId": "other",
+    "regionName": "Trung du và miền núi phía Bắc",
+    "year": 2026,
+    "subjectId": "sinh_hoc",
+    "subjectName": "Sinh học",
+    "average": 6.02,
+    "candidates": 1937
+  },
+  {
+    "province": "Quảng Ngãi",
+    "regionId": "other",
+    "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+    "year": 2026,
+    "subjectId": "sinh_hoc",
+    "subjectName": "Sinh học",
+    "average": 5.92,
+    "candidates": 787
+  },
+  {
+    "province": "Quảng Ninh",
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Hồng",
+    "year": 2026,
+    "subjectId": "sinh_hoc",
+    "subjectName": "Sinh học",
+    "average": 6.01,
+    "candidates": 755
+  },
+  {
+    "province": "Quảng Trị",
+    "regionId": "other",
+    "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+    "year": 2026,
+    "subjectId": "sinh_hoc",
+    "subjectName": "Sinh học",
+    "average": 5.51,
+    "candidates": 1370
+  },
+  {
+    "province": "Sơn La",
+    "regionId": "other",
+    "regionName": "Trung du và miền núi phía Bắc",
+    "year": 2026,
+    "subjectId": "sinh_hoc",
+    "subjectName": "Sinh học",
+    "average": 4.76,
+    "candidates": 1224
+  },
+  {
+    "province": "Thanh Hóa",
+    "regionId": "other",
+    "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+    "year": 2026,
+    "subjectId": "sinh_hoc",
+    "subjectName": "Sinh học",
+    "average": 5.91,
+    "candidates": 1824
+  },
+  {
+    "province": "Thái Nguyên",
+    "regionId": "other",
+    "regionName": "Trung du và miền núi phía Bắc",
+    "year": 2026,
+    "subjectId": "sinh_hoc",
+    "subjectName": "Sinh học",
+    "average": 5.68,
+    "candidates": 1078
+  },
+  {
+    "province": "Tuyên Quang",
+    "regionId": "other",
+    "regionName": "Trung du và miền núi phía Bắc",
+    "year": 2026,
+    "subjectId": "sinh_hoc",
+    "subjectName": "Sinh học",
+    "average": 5.02,
+    "candidates": 1666
+  },
+  {
+    "province": "Tây Ninh",
+    "regionId": "dnb",
+    "regionName": "Đông Nam Bộ",
+    "year": 2026,
+    "subjectId": "sinh_hoc",
+    "subjectName": "Sinh học",
+    "average": 5.6,
+    "candidates": 1812
+  },
+  {
+    "province": "Vĩnh Long",
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Cửu Long",
+    "year": 2026,
+    "subjectId": "sinh_hoc",
+    "subjectName": "Sinh học",
+    "average": 5.48,
+    "candidates": 3281
+  },
+  {
+    "province": "Điện Biên",
+    "regionId": "other",
+    "regionName": "Trung du và miền núi phía Bắc",
+    "year": 2026,
+    "subjectId": "sinh_hoc",
+    "subjectName": "Sinh học",
+    "average": 4.79,
+    "candidates": 585
+  },
+  {
+    "province": "Đà Nẵng",
+    "regionId": "other",
+    "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+    "year": 2026,
+    "subjectId": "sinh_hoc",
+    "subjectName": "Sinh học",
+    "average": 6.37,
+    "candidates": 1610
+  },
+  {
+    "province": "Đắk Lắk",
+    "regionId": "tn",
+    "regionName": "Tây Nguyên",
+    "year": 2026,
+    "subjectId": "sinh_hoc",
+    "subjectName": "Sinh học",
+    "average": 5.59,
+    "candidates": 2174
+  },
+  {
+    "province": "Đồng Nai",
+    "regionId": "dnb",
+    "regionName": "Đông Nam Bộ",
+    "year": 2026,
+    "subjectId": "sinh_hoc",
+    "subjectName": "Sinh học",
+    "average": 5.79,
+    "candidates": 2369
+  },
+  {
+    "province": "Bắc Ninh",
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Hồng",
+    "year": 2026,
+    "subjectId": "lich_su",
+    "subjectName": "Lịch sử",
+    "average": 6.31,
+    "candidates": 21055
+  },
+  {
+    "province": "Cao Bằng",
+    "regionId": "other",
+    "regionName": "Trung du và miền núi phía Bắc",
+    "year": 2026,
+    "subjectId": "lich_su",
+    "subjectName": "Lịch sử",
+    "average": 6.06,
+    "candidates": 3910
+  },
+  {
+    "province": "Cà Mau",
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Cửu Long",
+    "year": 2026,
+    "subjectId": "lich_su",
+    "subjectName": "Lịch sử",
+    "average": 6.32,
+    "candidates": 10632
+  },
+  {
+    "province": "Cần Thơ",
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Cửu Long",
+    "year": 2026,
+    "subjectId": "lich_su",
+    "subjectName": "Lịch sử",
+    "average": 6.04,
+    "candidates": 16314
+  },
+  {
+    "province": "Gia Lai",
+    "regionId": "tn",
+    "regionName": "Tây Nguyên",
+    "year": 2026,
+    "subjectId": "lich_su",
+    "subjectName": "Lịch sử",
+    "average": 5.9,
+    "candidates": 18129
+  },
+  {
+    "province": "Huế",
+    "regionId": "other",
+    "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+    "year": 2026,
+    "subjectId": "lich_su",
+    "subjectName": "Lịch sử",
+    "average": 6.21,
+    "candidates": 5970
+  },
+  {
+    "province": "Hà Nội",
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Hồng",
+    "year": 2026,
+    "subjectId": "lich_su",
+    "subjectName": "Lịch sử",
+    "average": 6.27,
+    "candidates": 58003
+  },
+  {
+    "province": "Hà Tĩnh",
+    "regionId": "other",
+    "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+    "year": 2026,
+    "subjectId": "lich_su",
+    "subjectName": "Lịch sử",
+    "average": 6.32,
+    "candidates": 9579
+  },
+  {
+    "province": "Hưng Yên",
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Hồng",
+    "year": 2026,
+    "subjectId": "lich_su",
+    "subjectName": "Lịch sử",
+    "average": 6.27,
+    "candidates": 21535
+  },
+  {
+    "province": "Hải Phòng",
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Hồng",
+    "year": 2026,
+    "subjectId": "lich_su",
+    "subjectName": "Lịch sử",
+    "average": 6.34,
+    "candidates": 23199
+  },
+  {
+    "province": "Hồ Chí Minh",
+    "regionId": "dnb",
+    "regionName": "Đông Nam Bộ",
+    "year": 2026,
+    "subjectId": "lich_su",
+    "subjectName": "Lịch sử",
+    "average": 6.32,
+    "candidates": 40542
+  },
+  {
+    "province": "Khánh Hòa",
+    "regionId": "other",
+    "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+    "year": 2026,
+    "subjectId": "lich_su",
+    "subjectName": "Lịch sử",
+    "average": 5.82,
+    "candidates": 9078
+  },
+  {
+    "province": "Lai Châu",
+    "regionId": "other",
+    "regionName": "Trung du và miền núi phía Bắc",
+    "year": 2026,
+    "subjectId": "lich_su",
+    "subjectName": "Lịch sử",
+    "average": 5.92,
+    "candidates": 3124
+  },
+  {
+    "province": "Lào Cai",
+    "regionId": "other",
+    "regionName": "Trung du và miền núi phía Bắc",
+    "year": 2026,
+    "subjectId": "lich_su",
+    "subjectName": "Lịch sử",
+    "average": 5.98,
+    "candidates": 12910
+  },
+  {
+    "province": "Lâm Đồng",
+    "regionId": "tn",
+    "regionName": "Tây Nguyên",
+    "year": 2026,
+    "subjectId": "lich_su",
+    "subjectName": "Lịch sử",
+    "average": 6.09,
+    "candidates": 19592
+  },
+  {
+    "province": "Lạng Sơn",
+    "regionId": "other",
+    "regionName": "Trung du và miền núi phía Bắc",
+    "year": 2026,
+    "subjectId": "lich_su",
+    "subjectName": "Lịch sử",
+    "average": 6.11,
+    "candidates": 6050
+  },
+  {
+    "province": "Nghệ An",
+    "regionId": "other",
+    "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+    "year": 2026,
+    "subjectId": "lich_su",
+    "subjectName": "Lịch sử",
+    "average": 6.52,
+    "candidates": 20504
+  },
+  {
+    "province": "Ninh Bình",
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Hồng",
+    "year": 2026,
+    "subjectId": "lich_su",
+    "subjectName": "Lịch sử",
+    "average": 6.59,
+    "candidates": 21020
+  },
+  {
+    "province": "Phú Thọ",
+    "regionId": "other",
+    "regionName": "Trung du và miền núi phía Bắc",
+    "year": 2026,
+    "subjectId": "lich_su",
+    "subjectName": "Lịch sử",
+    "average": 6.69,
+    "candidates": 26384
+  },
+  {
+    "province": "Quảng Ngãi",
+    "regionId": "other",
+    "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+    "year": 2026,
+    "subjectId": "lich_su",
+    "subjectName": "Lịch sử",
+    "average": 5.87,
+    "candidates": 11022
+  },
+  {
+    "province": "Quảng Ninh",
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Hồng",
+    "year": 2026,
+    "subjectId": "lich_su",
+    "subjectName": "Lịch sử",
+    "average": 6.16,
+    "candidates": 10419
+  },
+  {
+    "province": "Quảng Trị",
+    "regionId": "other",
+    "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+    "year": 2026,
+    "subjectId": "lich_su",
+    "subjectName": "Lịch sử",
+    "average": 6.12,
+    "candidates": 11179
+  },
+  {
+    "province": "Sơn La",
+    "regionId": "other",
+    "regionName": "Trung du và miền núi phía Bắc",
+    "year": 2026,
+    "subjectId": "lich_su",
+    "subjectName": "Lịch sử",
+    "average": 5.89,
+    "candidates": 8356
+  },
+  {
+    "province": "Thanh Hóa",
+    "regionId": "other",
+    "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+    "year": 2026,
+    "subjectId": "lich_su",
+    "subjectName": "Lịch sử",
+    "average": 6.24,
+    "candidates": 23663
+  },
+  {
+    "province": "Thái Nguyên",
+    "regionId": "other",
+    "regionName": "Trung du và miền núi phía Bắc",
+    "year": 2026,
+    "subjectId": "lich_su",
+    "subjectName": "Lịch sử",
+    "average": 5.93,
+    "candidates": 12239
+  },
+  {
+    "province": "Tuyên Quang",
+    "regionId": "other",
+    "regionName": "Trung du và miền núi phía Bắc",
+    "year": 2026,
+    "subjectId": "lich_su",
+    "subjectName": "Lịch sử",
+    "average": 6.31,
+    "candidates": 13063
+  },
+  {
+    "province": "Tây Ninh",
+    "regionId": "dnb",
+    "regionName": "Đông Nam Bộ",
+    "year": 2026,
+    "subjectId": "lich_su",
+    "subjectName": "Lịch sử",
+    "average": 6.12,
+    "candidates": 12053
+  },
+  {
+    "province": "Vĩnh Long",
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Cửu Long",
+    "year": 2026,
+    "subjectId": "lich_su",
+    "subjectName": "Lịch sử",
+    "average": 5.97,
+    "candidates": 17613
+  },
+  {
+    "province": "Điện Biên",
+    "regionId": "other",
+    "regionName": "Trung du và miền núi phía Bắc",
+    "year": 2026,
+    "subjectId": "lich_su",
+    "subjectName": "Lịch sử",
+    "average": 5.87,
+    "candidates": 5649
+  },
+  {
+    "province": "Đà Nẵng",
+    "regionId": "other",
+    "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+    "year": 2026,
+    "subjectId": "lich_su",
+    "subjectName": "Lịch sử",
+    "average": 5.84,
+    "candidates": 14381
+  },
+  {
+    "province": "Đắk Lắk",
+    "regionId": "tn",
+    "regionName": "Tây Nguyên",
+    "year": 2026,
+    "subjectId": "lich_su",
+    "subjectName": "Lịch sử",
+    "average": 5.68,
+    "candidates": 17531
+  },
+  {
+    "province": "Đồng Nai",
+    "regionId": "dnb",
+    "regionName": "Đông Nam Bộ",
+    "year": 2026,
+    "subjectId": "lich_su",
+    "subjectName": "Lịch sử",
+    "average": 5.94,
+    "candidates": 23773
+  },
+  {
+    "province": "Bắc Ninh",
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Hồng",
+    "year": 2026,
+    "subjectId": "dia_li",
+    "subjectName": "Địa lý",
+    "average": 5.25,
+    "candidates": 19859
+  },
+  {
+    "province": "Cao Bằng",
+    "regionId": "other",
+    "regionName": "Trung du và miền núi phía Bắc",
+    "year": 2026,
+    "subjectId": "dia_li",
+    "subjectName": "Địa lý",
+    "average": 4.8,
+    "candidates": 2459
+  },
+  {
+    "province": "Cà Mau",
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Cửu Long",
+    "year": 2026,
+    "subjectId": "dia_li",
+    "subjectName": "Địa lý",
+    "average": 5.38,
+    "candidates": 6868
+  },
+  {
+    "province": "Cần Thơ",
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Cửu Long",
+    "year": 2026,
+    "subjectId": "dia_li",
+    "subjectName": "Địa lý",
+    "average": 4.91,
+    "candidates": 11275
+  },
+  {
+    "province": "Gia Lai",
+    "regionId": "tn",
+    "regionName": "Tây Nguyên",
+    "year": 2026,
+    "subjectId": "dia_li",
+    "subjectName": "Địa lý",
+    "average": 4.75,
+    "candidates": 12502
+  },
+  {
+    "province": "Huế",
+    "regionId": "other",
+    "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+    "year": 2026,
+    "subjectId": "dia_li",
+    "subjectName": "Địa lý",
+    "average": 5.41,
+    "candidates": 3478
+  },
+  {
+    "province": "Hà Nội",
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Hồng",
+    "year": 2026,
+    "subjectId": "dia_li",
+    "subjectName": "Địa lý",
+    "average": 5.02,
+    "candidates": 38959
+  },
+  {
+    "province": "Hà Tĩnh",
+    "regionId": "other",
+    "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+    "year": 2026,
+    "subjectId": "dia_li",
+    "subjectName": "Địa lý",
+    "average": 5.28,
+    "candidates": 9598
+  },
+  {
+    "province": "Hưng Yên",
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Hồng",
+    "year": 2026,
+    "subjectId": "dia_li",
+    "subjectName": "Địa lý",
+    "average": 5.06,
+    "candidates": 15844
+  },
+  {
+    "province": "Hải Phòng",
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Hồng",
+    "year": 2026,
+    "subjectId": "dia_li",
+    "subjectName": "Địa lý",
+    "average": 5.29,
+    "candidates": 24982
+  },
+  {
+    "province": "Hồ Chí Minh",
+    "regionId": "dnb",
+    "regionName": "Đông Nam Bộ",
+    "year": 2026,
+    "subjectId": "dia_li",
+    "subjectName": "Địa lý",
+    "average": 5.22,
+    "candidates": 33141
+  },
+  {
+    "province": "Khánh Hòa",
+    "regionId": "other",
+    "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+    "year": 2026,
+    "subjectId": "dia_li",
+    "subjectName": "Địa lý",
+    "average": 4.76,
+    "candidates": 7073
+  },
+  {
+    "province": "Lai Châu",
+    "regionId": "other",
+    "regionName": "Trung du và miền núi phía Bắc",
+    "year": 2026,
+    "subjectId": "dia_li",
+    "subjectName": "Địa lý",
+    "average": 4.9,
+    "candidates": 1963
+  },
+  {
+    "province": "Lào Cai",
+    "regionId": "other",
+    "regionName": "Trung du và miền núi phía Bắc",
+    "year": 2026,
+    "subjectId": "dia_li",
+    "subjectName": "Địa lý",
+    "average": 4.9,
+    "candidates": 8686
+  },
+  {
+    "province": "Lâm Đồng",
+    "regionId": "tn",
+    "regionName": "Tây Nguyên",
+    "year": 2026,
+    "subjectId": "dia_li",
+    "subjectName": "Địa lý",
+    "average": 5.05,
+    "candidates": 13044
+  },
+  {
+    "province": "Lạng Sơn",
+    "regionId": "other",
+    "regionName": "Trung du và miền núi phía Bắc",
+    "year": 2026,
+    "subjectId": "dia_li",
+    "subjectName": "Địa lý",
+    "average": 4.9,
+    "candidates": 5298
+  },
+  {
+    "province": "Nghệ An",
+    "regionId": "other",
+    "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+    "year": 2026,
+    "subjectId": "dia_li",
+    "subjectName": "Địa lý",
+    "average": 5.32,
+    "candidates": 17892
+  },
+  {
+    "province": "Ninh Bình",
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Hồng",
+    "year": 2026,
+    "subjectId": "dia_li",
+    "subjectName": "Địa lý",
+    "average": 5.63,
+    "candidates": 19506
+  },
+  {
+    "province": "Phú Thọ",
+    "regionId": "other",
+    "regionName": "Trung du và miền núi phía Bắc",
+    "year": 2026,
+    "subjectId": "dia_li",
+    "subjectName": "Địa lý",
+    "average": 5.55,
+    "candidates": 24865
+  },
+  {
+    "province": "Quảng Ngãi",
+    "regionId": "other",
+    "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+    "year": 2026,
+    "subjectId": "dia_li",
+    "subjectName": "Địa lý",
+    "average": 4.69,
+    "candidates": 7848
+  },
+  {
+    "province": "Quảng Ninh",
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Hồng",
+    "year": 2026,
+    "subjectId": "dia_li",
+    "subjectName": "Địa lý",
+    "average": 5.0,
+    "candidates": 9595
+  },
+  {
+    "province": "Quảng Trị",
+    "regionId": "other",
+    "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+    "year": 2026,
+    "subjectId": "dia_li",
+    "subjectName": "Địa lý",
+    "average": 5.17,
+    "candidates": 6808
+  },
+  {
+    "province": "Sơn La",
+    "regionId": "other",
+    "regionName": "Trung du và miền núi phía Bắc",
+    "year": 2026,
+    "subjectId": "dia_li",
+    "subjectName": "Địa lý",
+    "average": 4.67,
+    "candidates": 7141
+  },
+  {
+    "province": "Thanh Hóa",
+    "regionId": "other",
+    "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+    "year": 2026,
+    "subjectId": "dia_li",
+    "subjectName": "Địa lý",
+    "average": 5.09,
+    "candidates": 20818
+  },
+  {
+    "province": "Thái Nguyên",
+    "regionId": "other",
+    "regionName": "Trung du và miền núi phía Bắc",
+    "year": 2026,
+    "subjectId": "dia_li",
+    "subjectName": "Địa lý",
+    "average": 4.7,
+    "candidates": 9880
+  },
+  {
+    "province": "Tuyên Quang",
+    "regionId": "other",
+    "regionName": "Trung du và miền núi phía Bắc",
+    "year": 2026,
+    "subjectId": "dia_li",
+    "subjectName": "Địa lý",
+    "average": 5.23,
+    "candidates": 6796
+  },
+  {
+    "province": "Tây Ninh",
+    "regionId": "dnb",
+    "regionName": "Đông Nam Bộ",
+    "year": 2026,
+    "subjectId": "dia_li",
+    "subjectName": "Địa lý",
+    "average": 5.14,
+    "candidates": 9922
+  },
+  {
+    "province": "Vĩnh Long",
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Cửu Long",
+    "year": 2026,
+    "subjectId": "dia_li",
+    "subjectName": "Địa lý",
+    "average": 4.89,
+    "candidates": 13627
+  },
+  {
+    "province": "Điện Biên",
+    "regionId": "other",
+    "regionName": "Trung du và miền núi phía Bắc",
+    "year": 2026,
+    "subjectId": "dia_li",
+    "subjectName": "Địa lý",
+    "average": 4.89,
+    "candidates": 4085
+  },
+  {
+    "province": "Đà Nẵng",
+    "regionId": "other",
+    "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+    "year": 2026,
+    "subjectId": "dia_li",
+    "subjectName": "Địa lý",
+    "average": 4.91,
+    "candidates": 9680
+  },
+  {
+    "province": "Đắk Lắk",
+    "regionId": "tn",
+    "regionName": "Tây Nguyên",
+    "year": 2026,
+    "subjectId": "dia_li",
+    "subjectName": "Địa lý",
+    "average": 4.61,
+    "candidates": 12761
+  },
+  {
+    "province": "Đồng Nai",
+    "regionId": "dnb",
+    "regionName": "Đông Nam Bộ",
+    "year": 2026,
+    "subjectId": "dia_li",
+    "subjectName": "Địa lý",
+    "average": 4.87,
+    "candidates": 20684
   }
 ];
 export const regionAverages: RegionMetric[] = [
@@ -12971,9 +15346,682 @@ export const regionAverages: RegionMetric[] = [
     "subjectId": "gdcd",
     "subjectName": "GDCD",
     "average": 7.7
+  },
+  {
+    "regionId": "other",
+    "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+    "year": 2026,
+    "subjectId": "toan",
+    "subjectName": "Toán",
+    "average": 5.62
+  },
+  {
+    "regionId": "other",
+    "regionName": "Trung du và miền núi phía Bắc",
+    "year": 2026,
+    "subjectId": "toan",
+    "subjectName": "Toán",
+    "average": 5.11
+  },
+  {
+    "regionId": "tn",
+    "regionName": "Tây Nguyên",
+    "year": 2026,
+    "subjectId": "toan",
+    "subjectName": "Toán",
+    "average": 5.31
+  },
+  {
+    "regionId": "dnb",
+    "regionName": "Đông Nam Bộ",
+    "year": 2026,
+    "subjectId": "toan",
+    "subjectName": "Toán",
+    "average": 5.93
+  },
+  {
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Cửu Long",
+    "year": 2026,
+    "subjectId": "toan",
+    "subjectName": "Toán",
+    "average": 5.11
+  },
+  {
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Hồng",
+    "year": 2026,
+    "subjectId": "toan",
+    "subjectName": "Toán",
+    "average": 6.05
+  },
+  {
+    "regionId": "other",
+    "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+    "year": 2026,
+    "subjectId": "ngu_van",
+    "subjectName": "Ngữ văn",
+    "average": 6.63
+  },
+  {
+    "regionId": "other",
+    "regionName": "Trung du và miền núi phía Bắc",
+    "year": 2026,
+    "subjectId": "ngu_van",
+    "subjectName": "Ngữ văn",
+    "average": 6.35
+  },
+  {
+    "regionId": "tn",
+    "regionName": "Tây Nguyên",
+    "year": 2026,
+    "subjectId": "ngu_van",
+    "subjectName": "Ngữ văn",
+    "average": 6.17
+  },
+  {
+    "regionId": "dnb",
+    "regionName": "Đông Nam Bộ",
+    "year": 2026,
+    "subjectId": "ngu_van",
+    "subjectName": "Ngữ văn",
+    "average": 6.25
+  },
+  {
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Cửu Long",
+    "year": 2026,
+    "subjectId": "ngu_van",
+    "subjectName": "Ngữ văn",
+    "average": 5.85
+  },
+  {
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Hồng",
+    "year": 2026,
+    "subjectId": "ngu_van",
+    "subjectName": "Ngữ văn",
+    "average": 6.9
+  },
+  {
+    "regionId": "other",
+    "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+    "year": 2026,
+    "subjectId": "vat_li",
+    "subjectName": "Vật lý",
+    "average": 5.69
+  },
+  {
+    "regionId": "other",
+    "regionName": "Trung du và miền núi phía Bắc",
+    "year": 2026,
+    "subjectId": "vat_li",
+    "subjectName": "Vật lý",
+    "average": 5.61
+  },
+  {
+    "regionId": "tn",
+    "regionName": "Tây Nguyên",
+    "year": 2026,
+    "subjectId": "vat_li",
+    "subjectName": "Vật lý",
+    "average": 5.3
+  },
+  {
+    "regionId": "dnb",
+    "regionName": "Đông Nam Bộ",
+    "year": 2026,
+    "subjectId": "vat_li",
+    "subjectName": "Vật lý",
+    "average": 5.39
+  },
+  {
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Cửu Long",
+    "year": 2026,
+    "subjectId": "vat_li",
+    "subjectName": "Vật lý",
+    "average": 5.04
+  },
+  {
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Hồng",
+    "year": 2026,
+    "subjectId": "vat_li",
+    "subjectName": "Vật lý",
+    "average": 5.9
+  },
+  {
+    "regionId": "other",
+    "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+    "year": 2026,
+    "subjectId": "hoa_hoc",
+    "subjectName": "Hóa học",
+    "average": 6.49
+  },
+  {
+    "regionId": "other",
+    "regionName": "Trung du và miền núi phía Bắc",
+    "year": 2026,
+    "subjectId": "hoa_hoc",
+    "subjectName": "Hóa học",
+    "average": 6.32
+  },
+  {
+    "regionId": "tn",
+    "regionName": "Tây Nguyên",
+    "year": 2026,
+    "subjectId": "hoa_hoc",
+    "subjectName": "Hóa học",
+    "average": 6.16
+  },
+  {
+    "regionId": "dnb",
+    "regionName": "Đông Nam Bộ",
+    "year": 2026,
+    "subjectId": "hoa_hoc",
+    "subjectName": "Hóa học",
+    "average": 6.16
+  },
+  {
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Cửu Long",
+    "year": 2026,
+    "subjectId": "hoa_hoc",
+    "subjectName": "Hóa học",
+    "average": 5.98
+  },
+  {
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Hồng",
+    "year": 2026,
+    "subjectId": "hoa_hoc",
+    "subjectName": "Hóa học",
+    "average": 6.46
+  },
+  {
+    "regionId": "other",
+    "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+    "year": 2026,
+    "subjectId": "sinh_hoc",
+    "subjectName": "Sinh học",
+    "average": 5.87
+  },
+  {
+    "regionId": "other",
+    "regionName": "Trung du và miền núi phía Bắc",
+    "year": 2026,
+    "subjectId": "sinh_hoc",
+    "subjectName": "Sinh học",
+    "average": 5.21
+  },
+  {
+    "regionId": "tn",
+    "regionName": "Tây Nguyên",
+    "year": 2026,
+    "subjectId": "sinh_hoc",
+    "subjectName": "Sinh học",
+    "average": 5.74
+  },
+  {
+    "regionId": "dnb",
+    "regionName": "Đông Nam Bộ",
+    "year": 2026,
+    "subjectId": "sinh_hoc",
+    "subjectName": "Sinh học",
+    "average": 6.1
+  },
+  {
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Cửu Long",
+    "year": 2026,
+    "subjectId": "sinh_hoc",
+    "subjectName": "Sinh học",
+    "average": 5.6
+  },
+  {
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Hồng",
+    "year": 2026,
+    "subjectId": "sinh_hoc",
+    "subjectName": "Sinh học",
+    "average": 6.36
+  },
+  {
+    "regionId": "other",
+    "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+    "year": 2026,
+    "subjectId": "lich_su",
+    "subjectName": "Lịch sử",
+    "average": 6.16
+  },
+  {
+    "regionId": "other",
+    "regionName": "Trung du và miền núi phía Bắc",
+    "year": 2026,
+    "subjectId": "lich_su",
+    "subjectName": "Lịch sử",
+    "average": 6.22
+  },
+  {
+    "regionId": "tn",
+    "regionName": "Tây Nguyên",
+    "year": 2026,
+    "subjectId": "lich_su",
+    "subjectName": "Lịch sử",
+    "average": 5.9
+  },
+  {
+    "regionId": "dnb",
+    "regionName": "Đông Nam Bộ",
+    "year": 2026,
+    "subjectId": "lich_su",
+    "subjectName": "Lịch sử",
+    "average": 6.17
+  },
+  {
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Cửu Long",
+    "year": 2026,
+    "subjectId": "lich_su",
+    "subjectName": "Lịch sử",
+    "average": 6.08
+  },
+  {
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Hồng",
+    "year": 2026,
+    "subjectId": "lich_su",
+    "subjectName": "Lịch sử",
+    "average": 6.32
+  },
+  {
+    "regionId": "other",
+    "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+    "year": 2026,
+    "subjectId": "dia_li",
+    "subjectName": "Địa lý",
+    "average": 5.1
+  },
+  {
+    "regionId": "other",
+    "regionName": "Trung du và miền núi phía Bắc",
+    "year": 2026,
+    "subjectId": "dia_li",
+    "subjectName": "Địa lý",
+    "average": 5.1
+  },
+  {
+    "regionId": "tn",
+    "regionName": "Tây Nguyên",
+    "year": 2026,
+    "subjectId": "dia_li",
+    "subjectName": "Địa lý",
+    "average": 4.8
+  },
+  {
+    "regionId": "dnb",
+    "regionName": "Đông Nam Bộ",
+    "year": 2026,
+    "subjectId": "dia_li",
+    "subjectName": "Địa lý",
+    "average": 5.09
+  },
+  {
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Cửu Long",
+    "year": 2026,
+    "subjectId": "dia_li",
+    "subjectName": "Địa lý",
+    "average": 5.0
+  },
+  {
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Hồng",
+    "year": 2026,
+    "subjectId": "dia_li",
+    "subjectName": "Địa lý",
+    "average": 5.2
   }
 ];
-export const regionSubjectMatrix = [];
+export const regionSubjectMatrix = [
+  {
+    "regionId": "other",
+    "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+    "year": 2026,
+    "subjectId": "toan",
+    "subjectName": "Toán",
+    "average": 5.62
+  },
+  {
+    "regionId": "other",
+    "regionName": "Trung du và miền núi phía Bắc",
+    "year": 2026,
+    "subjectId": "toan",
+    "subjectName": "Toán",
+    "average": 5.11
+  },
+  {
+    "regionId": "tn",
+    "regionName": "Tây Nguyên",
+    "year": 2026,
+    "subjectId": "toan",
+    "subjectName": "Toán",
+    "average": 5.31
+  },
+  {
+    "regionId": "dnb",
+    "regionName": "Đông Nam Bộ",
+    "year": 2026,
+    "subjectId": "toan",
+    "subjectName": "Toán",
+    "average": 5.93
+  },
+  {
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Cửu Long",
+    "year": 2026,
+    "subjectId": "toan",
+    "subjectName": "Toán",
+    "average": 5.11
+  },
+  {
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Hồng",
+    "year": 2026,
+    "subjectId": "toan",
+    "subjectName": "Toán",
+    "average": 6.05
+  },
+  {
+    "regionId": "other",
+    "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+    "year": 2026,
+    "subjectId": "ngu_van",
+    "subjectName": "Ngữ văn",
+    "average": 6.63
+  },
+  {
+    "regionId": "other",
+    "regionName": "Trung du và miền núi phía Bắc",
+    "year": 2026,
+    "subjectId": "ngu_van",
+    "subjectName": "Ngữ văn",
+    "average": 6.35
+  },
+  {
+    "regionId": "tn",
+    "regionName": "Tây Nguyên",
+    "year": 2026,
+    "subjectId": "ngu_van",
+    "subjectName": "Ngữ văn",
+    "average": 6.17
+  },
+  {
+    "regionId": "dnb",
+    "regionName": "Đông Nam Bộ",
+    "year": 2026,
+    "subjectId": "ngu_van",
+    "subjectName": "Ngữ văn",
+    "average": 6.25
+  },
+  {
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Cửu Long",
+    "year": 2026,
+    "subjectId": "ngu_van",
+    "subjectName": "Ngữ văn",
+    "average": 5.85
+  },
+  {
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Hồng",
+    "year": 2026,
+    "subjectId": "ngu_van",
+    "subjectName": "Ngữ văn",
+    "average": 6.9
+  },
+  {
+    "regionId": "other",
+    "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+    "year": 2026,
+    "subjectId": "vat_li",
+    "subjectName": "Vật lý",
+    "average": 5.69
+  },
+  {
+    "regionId": "other",
+    "regionName": "Trung du và miền núi phía Bắc",
+    "year": 2026,
+    "subjectId": "vat_li",
+    "subjectName": "Vật lý",
+    "average": 5.61
+  },
+  {
+    "regionId": "tn",
+    "regionName": "Tây Nguyên",
+    "year": 2026,
+    "subjectId": "vat_li",
+    "subjectName": "Vật lý",
+    "average": 5.3
+  },
+  {
+    "regionId": "dnb",
+    "regionName": "Đông Nam Bộ",
+    "year": 2026,
+    "subjectId": "vat_li",
+    "subjectName": "Vật lý",
+    "average": 5.39
+  },
+  {
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Cửu Long",
+    "year": 2026,
+    "subjectId": "vat_li",
+    "subjectName": "Vật lý",
+    "average": 5.04
+  },
+  {
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Hồng",
+    "year": 2026,
+    "subjectId": "vat_li",
+    "subjectName": "Vật lý",
+    "average": 5.9
+  },
+  {
+    "regionId": "other",
+    "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+    "year": 2026,
+    "subjectId": "hoa_hoc",
+    "subjectName": "Hóa học",
+    "average": 6.49
+  },
+  {
+    "regionId": "other",
+    "regionName": "Trung du và miền núi phía Bắc",
+    "year": 2026,
+    "subjectId": "hoa_hoc",
+    "subjectName": "Hóa học",
+    "average": 6.32
+  },
+  {
+    "regionId": "tn",
+    "regionName": "Tây Nguyên",
+    "year": 2026,
+    "subjectId": "hoa_hoc",
+    "subjectName": "Hóa học",
+    "average": 6.16
+  },
+  {
+    "regionId": "dnb",
+    "regionName": "Đông Nam Bộ",
+    "year": 2026,
+    "subjectId": "hoa_hoc",
+    "subjectName": "Hóa học",
+    "average": 6.16
+  },
+  {
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Cửu Long",
+    "year": 2026,
+    "subjectId": "hoa_hoc",
+    "subjectName": "Hóa học",
+    "average": 5.98
+  },
+  {
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Hồng",
+    "year": 2026,
+    "subjectId": "hoa_hoc",
+    "subjectName": "Hóa học",
+    "average": 6.46
+  },
+  {
+    "regionId": "other",
+    "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+    "year": 2026,
+    "subjectId": "sinh_hoc",
+    "subjectName": "Sinh học",
+    "average": 5.87
+  },
+  {
+    "regionId": "other",
+    "regionName": "Trung du và miền núi phía Bắc",
+    "year": 2026,
+    "subjectId": "sinh_hoc",
+    "subjectName": "Sinh học",
+    "average": 5.21
+  },
+  {
+    "regionId": "tn",
+    "regionName": "Tây Nguyên",
+    "year": 2026,
+    "subjectId": "sinh_hoc",
+    "subjectName": "Sinh học",
+    "average": 5.74
+  },
+  {
+    "regionId": "dnb",
+    "regionName": "Đông Nam Bộ",
+    "year": 2026,
+    "subjectId": "sinh_hoc",
+    "subjectName": "Sinh học",
+    "average": 6.1
+  },
+  {
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Cửu Long",
+    "year": 2026,
+    "subjectId": "sinh_hoc",
+    "subjectName": "Sinh học",
+    "average": 5.6
+  },
+  {
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Hồng",
+    "year": 2026,
+    "subjectId": "sinh_hoc",
+    "subjectName": "Sinh học",
+    "average": 6.36
+  },
+  {
+    "regionId": "other",
+    "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+    "year": 2026,
+    "subjectId": "lich_su",
+    "subjectName": "Lịch sử",
+    "average": 6.16
+  },
+  {
+    "regionId": "other",
+    "regionName": "Trung du và miền núi phía Bắc",
+    "year": 2026,
+    "subjectId": "lich_su",
+    "subjectName": "Lịch sử",
+    "average": 6.22
+  },
+  {
+    "regionId": "tn",
+    "regionName": "Tây Nguyên",
+    "year": 2026,
+    "subjectId": "lich_su",
+    "subjectName": "Lịch sử",
+    "average": 5.9
+  },
+  {
+    "regionId": "dnb",
+    "regionName": "Đông Nam Bộ",
+    "year": 2026,
+    "subjectId": "lich_su",
+    "subjectName": "Lịch sử",
+    "average": 6.17
+  },
+  {
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Cửu Long",
+    "year": 2026,
+    "subjectId": "lich_su",
+    "subjectName": "Lịch sử",
+    "average": 6.08
+  },
+  {
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Hồng",
+    "year": 2026,
+    "subjectId": "lich_su",
+    "subjectName": "Lịch sử",
+    "average": 6.32
+  },
+  {
+    "regionId": "other",
+    "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+    "year": 2026,
+    "subjectId": "dia_li",
+    "subjectName": "Địa lý",
+    "average": 5.1
+  },
+  {
+    "regionId": "other",
+    "regionName": "Trung du và miền núi phía Bắc",
+    "year": 2026,
+    "subjectId": "dia_li",
+    "subjectName": "Địa lý",
+    "average": 5.1
+  },
+  {
+    "regionId": "tn",
+    "regionName": "Tây Nguyên",
+    "year": 2026,
+    "subjectId": "dia_li",
+    "subjectName": "Địa lý",
+    "average": 4.8
+  },
+  {
+    "regionId": "dnb",
+    "regionName": "Đông Nam Bộ",
+    "year": 2026,
+    "subjectId": "dia_li",
+    "subjectName": "Địa lý",
+    "average": 5.09
+  },
+  {
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Cửu Long",
+    "year": 2026,
+    "subjectId": "dia_li",
+    "subjectName": "Địa lý",
+    "average": 5.0
+  },
+  {
+    "regionId": "other",
+    "regionName": "Đồng bằng sông Hồng",
+    "year": 2026,
+    "subjectId": "dia_li",
+    "subjectName": "Địa lý",
+    "average": 5.2
+  }
+];
 
 export const subjectDistributions: DistributionRecord[] = [
   {
@@ -22509,6 +25557,2092 @@ export const subjectDistributions: DistributionRecord[] = [
         "label": "10.00-10.25",
         "percentage": 0.83,
         "count": 34
+      }
+    ]
+  },
+  {
+    "year": 2026,
+    "type": "subject",
+    "key": "toan",
+    "name": "Toán",
+    "scoreMin": 0,
+    "scoreMax": 10,
+    "binSize": 0.25,
+    "bins": [
+      {
+        "start": 0.0,
+        "end": 0.25,
+        "label": "0.00-0.25",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 0.25,
+        "end": 0.5,
+        "label": "0.25-0.50",
+        "percentage": 0.0,
+        "count": 3
+      },
+      {
+        "start": 0.5,
+        "end": 0.75,
+        "label": "0.50-0.75",
+        "percentage": 0.0,
+        "count": 34
+      },
+      {
+        "start": 0.75,
+        "end": 1.0,
+        "label": "0.75-1.00",
+        "percentage": 0.02,
+        "count": 177
+      },
+      {
+        "start": 1.0,
+        "end": 1.25,
+        "label": "1.00-1.25",
+        "percentage": 0.05,
+        "count": 598
+      },
+      {
+        "start": 1.25,
+        "end": 1.5,
+        "label": "1.25-1.50",
+        "percentage": 0.14,
+        "count": 1530
+      },
+      {
+        "start": 1.5,
+        "end": 1.75,
+        "label": "1.50-1.75",
+        "percentage": 0.29,
+        "count": 3211
+      },
+      {
+        "start": 1.75,
+        "end": 2.0,
+        "label": "1.75-2.00",
+        "percentage": 0.53,
+        "count": 5935
+      },
+      {
+        "start": 2.0,
+        "end": 2.25,
+        "label": "2.00-2.25",
+        "percentage": 0.89,
+        "count": 9935
+      },
+      {
+        "start": 2.25,
+        "end": 2.5,
+        "label": "2.25-2.50",
+        "percentage": 1.35,
+        "count": 15121
+      },
+      {
+        "start": 2.5,
+        "end": 2.75,
+        "label": "2.50-2.75",
+        "percentage": 1.85,
+        "count": 20610
+      },
+      {
+        "start": 2.75,
+        "end": 3.0,
+        "label": "2.75-3.00",
+        "percentage": 2.29,
+        "count": 25575
+      },
+      {
+        "start": 3.0,
+        "end": 3.25,
+        "label": "3.00-3.25",
+        "percentage": 2.72,
+        "count": 30408
+      },
+      {
+        "start": 3.25,
+        "end": 3.5,
+        "label": "3.25-3.50",
+        "percentage": 3.07,
+        "count": 34301
+      },
+      {
+        "start": 3.5,
+        "end": 3.75,
+        "label": "3.50-3.75",
+        "percentage": 3.38,
+        "count": 37723
+      },
+      {
+        "start": 3.75,
+        "end": 4.0,
+        "label": "3.75-4.00",
+        "percentage": 3.65,
+        "count": 40731
+      },
+      {
+        "start": 4.0,
+        "end": 4.25,
+        "label": "4.00-4.25",
+        "percentage": 3.92,
+        "count": 43734
+      },
+      {
+        "start": 4.25,
+        "end": 4.5,
+        "label": "4.25-4.50",
+        "percentage": 4.25,
+        "count": 47503
+      },
+      {
+        "start": 4.5,
+        "end": 4.75,
+        "label": "4.50-4.75",
+        "percentage": 4.53,
+        "count": 50532
+      },
+      {
+        "start": 4.75,
+        "end": 5.0,
+        "label": "4.75-5.00",
+        "percentage": 4.72,
+        "count": 52706
+      },
+      {
+        "start": 5.0,
+        "end": 5.25,
+        "label": "5.00-5.25",
+        "percentage": 4.73,
+        "count": 52804
+      },
+      {
+        "start": 5.25,
+        "end": 5.5,
+        "label": "5.25-5.50",
+        "percentage": 4.62,
+        "count": 51639
+      },
+      {
+        "start": 5.5,
+        "end": 5.75,
+        "label": "5.50-5.75",
+        "percentage": 4.43,
+        "count": 49468
+      },
+      {
+        "start": 5.75,
+        "end": 6.0,
+        "label": "5.75-6.00",
+        "percentage": 4.12,
+        "count": 45971
+      },
+      {
+        "start": 6.0,
+        "end": 6.25,
+        "label": "6.00-6.25",
+        "percentage": 3.83,
+        "count": 42713
+      },
+      {
+        "start": 6.25,
+        "end": 6.5,
+        "label": "6.25-6.50",
+        "percentage": 3.58,
+        "count": 39961
+      },
+      {
+        "start": 6.5,
+        "end": 6.75,
+        "label": "6.50-6.75",
+        "percentage": 3.5,
+        "count": 39094
+      },
+      {
+        "start": 6.75,
+        "end": 7.0,
+        "label": "6.75-7.00",
+        "percentage": 3.44,
+        "count": 38458
+      },
+      {
+        "start": 7.0,
+        "end": 7.25,
+        "label": "7.00-7.25",
+        "percentage": 3.5,
+        "count": 39099
+      },
+      {
+        "start": 7.25,
+        "end": 7.5,
+        "label": "7.25-7.50",
+        "percentage": 3.42,
+        "count": 38224
+      },
+      {
+        "start": 7.5,
+        "end": 7.75,
+        "label": "7.50-7.75",
+        "percentage": 3.72,
+        "count": 41496
+      },
+      {
+        "start": 7.75,
+        "end": 8.0,
+        "label": "7.75-8.00",
+        "percentage": 3.4,
+        "count": 37928
+      },
+      {
+        "start": 8.0,
+        "end": 8.25,
+        "label": "8.00-8.25",
+        "percentage": 3.94,
+        "count": 43980
+      },
+      {
+        "start": 8.25,
+        "end": 8.5,
+        "label": "8.25-8.50",
+        "percentage": 2.52,
+        "count": 28094
+      },
+      {
+        "start": 8.5,
+        "end": 8.75,
+        "label": "8.50-8.75",
+        "percentage": 4.11,
+        "count": 45925
+      },
+      {
+        "start": 8.75,
+        "end": 9.0,
+        "label": "8.75-9.00",
+        "percentage": 1.09,
+        "count": 12199
+      },
+      {
+        "start": 9.0,
+        "end": 9.25,
+        "label": "9.00-9.25",
+        "percentage": 2.99,
+        "count": 33389
+      },
+      {
+        "start": 9.25,
+        "end": 9.5,
+        "label": "9.25-9.50",
+        "percentage": 0.2,
+        "count": 2206
+      },
+      {
+        "start": 9.5,
+        "end": 9.75,
+        "label": "9.50-9.75",
+        "percentage": 0.78,
+        "count": 8760
+      },
+      {
+        "start": 9.75,
+        "end": 10.0,
+        "label": "9.75-10.00",
+        "percentage": 0.06,
+        "count": 683
+      },
+      {
+        "start": 10.0,
+        "end": 10.25,
+        "label": "10.00-10.25",
+        "percentage": 0.37,
+        "count": 4145
+      }
+    ]
+  },
+  {
+    "year": 2026,
+    "type": "subject",
+    "key": "ngu_van",
+    "name": "Ngữ văn",
+    "scoreMin": 0,
+    "scoreMax": 10,
+    "binSize": 0.25,
+    "bins": [
+      {
+        "start": 0.0,
+        "end": 0.25,
+        "label": "0.00-0.25",
+        "percentage": 0.0,
+        "count": 8
+      },
+      {
+        "start": 0.25,
+        "end": 0.5,
+        "label": "0.25-0.50",
+        "percentage": 0.0,
+        "count": 5
+      },
+      {
+        "start": 0.5,
+        "end": 0.75,
+        "label": "0.50-0.75",
+        "percentage": 0.0,
+        "count": 50
+      },
+      {
+        "start": 0.75,
+        "end": 1.0,
+        "label": "0.75-1.00",
+        "percentage": 0.0,
+        "count": 38
+      },
+      {
+        "start": 1.0,
+        "end": 1.25,
+        "label": "1.00-1.25",
+        "percentage": 0.0,
+        "count": 52
+      },
+      {
+        "start": 1.25,
+        "end": 1.5,
+        "label": "1.25-1.50",
+        "percentage": 0.06,
+        "count": 674
+      },
+      {
+        "start": 1.5,
+        "end": 1.75,
+        "label": "1.50-1.75",
+        "percentage": 0.09,
+        "count": 1008
+      },
+      {
+        "start": 1.75,
+        "end": 2.0,
+        "label": "1.75-2.00",
+        "percentage": 0.12,
+        "count": 1302
+      },
+      {
+        "start": 2.0,
+        "end": 2.25,
+        "label": "2.00-2.25",
+        "percentage": 0.18,
+        "count": 2015
+      },
+      {
+        "start": 2.25,
+        "end": 2.5,
+        "label": "2.25-2.50",
+        "percentage": 0.22,
+        "count": 2433
+      },
+      {
+        "start": 2.5,
+        "end": 2.75,
+        "label": "2.50-2.75",
+        "percentage": 0.31,
+        "count": 3446
+      },
+      {
+        "start": 2.75,
+        "end": 3.0,
+        "label": "2.75-3.00",
+        "percentage": 0.38,
+        "count": 4253
+      },
+      {
+        "start": 3.0,
+        "end": 3.25,
+        "label": "3.00-3.25",
+        "percentage": 0.55,
+        "count": 6139
+      },
+      {
+        "start": 3.25,
+        "end": 3.5,
+        "label": "3.25-3.50",
+        "percentage": 0.63,
+        "count": 7055
+      },
+      {
+        "start": 3.5,
+        "end": 3.75,
+        "label": "3.50-3.75",
+        "percentage": 0.87,
+        "count": 9796
+      },
+      {
+        "start": 3.75,
+        "end": 4.0,
+        "label": "3.75-4.00",
+        "percentage": 1.01,
+        "count": 11335
+      },
+      {
+        "start": 4.0,
+        "end": 4.25,
+        "label": "4.00-4.25",
+        "percentage": 1.46,
+        "count": 16410
+      },
+      {
+        "start": 4.25,
+        "end": 4.5,
+        "label": "4.25-4.50",
+        "percentage": 1.59,
+        "count": 17863
+      },
+      {
+        "start": 4.5,
+        "end": 4.75,
+        "label": "4.50-4.75",
+        "percentage": 2.08,
+        "count": 23311
+      },
+      {
+        "start": 4.75,
+        "end": 5.0,
+        "label": "4.75-5.00",
+        "percentage": 1.8,
+        "count": 20120
+      },
+      {
+        "start": 5.0,
+        "end": 5.25,
+        "label": "5.00-5.25",
+        "percentage": 4.17,
+        "count": 46741
+      },
+      {
+        "start": 5.25,
+        "end": 5.5,
+        "label": "5.25-5.50",
+        "percentage": 3.61,
+        "count": 40486
+      },
+      {
+        "start": 5.5,
+        "end": 5.75,
+        "label": "5.50-5.75",
+        "percentage": 4.45,
+        "count": 49856
+      },
+      {
+        "start": 5.75,
+        "end": 6.0,
+        "label": "5.75-6.00",
+        "percentage": 4.77,
+        "count": 53453
+      },
+      {
+        "start": 6.0,
+        "end": 6.25,
+        "label": "6.00-6.25",
+        "percentage": 6.18,
+        "count": 69221
+      },
+      {
+        "start": 6.25,
+        "end": 6.5,
+        "label": "6.25-6.50",
+        "percentage": 6.09,
+        "count": 68312
+      },
+      {
+        "start": 6.5,
+        "end": 6.75,
+        "label": "6.50-6.75",
+        "percentage": 7.41,
+        "count": 83030
+      },
+      {
+        "start": 6.75,
+        "end": 7.0,
+        "label": "6.75-7.00",
+        "percentage": 7.77,
+        "count": 87081
+      },
+      {
+        "start": 7.0,
+        "end": 7.25,
+        "label": "7.00-7.25",
+        "percentage": 8.65,
+        "count": 96977
+      },
+      {
+        "start": 7.25,
+        "end": 7.5,
+        "label": "7.25-7.50",
+        "percentage": 7.43,
+        "count": 83305
+      },
+      {
+        "start": 7.5,
+        "end": 7.75,
+        "label": "7.50-7.75",
+        "percentage": 7.62,
+        "count": 85406
+      },
+      {
+        "start": 7.75,
+        "end": 8.0,
+        "label": "7.75-8.00",
+        "percentage": 6.68,
+        "count": 74856
+      },
+      {
+        "start": 8.0,
+        "end": 8.25,
+        "label": "8.00-8.25",
+        "percentage": 5.65,
+        "count": 63371
+      },
+      {
+        "start": 8.25,
+        "end": 8.5,
+        "label": "8.25-8.50",
+        "percentage": 3.57,
+        "count": 40048
+      },
+      {
+        "start": 8.5,
+        "end": 8.75,
+        "label": "8.50-8.75",
+        "percentage": 2.56,
+        "count": 28742
+      },
+      {
+        "start": 8.75,
+        "end": 9.0,
+        "label": "8.75-9.00",
+        "percentage": 1.42,
+        "count": 15928
+      },
+      {
+        "start": 9.0,
+        "end": 9.25,
+        "label": "9.00-9.25",
+        "percentage": 0.49,
+        "count": 5491
+      },
+      {
+        "start": 9.25,
+        "end": 9.5,
+        "label": "9.25-9.50",
+        "percentage": 0.1,
+        "count": 1076
+      },
+      {
+        "start": 9.5,
+        "end": 9.75,
+        "label": "9.50-9.75",
+        "percentage": 0.01,
+        "count": 149
+      },
+      {
+        "start": 9.75,
+        "end": 10.0,
+        "label": "9.75-10.00",
+        "percentage": 0.0,
+        "count": 6
+      },
+      {
+        "start": 10.0,
+        "end": 10.25,
+        "label": "10.00-10.25",
+        "percentage": 0.0,
+        "count": 0
+      }
+    ]
+  },
+  {
+    "year": 2026,
+    "type": "subject",
+    "key": "vat_li",
+    "name": "Vật lý",
+    "scoreMin": 0,
+    "scoreMax": 10,
+    "binSize": 0.25,
+    "bins": [
+      {
+        "start": 0.0,
+        "end": 0.25,
+        "label": "0.00-0.25",
+        "percentage": 0.0,
+        "count": 2
+      },
+      {
+        "start": 0.25,
+        "end": 0.5,
+        "label": "0.25-0.50",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 0.5,
+        "end": 0.75,
+        "label": "0.50-0.75",
+        "percentage": 0.0,
+        "count": 2
+      },
+      {
+        "start": 0.75,
+        "end": 1.0,
+        "label": "0.75-1.00",
+        "percentage": 0.0,
+        "count": 3
+      },
+      {
+        "start": 1.0,
+        "end": 1.25,
+        "label": "1.00-1.25",
+        "percentage": 0.01,
+        "count": 25
+      },
+      {
+        "start": 1.25,
+        "end": 1.5,
+        "label": "1.25-1.50",
+        "percentage": 0.03,
+        "count": 123
+      },
+      {
+        "start": 1.5,
+        "end": 1.75,
+        "label": "1.50-1.75",
+        "percentage": 0.09,
+        "count": 328
+      },
+      {
+        "start": 1.75,
+        "end": 2.0,
+        "label": "1.75-2.00",
+        "percentage": 0.25,
+        "count": 896
+      },
+      {
+        "start": 2.0,
+        "end": 2.25,
+        "label": "2.00-2.25",
+        "percentage": 0.53,
+        "count": 1924
+      },
+      {
+        "start": 2.25,
+        "end": 2.5,
+        "label": "2.25-2.50",
+        "percentage": 1.01,
+        "count": 3619
+      },
+      {
+        "start": 2.5,
+        "end": 2.75,
+        "label": "2.50-2.75",
+        "percentage": 1.62,
+        "count": 5829
+      },
+      {
+        "start": 2.75,
+        "end": 3.0,
+        "label": "2.75-3.00",
+        "percentage": 2.3,
+        "count": 8264
+      },
+      {
+        "start": 3.0,
+        "end": 3.25,
+        "label": "3.00-3.25",
+        "percentage": 2.95,
+        "count": 10608
+      },
+      {
+        "start": 3.25,
+        "end": 3.5,
+        "label": "3.25-3.50",
+        "percentage": 3.57,
+        "count": 12865
+      },
+      {
+        "start": 3.5,
+        "end": 3.75,
+        "label": "3.50-3.75",
+        "percentage": 3.99,
+        "count": 14362
+      },
+      {
+        "start": 3.75,
+        "end": 4.0,
+        "label": "3.75-4.00",
+        "percentage": 4.31,
+        "count": 15517
+      },
+      {
+        "start": 4.0,
+        "end": 4.25,
+        "label": "4.00-4.25",
+        "percentage": 4.5,
+        "count": 16195
+      },
+      {
+        "start": 4.25,
+        "end": 4.5,
+        "label": "4.25-4.50",
+        "percentage": 4.56,
+        "count": 16435
+      },
+      {
+        "start": 4.5,
+        "end": 4.75,
+        "label": "4.50-4.75",
+        "percentage": 4.61,
+        "count": 16586
+      },
+      {
+        "start": 4.75,
+        "end": 5.0,
+        "label": "4.75-5.00",
+        "percentage": 4.54,
+        "count": 16356
+      },
+      {
+        "start": 5.0,
+        "end": 5.25,
+        "label": "5.00-5.25",
+        "percentage": 4.48,
+        "count": 16123
+      },
+      {
+        "start": 5.25,
+        "end": 5.5,
+        "label": "5.25-5.50",
+        "percentage": 4.44,
+        "count": 16001
+      },
+      {
+        "start": 5.5,
+        "end": 5.75,
+        "label": "5.50-5.75",
+        "percentage": 4.42,
+        "count": 15913
+      },
+      {
+        "start": 5.75,
+        "end": 6.0,
+        "label": "5.75-6.00",
+        "percentage": 4.32,
+        "count": 15541
+      },
+      {
+        "start": 6.0,
+        "end": 6.25,
+        "label": "6.00-6.25",
+        "percentage": 4.25,
+        "count": 15308
+      },
+      {
+        "start": 6.25,
+        "end": 6.5,
+        "label": "6.25-6.50",
+        "percentage": 4.25,
+        "count": 15320
+      },
+      {
+        "start": 6.5,
+        "end": 6.75,
+        "label": "6.50-6.75",
+        "percentage": 4.28,
+        "count": 15393
+      },
+      {
+        "start": 6.75,
+        "end": 7.0,
+        "label": "6.75-7.00",
+        "percentage": 4.09,
+        "count": 14725
+      },
+      {
+        "start": 7.0,
+        "end": 7.25,
+        "label": "7.00-7.25",
+        "percentage": 4.12,
+        "count": 14844
+      },
+      {
+        "start": 7.25,
+        "end": 7.5,
+        "label": "7.25-7.50",
+        "percentage": 4.0,
+        "count": 14400
+      },
+      {
+        "start": 7.5,
+        "end": 7.75,
+        "label": "7.50-7.75",
+        "percentage": 3.82,
+        "count": 13752
+      },
+      {
+        "start": 7.75,
+        "end": 8.0,
+        "label": "7.75-8.00",
+        "percentage": 3.53,
+        "count": 12701
+      },
+      {
+        "start": 8.0,
+        "end": 8.25,
+        "label": "8.00-8.25",
+        "percentage": 3.11,
+        "count": 11186
+      },
+      {
+        "start": 8.25,
+        "end": 8.5,
+        "label": "8.25-8.50",
+        "percentage": 2.54,
+        "count": 9133
+      },
+      {
+        "start": 8.5,
+        "end": 8.75,
+        "label": "8.50-8.75",
+        "percentage": 1.99,
+        "count": 7183
+      },
+      {
+        "start": 8.75,
+        "end": 9.0,
+        "label": "8.75-9.00",
+        "percentage": 1.41,
+        "count": 5060
+      },
+      {
+        "start": 9.0,
+        "end": 9.25,
+        "label": "9.00-9.25",
+        "percentage": 0.92,
+        "count": 3308
+      },
+      {
+        "start": 9.25,
+        "end": 9.5,
+        "label": "9.25-9.50",
+        "percentage": 0.61,
+        "count": 2192
+      },
+      {
+        "start": 9.5,
+        "end": 9.75,
+        "label": "9.50-9.75",
+        "percentage": 0.35,
+        "count": 1255
+      },
+      {
+        "start": 9.75,
+        "end": 10.0,
+        "label": "9.75-10.00",
+        "percentage": 0.16,
+        "count": 593
+      },
+      {
+        "start": 10.0,
+        "end": 10.25,
+        "label": "10.00-10.25",
+        "percentage": 0.05,
+        "count": 184
+      }
+    ]
+  },
+  {
+    "year": 2026,
+    "type": "subject",
+    "key": "hoa_hoc",
+    "name": "Hóa học",
+    "scoreMin": 0,
+    "scoreMax": 10,
+    "binSize": 0.25,
+    "bins": [
+      {
+        "start": 0.0,
+        "end": 0.25,
+        "label": "0.00-0.25",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 0.25,
+        "end": 0.5,
+        "label": "0.25-0.50",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 0.5,
+        "end": 0.75,
+        "label": "0.50-0.75",
+        "percentage": 0.0,
+        "count": 1
+      },
+      {
+        "start": 0.75,
+        "end": 1.0,
+        "label": "0.75-1.00",
+        "percentage": 0.0,
+        "count": 7
+      },
+      {
+        "start": 1.0,
+        "end": 1.25,
+        "label": "1.00-1.25",
+        "percentage": 0.01,
+        "count": 21
+      },
+      {
+        "start": 1.25,
+        "end": 1.5,
+        "label": "1.25-1.50",
+        "percentage": 0.02,
+        "count": 54
+      },
+      {
+        "start": 1.5,
+        "end": 1.75,
+        "label": "1.50-1.75",
+        "percentage": 0.06,
+        "count": 141
+      },
+      {
+        "start": 1.75,
+        "end": 2.0,
+        "label": "1.75-2.00",
+        "percentage": 0.15,
+        "count": 353
+      },
+      {
+        "start": 2.0,
+        "end": 2.25,
+        "label": "2.00-2.25",
+        "percentage": 0.26,
+        "count": 610
+      },
+      {
+        "start": 2.25,
+        "end": 2.5,
+        "label": "2.25-2.50",
+        "percentage": 0.43,
+        "count": 1001
+      },
+      {
+        "start": 2.5,
+        "end": 2.75,
+        "label": "2.50-2.75",
+        "percentage": 0.67,
+        "count": 1555
+      },
+      {
+        "start": 2.75,
+        "end": 3.0,
+        "label": "2.75-3.00",
+        "percentage": 0.92,
+        "count": 2132
+      },
+      {
+        "start": 3.0,
+        "end": 3.25,
+        "label": "3.00-3.25",
+        "percentage": 1.24,
+        "count": 2878
+      },
+      {
+        "start": 3.25,
+        "end": 3.5,
+        "label": "3.25-3.50",
+        "percentage": 1.54,
+        "count": 3585
+      },
+      {
+        "start": 3.5,
+        "end": 3.75,
+        "label": "3.50-3.75",
+        "percentage": 1.84,
+        "count": 4279
+      },
+      {
+        "start": 3.75,
+        "end": 4.0,
+        "label": "3.75-4.00",
+        "percentage": 2.2,
+        "count": 5114
+      },
+      {
+        "start": 4.0,
+        "end": 4.25,
+        "label": "4.00-4.25",
+        "percentage": 2.55,
+        "count": 5936
+      },
+      {
+        "start": 4.25,
+        "end": 4.5,
+        "label": "4.25-4.50",
+        "percentage": 2.91,
+        "count": 6757
+      },
+      {
+        "start": 4.5,
+        "end": 4.75,
+        "label": "4.50-4.75",
+        "percentage": 3.34,
+        "count": 7757
+      },
+      {
+        "start": 4.75,
+        "end": 5.0,
+        "label": "4.75-5.00",
+        "percentage": 3.58,
+        "count": 8316
+      },
+      {
+        "start": 5.0,
+        "end": 5.25,
+        "label": "5.00-5.25",
+        "percentage": 3.94,
+        "count": 9158
+      },
+      {
+        "start": 5.25,
+        "end": 5.5,
+        "label": "5.25-5.50",
+        "percentage": 4.21,
+        "count": 9790
+      },
+      {
+        "start": 5.5,
+        "end": 5.75,
+        "label": "5.50-5.75",
+        "percentage": 4.43,
+        "count": 10293
+      },
+      {
+        "start": 5.75,
+        "end": 6.0,
+        "label": "5.75-6.00",
+        "percentage": 4.72,
+        "count": 10968
+      },
+      {
+        "start": 6.0,
+        "end": 6.25,
+        "label": "6.00-6.25",
+        "percentage": 4.82,
+        "count": 11209
+      },
+      {
+        "start": 6.25,
+        "end": 6.5,
+        "label": "6.25-6.50",
+        "percentage": 5.06,
+        "count": 11768
+      },
+      {
+        "start": 6.5,
+        "end": 6.75,
+        "label": "6.50-6.75",
+        "percentage": 5.22,
+        "count": 12132
+      },
+      {
+        "start": 6.75,
+        "end": 7.0,
+        "label": "6.75-7.00",
+        "percentage": 5.46,
+        "count": 12687
+      },
+      {
+        "start": 7.0,
+        "end": 7.25,
+        "label": "7.00-7.25",
+        "percentage": 5.61,
+        "count": 13036
+      },
+      {
+        "start": 7.25,
+        "end": 7.5,
+        "label": "7.25-7.50",
+        "percentage": 5.67,
+        "count": 13170
+      },
+      {
+        "start": 7.5,
+        "end": 7.75,
+        "label": "7.50-7.75",
+        "percentage": 5.57,
+        "count": 12934
+      },
+      {
+        "start": 7.75,
+        "end": 8.0,
+        "label": "7.75-8.00",
+        "percentage": 5.35,
+        "count": 12433
+      },
+      {
+        "start": 8.0,
+        "end": 8.25,
+        "label": "8.00-8.25",
+        "percentage": 4.76,
+        "count": 11054
+      },
+      {
+        "start": 8.25,
+        "end": 8.5,
+        "label": "8.25-8.50",
+        "percentage": 4.12,
+        "count": 9582
+      },
+      {
+        "start": 8.5,
+        "end": 8.75,
+        "label": "8.50-8.75",
+        "percentage": 3.29,
+        "count": 7635
+      },
+      {
+        "start": 8.75,
+        "end": 9.0,
+        "label": "8.75-9.00",
+        "percentage": 2.13,
+        "count": 4943
+      },
+      {
+        "start": 9.0,
+        "end": 9.25,
+        "label": "9.00-9.25",
+        "percentage": 1.54,
+        "count": 3590
+      },
+      {
+        "start": 9.25,
+        "end": 9.5,
+        "label": "9.25-9.50",
+        "percentage": 1.16,
+        "count": 2694
+      },
+      {
+        "start": 9.5,
+        "end": 9.75,
+        "label": "9.50-9.75",
+        "percentage": 0.65,
+        "count": 1503
+      },
+      {
+        "start": 9.75,
+        "end": 10.0,
+        "label": "9.75-10.00",
+        "percentage": 0.39,
+        "count": 898
+      },
+      {
+        "start": 10.0,
+        "end": 10.25,
+        "label": "10.00-10.25",
+        "percentage": 0.17,
+        "count": 399
+      }
+    ]
+  },
+  {
+    "year": 2026,
+    "type": "subject",
+    "key": "sinh_hoc",
+    "name": "Sinh học",
+    "scoreMin": 0,
+    "scoreMax": 10,
+    "binSize": 0.25,
+    "bins": [
+      {
+        "start": 0.0,
+        "end": 0.25,
+        "label": "0.00-0.25",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 0.25,
+        "end": 0.5,
+        "label": "0.25-0.50",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 0.5,
+        "end": 0.75,
+        "label": "0.50-0.75",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 0.75,
+        "end": 1.0,
+        "label": "0.75-1.00",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 1.0,
+        "end": 1.25,
+        "label": "1.00-1.25",
+        "percentage": 0.0,
+        "count": 2
+      },
+      {
+        "start": 1.25,
+        "end": 1.5,
+        "label": "1.25-1.50",
+        "percentage": 0.01,
+        "count": 7
+      },
+      {
+        "start": 1.5,
+        "end": 1.75,
+        "label": "1.50-1.75",
+        "percentage": 0.03,
+        "count": 21
+      },
+      {
+        "start": 1.75,
+        "end": 2.0,
+        "label": "1.75-2.00",
+        "percentage": 0.09,
+        "count": 57
+      },
+      {
+        "start": 2.0,
+        "end": 2.25,
+        "label": "2.00-2.25",
+        "percentage": 0.15,
+        "count": 96
+      },
+      {
+        "start": 2.25,
+        "end": 2.5,
+        "label": "2.25-2.50",
+        "percentage": 0.38,
+        "count": 239
+      },
+      {
+        "start": 2.5,
+        "end": 2.75,
+        "label": "2.50-2.75",
+        "percentage": 0.66,
+        "count": 408
+      },
+      {
+        "start": 2.75,
+        "end": 3.0,
+        "label": "2.75-3.00",
+        "percentage": 1.08,
+        "count": 671
+      },
+      {
+        "start": 3.0,
+        "end": 3.25,
+        "label": "3.00-3.25",
+        "percentage": 1.56,
+        "count": 971
+      },
+      {
+        "start": 3.25,
+        "end": 3.5,
+        "label": "3.25-3.50",
+        "percentage": 2.19,
+        "count": 1363
+      },
+      {
+        "start": 3.5,
+        "end": 3.75,
+        "label": "3.50-3.75",
+        "percentage": 2.9,
+        "count": 1802
+      },
+      {
+        "start": 3.75,
+        "end": 4.0,
+        "label": "3.75-4.00",
+        "percentage": 3.45,
+        "count": 2149
+      },
+      {
+        "start": 4.0,
+        "end": 4.25,
+        "label": "4.00-4.25",
+        "percentage": 3.91,
+        "count": 2434
+      },
+      {
+        "start": 4.25,
+        "end": 4.5,
+        "label": "4.25-4.50",
+        "percentage": 4.56,
+        "count": 2839
+      },
+      {
+        "start": 4.5,
+        "end": 4.75,
+        "label": "4.50-4.75",
+        "percentage": 5.06,
+        "count": 3149
+      },
+      {
+        "start": 4.75,
+        "end": 5.0,
+        "label": "4.75-5.00",
+        "percentage": 5.41,
+        "count": 3370
+      },
+      {
+        "start": 5.0,
+        "end": 5.25,
+        "label": "5.00-5.25",
+        "percentage": 5.65,
+        "count": 3515
+      },
+      {
+        "start": 5.25,
+        "end": 5.5,
+        "label": "5.25-5.50",
+        "percentage": 5.79,
+        "count": 3605
+      },
+      {
+        "start": 5.5,
+        "end": 5.75,
+        "label": "5.50-5.75",
+        "percentage": 5.66,
+        "count": 3521
+      },
+      {
+        "start": 5.75,
+        "end": 6.0,
+        "label": "5.75-6.00",
+        "percentage": 5.51,
+        "count": 3427
+      },
+      {
+        "start": 6.0,
+        "end": 6.25,
+        "label": "6.00-6.25",
+        "percentage": 5.32,
+        "count": 3313
+      },
+      {
+        "start": 6.25,
+        "end": 6.5,
+        "label": "6.25-6.50",
+        "percentage": 4.86,
+        "count": 3023
+      },
+      {
+        "start": 6.5,
+        "end": 6.75,
+        "label": "6.50-6.75",
+        "percentage": 4.65,
+        "count": 2894
+      },
+      {
+        "start": 6.75,
+        "end": 7.0,
+        "label": "6.75-7.00",
+        "percentage": 4.29,
+        "count": 2668
+      },
+      {
+        "start": 7.0,
+        "end": 7.25,
+        "label": "7.00-7.25",
+        "percentage": 3.85,
+        "count": 2397
+      },
+      {
+        "start": 7.25,
+        "end": 7.5,
+        "label": "7.25-7.50",
+        "percentage": 3.65,
+        "count": 2274
+      },
+      {
+        "start": 7.5,
+        "end": 7.75,
+        "label": "7.50-7.75",
+        "percentage": 3.19,
+        "count": 1987
+      },
+      {
+        "start": 7.75,
+        "end": 8.0,
+        "label": "7.75-8.00",
+        "percentage": 2.92,
+        "count": 1816
+      },
+      {
+        "start": 8.0,
+        "end": 8.25,
+        "label": "8.00-8.25",
+        "percentage": 2.58,
+        "count": 1606
+      },
+      {
+        "start": 8.25,
+        "end": 8.5,
+        "label": "8.25-8.50",
+        "percentage": 2.43,
+        "count": 1510
+      },
+      {
+        "start": 8.5,
+        "end": 8.75,
+        "label": "8.50-8.75",
+        "percentage": 2.03,
+        "count": 1263
+      },
+      {
+        "start": 8.75,
+        "end": 9.0,
+        "label": "8.75-9.00",
+        "percentage": 1.85,
+        "count": 1153
+      },
+      {
+        "start": 9.0,
+        "end": 9.25,
+        "label": "9.00-9.25",
+        "percentage": 1.51,
+        "count": 942
+      },
+      {
+        "start": 9.25,
+        "end": 9.5,
+        "label": "9.25-9.50",
+        "percentage": 1.21,
+        "count": 756
+      },
+      {
+        "start": 9.5,
+        "end": 9.75,
+        "label": "9.50-9.75",
+        "percentage": 0.83,
+        "count": 517
+      },
+      {
+        "start": 9.75,
+        "end": 10.0,
+        "label": "9.75-10.00",
+        "percentage": 0.58,
+        "count": 358
+      },
+      {
+        "start": 10.0,
+        "end": 10.25,
+        "label": "10.00-10.25",
+        "percentage": 0.19,
+        "count": 121
+      }
+    ]
+  },
+  {
+    "year": 2026,
+    "type": "subject",
+    "key": "lich_su",
+    "name": "Lịch sử",
+    "scoreMin": 0,
+    "scoreMax": 10,
+    "binSize": 0.25,
+    "bins": [
+      {
+        "start": 0.0,
+        "end": 0.25,
+        "label": "0.00-0.25",
+        "percentage": 0.0,
+        "count": 2
+      },
+      {
+        "start": 0.25,
+        "end": 0.5,
+        "label": "0.25-0.50",
+        "percentage": 0.0,
+        "count": 2
+      },
+      {
+        "start": 0.5,
+        "end": 0.75,
+        "label": "0.50-0.75",
+        "percentage": 0.0,
+        "count": 1
+      },
+      {
+        "start": 0.75,
+        "end": 1.0,
+        "label": "0.75-1.00",
+        "percentage": 0.0,
+        "count": 1
+      },
+      {
+        "start": 1.0,
+        "end": 1.25,
+        "label": "1.00-1.25",
+        "percentage": 0.0,
+        "count": 16
+      },
+      {
+        "start": 1.25,
+        "end": 1.5,
+        "label": "1.25-1.50",
+        "percentage": 0.01,
+        "count": 64
+      },
+      {
+        "start": 1.5,
+        "end": 1.75,
+        "label": "1.50-1.75",
+        "percentage": 0.03,
+        "count": 152
+      },
+      {
+        "start": 1.75,
+        "end": 2.0,
+        "label": "1.75-2.00",
+        "percentage": 0.07,
+        "count": 344
+      },
+      {
+        "start": 2.0,
+        "end": 2.25,
+        "label": "2.00-2.25",
+        "percentage": 0.16,
+        "count": 855
+      },
+      {
+        "start": 2.25,
+        "end": 2.5,
+        "label": "2.25-2.50",
+        "percentage": 0.3,
+        "count": 1559
+      },
+      {
+        "start": 2.5,
+        "end": 2.75,
+        "label": "2.50-2.75",
+        "percentage": 0.52,
+        "count": 2731
+      },
+      {
+        "start": 2.75,
+        "end": 3.0,
+        "label": "2.75-3.00",
+        "percentage": 0.82,
+        "count": 4316
+      },
+      {
+        "start": 3.0,
+        "end": 3.25,
+        "label": "3.00-3.25",
+        "percentage": 1.23,
+        "count": 6495
+      },
+      {
+        "start": 3.25,
+        "end": 3.5,
+        "label": "3.25-3.50",
+        "percentage": 1.69,
+        "count": 8948
+      },
+      {
+        "start": 3.5,
+        "end": 3.75,
+        "label": "3.50-3.75",
+        "percentage": 2.25,
+        "count": 11879
+      },
+      {
+        "start": 3.75,
+        "end": 4.0,
+        "label": "3.75-4.00",
+        "percentage": 2.76,
+        "count": 14585
+      },
+      {
+        "start": 4.0,
+        "end": 4.25,
+        "label": "4.00-4.25",
+        "percentage": 3.33,
+        "count": 17590
+      },
+      {
+        "start": 4.25,
+        "end": 4.5,
+        "label": "4.25-4.50",
+        "percentage": 3.86,
+        "count": 20382
+      },
+      {
+        "start": 4.5,
+        "end": 4.75,
+        "label": "4.50-4.75",
+        "percentage": 4.36,
+        "count": 23042
+      },
+      {
+        "start": 4.75,
+        "end": 5.0,
+        "label": "4.75-5.00",
+        "percentage": 4.63,
+        "count": 24479
+      },
+      {
+        "start": 5.0,
+        "end": 5.25,
+        "label": "5.00-5.25",
+        "percentage": 4.86,
+        "count": 25699
+      },
+      {
+        "start": 5.25,
+        "end": 5.5,
+        "label": "5.25-5.50",
+        "percentage": 4.94,
+        "count": 26092
+      },
+      {
+        "start": 5.5,
+        "end": 5.75,
+        "label": "5.50-5.75",
+        "percentage": 5.07,
+        "count": 26792
+      },
+      {
+        "start": 5.75,
+        "end": 6.0,
+        "label": "5.75-6.00",
+        "percentage": 5.01,
+        "count": 26456
+      },
+      {
+        "start": 6.0,
+        "end": 6.25,
+        "label": "6.00-6.25",
+        "percentage": 4.92,
+        "count": 25979
+      },
+      {
+        "start": 6.25,
+        "end": 6.5,
+        "label": "6.25-6.50",
+        "percentage": 4.81,
+        "count": 25431
+      },
+      {
+        "start": 6.5,
+        "end": 6.75,
+        "label": "6.50-6.75",
+        "percentage": 4.73,
+        "count": 24971
+      },
+      {
+        "start": 6.75,
+        "end": 7.0,
+        "label": "6.75-7.00",
+        "percentage": 4.58,
+        "count": 24224
+      },
+      {
+        "start": 7.0,
+        "end": 7.25,
+        "label": "7.00-7.25",
+        "percentage": 4.39,
+        "count": 23224
+      },
+      {
+        "start": 7.25,
+        "end": 7.5,
+        "label": "7.25-7.50",
+        "percentage": 4.21,
+        "count": 22231
+      },
+      {
+        "start": 7.5,
+        "end": 7.75,
+        "label": "7.50-7.75",
+        "percentage": 3.98,
+        "count": 21009
+      },
+      {
+        "start": 7.75,
+        "end": 8.0,
+        "label": "7.75-8.00",
+        "percentage": 3.77,
+        "count": 19947
+      },
+      {
+        "start": 8.0,
+        "end": 8.25,
+        "label": "8.00-8.25",
+        "percentage": 3.49,
+        "count": 18460
+      },
+      {
+        "start": 8.25,
+        "end": 8.5,
+        "label": "8.25-8.50",
+        "percentage": 3.24,
+        "count": 17133
+      },
+      {
+        "start": 8.5,
+        "end": 8.75,
+        "label": "8.50-8.75",
+        "percentage": 2.98,
+        "count": 15747
+      },
+      {
+        "start": 8.75,
+        "end": 9.0,
+        "label": "8.75-9.00",
+        "percentage": 2.57,
+        "count": 13580
+      },
+      {
+        "start": 9.0,
+        "end": 9.25,
+        "label": "9.00-9.25",
+        "percentage": 2.2,
+        "count": 11626
+      },
+      {
+        "start": 9.25,
+        "end": 9.5,
+        "label": "9.25-9.50",
+        "percentage": 1.78,
+        "count": 9432
+      },
+      {
+        "start": 9.5,
+        "end": 9.75,
+        "label": "9.50-9.75",
+        "percentage": 1.33,
+        "count": 7013
+      },
+      {
+        "start": 9.75,
+        "end": 10.0,
+        "label": "9.75-10.00",
+        "percentage": 0.69,
+        "count": 3634
+      },
+      {
+        "start": 10.0,
+        "end": 10.25,
+        "label": "10.00-10.25",
+        "percentage": 0.44,
+        "count": 2348
+      }
+    ]
+  },
+  {
+    "year": 2026,
+    "type": "subject",
+    "key": "dia_li",
+    "name": "Địa lý",
+    "scoreMin": 0,
+    "scoreMax": 10,
+    "binSize": 0.25,
+    "bins": [
+      {
+        "start": 0.0,
+        "end": 0.25,
+        "label": "0.00-0.25",
+        "percentage": 0.0,
+        "count": 2
+      },
+      {
+        "start": 0.25,
+        "end": 0.5,
+        "label": "0.25-0.50",
+        "percentage": 0.0,
+        "count": 3
+      },
+      {
+        "start": 0.5,
+        "end": 0.75,
+        "label": "0.50-0.75",
+        "percentage": 0.0,
+        "count": 13
+      },
+      {
+        "start": 0.75,
+        "end": 1.0,
+        "label": "0.75-1.00",
+        "percentage": 0.02,
+        "count": 70
+      },
+      {
+        "start": 1.0,
+        "end": 1.25,
+        "label": "1.00-1.25",
+        "percentage": 0.05,
+        "count": 225
+      },
+      {
+        "start": 1.25,
+        "end": 1.5,
+        "label": "1.25-1.50",
+        "percentage": 0.14,
+        "count": 590
+      },
+      {
+        "start": 1.5,
+        "end": 1.75,
+        "label": "1.50-1.75",
+        "percentage": 0.32,
+        "count": 1349
+      },
+      {
+        "start": 1.75,
+        "end": 2.0,
+        "label": "1.75-2.00",
+        "percentage": 0.64,
+        "count": 2667
+      },
+      {
+        "start": 2.0,
+        "end": 2.25,
+        "label": "2.00-2.25",
+        "percentage": 1.04,
+        "count": 4324
+      },
+      {
+        "start": 2.25,
+        "end": 2.5,
+        "label": "2.25-2.50",
+        "percentage": 1.58,
+        "count": 6579
+      },
+      {
+        "start": 2.5,
+        "end": 2.75,
+        "label": "2.50-2.75",
+        "percentage": 2.22,
+        "count": 9258
+      },
+      {
+        "start": 2.75,
+        "end": 3.0,
+        "label": "2.75-3.00",
+        "percentage": 2.87,
+        "count": 11980
+      },
+      {
+        "start": 3.0,
+        "end": 3.25,
+        "label": "3.00-3.25",
+        "percentage": 3.54,
+        "count": 14745
+      },
+      {
+        "start": 3.25,
+        "end": 3.5,
+        "label": "3.25-3.50",
+        "percentage": 4.1,
+        "count": 17085
+      },
+      {
+        "start": 3.5,
+        "end": 3.75,
+        "label": "3.50-3.75",
+        "percentage": 4.53,
+        "count": 18903
+      },
+      {
+        "start": 3.75,
+        "end": 4.0,
+        "label": "3.75-4.00",
+        "percentage": 4.87,
+        "count": 20309
+      },
+      {
+        "start": 4.0,
+        "end": 4.25,
+        "label": "4.00-4.25",
+        "percentage": 5.12,
+        "count": 21359
+      },
+      {
+        "start": 4.25,
+        "end": 4.5,
+        "label": "4.25-4.50",
+        "percentage": 5.29,
+        "count": 22046
+      },
+      {
+        "start": 4.5,
+        "end": 4.75,
+        "label": "4.50-4.75",
+        "percentage": 5.41,
+        "count": 22560
+      },
+      {
+        "start": 4.75,
+        "end": 5.0,
+        "label": "4.75-5.00",
+        "percentage": 5.43,
+        "count": 22650
+      },
+      {
+        "start": 5.0,
+        "end": 5.25,
+        "label": "5.00-5.25",
+        "percentage": 5.48,
+        "count": 22828
+      },
+      {
+        "start": 5.25,
+        "end": 5.5,
+        "label": "5.25-5.50",
+        "percentage": 5.4,
+        "count": 22520
+      },
+      {
+        "start": 5.5,
+        "end": 5.75,
+        "label": "5.50-5.75",
+        "percentage": 5.2,
+        "count": 21683
+      },
+      {
+        "start": 5.75,
+        "end": 6.0,
+        "label": "5.75-6.00",
+        "percentage": 5.05,
+        "count": 21063
+      },
+      {
+        "start": 6.0,
+        "end": 6.25,
+        "label": "6.00-6.25",
+        "percentage": 4.81,
+        "count": 20060
+      },
+      {
+        "start": 6.25,
+        "end": 6.5,
+        "label": "6.25-6.50",
+        "percentage": 4.51,
+        "count": 18819
+      },
+      {
+        "start": 6.5,
+        "end": 6.75,
+        "label": "6.50-6.75",
+        "percentage": 4.15,
+        "count": 17293
+      },
+      {
+        "start": 6.75,
+        "end": 7.0,
+        "label": "6.75-7.00",
+        "percentage": 3.75,
+        "count": 15619
+      },
+      {
+        "start": 7.0,
+        "end": 7.25,
+        "label": "7.00-7.25",
+        "percentage": 3.28,
+        "count": 13658
+      },
+      {
+        "start": 7.25,
+        "end": 7.5,
+        "label": "7.25-7.50",
+        "percentage": 2.84,
+        "count": 11858
+      },
+      {
+        "start": 7.5,
+        "end": 7.75,
+        "label": "7.50-7.75",
+        "percentage": 2.32,
+        "count": 9693
+      },
+      {
+        "start": 7.75,
+        "end": 8.0,
+        "label": "7.75-8.00",
+        "percentage": 1.84,
+        "count": 7666
+      },
+      {
+        "start": 8.0,
+        "end": 8.25,
+        "label": "8.00-8.25",
+        "percentage": 1.41,
+        "count": 5883
+      },
+      {
+        "start": 8.25,
+        "end": 8.5,
+        "label": "8.25-8.50",
+        "percentage": 1.06,
+        "count": 4408
+      },
+      {
+        "start": 8.5,
+        "end": 8.75,
+        "label": "8.50-8.75",
+        "percentage": 0.72,
+        "count": 3018
+      },
+      {
+        "start": 8.75,
+        "end": 9.0,
+        "label": "8.75-9.00",
+        "percentage": 0.46,
+        "count": 1908
+      },
+      {
+        "start": 9.0,
+        "end": 9.25,
+        "label": "9.00-9.25",
+        "percentage": 0.27,
+        "count": 1136
+      },
+      {
+        "start": 9.25,
+        "end": 9.5,
+        "label": "9.25-9.50",
+        "percentage": 0.14,
+        "count": 584
+      },
+      {
+        "start": 9.5,
+        "end": 9.75,
+        "label": "9.50-9.75",
+        "percentage": 0.08,
+        "count": 324
+      },
+      {
+        "start": 9.75,
+        "end": 10.0,
+        "label": "9.75-10.00",
+        "percentage": 0.04,
+        "count": 147
+      },
+      {
+        "start": 10.0,
+        "end": 10.25,
+        "label": "10.00-10.25",
+        "percentage": 0.01,
+        "count": 52
       }
     ]
   }
@@ -39673,6 +44807,4296 @@ export const combinationDistributions: DistributionRecord[] = [
         "count": 0
       }
     ]
+  },
+  {
+    "year": 2026,
+    "type": "combination",
+    "key": "a00",
+    "name": "A00",
+    "scoreMin": 0,
+    "scoreMax": 30,
+    "binSize": 0.25,
+    "bins": [
+      {
+        "start": 0.0,
+        "end": 0.25,
+        "label": "0.00-0.25",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 0.25,
+        "end": 0.5,
+        "label": "0.25-0.50",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 0.5,
+        "end": 0.75,
+        "label": "0.50-0.75",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 0.75,
+        "end": 1.0,
+        "label": "0.75-1.00",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 1.0,
+        "end": 1.25,
+        "label": "1.00-1.25",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 1.25,
+        "end": 1.5,
+        "label": "1.25-1.50",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 1.5,
+        "end": 1.75,
+        "label": "1.50-1.75",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 1.75,
+        "end": 2.0,
+        "label": "1.75-2.00",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 2.0,
+        "end": 2.25,
+        "label": "2.00-2.25",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 2.25,
+        "end": 2.5,
+        "label": "2.25-2.50",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 2.5,
+        "end": 2.75,
+        "label": "2.50-2.75",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 2.75,
+        "end": 3.0,
+        "label": "2.75-3.00",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 3.0,
+        "end": 3.25,
+        "label": "3.00-3.25",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 3.25,
+        "end": 3.5,
+        "label": "3.25-3.50",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 3.5,
+        "end": 3.75,
+        "label": "3.50-3.75",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 3.75,
+        "end": 4.0,
+        "label": "3.75-4.00",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 4.0,
+        "end": 4.25,
+        "label": "4.00-4.25",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 4.25,
+        "end": 4.5,
+        "label": "4.25-4.50",
+        "percentage": 0.0,
+        "count": 1
+      },
+      {
+        "start": 4.5,
+        "end": 4.75,
+        "label": "4.50-4.75",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 4.75,
+        "end": 5.0,
+        "label": "4.75-5.00",
+        "percentage": 0.0,
+        "count": 2
+      },
+      {
+        "start": 5.0,
+        "end": 5.25,
+        "label": "5.00-5.25",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 5.25,
+        "end": 5.5,
+        "label": "5.25-5.50",
+        "percentage": 0.0,
+        "count": 1
+      },
+      {
+        "start": 5.5,
+        "end": 5.75,
+        "label": "5.50-5.75",
+        "percentage": 0.0,
+        "count": 1
+      },
+      {
+        "start": 5.75,
+        "end": 6.0,
+        "label": "5.75-6.00",
+        "percentage": 0.0,
+        "count": 4
+      },
+      {
+        "start": 6.0,
+        "end": 6.25,
+        "label": "6.00-6.25",
+        "percentage": 0.0,
+        "count": 7
+      },
+      {
+        "start": 6.25,
+        "end": 6.5,
+        "label": "6.25-6.50",
+        "percentage": 0.01,
+        "count": 11
+      },
+      {
+        "start": 6.5,
+        "end": 6.75,
+        "label": "6.50-6.75",
+        "percentage": 0.01,
+        "count": 11
+      },
+      {
+        "start": 6.75,
+        "end": 7.0,
+        "label": "6.75-7.00",
+        "percentage": 0.01,
+        "count": 23
+      },
+      {
+        "start": 7.0,
+        "end": 7.25,
+        "label": "7.00-7.25",
+        "percentage": 0.01,
+        "count": 12
+      },
+      {
+        "start": 7.25,
+        "end": 7.5,
+        "label": "7.25-7.50",
+        "percentage": 0.03,
+        "count": 41
+      },
+      {
+        "start": 7.5,
+        "end": 7.75,
+        "label": "7.50-7.75",
+        "percentage": 0.03,
+        "count": 49
+      },
+      {
+        "start": 7.75,
+        "end": 8.0,
+        "label": "7.75-8.00",
+        "percentage": 0.04,
+        "count": 61
+      },
+      {
+        "start": 8.0,
+        "end": 8.25,
+        "label": "8.00-8.25",
+        "percentage": 0.05,
+        "count": 79
+      },
+      {
+        "start": 8.25,
+        "end": 8.5,
+        "label": "8.25-8.50",
+        "percentage": 0.07,
+        "count": 113
+      },
+      {
+        "start": 8.5,
+        "end": 8.75,
+        "label": "8.50-8.75",
+        "percentage": 0.07,
+        "count": 113
+      },
+      {
+        "start": 8.75,
+        "end": 9.0,
+        "label": "8.75-9.00",
+        "percentage": 0.1,
+        "count": 161
+      },
+      {
+        "start": 9.0,
+        "end": 9.25,
+        "label": "9.00-9.25",
+        "percentage": 0.12,
+        "count": 198
+      },
+      {
+        "start": 9.25,
+        "end": 9.5,
+        "label": "9.25-9.50",
+        "percentage": 0.14,
+        "count": 234
+      },
+      {
+        "start": 9.5,
+        "end": 9.75,
+        "label": "9.50-9.75",
+        "percentage": 0.17,
+        "count": 271
+      },
+      {
+        "start": 9.75,
+        "end": 10.0,
+        "label": "9.75-10.00",
+        "percentage": 0.22,
+        "count": 364
+      },
+      {
+        "start": 10.0,
+        "end": 10.25,
+        "label": "10.00-10.25",
+        "percentage": 0.24,
+        "count": 396
+      },
+      {
+        "start": 10.25,
+        "end": 10.5,
+        "label": "10.25-10.50",
+        "percentage": 0.31,
+        "count": 511
+      },
+      {
+        "start": 10.5,
+        "end": 10.75,
+        "label": "10.50-10.75",
+        "percentage": 0.35,
+        "count": 575
+      },
+      {
+        "start": 10.75,
+        "end": 11.0,
+        "label": "10.75-11.00",
+        "percentage": 0.41,
+        "count": 667
+      },
+      {
+        "start": 11.0,
+        "end": 11.25,
+        "label": "11.00-11.25",
+        "percentage": 0.45,
+        "count": 735
+      },
+      {
+        "start": 11.25,
+        "end": 11.5,
+        "label": "11.25-11.50",
+        "percentage": 0.56,
+        "count": 908
+      },
+      {
+        "start": 11.5,
+        "end": 11.75,
+        "label": "11.50-11.75",
+        "percentage": 0.56,
+        "count": 911
+      },
+      {
+        "start": 11.75,
+        "end": 12.0,
+        "label": "11.75-12.00",
+        "percentage": 0.63,
+        "count": 1029
+      },
+      {
+        "start": 12.0,
+        "end": 12.25,
+        "label": "12.00-12.25",
+        "percentage": 0.75,
+        "count": 1218
+      },
+      {
+        "start": 12.25,
+        "end": 12.5,
+        "label": "12.25-12.50",
+        "percentage": 0.77,
+        "count": 1258
+      },
+      {
+        "start": 12.5,
+        "end": 12.75,
+        "label": "12.50-12.75",
+        "percentage": 0.87,
+        "count": 1424
+      },
+      {
+        "start": 12.75,
+        "end": 13.0,
+        "label": "12.75-13.00",
+        "percentage": 0.89,
+        "count": 1449
+      },
+      {
+        "start": 13.0,
+        "end": 13.25,
+        "label": "13.00-13.25",
+        "percentage": 0.93,
+        "count": 1525
+      },
+      {
+        "start": 13.25,
+        "end": 13.5,
+        "label": "13.25-13.50",
+        "percentage": 1.02,
+        "count": 1663
+      },
+      {
+        "start": 13.5,
+        "end": 13.75,
+        "label": "13.50-13.75",
+        "percentage": 1.1,
+        "count": 1790
+      },
+      {
+        "start": 13.75,
+        "end": 14.0,
+        "label": "13.75-14.00",
+        "percentage": 1.17,
+        "count": 1908
+      },
+      {
+        "start": 14.0,
+        "end": 14.25,
+        "label": "14.00-14.25",
+        "percentage": 1.22,
+        "count": 1990
+      },
+      {
+        "start": 14.25,
+        "end": 14.5,
+        "label": "14.25-14.50",
+        "percentage": 1.26,
+        "count": 2057
+      },
+      {
+        "start": 14.5,
+        "end": 14.75,
+        "label": "14.50-14.75",
+        "percentage": 1.33,
+        "count": 2172
+      },
+      {
+        "start": 14.75,
+        "end": 15.0,
+        "label": "14.75-15.00",
+        "percentage": 1.31,
+        "count": 2138
+      },
+      {
+        "start": 15.0,
+        "end": 15.25,
+        "label": "15.00-15.25",
+        "percentage": 1.4,
+        "count": 2278
+      },
+      {
+        "start": 15.25,
+        "end": 15.5,
+        "label": "15.25-15.50",
+        "percentage": 1.39,
+        "count": 2264
+      },
+      {
+        "start": 15.5,
+        "end": 15.75,
+        "label": "15.50-15.75",
+        "percentage": 1.47,
+        "count": 2402
+      },
+      {
+        "start": 15.75,
+        "end": 16.0,
+        "label": "15.75-16.00",
+        "percentage": 1.5,
+        "count": 2457
+      },
+      {
+        "start": 16.0,
+        "end": 16.25,
+        "label": "16.00-16.25",
+        "percentage": 1.53,
+        "count": 2500
+      },
+      {
+        "start": 16.25,
+        "end": 16.5,
+        "label": "16.25-16.50",
+        "percentage": 1.53,
+        "count": 2505
+      },
+      {
+        "start": 16.5,
+        "end": 16.75,
+        "label": "16.50-16.75",
+        "percentage": 1.62,
+        "count": 2640
+      },
+      {
+        "start": 16.75,
+        "end": 17.0,
+        "label": "16.75-17.00",
+        "percentage": 1.6,
+        "count": 2609
+      },
+      {
+        "start": 17.0,
+        "end": 17.25,
+        "label": "17.00-17.25",
+        "percentage": 1.65,
+        "count": 2693
+      },
+      {
+        "start": 17.25,
+        "end": 17.5,
+        "label": "17.25-17.50",
+        "percentage": 1.69,
+        "count": 2752
+      },
+      {
+        "start": 17.5,
+        "end": 17.75,
+        "label": "17.50-17.75",
+        "percentage": 1.74,
+        "count": 2838
+      },
+      {
+        "start": 17.75,
+        "end": 18.0,
+        "label": "17.75-18.00",
+        "percentage": 1.77,
+        "count": 2889
+      },
+      {
+        "start": 18.0,
+        "end": 18.25,
+        "label": "18.00-18.25",
+        "percentage": 1.75,
+        "count": 2852
+      },
+      {
+        "start": 18.25,
+        "end": 18.5,
+        "label": "18.25-18.50",
+        "percentage": 1.79,
+        "count": 2927
+      },
+      {
+        "start": 18.5,
+        "end": 18.75,
+        "label": "18.50-18.75",
+        "percentage": 1.82,
+        "count": 2966
+      },
+      {
+        "start": 18.75,
+        "end": 19.0,
+        "label": "18.75-19.00",
+        "percentage": 1.82,
+        "count": 2975
+      },
+      {
+        "start": 19.0,
+        "end": 19.25,
+        "label": "19.00-19.25",
+        "percentage": 1.85,
+        "count": 3022
+      },
+      {
+        "start": 19.25,
+        "end": 19.5,
+        "label": "19.25-19.50",
+        "percentage": 1.86,
+        "count": 3040
+      },
+      {
+        "start": 19.5,
+        "end": 19.75,
+        "label": "19.50-19.75",
+        "percentage": 1.89,
+        "count": 3091
+      },
+      {
+        "start": 19.75,
+        "end": 20.0,
+        "label": "19.75-20.00",
+        "percentage": 1.95,
+        "count": 3180
+      },
+      {
+        "start": 20.0,
+        "end": 20.25,
+        "label": "20.00-20.25",
+        "percentage": 2.01,
+        "count": 3280
+      },
+      {
+        "start": 20.25,
+        "end": 20.5,
+        "label": "20.25-20.50",
+        "percentage": 1.96,
+        "count": 3204
+      },
+      {
+        "start": 20.5,
+        "end": 20.75,
+        "label": "20.50-20.75",
+        "percentage": 1.88,
+        "count": 3076
+      },
+      {
+        "start": 20.75,
+        "end": 21.0,
+        "label": "20.75-21.00",
+        "percentage": 1.99,
+        "count": 3254
+      },
+      {
+        "start": 21.0,
+        "end": 21.25,
+        "label": "21.00-21.25",
+        "percentage": 2.06,
+        "count": 3367
+      },
+      {
+        "start": 21.25,
+        "end": 21.5,
+        "label": "21.25-21.50",
+        "percentage": 2.11,
+        "count": 3446
+      },
+      {
+        "start": 21.5,
+        "end": 21.75,
+        "label": "21.50-21.75",
+        "percentage": 2.03,
+        "count": 3312
+      },
+      {
+        "start": 21.75,
+        "end": 22.0,
+        "label": "21.75-22.00",
+        "percentage": 2.1,
+        "count": 3424
+      },
+      {
+        "start": 22.0,
+        "end": 22.25,
+        "label": "22.00-22.25",
+        "percentage": 2.13,
+        "count": 3482
+      },
+      {
+        "start": 22.25,
+        "end": 22.5,
+        "label": "22.25-22.50",
+        "percentage": 2.07,
+        "count": 3387
+      },
+      {
+        "start": 22.5,
+        "end": 22.75,
+        "label": "22.50-22.75",
+        "percentage": 2.14,
+        "count": 3492
+      },
+      {
+        "start": 22.75,
+        "end": 23.0,
+        "label": "22.75-23.00",
+        "percentage": 2.14,
+        "count": 3498
+      },
+      {
+        "start": 23.0,
+        "end": 23.25,
+        "label": "23.00-23.25",
+        "percentage": 2.07,
+        "count": 3381
+      },
+      {
+        "start": 23.25,
+        "end": 23.5,
+        "label": "23.25-23.50",
+        "percentage": 1.96,
+        "count": 3203
+      },
+      {
+        "start": 23.5,
+        "end": 23.75,
+        "label": "23.50-23.75",
+        "percentage": 2.01,
+        "count": 3276
+      },
+      {
+        "start": 23.75,
+        "end": 24.0,
+        "label": "23.75-24.00",
+        "percentage": 1.91,
+        "count": 3125
+      },
+      {
+        "start": 24.0,
+        "end": 24.25,
+        "label": "24.00-24.25",
+        "percentage": 1.83,
+        "count": 2989
+      },
+      {
+        "start": 24.25,
+        "end": 24.5,
+        "label": "24.25-24.50",
+        "percentage": 1.78,
+        "count": 2913
+      },
+      {
+        "start": 24.5,
+        "end": 24.75,
+        "label": "24.50-24.75",
+        "percentage": 1.58,
+        "count": 2573
+      },
+      {
+        "start": 24.75,
+        "end": 25.0,
+        "label": "24.75-25.00",
+        "percentage": 1.55,
+        "count": 2526
+      },
+      {
+        "start": 25.0,
+        "end": 25.25,
+        "label": "25.00-25.25",
+        "percentage": 1.46,
+        "count": 2378
+      },
+      {
+        "start": 25.25,
+        "end": 25.5,
+        "label": "25.25-25.50",
+        "percentage": 1.31,
+        "count": 2136
+      },
+      {
+        "start": 25.5,
+        "end": 25.75,
+        "label": "25.50-25.75",
+        "percentage": 1.16,
+        "count": 1899
+      },
+      {
+        "start": 25.75,
+        "end": 26.0,
+        "label": "25.75-26.00",
+        "percentage": 1.01,
+        "count": 1645
+      },
+      {
+        "start": 26.0,
+        "end": 26.25,
+        "label": "26.00-26.25",
+        "percentage": 0.89,
+        "count": 1449
+      },
+      {
+        "start": 26.25,
+        "end": 26.5,
+        "label": "26.25-26.50",
+        "percentage": 0.76,
+        "count": 1233
+      },
+      {
+        "start": 26.5,
+        "end": 26.75,
+        "label": "26.50-26.75",
+        "percentage": 0.65,
+        "count": 1055
+      },
+      {
+        "start": 26.75,
+        "end": 27.0,
+        "label": "26.75-27.00",
+        "percentage": 0.56,
+        "count": 915
+      },
+      {
+        "start": 27.0,
+        "end": 27.25,
+        "label": "27.00-27.25",
+        "percentage": 0.48,
+        "count": 781
+      },
+      {
+        "start": 27.25,
+        "end": 27.5,
+        "label": "27.25-27.50",
+        "percentage": 0.38,
+        "count": 614
+      },
+      {
+        "start": 27.5,
+        "end": 27.75,
+        "label": "27.50-27.75",
+        "percentage": 0.31,
+        "count": 505
+      },
+      {
+        "start": 27.75,
+        "end": 28.0,
+        "label": "27.75-28.00",
+        "percentage": 0.25,
+        "count": 407
+      },
+      {
+        "start": 28.0,
+        "end": 28.25,
+        "label": "28.00-28.25",
+        "percentage": 0.2,
+        "count": 327
+      },
+      {
+        "start": 28.25,
+        "end": 28.5,
+        "label": "28.25-28.50",
+        "percentage": 0.16,
+        "count": 259
+      },
+      {
+        "start": 28.5,
+        "end": 28.75,
+        "label": "28.50-28.75",
+        "percentage": 0.12,
+        "count": 190
+      },
+      {
+        "start": 28.75,
+        "end": 29.0,
+        "label": "28.75-29.00",
+        "percentage": 0.08,
+        "count": 133
+      },
+      {
+        "start": 29.0,
+        "end": 29.25,
+        "label": "29.00-29.25",
+        "percentage": 0.05,
+        "count": 75
+      },
+      {
+        "start": 29.25,
+        "end": 29.5,
+        "label": "29.25-29.50",
+        "percentage": 0.04,
+        "count": 66
+      },
+      {
+        "start": 29.5,
+        "end": 29.75,
+        "label": "29.50-29.75",
+        "percentage": 0.02,
+        "count": 36
+      },
+      {
+        "start": 29.75,
+        "end": 30.0,
+        "label": "29.75-30.00",
+        "percentage": 0.01,
+        "count": 15
+      },
+      {
+        "start": 30.0,
+        "end": 30.25,
+        "label": "30.00-30.25",
+        "percentage": 0.0,
+        "count": 1
+      }
+    ]
+  },
+  {
+    "year": 2026,
+    "type": "combination",
+    "key": "a01",
+    "name": "A01",
+    "scoreMin": 0,
+    "scoreMax": 30,
+    "binSize": 0.25,
+    "bins": [
+      {
+        "start": 0.0,
+        "end": 0.25,
+        "label": "0.00-0.25",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 0.25,
+        "end": 0.5,
+        "label": "0.25-0.50",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 0.5,
+        "end": 0.75,
+        "label": "0.50-0.75",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 0.75,
+        "end": 1.0,
+        "label": "0.75-1.00",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 1.0,
+        "end": 1.25,
+        "label": "1.00-1.25",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 1.25,
+        "end": 1.5,
+        "label": "1.25-1.50",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 1.5,
+        "end": 1.75,
+        "label": "1.50-1.75",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 1.75,
+        "end": 2.0,
+        "label": "1.75-2.00",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 2.0,
+        "end": 2.25,
+        "label": "2.00-2.25",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 2.25,
+        "end": 2.5,
+        "label": "2.25-2.50",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 2.5,
+        "end": 2.75,
+        "label": "2.50-2.75",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 2.75,
+        "end": 3.0,
+        "label": "2.75-3.00",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 3.0,
+        "end": 3.25,
+        "label": "3.00-3.25",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 3.25,
+        "end": 3.5,
+        "label": "3.25-3.50",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 3.5,
+        "end": 3.75,
+        "label": "3.50-3.75",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 3.75,
+        "end": 4.0,
+        "label": "3.75-4.00",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 4.0,
+        "end": 4.25,
+        "label": "4.00-4.25",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 4.25,
+        "end": 4.5,
+        "label": "4.25-4.50",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 4.5,
+        "end": 4.75,
+        "label": "4.50-4.75",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 4.75,
+        "end": 5.0,
+        "label": "4.75-5.00",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 5.0,
+        "end": 5.25,
+        "label": "5.00-5.25",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 5.25,
+        "end": 5.5,
+        "label": "5.25-5.50",
+        "percentage": 0.0,
+        "count": 1
+      },
+      {
+        "start": 5.5,
+        "end": 5.75,
+        "label": "5.50-5.75",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 5.75,
+        "end": 6.0,
+        "label": "5.75-6.00",
+        "percentage": 0.0,
+        "count": 1
+      },
+      {
+        "start": 6.0,
+        "end": 6.25,
+        "label": "6.00-6.25",
+        "percentage": 0.0,
+        "count": 3
+      },
+      {
+        "start": 6.25,
+        "end": 6.5,
+        "label": "6.25-6.50",
+        "percentage": 0.0,
+        "count": 1
+      },
+      {
+        "start": 6.5,
+        "end": 6.75,
+        "label": "6.50-6.75",
+        "percentage": 0.01,
+        "count": 7
+      },
+      {
+        "start": 6.75,
+        "end": 7.0,
+        "label": "6.75-7.00",
+        "percentage": 0.0,
+        "count": 6
+      },
+      {
+        "start": 7.0,
+        "end": 7.25,
+        "label": "7.00-7.25",
+        "percentage": 0.01,
+        "count": 8
+      },
+      {
+        "start": 7.25,
+        "end": 7.5,
+        "label": "7.25-7.50",
+        "percentage": 0.02,
+        "count": 21
+      },
+      {
+        "start": 7.5,
+        "end": 7.75,
+        "label": "7.50-7.75",
+        "percentage": 0.01,
+        "count": 16
+      },
+      {
+        "start": 7.75,
+        "end": 8.0,
+        "label": "7.75-8.00",
+        "percentage": 0.02,
+        "count": 22
+      },
+      {
+        "start": 8.0,
+        "end": 8.25,
+        "label": "8.00-8.25",
+        "percentage": 0.02,
+        "count": 33
+      },
+      {
+        "start": 8.25,
+        "end": 8.5,
+        "label": "8.25-8.50",
+        "percentage": 0.04,
+        "count": 50
+      },
+      {
+        "start": 8.5,
+        "end": 8.75,
+        "label": "8.50-8.75",
+        "percentage": 0.05,
+        "count": 73
+      },
+      {
+        "start": 8.75,
+        "end": 9.0,
+        "label": "8.75-9.00",
+        "percentage": 0.06,
+        "count": 88
+      },
+      {
+        "start": 9.0,
+        "end": 9.25,
+        "label": "9.00-9.25",
+        "percentage": 0.1,
+        "count": 140
+      },
+      {
+        "start": 9.25,
+        "end": 9.5,
+        "label": "9.25-9.50",
+        "percentage": 0.12,
+        "count": 158
+      },
+      {
+        "start": 9.5,
+        "end": 9.75,
+        "label": "9.50-9.75",
+        "percentage": 0.16,
+        "count": 215
+      },
+      {
+        "start": 9.75,
+        "end": 10.0,
+        "label": "9.75-10.00",
+        "percentage": 0.19,
+        "count": 259
+      },
+      {
+        "start": 10.0,
+        "end": 10.25,
+        "label": "10.00-10.25",
+        "percentage": 0.28,
+        "count": 388
+      },
+      {
+        "start": 10.25,
+        "end": 10.5,
+        "label": "10.25-10.50",
+        "percentage": 0.3,
+        "count": 417
+      },
+      {
+        "start": 10.5,
+        "end": 10.75,
+        "label": "10.50-10.75",
+        "percentage": 0.39,
+        "count": 527
+      },
+      {
+        "start": 10.75,
+        "end": 11.0,
+        "label": "10.75-11.00",
+        "percentage": 0.46,
+        "count": 631
+      },
+      {
+        "start": 11.0,
+        "end": 11.25,
+        "label": "11.00-11.25",
+        "percentage": 0.55,
+        "count": 757
+      },
+      {
+        "start": 11.25,
+        "end": 11.5,
+        "label": "11.25-11.50",
+        "percentage": 0.6,
+        "count": 827
+      },
+      {
+        "start": 11.5,
+        "end": 11.75,
+        "label": "11.50-11.75",
+        "percentage": 0.74,
+        "count": 1012
+      },
+      {
+        "start": 11.75,
+        "end": 12.0,
+        "label": "11.75-12.00",
+        "percentage": 0.83,
+        "count": 1130
+      },
+      {
+        "start": 12.0,
+        "end": 12.25,
+        "label": "12.00-12.25",
+        "percentage": 0.9,
+        "count": 1226
+      },
+      {
+        "start": 12.25,
+        "end": 12.5,
+        "label": "12.25-12.50",
+        "percentage": 1.0,
+        "count": 1364
+      },
+      {
+        "start": 12.5,
+        "end": 12.75,
+        "label": "12.50-12.75",
+        "percentage": 1.09,
+        "count": 1498
+      },
+      {
+        "start": 12.75,
+        "end": 13.0,
+        "label": "12.75-13.00",
+        "percentage": 1.17,
+        "count": 1608
+      },
+      {
+        "start": 13.0,
+        "end": 13.25,
+        "label": "13.00-13.25",
+        "percentage": 1.24,
+        "count": 1693
+      },
+      {
+        "start": 13.25,
+        "end": 13.5,
+        "label": "13.25-13.50",
+        "percentage": 1.3,
+        "count": 1786
+      },
+      {
+        "start": 13.5,
+        "end": 13.75,
+        "label": "13.50-13.75",
+        "percentage": 1.4,
+        "count": 1916
+      },
+      {
+        "start": 13.75,
+        "end": 14.0,
+        "label": "13.75-14.00",
+        "percentage": 1.43,
+        "count": 1952
+      },
+      {
+        "start": 14.0,
+        "end": 14.25,
+        "label": "14.00-14.25",
+        "percentage": 1.52,
+        "count": 2087
+      },
+      {
+        "start": 14.25,
+        "end": 14.5,
+        "label": "14.25-14.50",
+        "percentage": 1.6,
+        "count": 2189
+      },
+      {
+        "start": 14.5,
+        "end": 14.75,
+        "label": "14.50-14.75",
+        "percentage": 1.64,
+        "count": 2244
+      },
+      {
+        "start": 14.75,
+        "end": 15.0,
+        "label": "14.75-15.00",
+        "percentage": 1.75,
+        "count": 2389
+      },
+      {
+        "start": 15.0,
+        "end": 15.25,
+        "label": "15.00-15.25",
+        "percentage": 1.75,
+        "count": 2397
+      },
+      {
+        "start": 15.25,
+        "end": 15.5,
+        "label": "15.25-15.50",
+        "percentage": 1.82,
+        "count": 2487
+      },
+      {
+        "start": 15.5,
+        "end": 15.75,
+        "label": "15.50-15.75",
+        "percentage": 1.85,
+        "count": 2529
+      },
+      {
+        "start": 15.75,
+        "end": 16.0,
+        "label": "15.75-16.00",
+        "percentage": 1.92,
+        "count": 2634
+      },
+      {
+        "start": 16.0,
+        "end": 16.25,
+        "label": "16.00-16.25",
+        "percentage": 1.9,
+        "count": 2598
+      },
+      {
+        "start": 16.25,
+        "end": 16.5,
+        "label": "16.25-16.50",
+        "percentage": 1.97,
+        "count": 2697
+      },
+      {
+        "start": 16.5,
+        "end": 16.75,
+        "label": "16.50-16.75",
+        "percentage": 2.02,
+        "count": 2767
+      },
+      {
+        "start": 16.75,
+        "end": 17.0,
+        "label": "16.75-17.00",
+        "percentage": 2.06,
+        "count": 2815
+      },
+      {
+        "start": 17.0,
+        "end": 17.25,
+        "label": "17.00-17.25",
+        "percentage": 2.02,
+        "count": 2768
+      },
+      {
+        "start": 17.25,
+        "end": 17.5,
+        "label": "17.25-17.50",
+        "percentage": 2.07,
+        "count": 2829
+      },
+      {
+        "start": 17.5,
+        "end": 17.75,
+        "label": "17.50-17.75",
+        "percentage": 2.15,
+        "count": 2943
+      },
+      {
+        "start": 17.75,
+        "end": 18.0,
+        "label": "17.75-18.00",
+        "percentage": 2.14,
+        "count": 2930
+      },
+      {
+        "start": 18.0,
+        "end": 18.25,
+        "label": "18.00-18.25",
+        "percentage": 2.15,
+        "count": 2940
+      },
+      {
+        "start": 18.25,
+        "end": 18.5,
+        "label": "18.25-18.50",
+        "percentage": 2.2,
+        "count": 3008
+      },
+      {
+        "start": 18.5,
+        "end": 18.75,
+        "label": "18.50-18.75",
+        "percentage": 2.1,
+        "count": 2879
+      },
+      {
+        "start": 18.75,
+        "end": 19.0,
+        "label": "18.75-19.00",
+        "percentage": 2.21,
+        "count": 3029
+      },
+      {
+        "start": 19.0,
+        "end": 19.25,
+        "label": "19.00-19.25",
+        "percentage": 2.14,
+        "count": 2932
+      },
+      {
+        "start": 19.25,
+        "end": 19.5,
+        "label": "19.25-19.50",
+        "percentage": 2.14,
+        "count": 2934
+      },
+      {
+        "start": 19.5,
+        "end": 19.75,
+        "label": "19.50-19.75",
+        "percentage": 2.1,
+        "count": 2873
+      },
+      {
+        "start": 19.75,
+        "end": 20.0,
+        "label": "19.75-20.00",
+        "percentage": 2.17,
+        "count": 2975
+      },
+      {
+        "start": 20.0,
+        "end": 20.25,
+        "label": "20.00-20.25",
+        "percentage": 2.13,
+        "count": 2917
+      },
+      {
+        "start": 20.25,
+        "end": 20.5,
+        "label": "20.25-20.50",
+        "percentage": 2.1,
+        "count": 2878
+      },
+      {
+        "start": 20.5,
+        "end": 20.75,
+        "label": "20.50-20.75",
+        "percentage": 2.1,
+        "count": 2879
+      },
+      {
+        "start": 20.75,
+        "end": 21.0,
+        "label": "20.75-21.00",
+        "percentage": 1.99,
+        "count": 2720
+      },
+      {
+        "start": 21.0,
+        "end": 21.25,
+        "label": "21.00-21.25",
+        "percentage": 2.01,
+        "count": 2748
+      },
+      {
+        "start": 21.25,
+        "end": 21.5,
+        "label": "21.25-21.50",
+        "percentage": 1.93,
+        "count": 2647
+      },
+      {
+        "start": 21.5,
+        "end": 21.75,
+        "label": "21.50-21.75",
+        "percentage": 1.97,
+        "count": 2696
+      },
+      {
+        "start": 21.75,
+        "end": 22.0,
+        "label": "21.75-22.00",
+        "percentage": 1.92,
+        "count": 2624
+      },
+      {
+        "start": 22.0,
+        "end": 22.25,
+        "label": "22.00-22.25",
+        "percentage": 1.83,
+        "count": 2502
+      },
+      {
+        "start": 22.25,
+        "end": 22.5,
+        "label": "22.25-22.50",
+        "percentage": 1.8,
+        "count": 2459
+      },
+      {
+        "start": 22.5,
+        "end": 22.75,
+        "label": "22.50-22.75",
+        "percentage": 1.69,
+        "count": 2320
+      },
+      {
+        "start": 22.75,
+        "end": 23.0,
+        "label": "22.75-23.00",
+        "percentage": 1.57,
+        "count": 2154
+      },
+      {
+        "start": 23.0,
+        "end": 23.25,
+        "label": "23.00-23.25",
+        "percentage": 1.54,
+        "count": 2111
+      },
+      {
+        "start": 23.25,
+        "end": 23.5,
+        "label": "23.25-23.50",
+        "percentage": 1.39,
+        "count": 1909
+      },
+      {
+        "start": 23.5,
+        "end": 23.75,
+        "label": "23.50-23.75",
+        "percentage": 1.46,
+        "count": 2003
+      },
+      {
+        "start": 23.75,
+        "end": 24.0,
+        "label": "23.75-24.00",
+        "percentage": 1.3,
+        "count": 1786
+      },
+      {
+        "start": 24.0,
+        "end": 24.25,
+        "label": "24.00-24.25",
+        "percentage": 1.23,
+        "count": 1682
+      },
+      {
+        "start": 24.25,
+        "end": 24.5,
+        "label": "24.25-24.50",
+        "percentage": 1.07,
+        "count": 1458
+      },
+      {
+        "start": 24.5,
+        "end": 24.75,
+        "label": "24.50-24.75",
+        "percentage": 1.04,
+        "count": 1429
+      },
+      {
+        "start": 24.75,
+        "end": 25.0,
+        "label": "24.75-25.00",
+        "percentage": 0.95,
+        "count": 1305
+      },
+      {
+        "start": 25.0,
+        "end": 25.25,
+        "label": "25.00-25.25",
+        "percentage": 0.82,
+        "count": 1121
+      },
+      {
+        "start": 25.25,
+        "end": 25.5,
+        "label": "25.25-25.50",
+        "percentage": 0.7,
+        "count": 961
+      },
+      {
+        "start": 25.5,
+        "end": 25.75,
+        "label": "25.50-25.75",
+        "percentage": 0.62,
+        "count": 854
+      },
+      {
+        "start": 25.75,
+        "end": 26.0,
+        "label": "25.75-26.00",
+        "percentage": 0.55,
+        "count": 748
+      },
+      {
+        "start": 26.0,
+        "end": 26.25,
+        "label": "26.00-26.25",
+        "percentage": 0.46,
+        "count": 626
+      },
+      {
+        "start": 26.25,
+        "end": 26.5,
+        "label": "26.25-26.50",
+        "percentage": 0.41,
+        "count": 568
+      },
+      {
+        "start": 26.5,
+        "end": 26.75,
+        "label": "26.50-26.75",
+        "percentage": 0.36,
+        "count": 487
+      },
+      {
+        "start": 26.75,
+        "end": 27.0,
+        "label": "26.75-27.00",
+        "percentage": 0.3,
+        "count": 408
+      },
+      {
+        "start": 27.0,
+        "end": 27.25,
+        "label": "27.00-27.25",
+        "percentage": 0.22,
+        "count": 299
+      },
+      {
+        "start": 27.25,
+        "end": 27.5,
+        "label": "27.25-27.50",
+        "percentage": 0.18,
+        "count": 243
+      },
+      {
+        "start": 27.5,
+        "end": 27.75,
+        "label": "27.50-27.75",
+        "percentage": 0.15,
+        "count": 200
+      },
+      {
+        "start": 27.75,
+        "end": 28.0,
+        "label": "27.75-28.00",
+        "percentage": 0.09,
+        "count": 124
+      },
+      {
+        "start": 28.0,
+        "end": 28.25,
+        "label": "28.00-28.25",
+        "percentage": 0.07,
+        "count": 99
+      },
+      {
+        "start": 28.25,
+        "end": 28.5,
+        "label": "28.25-28.50",
+        "percentage": 0.06,
+        "count": 87
+      },
+      {
+        "start": 28.5,
+        "end": 28.75,
+        "label": "28.50-28.75",
+        "percentage": 0.04,
+        "count": 52
+      },
+      {
+        "start": 28.75,
+        "end": 29.0,
+        "label": "28.75-29.00",
+        "percentage": 0.02,
+        "count": 33
+      },
+      {
+        "start": 29.0,
+        "end": 29.25,
+        "label": "29.00-29.25",
+        "percentage": 0.01,
+        "count": 15
+      },
+      {
+        "start": 29.25,
+        "end": 29.5,
+        "label": "29.25-29.50",
+        "percentage": 0.01,
+        "count": 8
+      },
+      {
+        "start": 29.5,
+        "end": 29.75,
+        "label": "29.50-29.75",
+        "percentage": 0.0,
+        "count": 4
+      },
+      {
+        "start": 29.75,
+        "end": 30.0,
+        "label": "29.75-30.00",
+        "percentage": 0.0,
+        "count": 3
+      },
+      {
+        "start": 30.0,
+        "end": 30.25,
+        "label": "30.00-30.25",
+        "percentage": 0.0,
+        "count": 0
+      }
+    ]
+  },
+  {
+    "year": 2026,
+    "type": "combination",
+    "key": "b00",
+    "name": "B00",
+    "scoreMin": 0,
+    "scoreMax": 30,
+    "binSize": 0.25,
+    "bins": [
+      {
+        "start": 0.0,
+        "end": 0.25,
+        "label": "0.00-0.25",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 0.25,
+        "end": 0.5,
+        "label": "0.25-0.50",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 0.5,
+        "end": 0.75,
+        "label": "0.50-0.75",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 0.75,
+        "end": 1.0,
+        "label": "0.75-1.00",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 1.0,
+        "end": 1.25,
+        "label": "1.00-1.25",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 1.25,
+        "end": 1.5,
+        "label": "1.25-1.50",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 1.5,
+        "end": 1.75,
+        "label": "1.50-1.75",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 1.75,
+        "end": 2.0,
+        "label": "1.75-2.00",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 2.0,
+        "end": 2.25,
+        "label": "2.00-2.25",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 2.25,
+        "end": 2.5,
+        "label": "2.25-2.50",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 2.5,
+        "end": 2.75,
+        "label": "2.50-2.75",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 2.75,
+        "end": 3.0,
+        "label": "2.75-3.00",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 3.0,
+        "end": 3.25,
+        "label": "3.00-3.25",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 3.25,
+        "end": 3.5,
+        "label": "3.25-3.50",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 3.5,
+        "end": 3.75,
+        "label": "3.50-3.75",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 3.75,
+        "end": 4.0,
+        "label": "3.75-4.00",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 4.0,
+        "end": 4.25,
+        "label": "4.00-4.25",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 4.25,
+        "end": 4.5,
+        "label": "4.25-4.50",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 4.5,
+        "end": 4.75,
+        "label": "4.50-4.75",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 4.75,
+        "end": 5.0,
+        "label": "4.75-5.00",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 5.0,
+        "end": 5.25,
+        "label": "5.00-5.25",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 5.25,
+        "end": 5.5,
+        "label": "5.25-5.50",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 5.5,
+        "end": 5.75,
+        "label": "5.50-5.75",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 5.75,
+        "end": 6.0,
+        "label": "5.75-6.00",
+        "percentage": 0.0,
+        "count": 1
+      },
+      {
+        "start": 6.0,
+        "end": 6.25,
+        "label": "6.00-6.25",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 6.25,
+        "end": 6.5,
+        "label": "6.25-6.50",
+        "percentage": 0.0,
+        "count": 2
+      },
+      {
+        "start": 6.5,
+        "end": 6.75,
+        "label": "6.50-6.75",
+        "percentage": 0.0,
+        "count": 1
+      },
+      {
+        "start": 6.75,
+        "end": 7.0,
+        "label": "6.75-7.00",
+        "percentage": 0.01,
+        "count": 3
+      },
+      {
+        "start": 7.0,
+        "end": 7.25,
+        "label": "7.00-7.25",
+        "percentage": 0.01,
+        "count": 6
+      },
+      {
+        "start": 7.25,
+        "end": 7.5,
+        "label": "7.25-7.50",
+        "percentage": 0.01,
+        "count": 5
+      },
+      {
+        "start": 7.5,
+        "end": 7.75,
+        "label": "7.50-7.75",
+        "percentage": 0.03,
+        "count": 11
+      },
+      {
+        "start": 7.75,
+        "end": 8.0,
+        "label": "7.75-8.00",
+        "percentage": 0.02,
+        "count": 9
+      },
+      {
+        "start": 8.0,
+        "end": 8.25,
+        "label": "8.00-8.25",
+        "percentage": 0.04,
+        "count": 16
+      },
+      {
+        "start": 8.25,
+        "end": 8.5,
+        "label": "8.25-8.50",
+        "percentage": 0.04,
+        "count": 15
+      },
+      {
+        "start": 8.5,
+        "end": 8.75,
+        "label": "8.50-8.75",
+        "percentage": 0.06,
+        "count": 26
+      },
+      {
+        "start": 8.75,
+        "end": 9.0,
+        "label": "8.75-9.00",
+        "percentage": 0.08,
+        "count": 33
+      },
+      {
+        "start": 9.0,
+        "end": 9.25,
+        "label": "9.00-9.25",
+        "percentage": 0.12,
+        "count": 53
+      },
+      {
+        "start": 9.25,
+        "end": 9.5,
+        "label": "9.25-9.50",
+        "percentage": 0.1,
+        "count": 44
+      },
+      {
+        "start": 9.5,
+        "end": 9.75,
+        "label": "9.50-9.75",
+        "percentage": 0.21,
+        "count": 88
+      },
+      {
+        "start": 9.75,
+        "end": 10.0,
+        "label": "9.75-10.00",
+        "percentage": 0.18,
+        "count": 76
+      },
+      {
+        "start": 10.0,
+        "end": 10.25,
+        "label": "10.00-10.25",
+        "percentage": 0.22,
+        "count": 92
+      },
+      {
+        "start": 10.25,
+        "end": 10.5,
+        "label": "10.25-10.50",
+        "percentage": 0.25,
+        "count": 105
+      },
+      {
+        "start": 10.5,
+        "end": 10.75,
+        "label": "10.50-10.75",
+        "percentage": 0.28,
+        "count": 121
+      },
+      {
+        "start": 10.75,
+        "end": 11.0,
+        "label": "10.75-11.00",
+        "percentage": 0.33,
+        "count": 140
+      },
+      {
+        "start": 11.0,
+        "end": 11.25,
+        "label": "11.00-11.25",
+        "percentage": 0.42,
+        "count": 177
+      },
+      {
+        "start": 11.25,
+        "end": 11.5,
+        "label": "11.25-11.50",
+        "percentage": 0.45,
+        "count": 191
+      },
+      {
+        "start": 11.5,
+        "end": 11.75,
+        "label": "11.50-11.75",
+        "percentage": 0.48,
+        "count": 206
+      },
+      {
+        "start": 11.75,
+        "end": 12.0,
+        "label": "11.75-12.00",
+        "percentage": 0.57,
+        "count": 244
+      },
+      {
+        "start": 12.0,
+        "end": 12.25,
+        "label": "12.00-12.25",
+        "percentage": 0.62,
+        "count": 263
+      },
+      {
+        "start": 12.25,
+        "end": 12.5,
+        "label": "12.25-12.50",
+        "percentage": 0.63,
+        "count": 270
+      },
+      {
+        "start": 12.5,
+        "end": 12.75,
+        "label": "12.50-12.75",
+        "percentage": 0.75,
+        "count": 321
+      },
+      {
+        "start": 12.75,
+        "end": 13.0,
+        "label": "12.75-13.00",
+        "percentage": 0.75,
+        "count": 319
+      },
+      {
+        "start": 13.0,
+        "end": 13.25,
+        "label": "13.00-13.25",
+        "percentage": 0.87,
+        "count": 370
+      },
+      {
+        "start": 13.25,
+        "end": 13.5,
+        "label": "13.25-13.50",
+        "percentage": 0.97,
+        "count": 414
+      },
+      {
+        "start": 13.5,
+        "end": 13.75,
+        "label": "13.50-13.75",
+        "percentage": 1.03,
+        "count": 436
+      },
+      {
+        "start": 13.75,
+        "end": 14.0,
+        "label": "13.75-14.00",
+        "percentage": 1.07,
+        "count": 453
+      },
+      {
+        "start": 14.0,
+        "end": 14.25,
+        "label": "14.00-14.25",
+        "percentage": 1.11,
+        "count": 471
+      },
+      {
+        "start": 14.25,
+        "end": 14.5,
+        "label": "14.25-14.50",
+        "percentage": 1.15,
+        "count": 487
+      },
+      {
+        "start": 14.5,
+        "end": 14.75,
+        "label": "14.50-14.75",
+        "percentage": 1.26,
+        "count": 535
+      },
+      {
+        "start": 14.75,
+        "end": 15.0,
+        "label": "14.75-15.00",
+        "percentage": 1.3,
+        "count": 551
+      },
+      {
+        "start": 15.0,
+        "end": 15.25,
+        "label": "15.00-15.25",
+        "percentage": 1.34,
+        "count": 569
+      },
+      {
+        "start": 15.25,
+        "end": 15.5,
+        "label": "15.25-15.50",
+        "percentage": 1.44,
+        "count": 614
+      },
+      {
+        "start": 15.5,
+        "end": 15.75,
+        "label": "15.50-15.75",
+        "percentage": 1.44,
+        "count": 614
+      },
+      {
+        "start": 15.75,
+        "end": 16.0,
+        "label": "15.75-16.00",
+        "percentage": 1.43,
+        "count": 609
+      },
+      {
+        "start": 16.0,
+        "end": 16.25,
+        "label": "16.00-16.25",
+        "percentage": 1.5,
+        "count": 636
+      },
+      {
+        "start": 16.25,
+        "end": 16.5,
+        "label": "16.25-16.50",
+        "percentage": 1.63,
+        "count": 694
+      },
+      {
+        "start": 16.5,
+        "end": 16.75,
+        "label": "16.50-16.75",
+        "percentage": 1.67,
+        "count": 711
+      },
+      {
+        "start": 16.75,
+        "end": 17.0,
+        "label": "16.75-17.00",
+        "percentage": 1.65,
+        "count": 702
+      },
+      {
+        "start": 17.0,
+        "end": 17.25,
+        "label": "17.00-17.25",
+        "percentage": 1.67,
+        "count": 709
+      },
+      {
+        "start": 17.25,
+        "end": 17.5,
+        "label": "17.25-17.50",
+        "percentage": 1.71,
+        "count": 726
+      },
+      {
+        "start": 17.5,
+        "end": 17.75,
+        "label": "17.50-17.75",
+        "percentage": 1.66,
+        "count": 707
+      },
+      {
+        "start": 17.75,
+        "end": 18.0,
+        "label": "17.75-18.00",
+        "percentage": 1.71,
+        "count": 727
+      },
+      {
+        "start": 18.0,
+        "end": 18.25,
+        "label": "18.00-18.25",
+        "percentage": 1.74,
+        "count": 742
+      },
+      {
+        "start": 18.25,
+        "end": 18.5,
+        "label": "18.25-18.50",
+        "percentage": 1.74,
+        "count": 742
+      },
+      {
+        "start": 18.5,
+        "end": 18.75,
+        "label": "18.50-18.75",
+        "percentage": 1.76,
+        "count": 747
+      },
+      {
+        "start": 18.75,
+        "end": 19.0,
+        "label": "18.75-19.00",
+        "percentage": 1.85,
+        "count": 786
+      },
+      {
+        "start": 19.0,
+        "end": 19.25,
+        "label": "19.00-19.25",
+        "percentage": 1.82,
+        "count": 776
+      },
+      {
+        "start": 19.25,
+        "end": 19.5,
+        "label": "19.25-19.50",
+        "percentage": 1.86,
+        "count": 791
+      },
+      {
+        "start": 19.5,
+        "end": 19.75,
+        "label": "19.50-19.75",
+        "percentage": 1.89,
+        "count": 803
+      },
+      {
+        "start": 19.75,
+        "end": 20.0,
+        "label": "19.75-20.00",
+        "percentage": 1.94,
+        "count": 823
+      },
+      {
+        "start": 20.0,
+        "end": 20.25,
+        "label": "20.00-20.25",
+        "percentage": 1.91,
+        "count": 811
+      },
+      {
+        "start": 20.25,
+        "end": 20.5,
+        "label": "20.25-20.50",
+        "percentage": 1.95,
+        "count": 829
+      },
+      {
+        "start": 20.5,
+        "end": 20.75,
+        "label": "20.50-20.75",
+        "percentage": 1.9,
+        "count": 807
+      },
+      {
+        "start": 20.75,
+        "end": 21.0,
+        "label": "20.75-21.00",
+        "percentage": 2.06,
+        "count": 874
+      },
+      {
+        "start": 21.0,
+        "end": 21.25,
+        "label": "21.00-21.25",
+        "percentage": 2.04,
+        "count": 868
+      },
+      {
+        "start": 21.25,
+        "end": 21.5,
+        "label": "21.25-21.50",
+        "percentage": 1.92,
+        "count": 816
+      },
+      {
+        "start": 21.5,
+        "end": 21.75,
+        "label": "21.50-21.75",
+        "percentage": 2.04,
+        "count": 868
+      },
+      {
+        "start": 21.75,
+        "end": 22.0,
+        "label": "21.75-22.00",
+        "percentage": 2.11,
+        "count": 896
+      },
+      {
+        "start": 22.0,
+        "end": 22.25,
+        "label": "22.00-22.25",
+        "percentage": 1.97,
+        "count": 837
+      },
+      {
+        "start": 22.25,
+        "end": 22.5,
+        "label": "22.25-22.50",
+        "percentage": 1.99,
+        "count": 845
+      },
+      {
+        "start": 22.5,
+        "end": 22.75,
+        "label": "22.50-22.75",
+        "percentage": 1.89,
+        "count": 804
+      },
+      {
+        "start": 22.75,
+        "end": 23.0,
+        "label": "22.75-23.00",
+        "percentage": 2.02,
+        "count": 860
+      },
+      {
+        "start": 23.0,
+        "end": 23.25,
+        "label": "23.00-23.25",
+        "percentage": 1.98,
+        "count": 840
+      },
+      {
+        "start": 23.25,
+        "end": 23.5,
+        "label": "23.25-23.50",
+        "percentage": 1.83,
+        "count": 780
+      },
+      {
+        "start": 23.5,
+        "end": 23.75,
+        "label": "23.50-23.75",
+        "percentage": 1.82,
+        "count": 774
+      },
+      {
+        "start": 23.75,
+        "end": 24.0,
+        "label": "23.75-24.00",
+        "percentage": 1.86,
+        "count": 792
+      },
+      {
+        "start": 24.0,
+        "end": 24.25,
+        "label": "24.00-24.25",
+        "percentage": 1.89,
+        "count": 803
+      },
+      {
+        "start": 24.25,
+        "end": 24.5,
+        "label": "24.25-24.50",
+        "percentage": 1.68,
+        "count": 714
+      },
+      {
+        "start": 24.5,
+        "end": 24.75,
+        "label": "24.50-24.75",
+        "percentage": 1.7,
+        "count": 724
+      },
+      {
+        "start": 24.75,
+        "end": 25.0,
+        "label": "24.75-25.00",
+        "percentage": 1.5,
+        "count": 636
+      },
+      {
+        "start": 25.0,
+        "end": 25.25,
+        "label": "25.00-25.25",
+        "percentage": 1.59,
+        "count": 678
+      },
+      {
+        "start": 25.25,
+        "end": 25.5,
+        "label": "25.25-25.50",
+        "percentage": 1.4,
+        "count": 597
+      },
+      {
+        "start": 25.5,
+        "end": 25.75,
+        "label": "25.50-25.75",
+        "percentage": 1.25,
+        "count": 532
+      },
+      {
+        "start": 25.75,
+        "end": 26.0,
+        "label": "25.75-26.00",
+        "percentage": 1.2,
+        "count": 510
+      },
+      {
+        "start": 26.0,
+        "end": 26.25,
+        "label": "26.00-26.25",
+        "percentage": 1.03,
+        "count": 440
+      },
+      {
+        "start": 26.25,
+        "end": 26.5,
+        "label": "26.25-26.50",
+        "percentage": 1.01,
+        "count": 428
+      },
+      {
+        "start": 26.5,
+        "end": 26.75,
+        "label": "26.50-26.75",
+        "percentage": 0.96,
+        "count": 407
+      },
+      {
+        "start": 26.75,
+        "end": 27.0,
+        "label": "26.75-27.00",
+        "percentage": 0.87,
+        "count": 368
+      },
+      {
+        "start": 27.0,
+        "end": 27.25,
+        "label": "27.00-27.25",
+        "percentage": 0.69,
+        "count": 294
+      },
+      {
+        "start": 27.25,
+        "end": 27.5,
+        "label": "27.25-27.50",
+        "percentage": 0.63,
+        "count": 267
+      },
+      {
+        "start": 27.5,
+        "end": 27.75,
+        "label": "27.50-27.75",
+        "percentage": 0.54,
+        "count": 229
+      },
+      {
+        "start": 27.75,
+        "end": 28.0,
+        "label": "27.75-28.00",
+        "percentage": 0.44,
+        "count": 185
+      },
+      {
+        "start": 28.0,
+        "end": 28.25,
+        "label": "28.00-28.25",
+        "percentage": 0.31,
+        "count": 133
+      },
+      {
+        "start": 28.25,
+        "end": 28.5,
+        "label": "28.25-28.50",
+        "percentage": 0.32,
+        "count": 137
+      },
+      {
+        "start": 28.5,
+        "end": 28.75,
+        "label": "28.50-28.75",
+        "percentage": 0.27,
+        "count": 115
+      },
+      {
+        "start": 28.75,
+        "end": 29.0,
+        "label": "28.75-29.00",
+        "percentage": 0.19,
+        "count": 80
+      },
+      {
+        "start": 29.0,
+        "end": 29.25,
+        "label": "29.00-29.25",
+        "percentage": 0.2,
+        "count": 85
+      },
+      {
+        "start": 29.25,
+        "end": 29.5,
+        "label": "29.25-29.50",
+        "percentage": 0.1,
+        "count": 41
+      },
+      {
+        "start": 29.5,
+        "end": 29.75,
+        "label": "29.50-29.75",
+        "percentage": 0.05,
+        "count": 22
+      },
+      {
+        "start": 29.75,
+        "end": 30.0,
+        "label": "29.75-30.00",
+        "percentage": 0.03,
+        "count": 13
+      },
+      {
+        "start": 30.0,
+        "end": 30.25,
+        "label": "30.00-30.25",
+        "percentage": 0.01,
+        "count": 4
+      }
+    ]
+  },
+  {
+    "year": 2026,
+    "type": "combination",
+    "key": "c00",
+    "name": "C00",
+    "scoreMin": 0,
+    "scoreMax": 30,
+    "binSize": 0.25,
+    "bins": [
+      {
+        "start": 0.0,
+        "end": 0.25,
+        "label": "0.00-0.25",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 0.25,
+        "end": 0.5,
+        "label": "0.25-0.50",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 0.5,
+        "end": 0.75,
+        "label": "0.50-0.75",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 0.75,
+        "end": 1.0,
+        "label": "0.75-1.00",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 1.0,
+        "end": 1.25,
+        "label": "1.00-1.25",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 1.25,
+        "end": 1.5,
+        "label": "1.25-1.50",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 1.5,
+        "end": 1.75,
+        "label": "1.50-1.75",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 1.75,
+        "end": 2.0,
+        "label": "1.75-2.00",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 2.0,
+        "end": 2.25,
+        "label": "2.00-2.25",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 2.25,
+        "end": 2.5,
+        "label": "2.25-2.50",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 2.5,
+        "end": 2.75,
+        "label": "2.50-2.75",
+        "percentage": 0.0,
+        "count": 1
+      },
+      {
+        "start": 2.75,
+        "end": 3.0,
+        "label": "2.75-3.00",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 3.0,
+        "end": 3.25,
+        "label": "3.00-3.25",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 3.25,
+        "end": 3.5,
+        "label": "3.25-3.50",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 3.5,
+        "end": 3.75,
+        "label": "3.50-3.75",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 3.75,
+        "end": 4.0,
+        "label": "3.75-4.00",
+        "percentage": 0.0,
+        "count": 4
+      },
+      {
+        "start": 4.0,
+        "end": 4.25,
+        "label": "4.00-4.25",
+        "percentage": 0.0,
+        "count": 1
+      },
+      {
+        "start": 4.25,
+        "end": 4.5,
+        "label": "4.25-4.50",
+        "percentage": 0.0,
+        "count": 3
+      },
+      {
+        "start": 4.5,
+        "end": 4.75,
+        "label": "4.50-4.75",
+        "percentage": 0.0,
+        "count": 5
+      },
+      {
+        "start": 4.75,
+        "end": 5.0,
+        "label": "4.75-5.00",
+        "percentage": 0.0,
+        "count": 7
+      },
+      {
+        "start": 5.0,
+        "end": 5.25,
+        "label": "5.00-5.25",
+        "percentage": 0.01,
+        "count": 17
+      },
+      {
+        "start": 5.25,
+        "end": 5.5,
+        "label": "5.25-5.50",
+        "percentage": 0.01,
+        "count": 33
+      },
+      {
+        "start": 5.5,
+        "end": 5.75,
+        "label": "5.50-5.75",
+        "percentage": 0.02,
+        "count": 42
+      },
+      {
+        "start": 5.75,
+        "end": 6.0,
+        "label": "5.75-6.00",
+        "percentage": 0.02,
+        "count": 60
+      },
+      {
+        "start": 6.0,
+        "end": 6.25,
+        "label": "6.00-6.25",
+        "percentage": 0.03,
+        "count": 85
+      },
+      {
+        "start": 6.25,
+        "end": 6.5,
+        "label": "6.25-6.50",
+        "percentage": 0.05,
+        "count": 127
+      },
+      {
+        "start": 6.5,
+        "end": 6.75,
+        "label": "6.50-6.75",
+        "percentage": 0.06,
+        "count": 164
+      },
+      {
+        "start": 6.75,
+        "end": 7.0,
+        "label": "6.75-7.00",
+        "percentage": 0.07,
+        "count": 191
+      },
+      {
+        "start": 7.0,
+        "end": 7.25,
+        "label": "7.00-7.25",
+        "percentage": 0.1,
+        "count": 258
+      },
+      {
+        "start": 7.25,
+        "end": 7.5,
+        "label": "7.25-7.50",
+        "percentage": 0.13,
+        "count": 347
+      },
+      {
+        "start": 7.5,
+        "end": 7.75,
+        "label": "7.50-7.75",
+        "percentage": 0.14,
+        "count": 375
+      },
+      {
+        "start": 7.75,
+        "end": 8.0,
+        "label": "7.75-8.00",
+        "percentage": 0.17,
+        "count": 429
+      },
+      {
+        "start": 8.0,
+        "end": 8.25,
+        "label": "8.00-8.25",
+        "percentage": 0.21,
+        "count": 555
+      },
+      {
+        "start": 8.25,
+        "end": 8.5,
+        "label": "8.25-8.50",
+        "percentage": 0.24,
+        "count": 618
+      },
+      {
+        "start": 8.5,
+        "end": 8.75,
+        "label": "8.50-8.75",
+        "percentage": 0.25,
+        "count": 661
+      },
+      {
+        "start": 8.75,
+        "end": 9.0,
+        "label": "8.75-9.00",
+        "percentage": 0.34,
+        "count": 887
+      },
+      {
+        "start": 9.0,
+        "end": 9.25,
+        "label": "9.00-9.25",
+        "percentage": 0.38,
+        "count": 993
+      },
+      {
+        "start": 9.25,
+        "end": 9.5,
+        "label": "9.25-9.50",
+        "percentage": 0.46,
+        "count": 1186
+      },
+      {
+        "start": 9.5,
+        "end": 9.75,
+        "label": "9.50-9.75",
+        "percentage": 0.49,
+        "count": 1263
+      },
+      {
+        "start": 9.75,
+        "end": 10.0,
+        "label": "9.75-10.00",
+        "percentage": 0.56,
+        "count": 1451
+      },
+      {
+        "start": 10.0,
+        "end": 10.25,
+        "label": "10.00-10.25",
+        "percentage": 0.61,
+        "count": 1588
+      },
+      {
+        "start": 10.25,
+        "end": 10.5,
+        "label": "10.25-10.50",
+        "percentage": 0.68,
+        "count": 1776
+      },
+      {
+        "start": 10.5,
+        "end": 10.75,
+        "label": "10.50-10.75",
+        "percentage": 0.77,
+        "count": 2013
+      },
+      {
+        "start": 10.75,
+        "end": 11.0,
+        "label": "10.75-11.00",
+        "percentage": 0.84,
+        "count": 2177
+      },
+      {
+        "start": 11.0,
+        "end": 11.25,
+        "label": "11.00-11.25",
+        "percentage": 0.95,
+        "count": 2457
+      },
+      {
+        "start": 11.25,
+        "end": 11.5,
+        "label": "11.25-11.50",
+        "percentage": 1.01,
+        "count": 2620
+      },
+      {
+        "start": 11.5,
+        "end": 11.75,
+        "label": "11.50-11.75",
+        "percentage": 1.09,
+        "count": 2830
+      },
+      {
+        "start": 11.75,
+        "end": 12.0,
+        "label": "11.75-12.00",
+        "percentage": 1.22,
+        "count": 3166
+      },
+      {
+        "start": 12.0,
+        "end": 12.25,
+        "label": "12.00-12.25",
+        "percentage": 1.33,
+        "count": 3444
+      },
+      {
+        "start": 12.25,
+        "end": 12.5,
+        "label": "12.25-12.50",
+        "percentage": 1.33,
+        "count": 3453
+      },
+      {
+        "start": 12.5,
+        "end": 12.75,
+        "label": "12.50-12.75",
+        "percentage": 1.42,
+        "count": 3690
+      },
+      {
+        "start": 12.75,
+        "end": 13.0,
+        "label": "12.75-13.00",
+        "percentage": 1.56,
+        "count": 4052
+      },
+      {
+        "start": 13.0,
+        "end": 13.25,
+        "label": "13.00-13.25",
+        "percentage": 1.61,
+        "count": 4172
+      },
+      {
+        "start": 13.25,
+        "end": 13.5,
+        "label": "13.25-13.50",
+        "percentage": 1.69,
+        "count": 4391
+      },
+      {
+        "start": 13.5,
+        "end": 13.75,
+        "label": "13.50-13.75",
+        "percentage": 1.79,
+        "count": 4663
+      },
+      {
+        "start": 13.75,
+        "end": 14.0,
+        "label": "13.75-14.00",
+        "percentage": 1.81,
+        "count": 4690
+      },
+      {
+        "start": 14.0,
+        "end": 14.25,
+        "label": "14.00-14.25",
+        "percentage": 1.87,
+        "count": 4855
+      },
+      {
+        "start": 14.25,
+        "end": 14.5,
+        "label": "14.25-14.50",
+        "percentage": 1.88,
+        "count": 4879
+      },
+      {
+        "start": 14.5,
+        "end": 14.75,
+        "label": "14.50-14.75",
+        "percentage": 2.04,
+        "count": 5304
+      },
+      {
+        "start": 14.75,
+        "end": 15.0,
+        "label": "14.75-15.00",
+        "percentage": 2.04,
+        "count": 5298
+      },
+      {
+        "start": 15.0,
+        "end": 15.25,
+        "label": "15.00-15.25",
+        "percentage": 2.07,
+        "count": 5382
+      },
+      {
+        "start": 15.25,
+        "end": 15.5,
+        "label": "15.25-15.50",
+        "percentage": 2.03,
+        "count": 5279
+      },
+      {
+        "start": 15.5,
+        "end": 15.75,
+        "label": "15.50-15.75",
+        "percentage": 2.15,
+        "count": 5586
+      },
+      {
+        "start": 15.75,
+        "end": 16.0,
+        "label": "15.75-16.00",
+        "percentage": 2.12,
+        "count": 5515
+      },
+      {
+        "start": 16.0,
+        "end": 16.25,
+        "label": "16.00-16.25",
+        "percentage": 2.11,
+        "count": 5472
+      },
+      {
+        "start": 16.25,
+        "end": 16.5,
+        "label": "16.25-16.50",
+        "percentage": 2.12,
+        "count": 5496
+      },
+      {
+        "start": 16.5,
+        "end": 16.75,
+        "label": "16.50-16.75",
+        "percentage": 2.16,
+        "count": 5607
+      },
+      {
+        "start": 16.75,
+        "end": 17.0,
+        "label": "16.75-17.00",
+        "percentage": 2.16,
+        "count": 5617
+      },
+      {
+        "start": 17.0,
+        "end": 17.25,
+        "label": "17.00-17.25",
+        "percentage": 2.14,
+        "count": 5548
+      },
+      {
+        "start": 17.25,
+        "end": 17.5,
+        "label": "17.25-17.50",
+        "percentage": 2.14,
+        "count": 5565
+      },
+      {
+        "start": 17.5,
+        "end": 17.75,
+        "label": "17.50-17.75",
+        "percentage": 2.08,
+        "count": 5391
+      },
+      {
+        "start": 17.75,
+        "end": 18.0,
+        "label": "17.75-18.00",
+        "percentage": 2.11,
+        "count": 5471
+      },
+      {
+        "start": 18.0,
+        "end": 18.25,
+        "label": "18.00-18.25",
+        "percentage": 2.07,
+        "count": 5366
+      },
+      {
+        "start": 18.25,
+        "end": 18.5,
+        "label": "18.25-18.50",
+        "percentage": 2.06,
+        "count": 5346
+      },
+      {
+        "start": 18.5,
+        "end": 18.75,
+        "label": "18.50-18.75",
+        "percentage": 2.02,
+        "count": 5259
+      },
+      {
+        "start": 18.75,
+        "end": 19.0,
+        "label": "18.75-19.00",
+        "percentage": 2.04,
+        "count": 5306
+      },
+      {
+        "start": 19.0,
+        "end": 19.25,
+        "label": "19.00-19.25",
+        "percentage": 1.98,
+        "count": 5143
+      },
+      {
+        "start": 19.25,
+        "end": 19.5,
+        "label": "19.25-19.50",
+        "percentage": 1.94,
+        "count": 5040
+      },
+      {
+        "start": 19.5,
+        "end": 19.75,
+        "label": "19.50-19.75",
+        "percentage": 1.88,
+        "count": 4887
+      },
+      {
+        "start": 19.75,
+        "end": 20.0,
+        "label": "19.75-20.00",
+        "percentage": 1.85,
+        "count": 4810
+      },
+      {
+        "start": 20.0,
+        "end": 20.25,
+        "label": "20.00-20.25",
+        "percentage": 1.83,
+        "count": 4743
+      },
+      {
+        "start": 20.25,
+        "end": 20.5,
+        "label": "20.25-20.50",
+        "percentage": 1.78,
+        "count": 4633
+      },
+      {
+        "start": 20.5,
+        "end": 20.75,
+        "label": "20.50-20.75",
+        "percentage": 1.68,
+        "count": 4358
+      },
+      {
+        "start": 20.75,
+        "end": 21.0,
+        "label": "20.75-21.00",
+        "percentage": 1.66,
+        "count": 4307
+      },
+      {
+        "start": 21.0,
+        "end": 21.25,
+        "label": "21.00-21.25",
+        "percentage": 1.6,
+        "count": 4159
+      },
+      {
+        "start": 21.25,
+        "end": 21.5,
+        "label": "21.25-21.50",
+        "percentage": 1.57,
+        "count": 4074
+      },
+      {
+        "start": 21.5,
+        "end": 21.75,
+        "label": "21.50-21.75",
+        "percentage": 1.5,
+        "count": 3906
+      },
+      {
+        "start": 21.75,
+        "end": 22.0,
+        "label": "21.75-22.00",
+        "percentage": 1.45,
+        "count": 3775
+      },
+      {
+        "start": 22.0,
+        "end": 22.25,
+        "label": "22.00-22.25",
+        "percentage": 1.34,
+        "count": 3485
+      },
+      {
+        "start": 22.25,
+        "end": 22.5,
+        "label": "22.25-22.50",
+        "percentage": 1.32,
+        "count": 3425
+      },
+      {
+        "start": 22.5,
+        "end": 22.75,
+        "label": "22.50-22.75",
+        "percentage": 1.22,
+        "count": 3171
+      },
+      {
+        "start": 22.75,
+        "end": 23.0,
+        "label": "22.75-23.00",
+        "percentage": 1.16,
+        "count": 3026
+      },
+      {
+        "start": 23.0,
+        "end": 23.25,
+        "label": "23.00-23.25",
+        "percentage": 1.13,
+        "count": 2936
+      },
+      {
+        "start": 23.25,
+        "end": 23.5,
+        "label": "23.25-23.50",
+        "percentage": 1.04,
+        "count": 2692
+      },
+      {
+        "start": 23.5,
+        "end": 23.75,
+        "label": "23.50-23.75",
+        "percentage": 0.96,
+        "count": 2492
+      },
+      {
+        "start": 23.75,
+        "end": 24.0,
+        "label": "23.75-24.00",
+        "percentage": 0.86,
+        "count": 2224
+      },
+      {
+        "start": 24.0,
+        "end": 24.25,
+        "label": "24.00-24.25",
+        "percentage": 0.79,
+        "count": 2053
+      },
+      {
+        "start": 24.25,
+        "end": 24.5,
+        "label": "24.25-24.50",
+        "percentage": 0.72,
+        "count": 1879
+      },
+      {
+        "start": 24.5,
+        "end": 24.75,
+        "label": "24.50-24.75",
+        "percentage": 0.69,
+        "count": 1789
+      },
+      {
+        "start": 24.75,
+        "end": 25.0,
+        "label": "24.75-25.00",
+        "percentage": 0.6,
+        "count": 1557
+      },
+      {
+        "start": 25.0,
+        "end": 25.25,
+        "label": "25.00-25.25",
+        "percentage": 0.51,
+        "count": 1331
+      },
+      {
+        "start": 25.25,
+        "end": 25.5,
+        "label": "25.25-25.50",
+        "percentage": 0.44,
+        "count": 1156
+      },
+      {
+        "start": 25.5,
+        "end": 25.75,
+        "label": "25.50-25.75",
+        "percentage": 0.37,
+        "count": 964
+      },
+      {
+        "start": 25.75,
+        "end": 26.0,
+        "label": "25.75-26.00",
+        "percentage": 0.33,
+        "count": 851
+      },
+      {
+        "start": 26.0,
+        "end": 26.25,
+        "label": "26.00-26.25",
+        "percentage": 0.26,
+        "count": 686
+      },
+      {
+        "start": 26.25,
+        "end": 26.5,
+        "label": "26.25-26.50",
+        "percentage": 0.2,
+        "count": 527
+      },
+      {
+        "start": 26.5,
+        "end": 26.75,
+        "label": "26.50-26.75",
+        "percentage": 0.15,
+        "count": 389
+      },
+      {
+        "start": 26.75,
+        "end": 27.0,
+        "label": "26.75-27.00",
+        "percentage": 0.11,
+        "count": 289
+      },
+      {
+        "start": 27.0,
+        "end": 27.25,
+        "label": "27.00-27.25",
+        "percentage": 0.08,
+        "count": 203
+      },
+      {
+        "start": 27.25,
+        "end": 27.5,
+        "label": "27.25-27.50",
+        "percentage": 0.06,
+        "count": 152
+      },
+      {
+        "start": 27.5,
+        "end": 27.75,
+        "label": "27.50-27.75",
+        "percentage": 0.04,
+        "count": 102
+      },
+      {
+        "start": 27.75,
+        "end": 28.0,
+        "label": "27.75-28.00",
+        "percentage": 0.02,
+        "count": 58
+      },
+      {
+        "start": 28.0,
+        "end": 28.25,
+        "label": "28.00-28.25",
+        "percentage": 0.01,
+        "count": 28
+      },
+      {
+        "start": 28.25,
+        "end": 28.5,
+        "label": "28.25-28.50",
+        "percentage": 0.0,
+        "count": 9
+      },
+      {
+        "start": 28.5,
+        "end": 28.75,
+        "label": "28.50-28.75",
+        "percentage": 0.0,
+        "count": 7
+      },
+      {
+        "start": 28.75,
+        "end": 29.0,
+        "label": "28.75-29.00",
+        "percentage": 0.0,
+        "count": 1
+      },
+      {
+        "start": 29.0,
+        "end": 29.25,
+        "label": "29.00-29.25",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 29.25,
+        "end": 29.5,
+        "label": "29.25-29.50",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 29.5,
+        "end": 29.75,
+        "label": "29.50-29.75",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 29.75,
+        "end": 30.0,
+        "label": "29.75-30.00",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 30.0,
+        "end": 30.25,
+        "label": "30.00-30.25",
+        "percentage": 0.0,
+        "count": 0
+      }
+    ]
+  },
+  {
+    "year": 2026,
+    "type": "combination",
+    "key": "d01",
+    "name": "D01",
+    "scoreMin": 0,
+    "scoreMax": 30,
+    "binSize": 0.25,
+    "bins": [
+      {
+        "start": 0.0,
+        "end": 0.25,
+        "label": "0.00-0.25",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 0.25,
+        "end": 0.5,
+        "label": "0.25-0.50",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 0.5,
+        "end": 0.75,
+        "label": "0.50-0.75",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 0.75,
+        "end": 1.0,
+        "label": "0.75-1.00",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 1.0,
+        "end": 1.25,
+        "label": "1.00-1.25",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 1.25,
+        "end": 1.5,
+        "label": "1.25-1.50",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 1.5,
+        "end": 1.75,
+        "label": "1.50-1.75",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 1.75,
+        "end": 2.0,
+        "label": "1.75-2.00",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 2.0,
+        "end": 2.25,
+        "label": "2.00-2.25",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 2.25,
+        "end": 2.5,
+        "label": "2.25-2.50",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 2.5,
+        "end": 2.75,
+        "label": "2.50-2.75",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 2.75,
+        "end": 3.0,
+        "label": "2.75-3.00",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 3.0,
+        "end": 3.25,
+        "label": "3.00-3.25",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 3.25,
+        "end": 3.5,
+        "label": "3.25-3.50",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 3.5,
+        "end": 3.75,
+        "label": "3.50-3.75",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 3.75,
+        "end": 4.0,
+        "label": "3.75-4.00",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 4.0,
+        "end": 4.25,
+        "label": "4.00-4.25",
+        "percentage": 0.0,
+        "count": 1
+      },
+      {
+        "start": 4.25,
+        "end": 4.5,
+        "label": "4.25-4.50",
+        "percentage": 0.0,
+        "count": 1
+      },
+      {
+        "start": 4.5,
+        "end": 4.75,
+        "label": "4.50-4.75",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 4.75,
+        "end": 5.0,
+        "label": "4.75-5.00",
+        "percentage": 0.0,
+        "count": 1
+      },
+      {
+        "start": 5.0,
+        "end": 5.25,
+        "label": "5.00-5.25",
+        "percentage": 0.0,
+        "count": 1
+      },
+      {
+        "start": 5.25,
+        "end": 5.5,
+        "label": "5.25-5.50",
+        "percentage": 0.0,
+        "count": 2
+      },
+      {
+        "start": 5.5,
+        "end": 5.75,
+        "label": "5.50-5.75",
+        "percentage": 0.0,
+        "count": 2
+      },
+      {
+        "start": 5.75,
+        "end": 6.0,
+        "label": "5.75-6.00",
+        "percentage": 0.0,
+        "count": 3
+      },
+      {
+        "start": 6.0,
+        "end": 6.25,
+        "label": "6.00-6.25",
+        "percentage": 0.0,
+        "count": 1
+      },
+      {
+        "start": 6.25,
+        "end": 6.5,
+        "label": "6.25-6.50",
+        "percentage": 0.0,
+        "count": 2
+      },
+      {
+        "start": 6.5,
+        "end": 6.75,
+        "label": "6.50-6.75",
+        "percentage": 0.0,
+        "count": 9
+      },
+      {
+        "start": 6.75,
+        "end": 7.0,
+        "label": "6.75-7.00",
+        "percentage": 0.0,
+        "count": 2
+      },
+      {
+        "start": 7.0,
+        "end": 7.25,
+        "label": "7.00-7.25",
+        "percentage": 0.0,
+        "count": 6
+      },
+      {
+        "start": 7.25,
+        "end": 7.5,
+        "label": "7.25-7.50",
+        "percentage": 0.0,
+        "count": 9
+      },
+      {
+        "start": 7.5,
+        "end": 7.75,
+        "label": "7.50-7.75",
+        "percentage": 0.0,
+        "count": 13
+      },
+      {
+        "start": 7.75,
+        "end": 8.0,
+        "label": "7.75-8.00",
+        "percentage": 0.0,
+        "count": 10
+      },
+      {
+        "start": 8.0,
+        "end": 8.25,
+        "label": "8.00-8.25",
+        "percentage": 0.01,
+        "count": 19
+      },
+      {
+        "start": 8.25,
+        "end": 8.5,
+        "label": "8.25-8.50",
+        "percentage": 0.01,
+        "count": 26
+      },
+      {
+        "start": 8.5,
+        "end": 8.75,
+        "label": "8.50-8.75",
+        "percentage": 0.01,
+        "count": 31
+      },
+      {
+        "start": 8.75,
+        "end": 9.0,
+        "label": "8.75-9.00",
+        "percentage": 0.01,
+        "count": 39
+      },
+      {
+        "start": 9.0,
+        "end": 9.25,
+        "label": "9.00-9.25",
+        "percentage": 0.02,
+        "count": 52
+      },
+      {
+        "start": 9.25,
+        "end": 9.5,
+        "label": "9.25-9.50",
+        "percentage": 0.02,
+        "count": 66
+      },
+      {
+        "start": 9.5,
+        "end": 9.75,
+        "label": "9.50-9.75",
+        "percentage": 0.02,
+        "count": 67
+      },
+      {
+        "start": 9.75,
+        "end": 10.0,
+        "label": "9.75-10.00",
+        "percentage": 0.03,
+        "count": 101
+      },
+      {
+        "start": 10.0,
+        "end": 10.25,
+        "label": "10.00-10.25",
+        "percentage": 0.04,
+        "count": 114
+      },
+      {
+        "start": 10.25,
+        "end": 10.5,
+        "label": "10.25-10.50",
+        "percentage": 0.06,
+        "count": 195
+      },
+      {
+        "start": 10.5,
+        "end": 10.75,
+        "label": "10.50-10.75",
+        "percentage": 0.05,
+        "count": 178
+      },
+      {
+        "start": 10.75,
+        "end": 11.0,
+        "label": "10.75-11.00",
+        "percentage": 0.09,
+        "count": 284
+      },
+      {
+        "start": 11.0,
+        "end": 11.25,
+        "label": "11.00-11.25",
+        "percentage": 0.1,
+        "count": 316
+      },
+      {
+        "start": 11.25,
+        "end": 11.5,
+        "label": "11.25-11.50",
+        "percentage": 0.12,
+        "count": 402
+      },
+      {
+        "start": 11.5,
+        "end": 11.75,
+        "label": "11.50-11.75",
+        "percentage": 0.17,
+        "count": 550
+      },
+      {
+        "start": 11.75,
+        "end": 12.0,
+        "label": "11.75-12.00",
+        "percentage": 0.19,
+        "count": 604
+      },
+      {
+        "start": 12.0,
+        "end": 12.25,
+        "label": "12.00-12.25",
+        "percentage": 0.25,
+        "count": 800
+      },
+      {
+        "start": 12.25,
+        "end": 12.5,
+        "label": "12.25-12.50",
+        "percentage": 0.3,
+        "count": 969
+      },
+      {
+        "start": 12.5,
+        "end": 12.75,
+        "label": "12.50-12.75",
+        "percentage": 0.35,
+        "count": 1130
+      },
+      {
+        "start": 12.75,
+        "end": 13.0,
+        "label": "12.75-13.00",
+        "percentage": 0.44,
+        "count": 1436
+      },
+      {
+        "start": 13.0,
+        "end": 13.25,
+        "label": "13.00-13.25",
+        "percentage": 0.52,
+        "count": 1685
+      },
+      {
+        "start": 13.25,
+        "end": 13.5,
+        "label": "13.25-13.50",
+        "percentage": 0.6,
+        "count": 1949
+      },
+      {
+        "start": 13.5,
+        "end": 13.75,
+        "label": "13.50-13.75",
+        "percentage": 0.73,
+        "count": 2356
+      },
+      {
+        "start": 13.75,
+        "end": 14.0,
+        "label": "13.75-14.00",
+        "percentage": 0.83,
+        "count": 2689
+      },
+      {
+        "start": 14.0,
+        "end": 14.25,
+        "label": "14.00-14.25",
+        "percentage": 0.94,
+        "count": 3043
+      },
+      {
+        "start": 14.25,
+        "end": 14.5,
+        "label": "14.25-14.50",
+        "percentage": 1.09,
+        "count": 3550
+      },
+      {
+        "start": 14.5,
+        "end": 14.75,
+        "label": "14.50-14.75",
+        "percentage": 1.24,
+        "count": 4020
+      },
+      {
+        "start": 14.75,
+        "end": 15.0,
+        "label": "14.75-15.00",
+        "percentage": 1.38,
+        "count": 4477
+      },
+      {
+        "start": 15.0,
+        "end": 15.25,
+        "label": "15.00-15.25",
+        "percentage": 1.57,
+        "count": 5095
+      },
+      {
+        "start": 15.25,
+        "end": 15.5,
+        "label": "15.25-15.50",
+        "percentage": 1.67,
+        "count": 5405
+      },
+      {
+        "start": 15.5,
+        "end": 15.75,
+        "label": "15.50-15.75",
+        "percentage": 1.81,
+        "count": 5880
+      },
+      {
+        "start": 15.75,
+        "end": 16.0,
+        "label": "15.75-16.00",
+        "percentage": 1.99,
+        "count": 6443
+      },
+      {
+        "start": 16.0,
+        "end": 16.25,
+        "label": "16.00-16.25",
+        "percentage": 2.11,
+        "count": 6852
+      },
+      {
+        "start": 16.25,
+        "end": 16.5,
+        "label": "16.25-16.50",
+        "percentage": 2.21,
+        "count": 7178
+      },
+      {
+        "start": 16.5,
+        "end": 16.75,
+        "label": "16.50-16.75",
+        "percentage": 2.32,
+        "count": 7530
+      },
+      {
+        "start": 16.75,
+        "end": 17.0,
+        "label": "16.75-17.00",
+        "percentage": 2.49,
+        "count": 8082
+      },
+      {
+        "start": 17.0,
+        "end": 17.25,
+        "label": "17.00-17.25",
+        "percentage": 2.58,
+        "count": 8356
+      },
+      {
+        "start": 17.25,
+        "end": 17.5,
+        "label": "17.25-17.50",
+        "percentage": 2.6,
+        "count": 8428
+      },
+      {
+        "start": 17.5,
+        "end": 17.75,
+        "label": "17.50-17.75",
+        "percentage": 2.7,
+        "count": 8768
+      },
+      {
+        "start": 17.75,
+        "end": 18.0,
+        "label": "17.75-18.00",
+        "percentage": 2.75,
+        "count": 8933
+      },
+      {
+        "start": 18.0,
+        "end": 18.25,
+        "label": "18.00-18.25",
+        "percentage": 2.83,
+        "count": 9177
+      },
+      {
+        "start": 18.25,
+        "end": 18.5,
+        "label": "18.25-18.50",
+        "percentage": 2.88,
+        "count": 9327
+      },
+      {
+        "start": 18.5,
+        "end": 18.75,
+        "label": "18.50-18.75",
+        "percentage": 2.92,
+        "count": 9469
+      },
+      {
+        "start": 18.75,
+        "end": 19.0,
+        "label": "18.75-19.00",
+        "percentage": 2.89,
+        "count": 9380
+      },
+      {
+        "start": 19.0,
+        "end": 19.25,
+        "label": "19.00-19.25",
+        "percentage": 2.86,
+        "count": 9270
+      },
+      {
+        "start": 19.25,
+        "end": 19.5,
+        "label": "19.25-19.50",
+        "percentage": 2.91,
+        "count": 9431
+      },
+      {
+        "start": 19.5,
+        "end": 19.75,
+        "label": "19.50-19.75",
+        "percentage": 2.87,
+        "count": 9302
+      },
+      {
+        "start": 19.75,
+        "end": 20.0,
+        "label": "19.75-20.00",
+        "percentage": 2.86,
+        "count": 9260
+      },
+      {
+        "start": 20.0,
+        "end": 20.25,
+        "label": "20.00-20.25",
+        "percentage": 2.79,
+        "count": 9063
+      },
+      {
+        "start": 20.25,
+        "end": 20.5,
+        "label": "20.25-20.50",
+        "percentage": 2.72,
+        "count": 8817
+      },
+      {
+        "start": 20.5,
+        "end": 20.75,
+        "label": "20.50-20.75",
+        "percentage": 2.66,
+        "count": 8633
+      },
+      {
+        "start": 20.75,
+        "end": 21.0,
+        "label": "20.75-21.00",
+        "percentage": 2.61,
+        "count": 8466
+      },
+      {
+        "start": 21.0,
+        "end": 21.25,
+        "label": "21.00-21.25",
+        "percentage": 2.49,
+        "count": 8063
+      },
+      {
+        "start": 21.25,
+        "end": 21.5,
+        "label": "21.25-21.50",
+        "percentage": 2.46,
+        "count": 7985
+      },
+      {
+        "start": 21.5,
+        "end": 21.75,
+        "label": "21.50-21.75",
+        "percentage": 2.3,
+        "count": 7470
+      },
+      {
+        "start": 21.75,
+        "end": 22.0,
+        "label": "21.75-22.00",
+        "percentage": 2.22,
+        "count": 7189
+      },
+      {
+        "start": 22.0,
+        "end": 22.25,
+        "label": "22.00-22.25",
+        "percentage": 2.2,
+        "count": 7133
+      },
+      {
+        "start": 22.25,
+        "end": 22.5,
+        "label": "22.25-22.50",
+        "percentage": 1.96,
+        "count": 6370
+      },
+      {
+        "start": 22.5,
+        "end": 22.75,
+        "label": "22.50-22.75",
+        "percentage": 1.82,
+        "count": 5903
+      },
+      {
+        "start": 22.75,
+        "end": 23.0,
+        "label": "22.75-23.00",
+        "percentage": 1.76,
+        "count": 5706
+      },
+      {
+        "start": 23.0,
+        "end": 23.25,
+        "label": "23.00-23.25",
+        "percentage": 1.62,
+        "count": 5240
+      },
+      {
+        "start": 23.25,
+        "end": 23.5,
+        "label": "23.25-23.50",
+        "percentage": 1.49,
+        "count": 4839
+      },
+      {
+        "start": 23.5,
+        "end": 23.75,
+        "label": "23.50-23.75",
+        "percentage": 1.4,
+        "count": 4530
+      },
+      {
+        "start": 23.75,
+        "end": 24.0,
+        "label": "23.75-24.00",
+        "percentage": 1.24,
+        "count": 4011
+      },
+      {
+        "start": 24.0,
+        "end": 24.25,
+        "label": "24.00-24.25",
+        "percentage": 1.11,
+        "count": 3615
+      },
+      {
+        "start": 24.25,
+        "end": 24.5,
+        "label": "24.25-24.50",
+        "percentage": 0.99,
+        "count": 3203
+      },
+      {
+        "start": 24.5,
+        "end": 24.75,
+        "label": "24.50-24.75",
+        "percentage": 0.89,
+        "count": 2895
+      },
+      {
+        "start": 24.75,
+        "end": 25.0,
+        "label": "24.75-25.00",
+        "percentage": 0.76,
+        "count": 2476
+      },
+      {
+        "start": 25.0,
+        "end": 25.25,
+        "label": "25.00-25.25",
+        "percentage": 0.7,
+        "count": 2266
+      },
+      {
+        "start": 25.25,
+        "end": 25.5,
+        "label": "25.25-25.50",
+        "percentage": 0.57,
+        "count": 1835
+      },
+      {
+        "start": 25.5,
+        "end": 25.75,
+        "label": "25.50-25.75",
+        "percentage": 0.46,
+        "count": 1488
+      },
+      {
+        "start": 25.75,
+        "end": 26.0,
+        "label": "25.75-26.00",
+        "percentage": 0.37,
+        "count": 1195
+      },
+      {
+        "start": 26.0,
+        "end": 26.25,
+        "label": "26.00-26.25",
+        "percentage": 0.29,
+        "count": 954
+      },
+      {
+        "start": 26.25,
+        "end": 26.5,
+        "label": "26.25-26.50",
+        "percentage": 0.22,
+        "count": 708
+      },
+      {
+        "start": 26.5,
+        "end": 26.75,
+        "label": "26.50-26.75",
+        "percentage": 0.17,
+        "count": 548
+      },
+      {
+        "start": 26.75,
+        "end": 27.0,
+        "label": "26.75-27.00",
+        "percentage": 0.1,
+        "count": 328
+      },
+      {
+        "start": 27.0,
+        "end": 27.25,
+        "label": "27.00-27.25",
+        "percentage": 0.08,
+        "count": 255
+      },
+      {
+        "start": 27.25,
+        "end": 27.5,
+        "label": "27.25-27.50",
+        "percentage": 0.04,
+        "count": 139
+      },
+      {
+        "start": 27.5,
+        "end": 27.75,
+        "label": "27.50-27.75",
+        "percentage": 0.03,
+        "count": 106
+      },
+      {
+        "start": 27.75,
+        "end": 28.0,
+        "label": "27.75-28.00",
+        "percentage": 0.01,
+        "count": 48
+      },
+      {
+        "start": 28.0,
+        "end": 28.25,
+        "label": "28.00-28.25",
+        "percentage": 0.01,
+        "count": 21
+      },
+      {
+        "start": 28.25,
+        "end": 28.5,
+        "label": "28.25-28.50",
+        "percentage": 0.0,
+        "count": 13
+      },
+      {
+        "start": 28.5,
+        "end": 28.75,
+        "label": "28.50-28.75",
+        "percentage": 0.0,
+        "count": 5
+      },
+      {
+        "start": 28.75,
+        "end": 29.0,
+        "label": "28.75-29.00",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 29.0,
+        "end": 29.25,
+        "label": "29.00-29.25",
+        "percentage": 0.0,
+        "count": 2
+      },
+      {
+        "start": 29.25,
+        "end": 29.5,
+        "label": "29.25-29.50",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 29.5,
+        "end": 29.75,
+        "label": "29.50-29.75",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 29.75,
+        "end": 30.0,
+        "label": "29.75-30.00",
+        "percentage": 0.0,
+        "count": 0
+      },
+      {
+        "start": 30.0,
+        "end": 30.25,
+        "label": "30.00-30.25",
+        "percentage": 0.0,
+        "count": 0
+      }
+    ]
   }
 ];
 export const distributionStats: DistributionStats[] = [
@@ -40694,6 +50118,241 @@ export const distributionStats: DistributionStats[] = [
     "aboveTwentyFourRate": 3.6,
     "aboveTwentySevenCount": 247,
     "aboveTwentySevenRate": 0.1,
+    "maxScoreCount": 0
+  },
+  {
+    "year": 2026,
+    "type": "subject",
+    "key": "toan",
+    "name": "Toán",
+    "candidateCount": 1116603,
+    "mean": 5.6723861121634105,
+    "median": 5.5,
+    "std": 1.9038426345990838,
+    "mad": 1.6032839335018803,
+    "mode": 5.25,
+    "underFiveCount": 420367,
+    "underFiveRate": 37.6,
+    "eightPlusCount": 179381,
+    "eightPlusRate": 16.1,
+    "perfectCount": 4145,
+    "zeroCount": 0,
+    "belowOneCount": 240,
+    "belowOneRate": 0.02
+  },
+  {
+    "year": 2026,
+    "type": "subject",
+    "key": "ngu_van",
+    "name": "Ngữ văn",
+    "candidateCount": 1120848,
+    "mean": 6.493463047621087,
+    "median": 6.75,
+    "std": 1.3365299334005802,
+    "mad": 1.0449297050090647,
+    "mode": 7.0,
+    "underFiveCount": 127313,
+    "underFiveRate": 11.4,
+    "eightPlusCount": 154811,
+    "eightPlusRate": 13.8,
+    "perfectCount": 0,
+    "zeroCount": 8,
+    "belowOneCount": 153,
+    "belowOneRate": 0.01
+  },
+  {
+    "year": 2026,
+    "type": "subject",
+    "key": "vat_li",
+    "name": "Vật lý",
+    "candidateCount": 360054,
+    "mean": 5.581887161370239,
+    "median": 5.5,
+    "std": 1.7515666495930704,
+    "mad": 1.480984518988818,
+    "mode": 7.0,
+    "underFiveCount": 139939,
+    "underFiveRate": 38.9,
+    "eightPlusCount": 40094,
+    "eightPlusRate": 11.1,
+    "perfectCount": 184,
+    "zeroCount": 2,
+    "belowOneCount": 9,
+    "belowOneRate": 0.0
+  },
+  {
+    "year": 2026,
+    "type": "subject",
+    "key": "hoa_hoc",
+    "name": "Hóa học",
+    "candidateCount": 232373,
+    "mean": 6.302090173987511,
+    "median": 6.5,
+    "std": 1.6425966063794242,
+    "mad": 1.3536787836796875,
+    "mode": 7.5,
+    "underFiveCount": 50497,
+    "underFiveRate": 21.7,
+    "eightPlusCount": 42298,
+    "eightPlusRate": 18.2,
+    "perfectCount": 399,
+    "zeroCount": 0,
+    "belowOneCount": 10,
+    "belowOneRate": 0.0
+  },
+  {
+    "year": 2026,
+    "type": "subject",
+    "key": "sinh_hoc",
+    "name": "Sinh học",
+    "candidateCount": 62244,
+    "mean": 5.854661493477283,
+    "median": 5.75,
+    "std": 1.6433785838317614,
+    "mad": 1.34259768009768,
+    "mode": 6.0,
+    "underFiveCount": 19578,
+    "underFiveRate": 31.5,
+    "eightPlusCount": 8226,
+    "eightPlusRate": 13.2,
+    "perfectCount": 121,
+    "zeroCount": 0,
+    "belowOneCount": 0,
+    "belowOneRate": 0.0
+  },
+  {
+    "year": 2026,
+    "type": "subject",
+    "key": "lich_su",
+    "name": "Lịch sử",
+    "candidateCount": 528471,
+    "mean": 6.184855365762738,
+    "median": 6.1,
+    "std": 1.7071965603282182,
+    "mad": 1.421451318993852,
+    "mode": 7.0,
+    "underFiveCount": 137443,
+    "underFiveRate": 26.0,
+    "eightPlusCount": 98973,
+    "eightPlusRate": 18.7,
+    "perfectCount": 2348,
+    "zeroCount": 1,
+    "belowOneCount": 7,
+    "belowOneRate": 0.0
+  },
+  {
+    "year": 2026,
+    "type": "subject",
+    "key": "dia_li",
+    "name": "Địa lý",
+    "candidateCount": 416937,
+    "mean": 5.096187673437474,
+    "median": 5.0,
+    "std": 1.5842416154493406,
+    "mad": 1.3077189119699137,
+    "mode": 6.0,
+    "underFiveCount": 196717,
+    "underFiveRate": 47.2,
+    "eightPlusCount": 17460,
+    "eightPlusRate": 4.2,
+    "perfectCount": 52,
+    "zeroCount": 2,
+    "belowOneCount": 100,
+    "belowOneRate": 0.02
+  },
+  {
+    "year": 2026,
+    "type": "combination",
+    "key": "a00",
+    "name": "A00",
+    "candidateCount": 163288,
+    "mean": 19.476271985693987,
+    "median": 19.75,
+    "std": 4.281467110020336,
+    "mad": 3.564094728332761,
+    "mode": 22.75,
+    "underFifteenCount": 28081,
+    "underFifteenRate": 17.2,
+    "aboveTwentyFourCount": 27120,
+    "aboveTwentyFourRate": 16.6,
+    "aboveTwentySevenCount": 3409,
+    "aboveTwentySevenRate": 2.1,
+    "maxScoreCount": 1
+  },
+  {
+    "year": 2026,
+    "type": "combination",
+    "key": "a01",
+    "name": "A01",
+    "candidateCount": 136874,
+    "mean": 18.47813500007306,
+    "median": 18.5,
+    "std": 3.9855387219976506,
+    "mad": 3.3051247862998085,
+    "mode": 20.5,
+    "underFifteenCount": 28743,
+    "underFifteenRate": 21.0,
+    "aboveTwentyFourCount": 12814,
+    "aboveTwentyFourRate": 9.4,
+    "aboveTwentySevenCount": 1167,
+    "aboveTwentySevenRate": 0.9,
+    "maxScoreCount": 0
+  },
+  {
+    "year": 2026,
+    "type": "combination",
+    "key": "b00",
+    "name": "B00",
+    "candidateCount": 42526,
+    "mean": 19.81820533320792,
+    "median": 20.1,
+    "std": 4.356521638434732,
+    "mad": 3.6196185862766312,
+    "mode": 24.0,
+    "underFifteenCount": 6555,
+    "underFifteenRate": 15.4,
+    "aboveTwentyFourCount": 8442,
+    "aboveTwentyFourRate": 19.9,
+    "aboveTwentySevenCount": 1605,
+    "aboveTwentySevenRate": 3.8,
+    "maxScoreCount": 4
+  },
+  {
+    "year": 2026,
+    "type": "combination",
+    "key": "c00",
+    "name": "C00",
+    "candidateCount": 259804,
+    "mean": 17.205950639713013,
+    "median": 17.2,
+    "std": 4.136670933461666,
+    "mad": 3.4071386121845704,
+    "mode": 21.25,
+    "underFifteenCount": 81281,
+    "underFifteenRate": 31.3,
+    "aboveTwentyFourCount": 14031,
+    "aboveTwentyFourRate": 5.4,
+    "aboveTwentySevenCount": 560,
+    "aboveTwentySevenRate": 0.2,
+    "maxScoreCount": 0
+  },
+  {
+    "year": 2026,
+    "type": "combination",
+    "key": "d01",
+    "name": "D01",
+    "candidateCount": 324295,
+    "mean": 19.06938077984551,
+    "median": 19.0,
+    "std": 3.1742562018033524,
+    "mad": 2.588185695123267,
+    "mode": 19.25,
+    "underFifteenCount": 31211,
+    "underFifteenRate": 9.6,
+    "aboveTwentyFourCount": 22100,
+    "aboveTwentyFourRate": 6.8,
+    "aboveTwentySevenCount": 589,
+    "aboveTwentySevenRate": 0.2,
     "maxScoreCount": 0
   }
 ];
