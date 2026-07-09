@@ -6,7 +6,7 @@ import sys
 
 
 def main() -> int:
-    targets = ["app.py", "pages", "components", "backend", "src", "scripts", "tests"]
+    targets = ["backend", "src", "scripts", "tests"]
     ok = compileall.compile_path(maxlevels=0, quiet=1)
     for target in targets:
         ok = compileall.compile_file(target, quiet=1) and ok if target.endswith(".py") else compileall.compile_dir(target, quiet=1) and ok

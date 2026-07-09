@@ -149,6 +149,7 @@ activemq-data/
 
 # Environments
 .env
+.env.local
 .envrc
 .venv
 env/
@@ -214,11 +215,17 @@ marimo/_static/
 marimo/_lsp/
 __marimo__/
 
-# Streamlit
-.streamlit/secrets.toml
+# Next.js / Node.js local outputs
+node_modules/
+.next/
+out/
+.vercel/
+*.tsbuildinfo
 
+# Project data and local outputs
 data/raw/*
 data/processed/*
+data/logs/*
 !data/raw/.gitkeep
 !data/processed/.gitkeep
 !data/mapping/.gitkeep
@@ -228,9 +235,6 @@ outputs/tables/*
 !outputs/charts/.gitkeep
 !outputs/tables/.gitkeep
 .DS_Store
-!data/raw/.gitkeep
-data/processed/*
-!data/processed/.gitkeep
 
 
 .vscode/
