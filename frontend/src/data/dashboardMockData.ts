@@ -48,12 +48,10 @@ export const COMBINATIONS = [
 ];
 
 export const overviewKpis: KpiItem[] = [
-  { label: 'Tổng số thí sinh', value: '5,24 triệu', detail: 'Mock 2022-2026' },
-  { label: 'Số tỉnh/thành', value: '63', detail: 'Theo mã hội đồng thi' },
-  { label: 'Số năm dữ liệu', value: '5', detail: '2022-2026' },
-  { label: 'Điểm TB toàn quốc', value: '6.42', detail: '+0.08 so với 2025' },
-  { label: 'Môn điểm cao nhất', value: 'GDCD', detail: '7.82 điểm' },
-  { label: 'Môn điểm thấp nhất', value: 'Tiếng Anh', detail: '5.28 điểm' },
+  { label: 'Tổng số thí sinh', value: '5,24 triệu' },
+  { label: 'Số tỉnh/thành', value: '63' },
+  { label: 'Giai đoạn', value: '2022-2026' },
+  { label: 'Điểm TB toàn quốc', value: '6.42' },
 ];
 
 export const nationalAverageByYear: YearMetric[] = [

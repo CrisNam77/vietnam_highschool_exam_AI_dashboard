@@ -7,7 +7,6 @@ import { ChartCard, SimpleBarChart, SimpleHorizontalBarChart } from './charts';
 import { DashboardShell } from './DashboardShell';
 import { FilterBar } from './FilterBar';
 import { HeatmapTable } from './HeatmapTable';
-import { InsightChip } from './InsightChip';
 import { RankingTable } from './RankingTable';
 
 type Direction = 'highest' | 'lowest';
@@ -66,11 +65,6 @@ export function RegionTab() {
     ),
   }));
 
-  const bestRegion = [...regionPoints].sort((a, b) => b.value - a.value)[0];
-  const gap = regionPoints.length > 0
-    ? Math.max(...regionPoints.map(item => item.value)) - Math.min(...regionPoints.map(item => item.value))
-    : 0;
-
   return (
     <DashboardShell
       title="Địa phương & Vùng miền"
@@ -127,12 +121,6 @@ export function RegionTab() {
           setSearch('');
         }}
       />
-
-      <div className="flex flex-wrap gap-2">
-        <InsightChip label="Vùng nổi bật" value={bestRegion.label} />
-        <InsightChip label="Chênh lệch vùng" value={`${gap.toFixed(2)} điểm`} />
-        <InsightChip label="Bảng" value="Có search/sort" />
-      </div>
 
       <div className="grid gap-5 xl:grid-cols-[1.1fr_0.9fr]">
         <ChartCard title={`${direction === 'highest' ? 'Top' : 'Bottom'} tỉnh/thành theo điểm TB`}>

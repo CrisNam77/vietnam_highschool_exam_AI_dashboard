@@ -6,7 +6,6 @@ import type { Program, YearOption } from '@/types/dashboard';
 import { ChartCard, SimpleBarChart, SimpleLineChart } from './charts';
 import { DashboardShell } from './DashboardShell';
 import { FilterBar } from './FilterBar';
-import { InsightChip } from './InsightChip';
 import { KpiCard } from './KpiCard';
 
 const COLORS = ['#00195A', '#594DA3', '#826ACA', '#AD88F1'];
@@ -24,16 +23,12 @@ export function OverviewTab() {
       value: Math.round(item.value * (program === 'CT2006' ? 0.64 : program === 'CT2018' ? 0.36 : 1)),
     }));
 
-  const highest = [...scopedSubjectAverages].sort((a, b) => b.value - a.value)[0];
-  const lowest = [...scopedSubjectAverages].sort((a, b) => a.value - b.value)[0];
   const average = scopedSubjectAverages.reduce((sum, item) => sum + item.value, 0) / scopedSubjectAverages.length;
 
   const kpis = overviewKpis.map(item => {
     if (item.label === 'Điểm TB toàn quốc') {
-      return { ...item, value: average.toFixed(2), detail: program === 'all' ? 'Toàn quốc' : program };
+      return { ...item, value: average.toFixed(2) };
     }
-    if (item.label === 'Môn điểm cao nhất') return { ...item, value: highest.subjectName, detail: `${highest.value.toFixed(2)} điểm` };
-    if (item.label === 'Môn điểm thấp nhất') return { ...item, value: lowest.subjectName, detail: `${lowest.value.toFixed(2)} điểm` };
     return item;
   });
 
@@ -60,14 +55,8 @@ export function OverviewTab() {
         }}
       />
 
-      <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-6">
+      <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
         {kpis.map(item => <KpiCard key={item.label} item={item} />)}
-      </div>
-
-      <div className="flex flex-wrap gap-2">
-        <InsightChip label="Cao nhất" value={highest.subjectName} />
-        <InsightChip label="Thấp nhất" value={lowest.subjectName} />
-        <InsightChip label="Xu hướng" value="Điểm TB tăng nhẹ" />
       </div>
 
       <div className="grid gap-5 xl:grid-cols-[1.2fr_0.8fr]">

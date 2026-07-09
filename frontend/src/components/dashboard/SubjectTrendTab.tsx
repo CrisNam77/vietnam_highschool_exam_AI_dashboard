@@ -1,13 +1,12 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 import { eightPlusRates, subjectYearMatrix, SUBJECTS, underFiveRates, YEARS } from '@/data/dashboardMockData';
 import type { MetricKey } from '@/types/dashboard';
 import { ChartCard, SimpleBarChart, SimpleLineChart } from './charts';
 import { DashboardShell } from './DashboardShell';
 import { FilterBar } from './FilterBar';
 import { HeatmapTable } from './HeatmapTable';
-import { InsightChip } from './InsightChip';
 
 const metricLabels: Record<MetricKey, string> = {
   average: 'Điểm trung bình',
@@ -51,14 +50,6 @@ export function SubjectTrendTab() {
     ),
   }));
 
-  const strongestMove = useMemo(() => {
-    return SUBJECTS.map(subject => {
-      const first = subjectYearMatrix.find(item => item.subjectId === subject.id && item.year === startYear);
-      const last = subjectYearMatrix.find(item => item.subjectId === subject.id && item.year === endYear);
-      return { name: subject.name, diff: Math.abs((last?.average ?? 0) - (first?.average ?? 0)) };
-    }).sort((a, b) => b.diff - a.diff)[0];
-  }, [startYear, endYear]);
-
   return (
     <DashboardShell
       title="Xu hướng & Môn học"
@@ -98,12 +89,6 @@ export function SubjectTrendTab() {
           setMetric('average');
         }}
       />
-
-      <div className="flex flex-wrap gap-2">
-        <InsightChip label="Biến động rõ" value={strongestMove.name} />
-        <InsightChip label="Line chart" value={subjectId === 'all' ? '9 môn' : '1 môn đã chọn'} />
-        <InsightChip label="Chỉ số" value={metricLabels[metric]} />
-      </div>
 
       <ChartCard title={`Xu hướng ${metricLabels[metric].toLowerCase()} theo môn`}>
         <SimpleLineChart

@@ -177,8 +177,6 @@ export function DistributionTab() {
 
   const summaryRecords = getRecords(type).filter(record => record.year === year && (selectedKey === 'all' || record.key === selectedKey));
   const summaryStats = distributionStats.filter(stat => stat.type === type && stat.year === year && (selectedKey === 'all' || stat.key === selectedKey));
-  const highestLow = [...summaryStats].sort((a, b) => (b.underFiveRate ?? b.under15Rate ?? 0) - (a.underFiveRate ?? a.under15Rate ?? 0))[0];
-  const highestHigh = [...summaryStats].sort((a, b) => (b.eightPlusRate ?? b.above24Rate ?? 0) - (a.eightPlusRate ?? a.above24Rate ?? 0))[0];
 
   return (
     <DashboardShell
@@ -239,12 +237,6 @@ export function DistributionTab() {
           setCompareYear(2025);
         }}
       />
-
-      <div className="flex flex-wrap gap-2">
-        {highestLow && <InsightChip label={type === 'subject' ? '<5 cao nhất' : '<15 cao nhất'} value={highestLow.name} />}
-        {highestHigh && <InsightChip label={type === 'subject' ? '>=8 cao nhất' : '>=24 cao nhất'} value={highestHigh.name} />}
-        <InsightChip label="Chế độ" value={compareMode === 'on' ? `${year} vs ${compareYear}` : String(year)} />
-      </div>
 
       {selectedKey === 'all' ? (
         <>
