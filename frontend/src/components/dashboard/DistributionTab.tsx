@@ -232,12 +232,12 @@ function StatsTable({ stats }: { stats: DistributionStats }) {
         ['Trung vị', stats.median.toFixed(2)],
         ['ĐLC', stats.std.toFixed(2)],
         ['MAD', stats.mad.toFixed(2)],
-        ['<5', `${formatNumber(stats.underFiveCount ?? 0)} | ${stats.underFiveRate?.toFixed(2)}%`],
-        ['>=8', `${formatNumber(stats.eightPlusCount ?? 0)} | ${stats.eightPlusRate?.toFixed(2)}%`],
+        ['<5', formatNumber(stats.underFiveCount ?? 0)],
+        ['>=8', formatNumber(stats.eightPlusCount ?? 0)],
         ['Mode', stats.mode.toFixed(1)],
         ['Điểm 10', formatNumber(stats.perfectCount ?? 0)],
         ['Điểm 0', formatNumber(stats.zeroCount ?? 0)],
-        ['<=1', `${formatNumber(stats.belowOneCount ?? 0)} | ${stats.belowOneRate?.toFixed(2)}%`],
+        ['<=1', formatNumber(stats.belowOneCount ?? 0)],
       ]
     : [
         ['Số TS đủ tổ hợp', formatNumber(stats.candidateCount)],
@@ -245,9 +245,9 @@ function StatsTable({ stats }: { stats: DistributionStats }) {
         ['Trung vị', stats.median.toFixed(2)],
         ['ĐLC', stats.std.toFixed(2)],
         ['MAD', stats.mad.toFixed(2)],
-        ['<15', `${formatNumber(stats.underFifteenCount ?? 0)} | ${stats.underFifteenRate?.toFixed(2)}%`],
-        ['>=24', `${formatNumber(stats.aboveTwentyFourCount ?? 0)} | ${stats.aboveTwentyFourRate?.toFixed(2)}%`],
-        ['>=27', `${formatNumber(stats.aboveTwentySevenCount ?? 0)} | ${stats.aboveTwentySevenRate?.toFixed(2)}%`],
+        ['<15', formatNumber(stats.underFifteenCount ?? 0)],
+        ['>=24', formatNumber(stats.aboveTwentyFourCount ?? 0)],
+        ['>=27', formatNumber(stats.aboveTwentySevenCount ?? 0)],
         ['Mode', stats.mode.toFixed(1)],
         ['Điểm tối đa', formatNumber(stats.maxScoreCount ?? 0)],
       ];
@@ -278,8 +278,8 @@ function CompareTable({ current, compare }: { current: DistributionStats; compar
         { label: 'ĐTB', currentValue: current.mean, compareValue: compare.mean, kind: 'score' as const },
         { label: 'Trung vị', currentValue: current.median, compareValue: compare.median, kind: 'score' as const },
         { label: 'ĐLC', currentValue: current.std, compareValue: compare.std, kind: 'score' as const },
-        { label: '<5', currentValue: current.underFiveRate ?? 0, compareValue: compare.underFiveRate ?? 0, kind: 'percent' as const },
-        { label: '>=8', currentValue: current.eightPlusRate ?? 0, compareValue: compare.eightPlusRate ?? 0, kind: 'percent' as const },
+        { label: '<5', currentValue: current.underFiveCount ?? 0, compareValue: compare.underFiveCount ?? 0, kind: 'count' as const },
+        { label: '>=8', currentValue: current.eightPlusCount ?? 0, compareValue: compare.eightPlusCount ?? 0, kind: 'count' as const },
         { label: 'Điểm 10', currentValue: current.perfectCount ?? 0, compareValue: compare.perfectCount ?? 0, kind: 'count' as const },
       ]
     : [
@@ -287,20 +287,18 @@ function CompareTable({ current, compare }: { current: DistributionStats; compar
         { label: 'ĐTB', currentValue: current.mean, compareValue: compare.mean, kind: 'score' as const },
         { label: 'Trung vị', currentValue: current.median, compareValue: compare.median, kind: 'score' as const },
         { label: 'ĐLC', currentValue: current.std, compareValue: compare.std, kind: 'score' as const },
-        { label: '<15', currentValue: current.underFifteenRate ?? 0, compareValue: compare.underFifteenRate ?? 0, kind: 'percent' as const },
-        { label: '>=24', currentValue: current.aboveTwentyFourRate ?? 0, compareValue: compare.aboveTwentyFourRate ?? 0, kind: 'percent' as const },
-        { label: '>=27', currentValue: current.aboveTwentySevenRate ?? 0, compareValue: compare.aboveTwentySevenRate ?? 0, kind: 'percent' as const },
+        { label: '<15', currentValue: current.underFifteenCount ?? 0, compareValue: compare.underFifteenCount ?? 0, kind: 'count' as const },
+        { label: '>=24', currentValue: current.aboveTwentyFourCount ?? 0, compareValue: compare.aboveTwentyFourCount ?? 0, kind: 'count' as const },
+        { label: '>=27', currentValue: current.aboveTwentySevenCount ?? 0, compareValue: compare.aboveTwentySevenCount ?? 0, kind: 'count' as const },
       ];
 
-  const formatCell = (value: number, kind: 'count' | 'score' | 'percent') => {
+  const formatCell = (value: number, kind: 'count' | 'score') => {
     if (kind === 'count') return formatNumber(Math.round(value));
-    if (kind === 'percent') return `${value.toFixed(2)}%`;
     return value.toFixed(2);
   };
 
-  const formatCompareDelta = (value: number, kind: 'count' | 'score' | 'percent') => {
+  const formatCompareDelta = (value: number, kind: 'count' | 'score') => {
     if (kind === 'count') return formatCountDelta(value);
-    if (kind === 'percent') return formatDelta(value, '%');
     return formatDelta(value);
   };
 
