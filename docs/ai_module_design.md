@@ -15,13 +15,13 @@ Bước xác nhận của người dùng trước khi thực thi là bắt buộ
 Schema DB được quản lý bằng Prisma tại:
 
 ```text
-ai_frontend/prisma/schema.prisma
+frontend/prisma/schema.prisma
 ```
 
 Migration Prisma nằm tại:
 
 ```text
-ai_frontend/prisma/migrations/
+frontend/prisma/migrations/
 ```
 
 Database local mặc định:
@@ -30,7 +30,7 @@ Database local mặc định:
 database/app.db
 ```
 
-Prisma 6 đọc `DATABASE_URL` từ `ai_frontend/.env`. Backend Python vẫn có thể đọc/ghi SQLite file `database/app.db` bằng `sqlite3` hoặc repository riêng. Prisma chịu trách nhiệm quản lý schema và migrations.
+Prisma 6 đọc `DATABASE_URL` từ `frontend/.env`. Backend Python vẫn có thể đọc/ghi SQLite file `database/app.db` bằng `sqlite3` hoặc repository riêng. Prisma chịu trách nhiệm quản lý schema và migrations.
 
 ## Nguyên Tắc Thiết Kế
 
@@ -118,7 +118,7 @@ Lưu like/dislike và ghi chú người dùng.
 
 ## Lệnh Prisma
 
-Chạy trong thư mục `ai_frontend`:
+Chạy trong thư mục `frontend`:
 
 ```powershell
 npm run prisma:generate
@@ -133,7 +133,7 @@ $env:DATABASE_URL="file:../../database/app.db"
 npm run prisma:migrate -- --name init
 ```
 
-Ghi chú môi trường local Windows hiện tại: nếu Prisma migrate engine trả lỗi trống khi ghi SQLite, dùng migration SQL trong `ai_frontend/prisma/migrations/` để tạo `database/app.db`. Schema vẫn lấy từ Prisma, không dùng `database/schema.sql`.
+Ghi chú môi trường local Windows hiện tại: nếu Prisma migrate engine trả lỗi trống khi ghi SQLite, dùng migration SQL trong `frontend/prisma/migrations/` để tạo `database/app.db`. Schema vẫn lấy từ Prisma, không dùng `database/schema.sql`.
 
 ## API Design
 
@@ -200,7 +200,7 @@ Mỗi log cũ có thể tạo một session riêng nếu không có session id.
 
 ## Implementation Plan
 
-1. Dùng `ai_frontend/prisma/schema.prisma` làm schema chính.
+1. Dùng `frontend/prisma/schema.prisma` làm schema chính.
 2. Chạy Prisma migration để tạo `database/app.db`.
 3. Backend Python đọc/ghi `database/app.db` qua repository SQLite.
 4. Tạo service lưu session, message, execution, artifact, feedback.
