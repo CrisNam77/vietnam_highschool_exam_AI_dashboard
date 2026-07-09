@@ -84,12 +84,12 @@ http://localhost:8001/docs
 
 ## 4. Setup Next.js Frontend
 
-Nếu chạy bằng `run_frontend.cmd`, script sẽ vào `ai_frontend/` và cài dependency khi thiếu `node_modules`.
+Nếu chạy bằng `run_frontend.cmd`, script sẽ vào `frontend/` và cài dependency khi thiếu `node_modules`.
 
 Setup thủ công:
 
 ```bash
-cd ai_frontend
+cd frontend
 npm install
 ```
 
@@ -101,7 +101,7 @@ Windows script:
 run_frontend.cmd
 ```
 
-Hoặc chạy thủ công từ `ai_frontend/`:
+Hoặc chạy thủ công từ `frontend/`:
 
 ```bash
 npm run dev
@@ -134,8 +134,8 @@ Checklist:
 Frontend Next.js hiện có 4 khu vực chính:
 
 1. Tổng quan
-2. Câu hỏi phân tích 1
-3. Câu hỏi phân tích 2
+2. Xu hướng & Môn học
+3. Địa phương & Vùng miền
 4. Trợ lý AI
 
 History/logs nằm trong khu vực Trợ lý AI. FastAPI Docs vẫn truy cập trực tiếp tại `http://localhost:8001/docs`.
@@ -147,7 +147,7 @@ Các dashboard section có thể được triển khai dần bằng API/data sum
 - Nếu AI generate không trả code, kiểm tra `OPENROUTER_API_KEY`, credit/quota và model.
 - Nếu execute lỗi thiếu dữ liệu, kiểm tra `DATA_PATH` và file `data/processed/final_data.csv`.
 - Nếu frontend không gọi được backend, kiểm tra `BACKEND_URL`, `NEXT_PUBLIC_API_URL` và port `8001`.
-- Nếu frontend chưa có dependencies, chạy `npm install` trong `ai_frontend/`.
+- Nếu frontend chưa có dependencies, chạy `npm install` trong `frontend/`.
 - Không commit `.env`, API key, data, logs, database local hoặc outputs.
 
 ## Local URLs

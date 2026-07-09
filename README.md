@@ -8,8 +8,8 @@ Dashboard phân tích và trực quan hóa điểm thi tốt nghiệp THPT Việ
 User
 └── Next.js Frontend
     ├── Tổng quan
-    ├── Câu hỏi phân tích 1
-    ├── Câu hỏi phân tích 2
+    ├── Xu hướng & Môn học
+    ├── Địa phương & Vùng miền
     ├── Trợ lý AI
     └── gọi FastAPI backend qua proxy /api/backend/...
 
@@ -53,7 +53,7 @@ Data:
 ## Project Structure
 
 ```text
-ai_frontend/            # Next.js frontend duy nhất
+frontend/               # Next.js frontend duy nhất: dashboard và Trợ lý AI
 backend/app/            # FastAPI backend
 src/                    # Data pipeline, metrics, visualization helpers
 notebook/               # EDA notebooks
@@ -123,7 +123,7 @@ uvicorn backend.app.main:app --reload --port 8001
 Manual frontend:
 
 ```bash
-cd ai_frontend
+cd frontend
 npm install
 npm run dev
 ```
@@ -184,8 +184,8 @@ data/logs/interaction_history.json
 Next.js frontend gồm 4 khu vực chính:
 
 1. Tổng quan
-2. Câu hỏi phân tích 1
-3. Câu hỏi phân tích 2
+2. Xu hướng & Môn học
+3. Địa phương & Vùng miền
 4. Trợ lý AI
 
 History/logs được hiển thị trong khu vực Trợ lý AI. Tài liệu API backend xem tại:

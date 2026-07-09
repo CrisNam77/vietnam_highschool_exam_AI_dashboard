@@ -9,6 +9,10 @@ import vscDarkPlus from 'react-syntax-highlighter/dist/cjs/styles/prism/vsc-dark
 import tsx from 'react-syntax-highlighter/dist/cjs/languages/prism/tsx';
 import python from 'react-syntax-highlighter/dist/cjs/languages/prism/python';
 import bash from 'react-syntax-highlighter/dist/cjs/languages/prism/bash';
+import { OverviewTab } from '@/components/dashboard/OverviewTab';
+import { RegionTab } from '@/components/dashboard/RegionTab';
+import { SubjectTrendTab } from '@/components/dashboard/SubjectTrendTab';
+import type { Tab } from '@/types/dashboard';
 
 SyntaxHighlighter.registerLanguage('tsx', tsx);
 SyntaxHighlighter.registerLanguage('python', python);
@@ -690,99 +694,14 @@ function HistoryTab() {
 }
 
 // ── Main Page ─────────────────────────────────────────────
-type Tab = 'overview' | 'question1' | 'question2' | 'assistant';
 const CHAT_SESSIONS_KEY = 'examdata_ai_chat_sessions';
 
 const TAB_LABELS: Record<Tab, string> = {
   overview: 'Tổng quan',
-  question1: 'Câu hỏi phân tích 1',
-  question2: 'Câu hỏi phân tích 2',
+  trends: 'Xu hướng & Môn học',
+  regions: 'Địa phương & Vùng miền',
   assistant: 'Trợ lý AI',
 };
-
-const ANALYSIS_PLACEHOLDERS: Record<Exclude<Tab, 'assistant'>, {
-  title: string;
-  question?: string;
-  description: string;
-  items: string[];
-}> = {
-  overview: {
-    title: 'Tổng quan dữ liệu điểm thi THPT',
-    description: 'Trình bày bức tranh tổng quan về dữ liệu điểm thi THPT Việt Nam giai đoạn 2022-2025.',
-    items: [
-      'Tổng số thí sinh',
-      'Số năm dữ liệu',
-      'Số tỉnh/thành',
-      'Điểm trung bình toàn quốc',
-      'Xu hướng điểm trung bình qua các năm',
-      'TODO: bổ sung insight chính sau khi nối dữ liệu thật',
-    ],
-  },
-  question1: {
-    title: 'Câu hỏi phân tích 1',
-    question: 'Điểm trung bình toàn quốc thay đổi như thế nào trong giai đoạn 2022-2025?',
-    description: 'Theo dõi xu hướng điểm trung bình qua các năm để nhận diện biến động chung của kỳ thi.',
-    items: [
-      'Mục tiêu: so sánh xu hướng điểm trung bình toàn quốc theo năm',
-      'Biến dự kiến: nam, các cột điểm môn, điểm trung bình tổng hợp',
-      'Biểu đồ dự kiến: line chart theo năm',
-      'KPI dự kiến: điểm trung bình, mức tăng/giảm qua từng năm',
-      'TODO: bổ sung insight sau khi nối dữ liệu thật',
-    ],
-  },
-  question2: {
-    title: 'Câu hỏi phân tích 2',
-    question: 'Môn nào có mặt bằng điểm cao/thấp nhất và phổ điểm có gì đáng chú ý?',
-    description: 'So sánh mặt bằng điểm giữa các môn và quan sát hình dạng phổ điểm để tìm điểm nổi bật.',
-    items: [
-      'Mục tiêu: xác định môn có điểm trung bình cao/thấp và phân bố đáng chú ý',
-      'Biến dự kiến: toan, ngu_van, ngoai_ngu, vat_li, hoa_hoc, sinh_hoc, lich_su, dia_li, gdcd và các môn 2018',
-      'Biểu đồ dự kiến: bar chart điểm trung bình theo môn',
-      'Biểu đồ dự kiến: histogram phổ điểm theo môn được chọn',
-      'TODO: bổ sung insight sau khi nối dữ liệu thật',
-    ],
-  },
-};
-
-function AnalysisPlaceholder({ tab }: { tab: Exclude<Tab, 'assistant'> }) {
-  const page = ANALYSIS_PLACEHOLDERS[tab];
-
-  return (
-    <div className="h-full overflow-y-auto px-8 pb-8">
-      <div className="grid gap-4 lg:grid-cols-[1.15fr_0.85fr]">
-        <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-          <p className="text-xs font-bold uppercase tracking-[0.18em] text-indigo-500">Dashboard placeholder</p>
-          <h2 className="mt-2 text-xl font-bold text-slate-950">{page.title}</h2>
-          {page.question && (
-            <p className="mt-3 rounded-xl border border-indigo-100 bg-indigo-50 px-4 py-3 text-sm font-semibold leading-6 text-indigo-700">
-              {page.question}
-            </p>
-          )}
-          <p className="mt-3 text-sm leading-7 text-slate-600">{page.description}</p>
-          <div className="mt-6 grid gap-3 sm:grid-cols-2">
-            {page.items.map(item => (
-              <div key={item} className="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-medium text-slate-700">
-                {item}
-              </div>
-            ))}
-          </div>
-        </section>
-        <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-          <h3 className="text-base font-bold text-slate-950">Data source</h3>
-          <p className="mt-3 text-sm leading-7 text-slate-600">
-            Dashboard sẽ dùng dữ liệu processed từ <code className="rounded bg-slate-100 px-1.5 py-0.5 text-xs text-indigo-700">data/processed/final_data.csv</code> thông qua backend hoặc helper dữ liệu.
-          </p>
-          <div className="mt-5 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-xs font-semibold leading-6 text-amber-700">
-            TODO: triển khai biểu đồ thật trong Next.js sau khi thống nhất API dữ liệu dashboard.
-          </div>
-          <p className="mt-4 text-xs leading-6 text-slate-500">
-            FastAPI Docs: <code className="rounded bg-slate-100 px-1.5 py-0.5 text-indigo-700">http://localhost:8001/docs</code>
-          </p>
-        </section>
-      </div>
-    </div>
-  );
-}
 
 function createChatSession(): ChatSession {
   const now = Date.now();
@@ -865,8 +784,8 @@ export default function Home() {
     .filter(session => session.title.toLowerCase().includes(sessionSearch.toLowerCase()));
 
   return (
-    <div className="min-h-screen bg-slate-50 font-sans text-slate-900">
-      <aside className="fixed inset-y-0 left-0 z-20 flex w-[272px] flex-col border-r border-white/5 px-3 py-4 text-slate-300 shadow-2xl shadow-slate-950/10" style={{ background: 'linear-gradient(180deg, #0b1020 0%, #0e1424 100%)' }}>
+    <div className="min-h-screen bg-[#F5F7FB] font-sans text-slate-900">
+      <aside className="fixed inset-y-0 left-0 z-20 flex w-[272px] flex-col border-r border-white/5 px-3 py-4 text-slate-300 shadow-2xl shadow-slate-950/10" style={{ background: 'linear-gradient(180deg, #00195A 0%, #31327E 100%)' }}>
         <div className="mb-4 flex h-12 items-center justify-between px-2">
           <div className="flex items-center gap-2.5">
             <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-600 to-blue-500 shadow-lg shadow-indigo-500/20">
@@ -903,13 +822,13 @@ export default function Home() {
             <SidebarIcon name="chart" />
             <span>Tổng quan</span>
           </button>
-          <button onClick={() => setActiveTab('question1')} className={`sidebar-nav-item ${activeTab === 'question1' ? 'sidebar-item-active text-white' : 'text-slate-400 hover:bg-white/5 hover:text-slate-200'}`}>
-            <SidebarIcon name="data" />
-            <span>Câu hỏi phân tích 1</span>
-          </button>
-          <button onClick={() => setActiveTab('question2')} className={`sidebar-nav-item ${activeTab === 'question2' ? 'sidebar-item-active text-white' : 'text-slate-400 hover:bg-white/5 hover:text-slate-200'}`}>
+          <button onClick={() => setActiveTab('trends')} className={`sidebar-nav-item ${activeTab === 'trends' ? 'sidebar-item-active text-white' : 'text-slate-400 hover:bg-white/5 hover:text-slate-200'}`}>
             <SidebarIcon name="distribution" />
-            <span>Câu hỏi phân tích 2</span>
+            <span>Xu hướng & Môn học</span>
+          </button>
+          <button onClick={() => setActiveTab('regions')} className={`sidebar-nav-item ${activeTab === 'regions' ? 'sidebar-item-active text-white' : 'text-slate-400 hover:bg-white/5 hover:text-slate-200'}`}>
+            <SidebarIcon name="map" />
+            <span>Địa phương & Vùng miền</span>
           </button>
           <button onClick={() => setActiveTab('assistant')} className={`sidebar-nav-item ${activeTab === 'assistant' ? 'sidebar-item-active text-white' : 'text-slate-400 hover:bg-white/5 hover:text-slate-200'}`}>
             <SidebarIcon name="data" />
@@ -948,7 +867,7 @@ export default function Home() {
         </div>
       </aside>
 
-      <main className="ml-[272px] h-screen overflow-hidden bg-slate-50">
+      <main className="ml-[272px] h-screen overflow-hidden bg-[#F5F7FB]">
         <div className="flex h-full flex-col">
           <div className="px-8 pb-3 pt-5">
             <p className="text-xs font-bold uppercase tracking-[0.18em] text-slate-400">
@@ -959,9 +878,9 @@ export default function Home() {
             </h1>
           </div>
           <div className="min-h-0 flex-1">
-            {activeTab === 'overview' && <AnalysisPlaceholder tab="overview" />}
-            {activeTab === 'question1' && <AnalysisPlaceholder tab="question1" />}
-            {activeTab === 'question2' && <AnalysisPlaceholder tab="question2" />}
+            {activeTab === 'overview' && <OverviewTab />}
+            {activeTab === 'trends' && <SubjectTrendTab />}
+            {activeTab === 'regions' && <RegionTab />}
             {activeTab === 'assistant' && activeSession && (
               <div className="grid h-full min-h-0 gap-4 px-8 pb-6 lg:grid-cols-[minmax(0,1fr)_380px]">
                 <section className="min-h-0 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
