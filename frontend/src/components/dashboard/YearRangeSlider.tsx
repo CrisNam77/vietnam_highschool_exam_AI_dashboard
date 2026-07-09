@@ -20,12 +20,11 @@ export function YearRangeSlider({
   const trackRef = useRef<HTMLDivElement>(null);
   const [dragging, setDragging] = useState<'from' | 'to' | null>(null);
 
-  const minIdx = 0;
   const maxIdx = years.length - 1;
-  const fromIdx = years.indexOf(fromYear);
-  const toIdx = years.indexOf(toYear);
+  const fromIdx = Math.max(0, years.indexOf(fromYear));
+  const toIdx = Math.max(0, years.indexOf(toYear));
 
-  const pct = (idx: number) => (idx / maxIdx) * 100;
+  const pct = (idx: number) => maxIdx === 0 ? 0 : (idx / maxIdx) * 100;
 
   const idxFromEvent = useCallback(
     (clientX: number) => {
@@ -38,28 +37,13 @@ export function YearRangeSlider({
     [maxIdx],
   );
 
-  const handleTrackClick = (e: React.MouseEvent) => {
-    const idx = idxFromEvent(e.clientX);
-    const distFrom = Math.abs(idx - fromIdx);
-    const distTo = Math.abs(idx - toIdx);
-    if (distFrom <= distTo) {
-      onFromChange(years[Math.min(idx, toIdx)]);
-    } else {
-      onToChange(years[Math.max(idx, fromIdx)]);
-    }
-  };
-
   const handleMouseDown = (thumb: 'from' | 'to') => (e: React.MouseEvent) => {
     e.preventDefault();
     setDragging(thumb);
-
-    const onMove = (moveEvent: MouseEvent) => {
-      const idx = idxFromEvent(moveEvent.clientX);
-      if (thumb === 'from') {
-        onFromChange(years[Math.min(idx, toIdx)]);
-      } else {
-        onToChange(years[Math.max(idx, fromIdx)]);
-      }
+    const onMove = (ev: MouseEvent) => {
+      const idx = idxFromEvent(ev.clientX);
+      if (thumb === 'from') onFromChange(years[Math.min(idx, toIdx)]);
+      else onToChange(years[Math.max(idx, fromIdx)]);
     };
     const onUp = () => {
       setDragging(null);
@@ -70,78 +54,71 @@ export function YearRangeSlider({
     window.addEventListener('mouseup', onUp);
   };
 
-  const leftPct = pct(fromIdx < 0 ? 0 : fromIdx);
-  const rightPct = pct(toIdx < 0 ? maxIdx : toIdx);
+  const handleTrackClick = (e: React.MouseEvent) => {
+    const idx = idxFromEvent(e.clientX);
+    const distFrom = Math.abs(idx - fromIdx);
+    const distTo = Math.abs(idx - toIdx);
+    if (distFrom <= distTo) onFromChange(years[Math.min(idx, toIdx)]);
+    else onToChange(years[Math.max(idx, fromIdx)]);
+  };
+
+  const leftPct = pct(fromIdx);
+  const rightPct = pct(toIdx);
 
   return (
-    <div className="flex min-w-[260px] flex-1 flex-col gap-2">
-      <span className="text-xs font-bold uppercase tracking-[0.12em] text-[#64748B]">
-        Khoảng năm
-      </span>
-
-      {/* Year labels row */}
-      <div className="flex items-center justify-between">
-        <span className="rounded-lg bg-[#594DA3]/10 px-2.5 py-1 text-xs font-extrabold text-[#594DA3]">
-          {fromYear}
-        </span>
-        <span className="text-xs font-bold text-[#94A3B8]">—</span>
-        <span className="rounded-lg bg-[#594DA3]/10 px-2.5 py-1 text-xs font-extrabold text-[#594DA3]">
-          {toYear}
-        </span>
+    <div className="flex items-end gap-3">
+      {/* Label + badge */}
+      <div className="flex flex-col gap-1">
+        <span className="text-xs font-bold uppercase tracking-[0.12em] text-[#64748B]">Khoảng năm</span>
+        <div className="flex items-center gap-1.5">
+          <span className="rounded-md bg-[#594DA3]/10 px-2 py-0.5 text-xs font-extrabold text-[#594DA3]">{fromYear}</span>
+          <span className="text-[10px] font-bold text-[#94A3B8]">—</span>
+          <span className="rounded-md bg-[#594DA3]/10 px-2 py-0.5 text-xs font-extrabold text-[#594DA3]">{toYear}</span>
+        </div>
       </div>
 
-      {/* Slider track */}
-      <div className="relative py-2">
+      {/* Slider */}
+      <div className="flex min-w-[180px] flex-col gap-1 pb-0.5">
+        {/* Track */}
         <div
           ref={trackRef}
           className="relative h-1.5 cursor-pointer rounded-full bg-slate-200"
           onClick={handleTrackClick}
         >
-          {/* Active range fill */}
           <div
             className="pointer-events-none absolute h-full rounded-full bg-gradient-to-r from-[#594DA3] to-[#AD88F1]"
             style={{ left: `${leftPct}%`, right: `${100 - rightPct}%` }}
           />
-
           {/* FROM thumb */}
           <button
             type="button"
             aria-label={`Từ năm ${fromYear}`}
-            className={`absolute top-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-[#594DA3] bg-white shadow-md transition-transform focus:outline-none ${dragging === 'from' ? 'scale-125' : 'hover:scale-110'}`}
-            style={{ left: `${leftPct}%` }}
             onMouseDown={handleMouseDown('from')}
+            className={`absolute top-1/2 h-3.5 w-3.5 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-[#594DA3] bg-white shadow focus:outline-none transition-transform ${dragging === 'from' ? 'scale-125' : 'hover:scale-110'}`}
+            style={{ left: `${leftPct}%` }}
           />
-
           {/* TO thumb */}
           <button
             type="button"
             aria-label={`Đến năm ${toYear}`}
-            className={`absolute top-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-[#AD88F1] bg-white shadow-md transition-transform focus:outline-none ${dragging === 'to' ? 'scale-125' : 'hover:scale-110'}`}
-            style={{ left: `${rightPct}%` }}
             onMouseDown={handleMouseDown('to')}
+            className={`absolute top-1/2 h-3.5 w-3.5 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-[#AD88F1] bg-white shadow focus:outline-none transition-transform ${dragging === 'to' ? 'scale-125' : 'hover:scale-110'}`}
+            style={{ left: `${rightPct}%` }}
           />
         </div>
-
-        {/* Tick marks */}
-        <div className="mt-2.5 flex items-center justify-between px-0">
+        {/* Tick labels */}
+        <div className="flex items-center justify-between">
           {years.map((y, i) => (
             <button
               key={y}
               type="button"
               onClick={() => {
-                const distFrom = Math.abs(i - fromIdx);
-                const distTo = Math.abs(i - toIdx);
-                if (distFrom <= distTo) {
-                  onFromChange(years[Math.min(i, toIdx)]);
-                } else {
-                  onToChange(years[Math.max(i, fromIdx)]);
-                }
+                const di = Math.abs(i - fromIdx);
+                const dj = Math.abs(i - toIdx);
+                if (di <= dj) onFromChange(years[Math.min(i, toIdx)]);
+                else onToChange(years[Math.max(i, fromIdx)]);
               }}
-              className={`text-[10px] font-bold transition-colors ${
-                i >= fromIdx && i <= toIdx
-                  ? 'text-[#594DA3]'
-                  : 'text-slate-400 hover:text-slate-600'
-              }`}
+              className={`text-[9px] font-bold transition-colors leading-none ${i >= fromIdx && i <= toIdx ? 'text-[#594DA3]' : 'text-slate-400 hover:text-slate-600'}`}
             >
               {y}
             </button>
