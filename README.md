@@ -53,7 +53,7 @@ Data:
 ## Project Structure
 
 ```text
-ai_frontend/            # Next.js frontend duy nhất
+frontend/            # Next.js frontend duy nhất
 backend/app/            # FastAPI backend
 src/                    # Data pipeline, metrics, visualization helpers
 notebook/               # EDA notebooks
@@ -64,9 +64,9 @@ reports/                # Data quality report, AI usage, storyboard
 docs/                   # API contract, data schema, runbook
 tests/                  # Tests
 scripts/                # Utility scripts
-run_all.cmd
-run_backend.cmd
-run_frontend.cmd
+scripts/windows/start_dashboard.cmd
+scripts/windows/start_backend.cmd
+scripts/windows/start_frontend.cmd
 requirements.txt
 .env.example
 .gitignore
@@ -91,7 +91,7 @@ pip install -r requirements.txt
 Chạy backend và frontend:
 
 ```cmd
-run_all.cmd
+scripts\windows\start_dashboard.cmd
 ```
 
 Local URLs:
@@ -105,13 +105,13 @@ Local URLs:
 FastAPI backend:
 
 ```cmd
-run_backend.cmd
+scripts\windows\start_backend.cmd
 ```
 
 Next.js frontend:
 
 ```cmd
-run_frontend.cmd
+scripts\windows\start_frontend.cmd
 ```
 
 Manual backend:
@@ -123,7 +123,7 @@ uvicorn backend.app.main:app --reload --port 8001
 Manual frontend:
 
 ```bash
-cd ai_frontend
+cd frontend
 npm install
 npm run dev
 ```
