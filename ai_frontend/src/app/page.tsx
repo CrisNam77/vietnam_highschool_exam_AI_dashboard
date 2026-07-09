@@ -29,6 +29,7 @@ const CODE_VIEW_STYLE: CSSProperties = {
 interface Message {
   role: 'user' | 'assistant';
   content: string;
+  isFallbackInsight?: boolean;
   output?: string;
   code?: string;
   plot_b64?: string;
@@ -44,6 +45,7 @@ interface ChatSession {
 interface PendingReview {
   code: string;
   explanation: string;
+  isFallbackInsight?: boolean;
 }
 
 interface LogEntry {
@@ -131,6 +133,26 @@ function truncateContextText(text?: string) {
     : text;
 }
 
+function ensureInsightText(text?: string, prompt?: string) {
+  const cleaned = text?.trim();
+  if (cleaned) return { text: cleaned, isFallback: false };
+
+  const requestText = prompt?.trim();
+  return {
+    text: [
+      '### Phân tích dự kiến',
+      requestText
+        ? `Cell code bên dưới sẽ xử lý yêu cầu: **${requestText}**.`
+        : 'Cell code bên dưới sẽ xử lý yêu cầu phân tích dữ liệu đã nhập.',
+      '',
+      '- Lọc dữ liệu hợp lệ trước khi tính toán.',
+      '- Tính các chỉ số chính và in kết quả dưới dạng Markdown.',
+      '- Nếu có biểu đồ, dữ liệu sẽ được tổng hợp hoặc lấy mẫu để hiển thị rõ ràng.',
+    ].join('\n'),
+    isFallback: true,
+  };
+}
+
 function getContextHistory(messages: Message[]) {
   return messages.slice(-MAX_CONTEXT_MESSAGES).map(message => ({
     role: message.role,
@@ -138,6 +160,136 @@ function getContextHistory(messages: Message[]) {
     output: truncateContextText(message.output),
     code: truncateContextText(message.code),
   }));
+}
+
+function OutputMarkdown({ children }: { children: string }) {
+  return (
+    <div className="result-markdown prose prose-sm max-w-none prose-headings:mb-2 prose-headings:mt-0 prose-p:my-2 prose-p:leading-7 prose-strong:text-slate-950 prose-ul:my-2 prose-li:my-1 prose-table:my-0 prose-table:text-sm prose-th:bg-slate-100 prose-th:px-3 prose-th:py-2 prose-td:px-3 prose-td:py-2 prose-tr:border-b prose-tr:border-slate-200">
+      <ReactMarkdown remarkPlugins={[remarkGfm]}>
+        {children}
+      </ReactMarkdown>
+    </div>
+  );
+}
+
+function ResultPanel({
+  summary,
+  output,
+  plot_b64,
+  code,
+  isFallbackInsight,
+  isEditingCode,
+  editingCodeText,
+  rerunExecuting,
+  onEditCode,
+  onChangeCode,
+  onRerunCode,
+  onCancelEditCode,
+}: {
+  summary?: string;
+  output?: string;
+  plot_b64?: string;
+  code?: string;
+  isFallbackInsight?: boolean;
+  isEditingCode: boolean;
+  editingCodeText: string;
+  rerunExecuting: boolean;
+  onEditCode: () => void;
+  onChangeCode: (value: string) => void;
+  onRerunCode: () => void;
+  onCancelEditCode: () => void;
+}) {
+  if (!summary && !output && !plot_b64 && !code) return null;
+  const summaryText = isFallbackInsight && output?.trim() ? "" : summary?.trim();
+  const analysisText = [summaryText, output?.trim()].filter(Boolean).join('\n\n---\n\n');
+
+  return (
+    <section className="result-reveal mt-4 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+      <div className="flex items-center justify-between border-b border-slate-200 bg-slate-50 px-4 py-3">
+        <div>
+          <h3 className="text-sm font-bold text-slate-950">Phân tích</h3>
+          <p className="mt-0.5 text-xs text-slate-500">Số liệu, biểu đồ và insight trong một khung</p>
+        </div>
+      </div>
+      <div className="space-y-3 bg-slate-50/70 p-3">
+        {plot_b64 && (
+          <div className="rounded-xl border border-slate-200 bg-white p-3">
+            <div className="mb-2 text-xs font-bold uppercase tracking-wide text-slate-500">Biểu đồ</div>
+            <img
+              src={`data:image/png;base64,${plot_b64}`}
+              alt="Biểu đồ phân tích"
+              className="w-full rounded-lg border border-slate-100"
+              onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
+            />
+          </div>
+        )}
+        {analysisText && (
+          <div className="rounded-xl border border-slate-200 bg-white p-4">
+            <div className="mb-3 text-xs font-bold uppercase tracking-wide text-slate-500">Kết quả & insight</div>
+            <div className="custom-scrollbar overflow-x-auto">
+              <OutputMarkdown>{analysisText}</OutputMarkdown>
+            </div>
+          </div>
+        )}
+        {code && (
+          <details className="rounded-xl border border-slate-200 bg-white">
+            <summary className="cursor-pointer select-none px-3 py-2 text-xs font-bold text-indigo-600 hover:bg-indigo-50">
+              Mã Python
+            </summary>
+            <div className="border-t border-slate-200 p-3">
+              <div className="overflow-hidden rounded-xl border border-slate-700 shadow-sm">
+                <div className="flex items-center justify-between border-b border-slate-700 bg-slate-800 px-3 py-1.5 text-xs text-slate-400">
+                  <span>python</span>
+                  <button
+                    onClick={onEditCode}
+                    className="rounded-md px-2 py-1 font-semibold text-slate-300 transition-colors hover:bg-slate-700 hover:text-white"
+                  >
+                    Chỉnh sửa & chạy lại
+                  </button>
+                </div>
+                {isEditingCode ? (
+                  <div className="bg-slate-900 p-3">
+                    <textarea
+                      value={editingCodeText}
+                      onChange={e => onChangeCode(e.target.value)}
+                      wrap="off"
+                      spellCheck={false}
+                      className="code-editor-scrollbar min-h-80 w-full resize-y overflow-auto rounded-xl border border-slate-700 bg-[#1e1e1e] p-4 font-mono text-[13px] leading-relaxed text-green-300 outline-none focus:border-indigo-400"
+                    />
+                    <div className="mt-3 flex gap-2">
+                      <button
+                        onClick={onRerunCode}
+                        disabled={rerunExecuting || !editingCodeText.trim()}
+                        className="rounded-xl bg-gradient-to-r from-indigo-600 to-blue-500 px-4 py-2 text-sm font-semibold text-white shadow-md shadow-indigo-950/20 transition-all hover:from-indigo-700 hover:to-blue-600 disabled:opacity-60"
+                      >
+                        {rerunExecuting ? 'Đang thực thi...' : 'Thực thi lại'}
+                      </button>
+                      <button
+                        onClick={onCancelEditCode}
+                        className="rounded-xl border border-slate-700 px-4 py-2 text-sm font-semibold text-slate-300 transition-colors hover:bg-slate-800"
+                      >
+                        Hủy
+                      </button>
+                    </div>
+                  </div>
+                ) : (
+                  <SyntaxHighlighter
+                    style={vscDarkPlus}
+                    language="python"
+                    PreTag="div"
+                    className="code-editor-scrollbar"
+                    customStyle={CODE_VIEW_STYLE}
+                  >
+                    {code}
+                  </SyntaxHighlighter>
+                )}
+              </div>
+            </div>
+          </details>
+        )}
+      </div>
+    </section>
+  );
 }
 
 // ── Icons ──────────────────────────────────────────────────
@@ -189,6 +341,10 @@ const ActionIcon = ({ name }: { name: 'copy' | 'edit' | 'like' | 'dislike' | 'ch
 };
 
 // ── Chat Tab ──────────────────────────────────────────────
+// Required flow: prompt -> generate code -> user reviews/edits -> execute after confirmation.
+// The confirmation step is mandatory: keep pending, setPending, PendingReview,
+// editedCode, handleAccept, handleCancel, the review warning, and the
+// "Chấp nhận & Thực thi" button.
 function ChatTab({
   initialMessages = [],
   onMessagesChange,
@@ -233,15 +389,21 @@ function ChatTab({
       prompt,
       history: getContextHistory(baseMessages ?? messages),
     });
-    setLoading(false);
     const generateError = getApiError(gen);
-    if (generateError) { setError(`Lỗi kết nối tới AI Backend (${BACKEND_LABEL}): ${generateError}`); return; }
-    const safeExplanation = compactGeminiError(gen.explanation);
+    if (generateError) {
+      setLoading(false);
+      setError(`Lỗi kết nối tới AI Backend (${BACKEND_LABEL}): ${generateError}`);
+      return;
+    }
+    const insight = ensureInsightText(compactGeminiError(gen.explanation), prompt);
+    const safeExplanation = insight.text;
     if (isGeminiErrorText(gen.explanation) || isGeminiErrorCode(gen.code)) {
+      setLoading(false);
       setMessages(prev => [...prev, { role: 'assistant', content: safeExplanation || 'Không thể sinh mã phân tích vào lúc này.' }]);
       return;
     }
-    setPending({ code: gen.code, explanation: safeExplanation });
+    setLoading(false);
+    setPending({ code: gen.code, explanation: safeExplanation, isFallbackInsight: insight.isFallback });
     setEditedCode(gen.code ?? '');
   }, [loading, messages]);
 
@@ -263,7 +425,7 @@ function ChatTab({
     code: string;
     explanation: string;
     prompt: string;
-    onSuccess: (output: string, plot_b64?: string) => void;
+    onSuccess: (output: string, plot_b64?: string, analysis?: string) => void;
     messageIndex?: number;
   }) => {
     if (messageIndex === undefined) setExecuting(true);
@@ -277,8 +439,17 @@ function ChatTab({
     else setRerunExecutingIndex(null);
     const executeError = getApiError(exec);
     if (executeError) { setError(`Lỗi khi thực thi mã: ${executeError}`); return; }
-    const combinedOutput = [exec.stdout, exec.stderr].filter(Boolean).join('\n\n');
-    onSuccess(combinedOutput ? compactGeminiError(combinedOutput) : '', exec.plot_b64);
+    const combinedOutput = exec.success ? exec.stdout : [exec.stdout, exec.stderr].filter(Boolean).join('\n\n');
+    const resultOutput = exec.analysis
+      ? [compactGeminiError(exec.analysis), combinedOutput?.trim() ? `### Kết quả chi tiết\n\n${combinedOutput}` : '']
+          .filter(Boolean)
+          .join('\n\n---\n\n')
+      : (combinedOutput ? compactGeminiError(combinedOutput) : '');
+    onSuccess(
+      resultOutput,
+      exec.plot_b64,
+      exec.analysis
+    );
   };
 
   const handleAccept = async () => {
@@ -288,18 +459,19 @@ function ChatTab({
       code: editedCode,
       prompt: lastUserMsg?.content ?? '',
       explanation: pending.explanation,
-      onSuccess: (output, plot_b64) => {
-    setMessages(prev => [
-      ...prev,
-      {
-        role: 'assistant',
-        content: pending.explanation,
+      onSuccess: (output, plot_b64, analysis) => {
+        setMessages(prev => [
+          ...prev,
+          {
+            role: 'assistant',
+            content: analysis ? '' : pending.explanation,
+            isFallbackInsight: pending.isFallbackInsight && !analysis,
             output,
-        code: editedCode,
+            code: editedCode,
             plot_b64,
-      },
-    ]);
-    setPending(null);
+          },
+        ]);
+        setPending(null);
       },
     });
   };
@@ -413,116 +585,57 @@ function ChatTab({
                   </>
                 ) : (
                   <div className="w-full rounded-3xl bg-transparent px-5 py-4 text-sm leading-relaxed text-slate-800">
-                    <div className="prose prose-sm max-w-none prose-p:leading-7 prose-p:my-2 prose-strong:text-slate-900 prose-ul:my-1 prose-li:my-0.5">
-                      <ReactMarkdown 
-                        remarkPlugins={[remarkGfm]}
-                        components={{
-                          code({ inline, className, children, ...props }: MarkdownCodeProps) {
-                            const match = /language-(\w+)/.exec(className || '');
-                            return !inline && match ? (
-                              <div className="rounded-xl overflow-hidden my-2 shadow-sm border border-slate-700">
-                                <div className="bg-slate-800 text-slate-400 text-xs px-3 py-1.5 flex justify-between items-center border-b border-slate-700">
-                                  <span>{match[1]}</span>
-                                </div>
-                                <SyntaxHighlighter
-                                  {...props}
-                                  style={vscDarkPlus}
-                                  language={match[1]}
-                                  PreTag="div"
-                                  className="code-editor-scrollbar"
-                                  customStyle={CODE_VIEW_STYLE}
-                                >
-                                  {String(children).replace(/\n$/, '')}
-                                </SyntaxHighlighter>
-                              </div>
-                            ) : (
-                              <code {...props} className={`${className} bg-slate-200 text-indigo-700 px-1.5 py-0.5 rounded text-xs font-mono`}>
-                                {children}
-                              </code>
-                            );
-                          }
+                    {msg.output || msg.plot_b64 || msg.code ? (
+                      <ResultPanel
+                        summary={msg.content}
+                        output={msg.output}
+                        plot_b64={msg.plot_b64}
+                        code={msg.code}
+                        isFallbackInsight={msg.isFallbackInsight}
+                        isEditingCode={editingCodeIndex === i}
+                        editingCodeText={editingCodeText}
+                        rerunExecuting={rerunExecutingIndex === i}
+                        onEditCode={() => {
+                          setEditingCodeIndex(i);
+                          setEditingCodeText(msg.code ?? '');
                         }}
-                      >
-                        {msg.content}
-                      </ReactMarkdown>
-                    </div>
-                    {msg.output && (
-                      <div className="result-reveal mt-4 overflow-hidden rounded-2xl border border-slate-200 bg-slate-50/80">
-                        <div className="border-b border-slate-200 bg-white px-4 py-2.5 text-sm font-bold text-slate-900">
-                          Kết quả
-                        </div>
-                        <div className="custom-scrollbar max-h-[32rem] overflow-y-auto px-4 py-3">
-                          <div className="prose prose-sm max-w-none prose-p:my-2 prose-p:leading-7 prose-strong:text-slate-950 prose-ul:my-2 prose-li:my-1 prose-table:text-sm prose-th:bg-slate-100 prose-th:px-3 prose-th:py-2 prose-td:px-3 prose-td:py-2 prose-tr:border-b prose-tr:border-slate-200">
-                            <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                              {msg.output}
-                            </ReactMarkdown>
-                          </div>
-                        </div>
-                      </div>
-                    )}
-                    {msg.code && (
-                      <details className="mt-2">
-                        <summary className="cursor-pointer text-xs text-indigo-600 font-semibold hover:underline select-none">Xem mã Python</summary>
-                        <div className="rounded-xl overflow-hidden mt-2 shadow-sm border border-slate-700">
-                          <div className="bg-slate-800 text-slate-400 text-xs px-3 py-1.5 flex justify-between items-center border-b border-slate-700">
-                            <span>python</span>
-                            <button
-                              onClick={() => {
-                                setEditingCodeIndex(i);
-                                setEditingCodeText(msg.code ?? '');
-                              }}
-                              className="rounded-md px-2 py-1 font-semibold text-slate-300 transition-colors hover:bg-slate-700 hover:text-white"
-                            >
-                              Chỉnh sửa & chạy lại
-                            </button>
-                          </div>
-                          {editingCodeIndex === i ? (
-                            <div className="bg-slate-900 p-3">
-                              <textarea
-                                value={editingCodeText}
-                                onChange={e => setEditingCodeText(e.target.value)}
-                                wrap="off"
-                                spellCheck={false}
-                                className="code-editor-scrollbar min-h-80 w-full resize-y overflow-auto rounded-xl border border-slate-700 bg-[#1e1e1e] p-4 font-mono text-[13px] leading-relaxed text-green-300 outline-none focus:border-indigo-400"
-                              />
-                              <div className="mt-3 flex gap-2">
-                                <button
-                                  onClick={() => rerunCompiledCode(i)}
-                                  disabled={rerunExecutingIndex === i || !editingCodeText.trim()}
-                                  className="rounded-xl bg-gradient-to-r from-indigo-600 to-blue-500 px-4 py-2 text-sm font-semibold text-white shadow-md shadow-indigo-950/20 transition-all hover:from-indigo-700 hover:to-blue-600 disabled:opacity-60"
-                                >
-                                  {rerunExecutingIndex === i ? 'Đang thực thi...' : 'Thực thi lại'}
-                                </button>
-                                <button
-                                  onClick={() => { setEditingCodeIndex(null); setEditingCodeText(''); }}
-                                  className="rounded-xl border border-slate-700 px-4 py-2 text-sm font-semibold text-slate-300 transition-colors hover:bg-slate-800"
-                                >
-                                  Hủy
-                                </button>
-                              </div>
-                            </div>
-                          ) : (
-                            <SyntaxHighlighter
-                              style={vscDarkPlus}
-                              language="python"
-                              PreTag="div"
-                              className="code-editor-scrollbar"
-                              customStyle={CODE_VIEW_STYLE}
-                            >
-                              {msg.code}
-                            </SyntaxHighlighter>
-                          )}
-                        </div>
-                      </details>
-                    )}
-                    {msg.plot_b64 && (
-                      <div className="result-reveal mt-4 overflow-hidden rounded-2xl border border-slate-200 bg-slate-50 p-2">
-                        <img
-                          src={`data:image/png;base64,${msg.plot_b64}`}
-                          alt="Biểu đồ phân tích"
-                          className="w-full rounded-lg"
-                          onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
-                        />
+                        onChangeCode={setEditingCodeText}
+                        onRerunCode={() => rerunCompiledCode(i)}
+                        onCancelEditCode={() => { setEditingCodeIndex(null); setEditingCodeText(''); }}
+                      />
+                    ) : (
+                      <div className="prose prose-sm max-w-none prose-p:leading-7 prose-p:my-2 prose-strong:text-slate-900 prose-ul:my-1 prose-li:my-0.5">
+                        <ReactMarkdown 
+                          remarkPlugins={[remarkGfm]}
+                          components={{
+                            code({ inline, className, children, ...props }: MarkdownCodeProps) {
+                              const match = /language-(\w+)/.exec(className || '');
+                              return !inline && match ? (
+                                <div className="rounded-xl overflow-hidden my-2 shadow-sm border border-slate-700">
+                                  <div className="bg-slate-800 text-slate-400 text-xs px-3 py-1.5 flex justify-between items-center border-b border-slate-700">
+                                    <span>{match[1]}</span>
+                                  </div>
+                                  <SyntaxHighlighter
+                                    {...props}
+                                    style={vscDarkPlus}
+                                    language={match[1]}
+                                    PreTag="div"
+                                    className="code-editor-scrollbar"
+                                    customStyle={CODE_VIEW_STYLE}
+                                  >
+                                    {String(children).replace(/\n$/, '')}
+                                  </SyntaxHighlighter>
+                                </div>
+                              ) : (
+                                <code {...props} className={`${className} bg-slate-200 text-indigo-700 px-1.5 py-0.5 rounded text-xs font-mono`}>
+                                  {children}
+                                </code>
+                              );
+                            }
+                          }}
+                        >
+                          {msg.content}
+                        </ReactMarkdown>
                       </div>
                     )}
                     <div className="mt-2 flex items-center gap-1">
@@ -567,26 +680,39 @@ function ChatTab({
                 <SparkleIcon size={14} color="white" />
               </div>
               <div className="min-w-0 flex-1 space-y-3 rounded-3xl border border-slate-200 bg-white px-5 py-5 shadow-sm">
-                <div className="prose prose-sm max-w-none prose-p:my-2 prose-p:leading-7 prose-strong:text-slate-950 prose-ul:my-2 prose-li:my-1">
-                  <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                    {pending.explanation}
-                  </ReactMarkdown>
+                <div className="rounded-xl border border-slate-200 bg-white p-4">
+                  <div className="mb-3 text-xs font-bold uppercase tracking-wide text-slate-500">Phân tích câu hỏi</div>
+                  <div className="prose prose-sm max-w-none prose-p:my-2 prose-p:leading-7 prose-strong:text-slate-950 prose-ul:my-2 prose-li:my-1">
+                    <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                      {pending.explanation}
+                    </ReactMarkdown>
+                  </div>
                 </div>
-                <div className="bg-amber-50 border border-amber-200 rounded-xl px-3 py-2 text-amber-700 text-xs font-medium">
+                <div className="rounded-xl border border-amber-200 bg-amber-50 px-3 py-2 text-xs font-medium text-amber-700">
                   Vui lòng kiểm tra và chỉnh sửa mã Python trước khi thực thi.
                 </div>
-                <textarea value={editedCode} onChange={e => setEditedCode(e.target.value)} rows={10}
+                <textarea
+                  value={editedCode}
+                  onChange={e => setEditedCode(e.target.value)}
+                  rows={10}
                   wrap="off"
                   spellCheck={false}
-                  className="code-editor-scrollbar min-h-[24rem] w-full overflow-hidden whitespace-pre rounded-xl bg-slate-900 p-4 font-mono text-[13px] leading-relaxed text-green-300 caret-green-200 resize-none focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                  style={{ height: `${Math.max(24, editedCode.split('\n').length * 1.35 + 2)}rem` }} />
+                  className="code-editor-scrollbar min-h-[24rem] w-full resize-none overflow-hidden whitespace-pre rounded-xl bg-slate-900 p-4 font-mono text-[13px] leading-relaxed text-green-300 caret-green-200 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  style={{ height: `${Math.max(24, editedCode.split('\n').length * 1.35 + 2)}rem` }}
+                />
                 <div className="flex gap-2">
-                  <button onClick={handleAccept} disabled={executing}
-                    className="bg-gradient-to-r from-indigo-600 to-blue-500 text-white text-sm font-semibold px-5 py-2 rounded-xl hover:from-indigo-700 hover:to-blue-600 transition-all shadow-md shadow-indigo-100 disabled:opacity-60">
+                  <button
+                    onClick={handleAccept}
+                    disabled={executing || !editedCode.trim()}
+                    className="rounded-xl bg-gradient-to-r from-indigo-600 to-blue-500 px-5 py-2 text-sm font-semibold text-white shadow-md shadow-indigo-100 transition-all hover:from-indigo-700 hover:to-blue-600 disabled:opacity-60"
+                  >
                     {executing ? 'Đang thực thi...' : 'Chấp nhận & Thực thi'}
                   </button>
-                  <button onClick={handleCancel}
-                    className="text-slate-600 text-sm font-medium border border-slate-200 px-4 py-2 rounded-xl hover:bg-slate-100 transition-all">
+                  <button
+                    onClick={handleCancel}
+                    disabled={executing}
+                    className="rounded-xl border border-slate-200 px-4 py-2 text-sm font-medium text-slate-600 transition-all hover:bg-slate-100 disabled:opacity-60"
+                  >
                     Hủy bỏ
                   </button>
                 </div>
@@ -620,6 +746,7 @@ function ChatTab({
 function HistoryTab() {
   const [logs, setLogs] = useState<LogEntry[]>([]);
   const [loading, setLoading] = useState(true);
+  const visibleLogs = logs.filter(log => log.event_type !== 'generate');
 
   useEffect(() => {
     callApi('GET', '/api/logs').then(data => { setLogs(data ?? []); setLoading(false); });
@@ -629,79 +756,124 @@ function HistoryTab() {
     try { return new Date(ts).toLocaleString('vi-VN'); } catch { return ts; }
   };
 
+  const getStatusMeta = (status: string) => {
+    if (status === 'success') {
+      return {
+        label: 'Thành công',
+        className: 'border-emerald-200 bg-emerald-50 text-emerald-700',
+      };
+    }
+    if (status === 'cancelled') {
+      return {
+        label: 'Đã hủy',
+        className: 'border-amber-200 bg-amber-50 text-amber-700',
+      };
+    }
+    return {
+      label: 'Lỗi',
+      className: 'border-rose-200 bg-rose-50 text-rose-700',
+    };
+  };
+
+  const getFinalOutput = (log: LogEntry) => {
+    return compactGeminiError(log.output || log.explanation || 'Không có nội dung output.');
+  };
+
   return (
     <div className="space-y-4">
-      <p className="text-slate-500 text-sm">Kho lưu trữ toàn bộ các phiên làm việc. Bấm vào từng phiên để xem chi tiết.</p>
+      <div className="rounded-2xl border border-slate-200 bg-white px-5 py-4 shadow-sm">
+        <h2 className="text-base font-bold text-slate-950">Lịch sử chạy mã</h2>
+        <p className="mt-1 text-sm text-slate-500">Lưu lại output cuối cùng, mã đã thực thi, biểu đồ và trạng thái từng lần chạy.</p>
+      </div>
       {loading && <p className="text-slate-400 text-sm">Đang tải lịch sử...</p>}
-      {!loading && logs.length === 0 && (
+      {!loading && visibleLogs.length === 0 && (
         <div className="text-center py-16 text-slate-400 text-sm">
           Chưa có lịch sử. Hãy thực hiện một phân tích ở tab Giao tiếp AI.
         </div>
       )}
-      {[...logs].reverse().map((log, i) => (
-        <details key={i} className="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden group">
-          <summary className="flex items-center gap-3 px-5 py-4 cursor-pointer select-none hover:bg-slate-50 transition-colors list-none">
-            <span className={`w-2 h-2 rounded-full flex-shrink-0 ${log.status === 'success' ? 'bg-emerald-400' : 'bg-red-400'}`} />
-            <span className="text-xs text-slate-400 font-mono flex-shrink-0">{formatTime(log.timestamp)}</span>
-            <span className="text-slate-800 text-sm font-medium truncate flex-1">{log.prompt}</span>
-            <svg className="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+      {[...visibleLogs].reverse().map((log, i) => {
+        const statusMeta = getStatusMeta(log.status);
+        const finalOutput = getFinalOutput(log);
+        return (
+        <details key={i} className="group overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-shadow open:shadow-md">
+          <summary className="flex cursor-pointer list-none items-center gap-3 px-5 py-4 transition-colors hover:bg-slate-50">
+            <span className={`flex-shrink-0 rounded-full border px-2.5 py-1 text-[11px] font-bold ${statusMeta.className}`}>
+              {statusMeta.label}
+            </span>
+            <div className="min-w-0 flex-1">
+              <div className="flex items-center gap-2">
+                <span className="truncate text-sm font-bold text-slate-950">{log.prompt || 'Không có prompt'}</span>
+              </div>
+              <div className="mt-1 flex items-center gap-2 text-xs text-slate-400">
+                <span className="font-mono">{formatTime(log.timestamp)}</span>
+                {log.event_type && <span className="rounded-md bg-slate-100 px-1.5 py-0.5 font-semibold text-slate-500">{log.event_type}</span>}
+                {log.model && <span className="truncate">{log.model}</span>}
+              </div>
+            </div>
+            <svg className="h-4 w-4 flex-shrink-0 text-slate-400 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
           </summary>
-          <div className="px-5 pb-5 space-y-3 border-t border-slate-100 pt-4">
-            <div className="text-sm text-slate-700 leading-relaxed">{compactGeminiError(log.explanation)}</div>
-            {!isGeminiErrorCode(log.generated_code) && (
-              <details className="rounded-xl overflow-hidden">
-                <summary className="bg-slate-100 text-slate-600 text-xs font-semibold px-3 py-2 cursor-pointer hover:bg-slate-200 transition-colors">Mã Python AI đề xuất</summary>
-                <div className="rounded-xl overflow-hidden shadow-sm border border-slate-700 m-2">
-                  <div className="bg-slate-800 text-slate-400 text-xs px-3 py-1.5 flex justify-between items-center border-b border-slate-700">
-                    <span>python</span>
+          <div className="space-y-4 border-t border-slate-100 bg-slate-50/70 px-5 py-5">
+            <div className="rounded-xl border border-slate-200 bg-white p-4">
+              <div className="mb-3 text-xs font-bold uppercase tracking-wide text-slate-500">Output cuối cùng</div>
+              <div className="custom-scrollbar max-h-[34rem] overflow-auto">
+                <OutputMarkdown>{finalOutput}</OutputMarkdown>
+              </div>
+            </div>
+
+            <div className="grid gap-3">
+              {!isGeminiErrorCode(log.generated_code) && (
+                <details className="overflow-hidden rounded-xl border border-slate-200 bg-white">
+                  <summary className="cursor-pointer select-none px-4 py-3 text-xs font-bold text-slate-600 transition-colors hover:bg-slate-50">Mã Python AI đề xuất</summary>
+                  <div className="border-t border-slate-200 p-3">
+                    <div className="overflow-hidden rounded-xl border border-slate-700 shadow-sm">
+                      <div className="flex items-center justify-between border-b border-slate-700 bg-slate-800 px-3 py-1.5 text-xs text-slate-400">
+                        <span>python</span>
+                      </div>
+                      <SyntaxHighlighter
+                        style={vscDarkPlus}
+                        language="python"
+                        PreTag="div"
+                        className="code-editor-scrollbar"
+                        customStyle={CODE_VIEW_STYLE}
+                      >
+                        {log.generated_code}
+                      </SyntaxHighlighter>
+                    </div>
                   </div>
-                  <SyntaxHighlighter
-                    style={vscDarkPlus}
-                    language="python"
-                    PreTag="div"
-                    className="code-editor-scrollbar"
-                    customStyle={CODE_VIEW_STYLE}
-                  >
-                    {log.generated_code}
-                  </SyntaxHighlighter>
-                </div>
-              </details>
-            )}
-            {log.executed_code && log.executed_code !== log.generated_code && !isGeminiErrorCode(log.executed_code) && (
-              <details className="rounded-xl overflow-hidden">
-                <summary className="bg-slate-100 text-slate-600 text-xs font-semibold px-3 py-2 cursor-pointer hover:bg-slate-200 transition-colors">Mã Python đã duyệt/thực thi</summary>
-                <div className="rounded-xl overflow-hidden shadow-sm border border-slate-700 m-2">
-                  <div className="bg-slate-800 text-slate-400 text-xs px-3 py-1.5 flex justify-between items-center border-b border-slate-700">
-                    <span>python</span>
+                </details>
+              )}
+              {log.executed_code && log.executed_code !== log.generated_code && !isGeminiErrorCode(log.executed_code) && (
+                <details className="overflow-hidden rounded-xl border border-slate-200 bg-white">
+                  <summary className="cursor-pointer select-none px-4 py-3 text-xs font-bold text-slate-600 transition-colors hover:bg-slate-50">Mã Python đã duyệt/thực thi</summary>
+                  <div className="border-t border-slate-200 p-3">
+                    <div className="overflow-hidden rounded-xl border border-slate-700 shadow-sm">
+                      <div className="flex items-center justify-between border-b border-slate-700 bg-slate-800 px-3 py-1.5 text-xs text-slate-400">
+                        <span>python</span>
+                      </div>
+                      <SyntaxHighlighter
+                        style={vscDarkPlus}
+                        language="python"
+                        PreTag="div"
+                        className="code-editor-scrollbar"
+                        customStyle={CODE_VIEW_STYLE}
+                      >
+                        {log.executed_code}
+                      </SyntaxHighlighter>
+                    </div>
                   </div>
-                  <SyntaxHighlighter
-                    style={vscDarkPlus}
-                    language="python"
-                    PreTag="div"
-                    className="code-editor-scrollbar"
-                    customStyle={CODE_VIEW_STYLE}
-                  >
-                    {log.executed_code}
-                  </SyntaxHighlighter>
+                </details>
+              )}
+              {log.plot_b64 && (
+                <div className="overflow-hidden rounded-xl border border-slate-200 bg-white p-3">
+                  <div className="mb-2 text-xs font-bold uppercase tracking-wide text-slate-500">Biểu đồ</div>
+                  <img src={`data:image/png;base64,${log.plot_b64}`} alt="Biểu đồ" className="max-w-full rounded-lg border border-slate-100" />
                 </div>
-              </details>
-            )}
-            {log.output && (
-              <details className="rounded-xl overflow-hidden">
-                <summary className="bg-slate-100 text-slate-600 text-xs font-semibold px-3 py-2 cursor-pointer hover:bg-slate-200 transition-colors">Kết quả Output</summary>
-                <div className="m-2 rounded-xl border border-slate-200 bg-white px-4 py-3 shadow-sm">
-                  <div className="prose prose-sm max-w-none prose-p:my-2 prose-p:leading-7 prose-strong:text-slate-950 prose-ul:my-2 prose-li:my-1 prose-table:text-sm prose-th:bg-slate-100 prose-th:px-3 prose-th:py-2 prose-td:px-3 prose-td:py-2 prose-tr:border-b prose-tr:border-slate-200">
-                    <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                      {compactGeminiError(log.output)}
-                    </ReactMarkdown>
-                  </div>
-                </div>
-              </details>
-            )}
-            {log.plot_b64 && <img src={`data:image/png;base64,${log.plot_b64}`} alt="Biểu đồ" className="rounded-xl max-w-full border border-slate-200 mt-2" />}
+              )}
+            </div>
           </div>
         </details>
-      ))}
+      );
+      })}
     </div>
   );
 }
@@ -795,6 +967,30 @@ function formatSessionTime(timestamp: number) {
     : date.toLocaleDateString('vi-VN', { day: '2-digit', month: '2-digit' });
 }
 
+function getSessionGroupLabel(timestamp: number) {
+  const date = new Date(timestamp);
+  const today = new Date();
+  const yesterday = new Date();
+  yesterday.setDate(today.getDate() - 1);
+
+  if (date.toDateString() === today.toDateString()) return 'Hôm nay';
+  if (date.toDateString() === yesterday.toDateString()) return 'Hôm qua';
+  return date.toLocaleDateString('vi-VN', { day: '2-digit', month: '2-digit', year: 'numeric' });
+}
+
+function groupSessionsByDate(sessions: ChatSession[]) {
+  return sessions.reduce<Array<{ label: string; sessions: ChatSession[] }>>((groups, session) => {
+    const label = getSessionGroupLabel(session.updatedAt);
+    const existing = groups.find(group => group.label === label);
+    if (existing) {
+      existing.sessions.push(session);
+    } else {
+      groups.push({ label, sessions: [session] });
+    }
+    return groups;
+  }, []);
+}
+
 function loadChatSessions() {
   try {
     const saved = window.localStorage.getItem(CHAT_SESSIONS_KEY);
@@ -815,6 +1011,7 @@ export default function Home() {
   const [activeSessionId, setActiveSessionId] = useState(EMPTY_CHAT_SESSION.id);
   const [sessionSearch, setSessionSearch] = useState('');
   const [sessionsHydrated, setSessionsHydrated] = useState(false);
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 
   useEffect(() => {
     const loadedSessions = loadChatSessions();
@@ -841,12 +1038,14 @@ export default function Home() {
     setSessions(prev => {
       const next = prev.map(session => (
         session.id === activeSessionId
-          ? {
-              ...session,
-              messages,
-              title: getSessionTitle(messages),
-              updatedAt: messages.length > 0 ? Date.now() : session.updatedAt,
-            }
+          ? JSON.stringify(session.messages) === JSON.stringify(messages)
+            ? session
+            : {
+                ...session,
+                messages,
+                title: getSessionTitle(messages),
+                updatedAt: messages.length > 0 ? Date.now() : session.updatedAt,
+              }
           : session
       ));
       return [...next]
@@ -858,88 +1057,101 @@ export default function Home() {
   const visibleSessions = sessions
     .filter(session => session.messages.length > 0)
     .filter(session => session.title.toLowerCase().includes(sessionSearch.toLowerCase()));
+  const groupedVisibleSessions = groupSessionsByDate(visibleSessions);
+  const sidebarWidthClass = sidebarCollapsed ? 'w-[80px]' : 'w-[272px]';
+  const mainOffsetClass = sidebarCollapsed ? 'ml-[80px]' : 'ml-[272px]';
 
   return (
     <div className="min-h-screen bg-slate-50 font-sans text-slate-900">
-      <aside className="fixed inset-y-0 left-0 z-20 flex w-[272px] flex-col border-r border-white/5 px-3 py-4 text-slate-300 shadow-2xl shadow-slate-950/10" style={{ background: 'linear-gradient(180deg, #0b1020 0%, #0e1424 100%)' }}>
-        <div className="mb-4 flex h-12 items-center justify-between px-2">
+      <aside className={`fixed inset-y-0 left-0 z-20 flex ${sidebarWidthClass} flex-col border-r border-slate-200 bg-white px-3 py-4 text-slate-700 shadow-xl shadow-slate-200/70 transition-all duration-200`}>
+        <div className={`mb-4 flex h-12 items-center ${sidebarCollapsed ? 'justify-center' : 'justify-between px-2'}`}>
           <div className="flex items-center gap-2.5">
             <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-600 to-blue-500 shadow-lg shadow-indigo-500/20">
               <SparkleIcon size={16} color="white" />
             </div>
-            <div>
-              <p className="text-sm font-bold tracking-tight text-white">ExamData AI</p>
-              <p className="mt-0.5 text-[9px] font-semibold uppercase tracking-[0.18em] text-indigo-300">Analytics</p>
+            <div className={sidebarCollapsed ? 'hidden' : ''}>
+              <p className="text-sm font-bold tracking-tight text-slate-950">ExamData AI</p>
+              <p className="mt-0.5 text-[9px] font-semibold uppercase tracking-[0.18em] text-indigo-600">Analytics</p>
             </div>
           </div>
           <button
-            aria-label="Thu gọn sidebar"
-            className="flex h-8 w-8 items-center justify-center rounded-lg text-slate-500 transition-colors hover:bg-white/10 hover:text-slate-200"
+            aria-label={sidebarCollapsed ? 'Mở rộng sidebar' : 'Thu gọn sidebar'}
+            onClick={() => setSidebarCollapsed(prev => !prev)}
+            className={`${sidebarCollapsed ? 'absolute left-1/2 top-16 -translate-x-1/2' : ''} flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 transition-colors hover:bg-slate-100 hover:text-slate-700`}
           >
             <SidebarIcon name="panel" />
           </button>
         </div>
 
         <nav className="space-y-2">
-          <button onClick={startNewChat} className="flex w-full items-center justify-center gap-2 rounded-xl border border-indigo-400/25 bg-indigo-500/10 px-3 py-2.5 text-left text-[13px] font-semibold text-indigo-200 transition-all hover:border-indigo-300/50 hover:bg-indigo-500/20 hover:text-white">
+          <button onClick={startNewChat} className={`flex w-full items-center justify-center gap-2 rounded-xl border border-indigo-200 bg-indigo-50 px-3 py-2.5 text-left text-[13px] font-semibold text-indigo-700 transition-all hover:border-indigo-300 hover:bg-indigo-100 ${sidebarCollapsed ? 'mt-10 h-11 px-0' : ''}`}>
             <SidebarIcon name="new" />
-            <span>New chat</span>
+            {!sidebarCollapsed && <span>New chat</span>}
           </button>
-          <div className="relative">
-            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500"><SidebarIcon name="search" /></span>
+          {!sidebarCollapsed && <div className="relative">
+            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"><SidebarIcon name="search" /></span>
             <input
               value={sessionSearch}
               onChange={e => setSessionSearch(e.target.value)}
               placeholder="Tìm kiếm đoạn chat..."
-              className="w-full rounded-xl border border-white/10 bg-white/5 py-2.5 pl-10 pr-3 text-[12.5px] text-slate-200 outline-none transition-all placeholder:text-slate-500 focus:border-indigo-400/50 focus:bg-white/10"
+              className="w-full rounded-xl border border-slate-200 bg-slate-50 py-2.5 pl-10 pr-3 text-[12.5px] text-slate-800 outline-none transition-all placeholder:text-slate-400 focus:border-indigo-300 focus:bg-white focus:ring-2 focus:ring-indigo-100"
             />
-          </div>
-          <button onClick={() => setActiveTab('chat')} className={`sidebar-nav-item ${activeTab === 'chat' ? 'sidebar-item-active text-white' : 'text-slate-400 hover:bg-white/5 hover:text-slate-200'}`}>
+          </div>}
+          <button onClick={() => setActiveTab('chat')} className={`sidebar-nav-item ${sidebarCollapsed ? 'justify-center px-0' : ''} ${activeTab === 'chat' ? 'sidebar-item-active text-indigo-700' : 'text-slate-500 hover:bg-slate-100 hover:text-slate-900'}`}>
             <SidebarIcon name="data" />
-            <span>Giao tiếp AI</span>
+            {!sidebarCollapsed && <span>Giao tiếp AI</span>}
           </button>
-          <button onClick={() => setActiveTab('history')} className={`sidebar-nav-item ${activeTab === 'history' ? 'sidebar-item-active text-white' : 'text-slate-400 hover:bg-white/5 hover:text-slate-200'}`}>
+          <button onClick={() => setActiveTab('history')} className={`sidebar-nav-item ${sidebarCollapsed ? 'justify-center px-0' : ''} ${activeTab === 'history' ? 'sidebar-item-active text-indigo-700' : 'text-slate-500 hover:bg-slate-100 hover:text-slate-900'}`}>
             <SidebarIcon name="history" />
-            <span>Lịch sử chạy mã</span>
+            {!sidebarCollapsed && <span>Lịch sử chạy mã</span>}
           </button>
-          <button onClick={() => setActiveTab('api')} className={`sidebar-nav-item ${activeTab === 'api' ? 'sidebar-item-active text-white' : 'text-slate-400 hover:bg-white/5 hover:text-slate-200'}`}>
+          <button onClick={() => setActiveTab('api')} className={`sidebar-nav-item ${sidebarCollapsed ? 'justify-center px-0' : ''} ${activeTab === 'api' ? 'sidebar-item-active text-indigo-700' : 'text-slate-500 hover:bg-slate-100 hover:text-slate-900'}`}>
             <SidebarIcon name="api" />
-            <span>Đặc tả API</span>
+            {!sidebarCollapsed && <span>Đặc tả API</span>}
           </button>
         </nav>
 
-        <div className="mx-2 my-4 border-t border-white/5" />
+        <div className="mx-2 my-4 border-t border-slate-200" />
 
-        <div className="min-h-0 flex-1">
-          <p className="mb-2 px-2 text-[10px] font-bold uppercase tracking-widest text-slate-600">Hôm nay</p>
-          <div className="custom-scrollbar h-full space-y-1 overflow-y-auto pr-1">
+        <div className={`min-h-0 flex-1 ${sidebarCollapsed ? 'hidden' : ''}`}>
+          <div className="custom-scrollbar h-full space-y-4 overflow-y-auto pr-1">
             {visibleSessions.length === 0 && (
-              <div className="px-3 py-6 text-center text-[12px] italic leading-relaxed text-slate-600">
+              <div className="px-3 py-6 text-center text-[12px] italic leading-relaxed text-slate-400">
                 {sessionSearch ? 'Không tìm thấy đoạn chat.' : 'Chưa có hội thoại nào.'}
               </div>
             )}
-            {visibleSessions.map(session => (
-              <button
-                key={session.id}
-                onClick={() => { setActiveSessionId(session.id); setActiveTab('chat'); }}
-                className={`group relative flex w-full items-center rounded-xl px-3 py-2.5 text-left transition-all ${
-                  activeSessionId === session.id && activeTab === 'chat'
-                    ? 'sidebar-item-active text-white'
-                    : 'text-slate-400 hover:bg-white/5 hover:text-slate-200'
-                }`}
-              >
-                <SidebarIcon name="data" />
-                <div className="ml-2.5 min-w-0 flex-1">
-                  <span className="block truncate text-[12.5px] font-medium">{session.title}</span>
+            {groupedVisibleSessions.map(group => (
+              <div key={group.label} className="space-y-1">
+                <p className="px-2 text-[10px] font-bold uppercase tracking-widest text-slate-400">{group.label}</p>
+                <div className="space-y-1">
+                  {group.sessions.map(session => {
+                    const isActiveSession = activeSessionId === session.id;
+                    return (
+                      <button
+                        key={session.id}
+                        onClick={() => { setActiveSessionId(session.id); setActiveTab('chat'); }}
+                        className={`group relative flex w-full items-center rounded-xl px-3 py-2.5 text-left transition-all ${
+                          isActiveSession
+                            ? 'sidebar-item-active text-indigo-700'
+                            : 'text-slate-500 hover:bg-slate-100 hover:text-slate-900'
+                        }`}
+                      >
+                        <SidebarIcon name="data" />
+                        <div className="ml-2.5 min-w-0 flex-1">
+                          <span className={`block truncate text-[12.5px] ${isActiveSession ? 'font-bold' : 'font-medium'}`}>{session.title}</span>
+                        </div>
+                        <span className={`ml-2 flex-shrink-0 text-[10px] ${isActiveSession ? 'font-semibold text-indigo-500' : 'text-slate-400'}`}>{formatSessionTime(session.updatedAt)}</span>
+                      </button>
+                    );
+                  })}
                 </div>
-                <span className="ml-2 flex-shrink-0 text-[10px] text-slate-600">{formatSessionTime(session.updatedAt)}</span>
-              </button>
+              </div>
             ))}
           </div>
         </div>
       </aside>
 
-      <main className="ml-[272px] h-screen overflow-hidden bg-slate-50">
+      <main className={`${mainOffsetClass} h-screen overflow-hidden bg-slate-50 transition-all duration-200`}>
         <div className="flex h-full flex-col">
           <div className="px-8 pb-3 pt-5">
             <p className="text-xs font-bold uppercase tracking-[0.18em] text-slate-400">
