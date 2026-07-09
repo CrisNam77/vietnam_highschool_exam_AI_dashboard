@@ -27,7 +27,7 @@ body {
 }
 
 .custom-scrollbar {
-  scrollbar-color: rgba(148, 163, 184, 0.45) transparent;
+  scrollbar-color: rgba(130, 106, 202, 0.45) transparent;
   scrollbar-width: thin;
 }
 
@@ -40,12 +40,12 @@ body {
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background-color: rgba(148, 163, 184, 0.45);
+  background-color: rgba(130, 106, 202, 0.45);
   border-radius: 999px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(71, 85, 105, 0.55);
+  background-color: rgba(89, 77, 163, 0.62);
 }
 
 .sidebar-nav-item {
@@ -69,9 +69,10 @@ body {
 }
 
 .sidebar-item-active {
-  background: #f1f5f9;
-  border-color: #cbd5e1;
-  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06);
+  background: #f8fafc;
+  border-color: rgba(255, 255, 255, 0.72);
+  color: #00195A;
+  box-shadow: 0 10px 24px rgba(0, 25, 90, 0.12);
 }
 
 @keyframes shimmer {
@@ -88,9 +89,9 @@ body {
 
 .input-glow:focus-within {
   box-shadow:
-    0 0 0 3px rgba(15, 23, 42, 0.1),
-    0 0 24px rgba(15, 23, 42, 0.06),
-    0 8px 34px rgba(15, 23, 42, 0.08);
+    0 0 0 3px rgba(130, 106, 202, 0.18),
+    0 0 24px rgba(89, 77, 163, 0.08),
+    0 8px 34px rgba(0, 25, 90, 0.08);
 }
 
 @keyframes message-in {
@@ -110,7 +111,7 @@ body {
 }
 
 .send-btn-ready:hover {
-  box-shadow: 0 0 0 4px rgba(15, 23, 42, 0.14);
+  box-shadow: 0 0 0 4px rgba(130, 106, 202, 0.2);
 }
 
 .code-editor-scrollbar {
@@ -128,7 +129,7 @@ body {
 .result-markdown table {
   min-width: max-content;
   overflow: hidden;
-  border: 1px solid #e2e8f0;
+  border: 1px solid #DDE3EE;
   border-radius: 0.75rem;
   box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
 }
@@ -139,15 +140,15 @@ body {
 }
 
 .result-markdown thead tr {
-  background: #f1f5f9;
+  background: #F5F7FB;
 }
 
 .result-markdown tbody tr:nth-child(even) {
-  background: #f8fafc;
+  background: #FAFBFE;
 }
 
 .result-markdown tbody tr:hover {
-  background: #f1f5f9;
+  background: #F3F0FF;
 }
 
 .result-markdown p,
