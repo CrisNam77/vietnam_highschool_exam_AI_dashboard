@@ -1,7 +1,7 @@
 'use client';
 
 import { useMemo, useState } from 'react';
-import { provinceRankings, REGIONS, regionAverages, regionSubjectMatrix, SUBJECTS, YEARS } from '@/data/dashboardMockData';
+import { provinceRankings, REGIONS, regionAverages, regionSubjectMatrix, SUBJECTS, YEARS } from '@/data/dashboardData';
 import type { ProvinceRanking } from '@/types/dashboard';
 import { ChartCard, SimpleBarChart, SimpleHorizontalBarChart } from './charts';
 import { DashboardShell } from './DashboardShell';
@@ -59,7 +59,7 @@ export function RegionTab() {
     label: region.name,
     values: Object.fromEntries(
       SUBJECTS.map(subject => {
-        const row = regionSubjectMatrix.find(item => item.regionId === region.id && item.subjectId === subject.id);
+        const row = regionAverages.find(item => item.regionId === region.id && item.subjectId === subject.id && item.year === year);
         return [subject.name, row?.average ?? 0];
       })
     ),

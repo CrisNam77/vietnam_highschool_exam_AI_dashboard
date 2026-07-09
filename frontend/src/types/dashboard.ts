@@ -26,12 +26,14 @@ export interface YearMetric {
   year: number;
   value: number;
   label?: string;
+  program?: Program;
 }
 
 export interface SubjectMetric {
   subjectId: string;
   subjectName: string;
   value: number;
+  program?: Program;
 }
 
 export interface SubjectYearMetric {
@@ -42,6 +44,7 @@ export interface SubjectYearMetric {
   underFive: number;
   eightPlus: number;
   perfect10: number;
+  program?: Program;
 }
 
 export interface ProvinceRanking {

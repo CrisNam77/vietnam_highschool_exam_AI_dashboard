@@ -16,9 +16,6 @@ export function DashboardShell({
           <h2 className="text-2xl font-extrabold tracking-tight text-[#0F172A]">{title}</h2>
           {question && <p className="mt-1 max-w-3xl text-sm font-medium text-[#64748B]">{question}</p>}
         </div>
-        <span className="rounded-full border border-[#AD88F1]/40 bg-white px-3 py-1 text-xs font-bold text-[#594DA3]">
-          Mock UI data
-        </span>
       </div>
       <div className="space-y-5">{children}</div>
     </div>

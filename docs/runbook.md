@@ -93,7 +93,17 @@ cd frontend
 npm install
 ```
 
-## 5. Run Next.js Frontend
+## 5. Prepare Dashboard Data
+
+Dữ liệu cho frontend dashboard không dùng mock data nữa mà dùng dữ liệu thật xuất từ `final_data.csv`. Để tạo file dữ liệu tĩnh cho Next.js, hãy chạy script ETL:
+
+```bash
+python scripts/generate_dashboard_json.py
+```
+
+Lệnh này sẽ phân tích dữ liệu và tạo ra file `frontend/src/data/data.ts` (khoảng 1MB) giúp tối ưu hóa Turbopack.
+
+## 6. Run Next.js Frontend
 
 Windows script:
 

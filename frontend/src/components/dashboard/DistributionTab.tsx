@@ -8,7 +8,7 @@ import {
   subjectDistributions,
   SUBJECTS,
   YEARS,
-} from '@/data/dashboardMockData';
+} from '@/data/dashboardData';
 import type {
   DistributionKind,
   DistributionRecord,
