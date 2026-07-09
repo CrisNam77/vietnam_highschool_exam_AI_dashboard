@@ -2,16 +2,19 @@ import json
 import re
 import urllib.error
 import urllib.request
+from typing import Any
 
 from backend.app.core.config import settings
 
 
 MAX_HISTORY_MESSAGES = 10
 MAX_HISTORY_CONTENT_CHARS = 1200
+CODE_BLOCK_PATTERN = re.compile(r"```python(.*?)```", re.DOTALL)
+PLACEHOLDER_PATTERN = re.compile(r"\{[a-zA-Z_][a-zA-Z0-9_]*(?:\[[^\]]+\])?(?::[^}]*)?\}")
 
 SYSTEM_INSTRUCTION = """
 Bạn là một trợ lý AI chuyên nghiệp về phân tích dữ liệu điểm thi tốt nghiệp THPT tại Việt Nam từ năm 2022 đến 2025.
-Nhiệm vụ của bạn là nhận yêu cầu phân tích của người dùng, đề xuất ý tưởng và viết mã Python để xử lý dữ liệu hoặc vẽ biểu đồ.
+Nhiệm vụ của bạn là nhận yêu cầu phân tích của người dùng, đề xuất ý tưởng và viết mã Python để xử lý dữ liệu hoặc vẽ biểu đồ khi cần. Nếu câu hỏi không cần chạy dữ liệu hoặc không liên quan đến dữ liệu điểm thi, hãy trả lời Markdown đầy đủ, rõ ràng, không cần ép sinh code.
 
 Dữ liệu đầu vào là DataFrame `df`. Phải dùng chính xác tên cột kỹ thuật sau:
 - Thông tin: `nam`, `chuong_trinh`, `sbd`, `ma_tinh`, `ten_tinh`, `vung_mien`, `vung_3`, `ma_ngoai_ngu`, `so_mon`, `ban`.
@@ -20,7 +23,7 @@ Dữ liệu đầu vào là DataFrame `df`. Phải dùng chính xác tên cột 
 
 QUY TẮC BẮT BUỘC:
 1. Chỉ viết code chạy trên DataFrame `df`; không đọc file, không tải dữ liệu online.
-2. Code Python phải nằm trong block ```python ... ```.
+2. Khi cần xử lý dữ liệu bằng Python, code phải nằm trong block ```python ... ```. Nếu câu hỏi chỉ cần giải thích khái niệm/quy trình và không cần truy vấn `df`, có thể trả lời Markdown đầy đủ mà không cần code.
 3. Comment từng bước bằng tiếng Việt.
 4. Biểu đồ phải có tiêu đề, nhãn trục, legend nếu cần, và gọi `plt.tight_layout()`. Không gọi `plt.show()`.
 5. Dùng `print()` để in kết quả theo Markdown gọn gàng, không in trực tiếp DataFrame thô.
@@ -29,7 +32,7 @@ QUY TẮC BẮT BUỘC:
 8. Không gán cột mới vào `df` nếu không thật cần thiết. Ưu tiên tạo biến trung gian hoặc DataFrame kết quả nhỏ để tránh chậm và tránh làm bẩn dữ liệu dùng chung.
 9. Output phải trả lời trực tiếp câu hỏi bằng số liệu cụ thể, không chỉ mô tả chung. Luôn in các chỉ số chính như số dòng hợp lệ, hệ số/tỷ lệ/trung bình/top N/chênh lệch lớn nhất nếu phù hợp.
 10. Nếu câu hỏi so sánh xu hướng theo năm, lưu ý năm 2025 thuộc chương trình 2018 và cấu trúc môn khác 2022-2024; chỉ so sánh trực tiếp khi đã tách hoặc chọn các môn tương thích.
-11. Với biểu đồ, tổng hợp dữ liệu trước rồi vẽ bảng nhỏ/top N; không vẽ trực tiếp hàng triệu dòng. Giữ kích thước biểu đồ vừa phải, thường `figsize=(10, 5)` hoặc nhỏ hơn.
+11. Nếu câu hỏi có thể trực quan hóa hợp lý, ưu tiên tạo biểu đồ trước để người dùng nhìn nhanh xu hướng/phân bố/so sánh; sau đó mới in bảng/số liệu chi tiết. Với biểu đồ, tổng hợp dữ liệu trước rồi vẽ bảng nhỏ/top N; không vẽ trực tiếp hàng triệu dòng. Giữ kích thước biểu đồ vừa phải, thường `figsize=(10, 5)` hoặc nhỏ hơn.
 12. Output nên có cấu trúc gọn nhưng đủ sâu: tiêu đề cấp 3, bảng Markdown hoặc chỉ số chính, và 3-5 bullet insight có số liệu cụ thể. Không in `[rows x columns]`, không để pandas tự rút gọn bằng `...`.
 13. Với tương quan, phải in hệ số tương quan, số cặp dữ liệu hợp lệ, R² xấp xỉ, mức độ quan hệ và insight diễn giải bằng số; nếu có biểu đồ scatter thì nên lấy mẫu tối đa 30.000 điểm để vẽ cho nhanh.
 14. Nội dung giải thích dùng Markdown rõ ràng, không dùng HTML.
@@ -39,6 +42,9 @@ QUY TẮC BẮT BUỘC:
 18. Với phổ điểm một môn theo năm, bắt buộc lọc theo `nam`, tính `count`, `mean`, `median`, `std`, tỷ lệ `<5`, tỷ lệ `>=8`, khoảng điểm có nhiều thí sinh nhất, rồi mới vẽ histogram.
 19. Khi in biến trong chuỗi, bắt buộc dùng f-string hoặc `.format(...)`. Không bao giờ in placeholder thô như `{count}`, `{mean:.2f}`, `{rate_below_5:.2%}`.
 20. Phần text ngoài code ở lần trả lời đầu tiên chỉ phân tích câu hỏi/cách tiếp cận, không được giả lập số liệu và không được viết placeholder dạng `{...}`. Insight định lượng cuối cùng chỉ viết sau khi đã có output thật.
+21. Với biểu đồ so sánh nhiều nhóm, không vẽ các histogram/bar dạng filled chồng lên nhau bằng `alpha` vì màu sẽ bị trộn và khó đọc. Ưu tiên dùng màu tương phản rõ như `#2563eb`, `#f97316`, `#16a34a`, `#dc2626`; với histogram so sánh phải dùng `histtype="step"`/đường viền, `multiple="dodge"` nếu dùng seaborn, hoặc vẽ các nhóm cạnh nhau. Không để hai màu phủ lên nhau tạo màu nâu/xám bẩn.
+22. Cột `sbd` là mã định danh dạng chuỗi. Nếu cần xét SBD chẵn/lẻ, bắt buộc tạo biến số bằng `sbd_num = pd.to_numeric(data["sbd"], errors="coerce")` rồi dùng `sbd_num % 2`; không dùng trực tiếp `data["sbd"] % 2`.
+23. Không phải câu hỏi nào cũng cần biểu đồ. Nếu câu hỏi không phù hợp để vẽ biểu đồ, không có dữ liệu định lượng rõ ràng, hoặc người dùng hỏi giải thích/định nghĩa/quy trình, hãy trả lời bằng text Markdown thật đầy đủ, có cấu trúc, ví dụ và lưu ý; không bịa số liệu và không tạo biểu đồ gượng ép.
 """
 
 
@@ -55,12 +61,9 @@ def generate_code_and_explanation(prompt: str, history: list[dict] | None = None
             temperature=0.2,
             max_tokens=8192,
         )
-        code_match = re.search(r"```python(.*?)```", text, re.DOTALL)
-        if not code_match:
+        code, explanation = _extract_python_code(text)
+        if not code:
             return "", _sanitize_placeholder_text(text, prompt)
-
-        code = code_match.group(1).strip()
-        explanation = text.replace(code_match.group(0), "").strip()
         return code, _sanitize_placeholder_text(explanation, prompt)
     except Exception as exc:
         return "", _format_openrouter_error(exc)
@@ -73,8 +76,18 @@ def _build_generate_messages(prompt: str, history: list[dict]) -> list[dict[str,
     return messages
 
 
+def _extract_python_code(text: str) -> tuple[str, str]:
+    code_match = CODE_BLOCK_PATTERN.search(text)
+    if not code_match:
+        return "", text.strip()
+
+    code = code_match.group(1).strip()
+    explanation = text.replace(code_match.group(0), "").strip()
+    return code, explanation
+
+
 def _has_unresolved_placeholders(text: str) -> bool:
-    return bool(re.search(r"\{[a-zA-Z_][a-zA-Z0-9_]*(?:\[[^\]]+\])?(?::[^}]*)?\}", text))
+    return bool(PLACEHOLDER_PATTERN.search(text))
 
 
 def _sanitize_placeholder_text(text: str, prompt: str) -> str:
@@ -109,7 +122,7 @@ def _normalize_pre_execution_text(text: str) -> str:
     return normalized.strip()
 
 
-def _sanitize_history(history: list[dict]) -> list[dict[str, str]]:
+def _sanitize_history(history: list[dict[str, Any]]) -> list[dict[str, str]]:
     clean_messages: list[dict[str, str]] = []
 
     for item in history[-MAX_HISTORY_MESSAGES:]:
@@ -117,13 +130,7 @@ def _sanitize_history(history: list[dict]) -> list[dict[str, str]]:
         if role not in {"user", "assistant"}:
             continue
 
-        content_parts = [str(item.get("content") or "").strip()]
-        if role == "assistant" and item.get("output"):
-            content_parts.append("Kết quả lần trước:\n" + str(item.get("output") or "").strip())
-        if role == "assistant" and item.get("code"):
-            content_parts.append("Code lần trước:\n```python\n" + str(item.get("code") or "").strip() + "\n```")
-
-        content = "\n\n".join(part for part in content_parts if part)
+        content = _history_message_content(item, role)
         if not content:
             continue
 
@@ -137,33 +144,46 @@ def _sanitize_history(history: list[dict]) -> list[dict[str, str]]:
     return clean_messages
 
 
+def _history_message_content(item: dict[str, Any], role: str) -> str:
+    content_parts = [str(item.get("content") or "").strip()]
+    if role == "assistant" and item.get("output"):
+        content_parts.append("Kết quả lần trước:\n" + str(item.get("output") or "").strip())
+    if role == "assistant" and item.get("code"):
+        content_parts.append("Code lần trước:\n```python\n" + str(item.get("code") or "").strip() + "\n```")
+    return "\n\n".join(part for part in content_parts if part)
+
+
 def generate_analysis_from_data(prompt: str, stdout: str) -> str:
     if not settings.openrouter_api_key or not stdout.strip():
         return _fallback_analysis_from_stdout(prompt, stdout)
 
     try:
         analysis = _call_openrouter(
-            messages=[
-                {
-                    "role": "system",
-                    "content": (
-                        "Bạn là chuyên gia phân tích dữ liệu giáo dục. "
-                        "Chỉ dựa trên stdout được cung cấp để viết nhận xét Markdown bằng tiếng Việt, "
-                        "không bịa số liệu. Bắt buộc có tiêu đề, 3-5 insight cụ thể có số, "
-                        "và một câu kết luận ngắn. Bỏ qua warning/kỹ thuật nếu không ảnh hưởng kết quả."
-                    ),
-                },
-                {
-                    "role": "user",
-                    "content": f"Câu hỏi gốc: {prompt}\n\nKết quả dữ liệu:\n{stdout}\n\nHãy viết phân tích:",
-                },
-            ],
+            messages=_build_analysis_messages(prompt, stdout),
             temperature=0.3,
             max_tokens=4096,
         )
         return analysis.strip() or _fallback_analysis_from_stdout(prompt, stdout)
     except Exception:
         return _fallback_analysis_from_stdout(prompt, stdout)
+
+
+def _build_analysis_messages(prompt: str, stdout: str) -> list[dict[str, str]]:
+    return [
+        {
+            "role": "system",
+            "content": (
+                "Bạn là chuyên gia phân tích dữ liệu giáo dục. "
+                "Chỉ dựa trên stdout được cung cấp để viết nhận xét Markdown bằng tiếng Việt, "
+                "không bịa số liệu. Bắt buộc có tiêu đề, 3-5 insight cụ thể có số, "
+                "và một câu kết luận ngắn. Bỏ qua warning/kỹ thuật nếu không ảnh hưởng kết quả."
+            ),
+        },
+        {
+            "role": "user",
+            "content": f"Câu hỏi gốc: {prompt}\n\nKết quả dữ liệu:\n{stdout}\n\nHãy viết phân tích:",
+        },
+    ]
 
 
 def _fallback_analysis_from_stdout(prompt: str, stdout: str) -> str:
@@ -241,13 +261,31 @@ def _correlation_strength(value: float | None) -> str:
 
 
 def _call_openrouter(messages: list[dict[str, str]], temperature: float, max_tokens: int) -> str:
+    try:
+        with urllib.request.urlopen(_openrouter_request(messages, temperature, max_tokens), timeout=90) as response:
+            data = json.loads(response.read().decode("utf-8"))
+    except urllib.error.HTTPError as exc:
+        detail = exc.read().decode("utf-8", errors="replace")
+        raise RuntimeError(f"OpenRouter HTTP {exc.code}: {detail}") from exc
+
+    try:
+        return data["choices"][0]["message"]["content"].strip()
+    except (KeyError, IndexError, TypeError) as exc:
+        raise RuntimeError("OpenRouter trả về response không hợp lệ.") from exc
+
+
+def _openrouter_request(
+    messages: list[dict[str, str]],
+    temperature: float,
+    max_tokens: int,
+) -> urllib.request.Request:
     payload = {
         "model": settings.openrouter_model,
         "messages": messages,
         "temperature": temperature,
         "max_tokens": max_tokens,
     }
-    req = urllib.request.Request(
+    return urllib.request.Request(
         settings.openrouter_url,
         data=json.dumps(payload).encode("utf-8"),
         headers={
@@ -258,18 +296,6 @@ def _call_openrouter(messages: list[dict[str, str]], temperature: float, max_tok
         },
         method="POST",
     )
-
-    try:
-        with urllib.request.urlopen(req, timeout=90) as response:
-            data = json.loads(response.read().decode("utf-8"))
-    except urllib.error.HTTPError as exc:
-        detail = exc.read().decode("utf-8", errors="replace")
-        raise RuntimeError(f"OpenRouter HTTP {exc.code}: {detail}") from exc
-
-    try:
-        return data["choices"][0]["message"]["content"].strip()
-    except (KeyError, IndexError, TypeError) as exc:
-        raise RuntimeError("OpenRouter trả về response không hợp lệ.") from exc
 
 
 def _format_openrouter_error(error: Exception) -> str:
