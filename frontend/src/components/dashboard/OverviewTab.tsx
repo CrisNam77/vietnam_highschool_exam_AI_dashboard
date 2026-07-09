@@ -62,6 +62,7 @@ export function OverviewTab() {
       <div className="grid gap-5 xl:grid-cols-[1.2fr_0.8fr]">
         <ChartCard title="Điểm trung bình toàn quốc theo năm">
           <SimpleLineChart
+            valueMode="score"
             series={[
               {
                 name: 'Điểm TB',

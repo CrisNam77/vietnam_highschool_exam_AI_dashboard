@@ -10,7 +10,7 @@ export function DashboardShell({
   children: ReactNode;
 }) {
   return (
-    <div className="h-full overflow-y-auto bg-[#F5F7FB] px-8 pb-8">
+    <div className="h-full overflow-y-auto bg-[#F5F7FB] px-8 pb-8 pt-5">
       <div className="mb-5 flex flex-wrap items-end justify-between gap-3">
         <div>
           <h2 className="text-2xl font-extrabold tracking-tight text-[#0F172A]">{title}</h2>

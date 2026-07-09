@@ -20,6 +20,16 @@ import { FilterBar } from './FilterBar';
 const primaryColor = '#594DA3';
 const compareColor = '#AD88F1';
 
+type HistogramTooltip = {
+  x: number;
+  y: number;
+  objectName: string;
+  year: number;
+  range: string;
+  count: number;
+  percentage: number;
+};
+
 function recordsFor(type: DistributionKind) {
   return type === 'subject' ? subjectDistributions : combinationDistributions;
 }
@@ -42,6 +52,12 @@ function formatNumber(value: number) {
   return value.toLocaleString('vi-VN');
 }
 
+function formatCompactCount(value: number) {
+  if (value >= 1_000_000) return `${(value / 1_000_000).toFixed(1)}M`;
+  if (value >= 1000) return `${Math.round(value / 1000)}k`;
+  return String(Math.round(value));
+}
+
 function formatDelta(value: number, suffix = '') {
   return `${value > 0 ? '+' : ''}${value.toFixed(2)}${suffix}`;
 }
@@ -49,6 +65,14 @@ function formatDelta(value: number, suffix = '') {
 function formatCountDelta(value: number) {
   const sign = value > 0 ? '+' : value < 0 ? '-' : '';
   return `${sign}${formatNumber(Math.abs(Math.round(value)))}`;
+}
+
+function formatScore(value: number) {
+  return Number.isInteger(value) ? String(value) : value.toFixed(2).replace(/0+$/, '').replace(/\.$/, '');
+}
+
+function formatBinLabel(start: number, end: number, isLast = false) {
+  return `[${formatScore(start)}, ${formatScore(end)}${isLast ? ']' : ')'}`;
 }
 
 function DistributionHistogram({
@@ -60,9 +84,10 @@ function DistributionHistogram({
   record: DistributionRecord;
   compareRecord?: DistributionRecord;
 }) {
+  const [tooltip, setTooltip] = useState<HistogramTooltip | null>(null);
   const width = 760;
   const height = 320;
-  const left = 52;
+  const left = 64;
   const right = 18;
   const top = 22;
   const bottom = 44;
@@ -78,9 +103,30 @@ function DistributionHistogram({
   const yFor = (count: number) => top + chartHeight - (count / maxCount) * chartHeight;
   const tickStep = record.scoreMax === 10 ? 1 : 5;
   const ticks = Array.from({ length: record.scoreMax / tickStep + 1 }, (_, index) => index * tickStep);
+  const yTicks = [0, 1, 2, 3, 4].map(step => {
+    const ratio = step / 4;
+    return {
+      y: top + ratio * chartHeight,
+      value: maxCount * (1 - ratio),
+    };
+  });
+
+  const showTooltip = (bin: DistributionRecord['bins'][number], index: number, year: number, objectName: string, xOffset = 0) => {
+    const isLast = index === record.bins.length - 1;
+    const barCenter = xFor(index) + xOffset + barWidth / (compareRecord ? 4 : 2);
+    setTooltip({
+      x: (barCenter / width) * 100,
+      y: Math.max(72, (yFor(bin.count) / height) * 352),
+      objectName,
+      year,
+      range: formatBinLabel(bin.start, bin.end, isLast),
+      count: bin.count,
+      percentage: bin.percentage,
+    });
+  };
 
   return (
-    <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+    <section className="relative rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
       <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
         <h3 className="text-sm font-extrabold uppercase tracking-[0.12em] text-[#0F172A]">{title}</h3>
         <div className="flex gap-3 text-xs font-bold text-[#64748B]">
@@ -89,10 +135,14 @@ function DistributionHistogram({
         </div>
       </div>
       <svg viewBox={`0 0 ${width} ${height}`} className="h-[22rem] w-full">
-        {[0, 1, 2, 3].map(step => {
-          const y = top + (step / 3) * chartHeight;
-          return <line key={step} x1={left} x2={width - right} y1={y} y2={y} stroke="#E2E8F0" strokeWidth="1" />;
-        })}
+        {yTicks.map(tick => (
+          <g key={tick.y}>
+            <line x1={left} x2={width - right} y1={tick.y} y2={tick.y} stroke="#E2E8F0" strokeWidth="1" />
+            <text x={left - 8} y={tick.y + 4} textAnchor="end" fontSize="10.5" fontWeight="700" fill="#64748B">
+              {formatCompactCount(tick.value)}
+            </text>
+          </g>
+        ))}
         {compareRecord?.bins.map((bin, index) => {
           const x = xFor(index);
           const barHeight = top + chartHeight - yFor(bin.count);
@@ -106,6 +156,8 @@ function DistributionHistogram({
               rx="1.5"
               fill={compareColor}
               opacity={0.82}
+              onMouseEnter={() => showTooltip(bin, index, compareRecord.year, compareRecord.name, barWidth / 2)}
+              onMouseLeave={() => setTooltip(null)}
             >
               <title>{`${compareRecord.year} · ${bin.label}: ${formatNumber(bin.count)} (${bin.percentage}%)`}</title>
             </rect>
@@ -125,6 +177,8 @@ function DistributionHistogram({
               rx="1.5"
               fill={primaryColor}
               opacity={0.92}
+              onMouseEnter={() => showTooltip(bin, index, record.year, record.name)}
+              onMouseLeave={() => setTooltip(null)}
             >
               <title>{`${record.year} · ${bin.label}: ${formatNumber(bin.count)} (${bin.percentage}%)`}</title>
             </rect>
@@ -144,6 +198,28 @@ function DistributionHistogram({
           Số lượng thí sinh
         </text>
       </svg>
+      {tooltip && (
+        <div
+          className="pointer-events-none absolute z-40 min-w-48 rounded-xl border border-slate-200 bg-white px-3 py-2 text-xs shadow-xl shadow-[#00195A]/12"
+          style={{
+            left: `${tooltip.x}%`,
+            top: tooltip.y,
+            transform: tooltip.x > 78 ? 'translateX(-100%)' : 'translateX(-50%)',
+          }}
+        >
+          <div className="font-extrabold text-[#0F172A]">{tooltip.objectName}</div>
+          <div className="mt-1 grid grid-cols-[auto_1fr] gap-x-3 gap-y-1 text-[#64748B]">
+            <span>Năm</span>
+            <span className="text-right font-bold text-[#31327E]">{tooltip.year}</span>
+            <span>Khoảng điểm</span>
+            <span className="text-right font-bold text-[#31327E]">{tooltip.range}</span>
+            <span>Số thí sinh</span>
+            <span className="text-right font-bold text-[#31327E]">{formatNumber(tooltip.count)}</span>
+            <span>Tỷ lệ</span>
+            <span className="text-right font-bold text-[#31327E]">{tooltip.percentage.toFixed(2)}%</span>
+          </div>
+        </div>
+      )}
     </section>
   );
 }

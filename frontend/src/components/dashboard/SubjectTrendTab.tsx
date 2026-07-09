@@ -27,6 +27,13 @@ const subjectPalette: Record<string, string> = {
   gdcd: '#0F766E',
 };
 
+const metricValueMode: Record<MetricKey, 'score' | 'percent' | 'count'> = {
+  average: 'score',
+  underFive: 'percent',
+  eightPlus: 'percent',
+  perfect10: 'count',
+};
+
 export function SubjectTrendTab() {
   const [fromYear, setFromYear] = useState(2022);
   const [toYear, setToYear] = useState(2026);
@@ -53,7 +60,7 @@ export function SubjectTrendTab() {
   return (
     <DashboardShell
       title="Xu hướng & Môn học"
-      question="Điểm thi thay đổi như thế nào qua các năm và môn nào biến động rõ nhất?"
+      question="Theo dõi biến động điểm thi theo năm và môn học."
     >
       <FilterBar
         controls={[
@@ -92,6 +99,7 @@ export function SubjectTrendTab() {
 
       <ChartCard title={`Xu hướng ${metricLabels[metric].toLowerCase()} theo môn`}>
         <SimpleLineChart
+          valueMode={metricValueMode[metric]}
           series={lineSubjects.map(subject => ({
             name: subject.name,
             color: subjectPalette[subject.id] ?? '#594DA3',

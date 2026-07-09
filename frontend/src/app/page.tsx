@@ -713,14 +713,6 @@ function HistoryTab() {
 // ── Main Page ─────────────────────────────────────────────
 const CHAT_SESSIONS_KEY = 'examdata_ai_chat_sessions';
 
-const TAB_LABELS: Record<Tab, string> = {
-  overview: 'Tổng quan',
-  trends: 'Xu hướng & Môn học',
-  distribution: 'Phổ điểm & Tổ hợp',
-  regions: 'Địa phương & Vùng miền',
-  assistant: 'Trợ lý AI',
-};
-
 function createChatSession(): ChatSession {
   const now = Date.now();
   return {
@@ -804,7 +796,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-[#F5F7FB] font-sans text-slate-900">
       <aside className="fixed inset-y-0 left-0 z-20 flex w-[272px] flex-col border-r border-white/5 px-3 py-4 text-slate-300 shadow-2xl shadow-slate-950/10" style={{ background: 'linear-gradient(180deg, #00195A 0%, #31327E 100%)' }}>
-        <div className="mb-4 flex h-12 items-center justify-between px-2">
+        <div className="mb-4 flex h-12 items-center px-2">
           <div className="flex items-center gap-2.5">
             <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-600 to-blue-500 shadow-lg shadow-indigo-500/20">
               <SparkleIcon size={16} color="white" />
@@ -814,12 +806,6 @@ export default function Home() {
               <p className="mt-0.5 text-[9px] font-semibold uppercase tracking-[0.18em] text-indigo-300">Analytics</p>
             </div>
           </div>
-          <button
-            aria-label="Thu gọn sidebar"
-            className="flex h-8 w-8 items-center justify-center rounded-lg text-slate-500 transition-colors hover:bg-white/10 hover:text-slate-200"
-          >
-            <SidebarIcon name="panel" />
-          </button>
         </div>
 
         <nav className="space-y-2">
@@ -850,14 +836,6 @@ export default function Home() {
 
       <main className="ml-[272px] h-screen overflow-hidden bg-[#F5F7FB]">
         <div className="flex h-full flex-col">
-          <div className="px-8 pb-3 pt-5">
-            <p className="text-xs font-bold uppercase tracking-[0.18em] text-slate-400">
-              {TAB_LABELS[activeTab]}
-            </p>
-            <h1 className="mt-1 text-2xl font-extrabold tracking-tight text-slate-950">
-              Hệ thống phân tích điểm thi THPT Quốc gia
-            </h1>
-          </div>
           <div className="min-h-0 flex-1">
             {activeTab === 'overview' && <OverviewTab />}
             {activeTab === 'trends' && <SubjectTrendTab />}

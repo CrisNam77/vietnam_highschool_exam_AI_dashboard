@@ -7,6 +7,16 @@ function formatValue(value: number) {
   return value >= 1000 ? `${Math.round(value / 1000)}k` : value.toFixed(value < 10 ? 2 : 1);
 }
 
+function formatAxisValue(value: number, mode: 'score' | 'percent' | 'count' = 'score') {
+  if (mode === 'percent') return `${Math.round(value)}%`;
+  if (mode === 'count') {
+    if (value >= 1_000_000) return `${(value / 1_000_000).toFixed(1)}M`;
+    if (value >= 1000) return `${Math.round(value / 1000)}k`;
+    return String(Math.round(value));
+  }
+  return value.toFixed(1);
+}
+
 export function ChartCard({ title, children }: { title: string; children: ReactNode }) {
   return (
     <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
@@ -16,13 +26,13 @@ export function ChartCard({ title, children }: { title: string; children: ReactN
   );
 }
 
-export function SimpleLineChart({ series }: { series: LineSeries[] }) {
+export function SimpleLineChart({ series, valueMode = 'score' }: { series: LineSeries[]; valueMode?: 'score' | 'percent' | 'count' }) {
   const allValues = series.flatMap(item => item.points.map(point => point.value));
   const min = Math.min(...allValues) - 0.15;
   const max = Math.max(...allValues) + 0.15;
   const width = 640;
   const height = 260;
-  const left = 44;
+  const left = 56;
   const right = 18;
   const top = 18;
   const bottom = 42;
@@ -31,14 +41,25 @@ export function SimpleLineChart({ series }: { series: LineSeries[] }) {
   const labels = series[0]?.points.map(point => point.label) ?? [];
   const xFor = (index: number, total: number) => left + (total <= 1 ? 0 : (index / (total - 1)) * chartWidth);
   const yFor = (value: number) => top + ((max - value) / (max - min || 1)) * chartHeight;
+  const yTicks = [0, 1, 2, 3, 4].map(step => {
+    const ratio = step / 4;
+    return {
+      y: top + ratio * chartHeight,
+      value: max - ratio * (max - min),
+    };
+  });
 
   return (
     <div>
       <svg viewBox={`0 0 ${width} ${height}`} className="h-72 w-full">
-        {[0, 1, 2, 3].map(step => {
-          const y = top + (step / 3) * chartHeight;
-          return <line key={step} x1={left} x2={width - right} y1={y} y2={y} stroke={gridColor} strokeWidth="1" />;
-        })}
+        {yTicks.map(tick => (
+          <g key={tick.y}>
+            <line x1={left} x2={width - right} y1={tick.y} y2={tick.y} stroke={gridColor} strokeWidth="1" />
+            <text x={left - 8} y={tick.y + 4} textAnchor="end" fontSize="11" fontWeight="700" fill="#64748B">
+              {formatAxisValue(tick.value, valueMode)}
+            </text>
+          </g>
+        ))}
         {labels.map((label, index) => (
           <text key={label} x={xFor(index, labels.length)} y={height - 14} textAnchor="middle" fontSize="12" fill="#64748B">
             {label}

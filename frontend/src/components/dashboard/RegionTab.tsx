@@ -68,7 +68,7 @@ export function RegionTab() {
   return (
     <DashboardShell
       title="Địa phương & Vùng miền"
-      question="Có sự chênh lệch đáng kể giữa các tỉnh/thành hoặc vùng miền trong kết quả thi hay không?"
+      question="So sánh kết quả thi theo tỉnh/thành và vùng miền."
     >
       <FilterBar
         controls={[
