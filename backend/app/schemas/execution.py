@@ -16,4 +16,5 @@ class ExecutionResponse(BaseModel):
     success: bool | None = None
     stdout: str | None = None
     stderr: str | None = None
+    analysis: str | None = None
     plot_b64: str | None = None

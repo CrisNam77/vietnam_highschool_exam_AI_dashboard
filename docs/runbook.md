@@ -67,7 +67,7 @@ Không commit `.env`.
 Windows script:
 
 ```cmd
-run_backend.cmd
+scripts\windows\start_backend.cmd
 ```
 
 Hoặc chạy thủ công:
@@ -84,7 +84,7 @@ http://localhost:8001/docs
 
 ## 4. Setup Next.js Frontend
 
-Nếu chạy bằng `run_frontend.cmd`, script sẽ vào `frontend/` và cài dependency khi thiếu `node_modules`.
+Nếu chạy bằng `scripts\windows\start_frontend.cmd`, script sẽ vào `frontend/` và cài dependency khi thiếu `node_modules`.
 
 Setup thủ công:
 
@@ -98,7 +98,7 @@ npm install
 Windows script:
 
 ```cmd
-run_frontend.cmd
+scripts\windows\start_frontend.cmd
 ```
 
 Hoặc chạy thủ công từ `frontend/`:

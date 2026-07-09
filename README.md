@@ -65,9 +65,9 @@ reports/                # Data quality report, AI usage, storyboard
 docs/                   # API contract, data schema, runbook
 tests/                  # Tests
 scripts/                # Utility scripts
-run_all.cmd
-run_backend.cmd
-run_frontend.cmd
+scripts/windows/start_dashboard.cmd
+scripts/windows/start_backend.cmd
+scripts/windows/start_frontend.cmd
 requirements.txt
 .env.example
 .gitignore
@@ -92,7 +92,7 @@ pip install -r requirements.txt
 Chạy backend và frontend:
 
 ```cmd
-run_all.cmd
+scripts\windows\start_dashboard.cmd
 ```
 
 Local URLs:
@@ -106,13 +106,13 @@ Local URLs:
 FastAPI backend:
 
 ```cmd
-run_backend.cmd
+scripts\windows\start_backend.cmd
 ```
 
 Next.js frontend:
 
 ```cmd
-run_frontend.cmd
+scripts\windows\start_frontend.cmd
 ```
 
 Manual backend:

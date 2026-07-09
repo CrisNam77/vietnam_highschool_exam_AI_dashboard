@@ -3,7 +3,7 @@
 Frontend chinh cua dashboard. Nen chay tu thu muc goc bang:
 
 ```cmd
-run_frontend.cmd
+scripts\windows\start_frontend.cmd
 ```
 
 Hoac chay thu cong trong thu muc nay:

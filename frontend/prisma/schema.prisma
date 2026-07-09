@@ -1,0 +1,111 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model ChatSession {
+  id         String        @id @default(uuid())
+  title      String
+  createdAt  DateTime      @default(now()) @map("created_at")
+  updatedAt  DateTime      @updatedAt @map("updated_at")
+  archivedAt DateTime?     @map("archived_at")
+  messages   ChatMessage[]
+  executions AiExecution[]
+
+  @@map("chat_sessions")
+}
+
+model ChatMessage {
+  id          String          @id @default(uuid())
+  sessionId   String          @map("session_id")
+  role        MessageRole
+  content     String
+  createdAt   DateTime        @default(now()) @map("created_at")
+  session     ChatSession     @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  userRuns    AiExecution[]   @relation("UserPromptExecution")
+  assistantRun AiExecution?   @relation("AssistantMessageExecution")
+  feedback    FeedbackEvent[]
+
+  @@index([sessionId, createdAt])
+  @@map("chat_messages")
+}
+
+model AiExecution {
+  id                 String              @id @default(uuid())
+  sessionId          String              @map("session_id")
+  userMessageId      String              @map("user_message_id")
+  assistantMessageId String?             @unique @map("assistant_message_id")
+  model              String?
+  prompt             String
+  explanation        String
+  generatedCode      String              @map("generated_code")
+  executedCode       String              @map("executed_code")
+  status             ExecutionStatus
+  stdout             String              @default("")
+  stderr             String              @default("")
+  runtimeMs          Int?                @map("runtime_ms")
+  createdAt          DateTime            @default(now()) @map("created_at")
+  session            ChatSession         @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  userMessage        ChatMessage         @relation("UserPromptExecution", fields: [userMessageId], references: [id], onDelete: Cascade)
+  assistantMessage   ChatMessage?        @relation("AssistantMessageExecution", fields: [assistantMessageId], references: [id], onDelete: SetNull)
+  artifacts          ExecutionArtifact[]
+  feedback           FeedbackEvent[]
+
+  @@index([sessionId, createdAt])
+  @@index([status])
+  @@map("ai_executions")
+}
+
+model ExecutionArtifact {
+  id          String       @id @default(uuid())
+  executionId String       @map("execution_id")
+  type        ArtifactType
+  title       String?
+  content     String?
+  filePath    String?      @map("file_path")
+  mimeType    String?      @map("mime_type")
+  createdAt   DateTime     @default(now()) @map("created_at")
+  execution   AiExecution  @relation(fields: [executionId], references: [id], onDelete: Cascade)
+
+  @@map("execution_artifacts")
+}
+
+model FeedbackEvent {
+  id          String         @id @default(uuid())
+  messageId   String         @map("message_id")
+  executionId String?        @map("execution_id")
+  rating      FeedbackRating
+  note        String?
+  createdAt   DateTime       @default(now()) @map("created_at")
+  message     ChatMessage    @relation(fields: [messageId], references: [id], onDelete: Cascade)
+  execution   AiExecution?   @relation(fields: [executionId], references: [id], onDelete: SetNull)
+
+  @@map("feedback_events")
+}
+
+enum MessageRole {
+  user
+  assistant
+}
+
+enum ExecutionStatus {
+  success
+  error
+  cancelled
+}
+
+enum ArtifactType {
+  plot_png
+  table_markdown
+  text
+  file
+}
+
+enum FeedbackRating {
+  like
+  dislike
+}
