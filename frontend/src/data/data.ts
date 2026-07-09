@@ -1,4 +1,4 @@
-{
+const data: any = {
   "YEARS": [
     2022,
     2023,
@@ -50338,4 +50338,5 @@
       "maxScoreCount": 0
     }
   ]
-}
+};
+export default data;

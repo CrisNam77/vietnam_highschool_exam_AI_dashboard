@@ -290,7 +290,7 @@ def main():
 
     logging.info("Writing TS file...")
     
-    out_path = Path("frontend/src/data/data.json")
+    out_path = Path("frontend/src/data/data.ts")
     
     final_data = {
         "YEARS": YEARS,
@@ -313,8 +313,8 @@ def main():
         "distributionStats": distributionStats
     }
     
-    with open(out_path, 'w', encoding='utf-8') as f:
-        json.dump(final_data, f, ensure_ascii=False, indent=2)
+    ts_content = f"const data: any = {json.dumps(final_data, ensure_ascii=False, indent=2)};\nexport default data;"
+    out_path.write_text(ts_content, encoding="utf-8")
 
     logging.info(f"Successfully generated {out_path}")
 
