@@ -40,19 +40,29 @@ def run_code(request: ExecutionRequest) -> ExecutionResponse:
         )
 
     result = execute_code(request.code, _get_dataframe())
-    if result["success"] and result["stdout"]:
+    analysis = ""
+    if result["success"] and result["stdout"].strip():
         analysis = generate_analysis_from_data(request.prompt, result["stdout"])
-        if analysis:
-            result["stdout"] += f"\n\n**Phân tích chuyên sâu từ AI**\n\n{analysis}"
 
     status = "success" if result["success"] else "error"
+    log_output = result["stdout"] + result["stderr"]
+    if analysis:
+        log_output = "\n\n---\n\n".join(
+            part
+            for part in [
+                analysis,
+                f"### Kết quả chi tiết\n\n{result['stdout']}" if result["stdout"].strip() else "",
+                result["stderr"].strip(),
+            ]
+            if part
+        )
     log_interaction(
         prompt=request.prompt,
         generated_code="",
         explanation=request.explanation,
         executed_code=request.code,
         status=status,
-        output=result["stdout"] + result["stderr"],
+        output=log_output,
         plot_b64=result["plot_b64"],
         event_type="execute",
         model=settings.openrouter_model,
@@ -66,5 +76,6 @@ def run_code(request: ExecutionRequest) -> ExecutionResponse:
         success=result["success"],
         stdout=result["stdout"],
         stderr=result["stderr"],
+        analysis=analysis,
         plot_b64=result["plot_b64"],
     )
