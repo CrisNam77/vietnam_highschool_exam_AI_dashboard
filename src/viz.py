@@ -94,7 +94,7 @@ def plot_so_mon_dist(df):
 
     fig, ax = plt.subplots(figsize=(9, 5))
     sns.barplot(data=dist, x="so_mon", y="ti_le", hue="chuong_trinh",
-                palette="Set2", ax=ax)
+                palette="Blues", ax=ax)
     ax.set_title("Phân bố số môn dự thi theo chương trình", fontsize=13, pad=10)
     ax.set_xlabel("Số môn dự thi")
     ax.set_ylabel("Tỉ lệ thí sinh trong chương trình (%)")
@@ -182,11 +182,21 @@ def plot_fail_rate_by_subject(df):
         .dropna(subset=["ti_le"])
     )
     order = [SUBJECT_VI[c] for c in SUBJECT_COLS if SUBJECT_VI[c] in long["mon"].values]
-    hue_order = ["2022", "2023", "2024", "2025·CT2006", "2025·CT2018"]
+    hue_order = []
+    for year in sorted(df["nam"].dropna().astype(int).unique()):
+        if year == 2025:
+            for ct in ["2006", "2018"]:
+                label = f"2025·CT{ct}"
+                if label in long["nhom"].values:
+                    hue_order.append(label)
+        else:
+            label = str(year)
+            if label in long["nhom"].values:
+                hue_order.append(label)
 
     fig, ax = plt.subplots(figsize=(15, 6))
     sns.barplot(data=long, x="mon", y="ti_le", hue="nhom",
-                order=order, hue_order=hue_order, palette="Set2", ax=ax)
+                order=order, hue_order=hue_order, palette="colorblind", ax=ax)
     ax.set_title("Tỷ lệ điểm liệt (dưới 1 điểm) theo môn, theo năm và chương trình",
                  fontsize=13, pad=10)
     ax.set_xlabel("Môn thi")
@@ -205,14 +215,18 @@ def plot_trend_2022_2024(df, stat="mean"):
     old = getattr(df[df["nam"] <= 2024].groupby("nam")[SUBJECT_COLS], agg)().reindex([2022, 2023, 2024])
     s06 = getattr(df[(df["nam"] == 2025) & (df["chuong_trinh"] == "2006")][SUBJECT_COLS], agg)()
     s18 = getattr(df[(df["nam"] == 2025) & (df["chuong_trinh"] == "2018")][SUBJECT_COLS], agg)()
+    s26 = getattr(df[df["nam"] == 2026][SUBJECT_COLS], agg)()
 
-    cols = [c for c in SUBJECT_COLS if old[c].notna().any()]
+    cols = [
+        c for c in SUBJECT_COLS
+        if old[c].notna().any() or pd.notna(s06.get(c)) or pd.notna(s18.get(c)) or pd.notna(s26.get(c))
+    ]
     ncols = 3
     nrows = int(np.ceil(len(cols) / ncols))
     fig, axes = plt.subplots(nrows, ncols, figsize=(15, 4 * nrows), sharey=True)
     axes = np.atleast_1d(axes).flatten()
 
-    c_line, c_06, c_18 = "#3b6fb0", "#e07b39", "#2a9d6f"
+    c_line, c_06, c_18, c_26 = "#3b6fb0", "#e07b39", "#2a9d6f", "#8d6e63"
     for i, col in enumerate(cols):
         ax = axes[i]
         ax.plot([0, 1, 2], old[col].values, marker="o", color=c_line)
@@ -220,11 +234,13 @@ def plot_trend_2022_2024(df, stat="mean"):
             ax.scatter(3.0, s06[col], marker="^", s=80, color=c_06, zorder=3)
         if pd.notna(s18.get(col)):
             ax.scatter(3.4, s18[col], marker="X", s=80, color=c_18, zorder=3)
+        if pd.notna(s26.get(col)):
+            ax.scatter(4.0, s26[col], marker="s", s=70, color=c_26, zorder=3)
         ax.axvline(2.6, ls="--", lw=0.8, color="grey", alpha=0.6)
         ax.set_title(SUBJECT_VI[col], fontsize=11)
-        ax.set_xticks([0, 1, 2, 3.0, 3.4])
-        ax.set_xticklabels(["2022", "2023", "2024", "25·06", "25·18"], fontsize=8)
-        ax.set_xlim(-0.3, 3.7)
+        ax.set_xticks([0, 1, 2, 3.0, 3.4, 4.0])
+        ax.set_xticklabels(["2022", "2023", "2024", "25·06", "25·18", "2026"], fontsize=8)
+        ax.set_xlim(-0.3, 4.3)
 
     for j in range(len(cols), len(axes)):
         axes[j].axis("off")
@@ -233,8 +249,9 @@ def plot_trend_2022_2024(df, stat="mean"):
         Line2D([0], [0], color=c_line, marker="o", label="2022–2024"),
         Line2D([0], [0], color=c_06, marker="^", ls="", label="2025 · CT2006"),
         Line2D([0], [0], color=c_18, marker="X", ls="", label="2025 · CT2018"),
+        Line2D([0], [0], color=c_26, marker="s", ls="", label="2026"),
     ]
-    fig.legend(handles=legend_handles, loc="upper right", ncol=3, fontsize=10)
+    fig.legend(handles=legend_handles, loc="upper right", ncol=4, fontsize=10)
     stat_vi = "trung bình" if stat == "mean" else "trung vị"
     fig.suptitle(f"Xu hướng điểm {stat_vi} theo môn", fontsize=15)
     fig.tight_layout(rect=[0, 0, 1, 0.96])
@@ -256,8 +273,8 @@ def plot_province_rank(df, subject, top=10, min_n=100):
 
     fig, axes = plt.subplots(1, 2, figsize=(15, 6), sharex=True)
     for ax, d, color, title in [
-        (axes[0], top_df, "teal", f"Top {top} tỉnh điểm cao nhất"),
-        (axes[1], bot_df, "coral", f"Bottom {top} tỉnh điểm thấp nhất"),
+        (axes[0], top_df, "#1F77B4", f"Top {top} tỉnh điểm cao nhất"),
+        (axes[1], bot_df, "#9ECAE1", f"Bottom {top} tỉnh điểm thấp nhất"),
     ]:
         ax.barh(d.index, d.values, color=color)
         ax.set_title(title)
@@ -273,17 +290,28 @@ def plot_province_rank(df, subject, top=10, min_n=100):
 
 
 def plot_corr_heatmap(df, min_pairs=1000):
-    """Heatmap tương quan giữa các môn, tách riêng CT2006 và CT2018 (che ô quá ít cặp)."""
-    fig, axes = plt.subplots(2, 1, figsize=(11, 20))
+    """Heatmap tương quan giữa các môn, tách theo chương trình và tự nhận diện khoảng năm."""
+    ct_order = ["2006", "2018"]
+    ct_values = [ct for ct in ct_order if ct in df["chuong_trinh"].dropna().astype(str).unique()]
+    if not ct_values:
+        fig, ax = plt.subplots(figsize=(8, 4))
+        ax.set_axis_off()
+        ax.set_title("Khong co du lieu chuong trinh de tinh tuong quan")
+        return fig
 
-    for ax, ct, title in [
-        (axes[0], "2006", "Chương trình 2006 (2022–2025)"),
-        (axes[1], "2018", "Chương trình 2018 (2025)"),
-    ]:
-        sub = df[df["chuong_trinh"] == ct]
+    fig, axes = plt.subplots(len(ct_values), 1, figsize=(11, 10 * len(ct_values)))
+    axes = np.atleast_1d(axes)
+
+    for ax, ct in zip(axes, ct_values):
+        sub = df[df["chuong_trinh"].astype(str) == ct]
         cols = [c for c in SUBJECT_COLS if sub[c].notna().any()]
-        data = sub[cols]
 
+        if not cols:
+            ax.set_axis_off()
+            ax.set_title(f"CT{ct}: khong co du lieu diem", fontsize=13, pad=10)
+            continue
+
+        data = sub[cols]
         corr = data.corr()
         valid = data.notna().to_numpy(dtype="int32")
         n_pairs = valid.T @ valid
@@ -291,14 +319,26 @@ def plot_corr_heatmap(df, min_pairs=1000):
         tri = np.triu(np.ones(corr.shape, dtype=bool), k=1)
         mask = (n_pairs < min_pairs) | tri
 
+        years = sorted(sub["nam"].dropna().astype(int).unique())
+        year_label = f"{years[0]}" if len(years) == 1 else f"{years[0]}-{years[-1]}"
+
         sns.heatmap(
             corr.rename(columns=SUBJECT_VI, index=SUBJECT_VI),
-            mask=mask, annot=True, fmt=".2f", cmap="coolwarm",
-            center=0, vmin=-1, vmax=1, square=True,
-            linewidths=0.5, linecolor="white",
-            cbar_kws={"shrink": 0.8}, annot_kws={"size": 9}, ax=ax,
+            mask=mask,
+            annot=True,
+            fmt=".2f",
+            cmap="coolwarm",
+            center=0,
+            vmin=-1,
+            vmax=1,
+            square=True,
+            linewidths=0.5,
+            linecolor="white",
+            cbar_kws={"shrink": 0.8},
+            annot_kws={"size": 9},
+            ax=ax,
         )
-        ax.set_title(title, fontsize=13, pad=10)
+        ax.set_title(f"Chương trình {ct} ({year_label})", fontsize=13, pad=10)
         plt.setp(ax.get_xticklabels(), rotation=45, ha="right")
         plt.setp(ax.get_yticklabels(), rotation=0)
 
@@ -327,7 +367,7 @@ def plot_ban_by_region(df):
     pct = counts.div(counts.sum(axis=1), axis=0) * 100
 
     fig, ax = plt.subplots(figsize=(11, 6))
-    pct.plot(kind="bar", stacked=True, ax=ax, color={"KHTN": "#66c2a5", "KHXH": "#bdbdbd"})
+    pct.plot(kind="bar", stacked=True, ax=ax, color={"KHTN": "#1F77B4", "KHXH": "#9ECAE1"})
 
     ax.set_title("Tỷ lệ lựa chọn ban theo vùng miền (CT2006)", fontsize=13, pad=10)
     ax.set_ylabel("Tỷ lệ (%)")
@@ -352,7 +392,7 @@ def plot_ct2018_subject_uptake(df):
         "tin_hoc": "Công nghệ - Tin", "cong_nghe_cn": "Công nghệ - Tin",
         "cong_nghe_nn": "Công nghệ - Tin",
     }
-    mau = {"Tự nhiên": "#4C72B0", "Xã hội": "#DD8452", "Công nghệ - Tin": "#55A868"}
+    mau = {"Tự nhiên": "#6BAED6", "Xã hội": "#0500A5", "Công nghệ - Tin": "#37B9FF"}
 
     d = df[df["chuong_trinh"] == "2018"]
     up = (d[opt].notna().mean() * 100).sort_values(ascending=False)
