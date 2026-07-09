@@ -8,7 +8,7 @@ Không dùng alias cũ như `van`, `ly`, `hoa`, `su`, `dia`, `A00` trong docs ch
 
 | Column | Description |
 |---|---|
-| `nam` | Năm dự thi: 2022, 2023, 2024 hoặc 2025 |
+| `nam` | Năm dự thi: từ 2022 đến 2026 |
 | `chuong_trinh` | Chương trình giáo dục: `2006` hoặc `2018` |
 | `sbd` | Số báo danh, chuỗi 8 ký tự |
 | `ma_tinh` | Mã tỉnh/thành phố, lấy từ hai chữ số đầu của `sbd` |

@@ -160,7 +160,9 @@ Dữ liệu sau xử lý được đọc từ:
 data/processed/final_data.csv
 ```
 
-File dữ liệu thật không được commit. Schema chính thức được mô tả trong `docs/data_schema.md` và dựa trên `src/clean_data.py` cùng `reports/data_quality_report.md`.
+File dữ liệu thật không được commit. Dữ liệu từ `final_data.csv` sẽ được ETL script (`scripts/generate_dashboard_json.py`) xử lý và xuất ra thành module TypeScript tĩnh tại `frontend/src/data/data.ts` (không commit) để tối ưu hóa hiệu suất build của Next.js (Turbopack).
+
+Schema chính thức được mô tả trong `docs/data_schema.md` và dựa trên `src/clean_data.py` cùng `reports/data_quality_report.md`.
 
 ## Trợ lý AI Flow
 
@@ -211,7 +213,8 @@ Backend hiện có một số alias execution để tương thích nội bộ, n
 
 - Next.js là frontend duy nhất.
 - Trợ lý AI đã có flow Next.js + FastAPI.
-- Frontend Next.js có 4 khu vực chính, trong đó các tab phân tích đang là shell/placeholder để triển khai dần.
+- Frontend Next.js có 4 khu vực chính **đã được tích hợp dữ liệu thi thật (2022-2026)** thông qua pipeline xuất sang `data.ts`.
+- Các filter (Chương trình, Năm, Vùng miền, Môn học) được liên kết động và tối ưu UX (slider, dropdown SVG).
 - Data pipeline đã có logic xử lý chính.
 
 ## Do Not Commit
