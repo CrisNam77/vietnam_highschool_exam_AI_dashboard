@@ -20,6 +20,25 @@ def load_logs() -> list[dict]:
         return []
 
 
+def save_logs(logs: list[dict]) -> bool:
+    init_log_file()
+    try:
+        LOG_FILE.write_text(json.dumps(logs, ensure_ascii=False, indent=4), encoding="utf-8")
+        return True
+    except Exception:
+        return False
+
+
+def delete_log(timestamp: str) -> bool:
+    logs = load_logs()
+    next_logs = [log for log in logs if log.get("timestamp") != timestamp]
+    return save_logs(next_logs)
+
+
+def clear_logs() -> bool:
+    return save_logs([])
+
+
 def log_interaction(
     prompt: str,
     generated_code: str,
@@ -46,11 +65,7 @@ def log_interaction(
             "plot_b64": plot_b64,
         }
     )
-    try:
-        LOG_FILE.write_text(json.dumps(logs, ensure_ascii=False, indent=4), encoding="utf-8")
-        return True
-    except Exception:
-        return False
+    return save_logs(logs)
 
 
 def summarize_logs() -> dict:
