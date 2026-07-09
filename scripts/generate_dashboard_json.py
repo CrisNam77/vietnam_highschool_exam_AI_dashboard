@@ -93,6 +93,9 @@ def main():
     total_candidates = len(df)
     total_provinces = df["ten_tinh"].nunique()
     
+    # Map UI program names to the integer codes stored in CSV
+    PROGRAM_CODE = {"CT2006": 2006, "CT2018": 2018}
+
     # candidatesByYear and nationalAverageByYear
     nat_avg_yr = []
     candidates_yr = []
@@ -103,8 +106,7 @@ def main():
             if p == "all":
                 df_yp = df_y
             else:
-                p_code = "2006" if p == "CT2006" else "2018"
-                df_yp = df_y[df_y["chuong_trinh"] == p_code]
+                df_yp = df_y[df_y["chuong_trinh"] == PROGRAM_CODE[p]]
                 
             if len(df_yp) > 0:
                 candidates_yr.append({"year": y, "program": p, "value": int(len(df_yp))})
@@ -127,8 +129,7 @@ def main():
         if p == "all":
             df_p = df
         else:
-            p_code = "2006" if p == "CT2006" else "2018"
-            df_p = df[df["chuong_trinh"] == p_code]
+            df_p = df[df["chuong_trinh"] == PROGRAM_CODE[p]]
             
         if len(df_p) > 0:
             for s in SUBJECTS:
@@ -149,8 +150,7 @@ def main():
             if p == "all":
                 df_yp = df_y
             else:
-                p_code = "2006" if p == "CT2006" else "2018"
-                df_yp = df_y[df_y["chuong_trinh"] == p_code]
+                df_yp = df_y[df_y["chuong_trinh"] == PROGRAM_CODE[p]]
             
             if len(df_yp) == 0:
                 continue

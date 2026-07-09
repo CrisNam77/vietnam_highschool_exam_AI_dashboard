@@ -161,8 +161,18 @@ const data: any = {
   "nationalAverageByYear": [
     {
       "year": 2022,
+      "program": "CT2006",
+      "value": 6.56
+    },
+    {
+      "year": 2022,
       "program": "all",
       "value": 6.56
+    },
+    {
+      "year": 2023,
+      "program": "CT2006",
+      "value": 6.66
     },
     {
       "year": 2023,
@@ -171,13 +181,33 @@ const data: any = {
     },
     {
       "year": 2024,
+      "program": "CT2006",
+      "value": 6.9
+    },
+    {
+      "year": 2024,
       "program": "all",
       "value": 6.9
     },
     {
       "year": 2025,
+      "program": "CT2006",
+      "value": 6.58
+    },
+    {
+      "year": 2025,
+      "program": "CT2018",
+      "value": 6.25
+    },
+    {
+      "year": 2025,
       "program": "all",
       "value": 6.43
+    },
+    {
+      "year": 2026,
+      "program": "CT2018",
+      "value": 5.88
     },
     {
       "year": 2026,
@@ -188,8 +218,18 @@ const data: any = {
   "candidatesByYear": [
     {
       "year": 2022,
+      "program": "CT2006",
+      "value": 995435
+    },
+    {
+      "year": 2022,
       "program": "all",
       "value": 995435
+    },
+    {
+      "year": 2023,
+      "program": "CT2006",
+      "value": 1017584
     },
     {
       "year": 2023,
@@ -198,8 +238,23 @@ const data: any = {
     },
     {
       "year": 2024,
+      "program": "CT2006",
+      "value": 1061604
+    },
+    {
+      "year": 2024,
       "program": "all",
       "value": 1061604
+    },
+    {
+      "year": 2025,
+      "program": "CT2006",
+      "value": 22088
+    },
+    {
+      "year": 2025,
+      "program": "CT2018",
+      "value": 1130984
     },
     {
       "year": 2025,
@@ -208,11 +263,112 @@ const data: any = {
     },
     {
       "year": 2026,
+      "program": "CT2018",
+      "value": 1131975
+    },
+    {
+      "year": 2026,
       "program": "all",
       "value": 1131975
     }
   ],
   "subjectAverages": [
+    {
+      "subjectId": "toan",
+      "subjectName": "Toán",
+      "program": "CT2006",
+      "value": 6.39
+    },
+    {
+      "subjectId": "ngu_van",
+      "subjectName": "Ngữ văn",
+      "program": "CT2006",
+      "value": 6.87
+    },
+    {
+      "subjectId": "vat_li",
+      "subjectName": "Vật lý",
+      "program": "CT2006",
+      "value": 6.65
+    },
+    {
+      "subjectId": "hoa_hoc",
+      "subjectName": "Hóa học",
+      "program": "CT2006",
+      "value": 6.71
+    },
+    {
+      "subjectId": "sinh_hoc",
+      "subjectName": "Sinh học",
+      "program": "CT2006",
+      "value": 5.91
+    },
+    {
+      "subjectId": "lich_su",
+      "subjectName": "Lịch sử",
+      "program": "CT2006",
+      "value": 6.32
+    },
+    {
+      "subjectId": "dia_li",
+      "subjectName": "Địa lý",
+      "program": "CT2006",
+      "value": 6.68
+    },
+    {
+      "subjectId": "gdcd",
+      "subjectName": "GDCD",
+      "program": "CT2006",
+      "value": 8.16
+    },
+    {
+      "subjectId": "toan",
+      "subjectName": "Toán",
+      "program": "CT2018",
+      "value": 5.23
+    },
+    {
+      "subjectId": "ngu_van",
+      "subjectName": "Ngữ văn",
+      "program": "CT2018",
+      "value": 6.75
+    },
+    {
+      "subjectId": "vat_li",
+      "subjectName": "Vật lý",
+      "program": "CT2018",
+      "value": 6.27
+    },
+    {
+      "subjectId": "hoa_hoc",
+      "subjectName": "Hóa học",
+      "program": "CT2018",
+      "value": 6.18
+    },
+    {
+      "subjectId": "sinh_hoc",
+      "subjectName": "Sinh học",
+      "program": "CT2018",
+      "value": 5.81
+    },
+    {
+      "subjectId": "lich_su",
+      "subjectName": "Lịch sử",
+      "program": "CT2018",
+      "value": 6.34
+    },
+    {
+      "subjectId": "dia_li",
+      "subjectName": "Địa lý",
+      "program": "CT2018",
+      "value": 5.91
+    },
+    {
+      "subjectId": "gdcd",
+      "subjectName": "GDCD",
+      "program": "CT2018",
+      "value": 0
+    },
     {
       "subjectId": "toan",
       "subjectName": "Toán",
@@ -263,6 +419,86 @@ const data: any = {
     }
   ],
   "subjectYearMatrix": [
+    {
+      "subjectId": "toan",
+      "subjectName": "Toán",
+      "year": 2022,
+      "program": "CT2006",
+      "average": 6.47,
+      "underFive": 18.9,
+      "eightPlus": 21.8,
+      "perfect10": 35
+    },
+    {
+      "subjectId": "ngu_van",
+      "subjectName": "Ngữ văn",
+      "year": 2022,
+      "program": "CT2006",
+      "average": 6.51,
+      "underFive": 11.6,
+      "eightPlus": 17.0,
+      "perfect10": 5
+    },
+    {
+      "subjectId": "vat_li",
+      "subjectName": "Vật lý",
+      "year": 2022,
+      "program": "CT2006",
+      "average": 6.72,
+      "underFive": 11.7,
+      "eightPlus": 22.7,
+      "perfect10": 154
+    },
+    {
+      "subjectId": "hoa_hoc",
+      "subjectName": "Hóa học",
+      "year": 2022,
+      "program": "CT2006",
+      "average": 6.7,
+      "underFive": 15.2,
+      "eightPlus": 27.9,
+      "perfect10": 158
+    },
+    {
+      "subjectId": "sinh_hoc",
+      "subjectName": "Sinh học",
+      "year": 2022,
+      "program": "CT2006",
+      "average": 5.02,
+      "underFive": 50.8,
+      "eightPlus": 4.6,
+      "perfect10": 5
+    },
+    {
+      "subjectId": "lich_su",
+      "subjectName": "Lịch sử",
+      "year": 2022,
+      "program": "CT2006",
+      "average": 6.34,
+      "underFive": 19.3,
+      "eightPlus": 18.1,
+      "perfect10": 1779
+    },
+    {
+      "subjectId": "dia_li",
+      "subjectName": "Địa lý",
+      "year": 2022,
+      "program": "CT2006",
+      "average": 6.68,
+      "underFive": 7.3,
+      "eightPlus": 16.7,
+      "perfect10": 163
+    },
+    {
+      "subjectId": "gdcd",
+      "subjectName": "GDCD",
+      "year": 2022,
+      "program": "CT2006",
+      "average": 8.03,
+      "underFive": 1.0,
+      "eightPlus": 61.9,
+      "perfect10": 2836
+    },
     {
       "subjectId": "toan",
       "subjectName": "Toán",
@@ -342,6 +578,86 @@ const data: any = {
       "underFive": 1.0,
       "eightPlus": 61.9,
       "perfect10": 2836
+    },
+    {
+      "subjectId": "toan",
+      "subjectName": "Toán",
+      "year": 2023,
+      "program": "CT2006",
+      "average": 6.25,
+      "underFive": 21.6,
+      "eightPlus": 15.2,
+      "perfect10": 12
+    },
+    {
+      "subjectId": "ngu_van",
+      "subjectName": "Ngữ văn",
+      "year": 2023,
+      "program": "CT2006",
+      "average": 6.86,
+      "underFive": 7.3,
+      "eightPlus": 24.4,
+      "perfect10": 1
+    },
+    {
+      "subjectId": "vat_li",
+      "subjectName": "Vật lý",
+      "year": 2023,
+      "program": "CT2006",
+      "average": 6.57,
+      "underFive": 14.8,
+      "eightPlus": 21.3,
+      "perfect10": 70
+    },
+    {
+      "subjectId": "hoa_hoc",
+      "subjectName": "Hóa học",
+      "year": 2023,
+      "program": "CT2006",
+      "average": 6.74,
+      "underFive": 11.7,
+      "eightPlus": 22.7,
+      "perfect10": 137
+    },
+    {
+      "subjectId": "sinh_hoc",
+      "subjectName": "Sinh học",
+      "year": 2023,
+      "program": "CT2006",
+      "average": 6.39,
+      "underFive": 10.4,
+      "eightPlus": 10.6,
+      "perfect10": 135
+    },
+    {
+      "subjectId": "lich_su",
+      "subjectName": "Lịch sử",
+      "year": 2023,
+      "program": "CT2006",
+      "average": 6.03,
+      "underFive": 24.9,
+      "eightPlus": 13.1,
+      "perfect10": 789
+    },
+    {
+      "subjectId": "dia_li",
+      "subjectName": "Địa lý",
+      "year": 2023,
+      "program": "CT2006",
+      "average": 6.15,
+      "underFive": 13.4,
+      "eightPlus": 6.6,
+      "perfect10": 35
+    },
+    {
+      "subjectId": "gdcd",
+      "subjectName": "GDCD",
+      "year": 2023,
+      "program": "CT2006",
+      "average": 8.29,
+      "underFive": 1.0,
+      "eightPlus": 69.0,
+      "perfect10": 14693
     },
     {
       "subjectId": "toan",
@@ -427,6 +743,86 @@ const data: any = {
       "subjectId": "toan",
       "subjectName": "Toán",
       "year": 2024,
+      "program": "CT2006",
+      "average": 6.45,
+      "underFive": 17.5,
+      "eightPlus": 19.0,
+      "perfect10": 0
+    },
+    {
+      "subjectId": "ngu_van",
+      "subjectName": "Ngữ văn",
+      "year": 2024,
+      "program": "CT2006",
+      "average": 7.23,
+      "underFive": 5.1,
+      "eightPlus": 36.0,
+      "perfect10": 2
+    },
+    {
+      "subjectId": "vat_li",
+      "subjectName": "Vật lý",
+      "year": 2024,
+      "program": "CT2006",
+      "average": 6.67,
+      "underFive": 16.3,
+      "eightPlus": 27.2,
+      "perfect10": 55
+    },
+    {
+      "subjectId": "hoa_hoc",
+      "subjectName": "Hóa học",
+      "year": 2024,
+      "program": "CT2006",
+      "average": 6.68,
+      "underFive": 15.9,
+      "eightPlus": 26.9,
+      "perfect10": 1278
+    },
+    {
+      "subjectId": "sinh_hoc",
+      "subjectName": "Sinh học",
+      "year": 2024,
+      "program": "CT2006",
+      "average": 6.28,
+      "underFive": 13.4,
+      "eightPlus": 10.1,
+      "perfect10": 34
+    },
+    {
+      "subjectId": "lich_su",
+      "subjectName": "Lịch sử",
+      "year": 2024,
+      "program": "CT2006",
+      "average": 6.57,
+      "underFive": 13.0,
+      "eightPlus": 19.6,
+      "perfect10": 2108
+    },
+    {
+      "subjectId": "dia_li",
+      "subjectName": "Địa lý",
+      "year": 2024,
+      "program": "CT2006",
+      "average": 7.19,
+      "underFive": 4.4,
+      "eightPlus": 31.0,
+      "perfect10": 3175
+    },
+    {
+      "subjectId": "gdcd",
+      "subjectName": "GDCD",
+      "year": 2024,
+      "program": "CT2006",
+      "average": 8.16,
+      "underFive": 0.8,
+      "eightPlus": 65.8,
+      "perfect10": 3661
+    },
+    {
+      "subjectId": "toan",
+      "subjectName": "Toán",
+      "year": 2024,
       "program": "all",
       "average": 6.45,
       "underFive": 17.5,
@@ -507,6 +903,156 @@ const data: any = {
       "subjectId": "toan",
       "subjectName": "Toán",
       "year": 2025,
+      "program": "CT2006",
+      "average": 6.46,
+      "underFive": 22.5,
+      "eightPlus": 26.9,
+      "perfect10": 0
+    },
+    {
+      "subjectId": "ngu_van",
+      "subjectName": "Ngữ văn",
+      "year": 2025,
+      "program": "CT2006",
+      "average": 6.24,
+      "underFive": 21.3,
+      "eightPlus": 20.5,
+      "perfect10": 0
+    },
+    {
+      "subjectId": "vat_li",
+      "subjectName": "Vật lý",
+      "year": 2025,
+      "program": "CT2006",
+      "average": 6.42,
+      "underFive": 20.1,
+      "eightPlus": 21.8,
+      "perfect10": 0
+    },
+    {
+      "subjectId": "hoa_hoc",
+      "subjectName": "Hóa học",
+      "year": 2025,
+      "program": "CT2006",
+      "average": 6.35,
+      "underFive": 24.4,
+      "eightPlus": 24.1,
+      "perfect10": 2
+    },
+    {
+      "subjectId": "sinh_hoc",
+      "subjectName": "Sinh học",
+      "year": 2025,
+      "program": "CT2006",
+      "average": 5.88,
+      "underFive": 32.2,
+      "eightPlus": 19.7,
+      "perfect10": 2
+    },
+    {
+      "subjectId": "lich_su",
+      "subjectName": "Lịch sử",
+      "year": 2025,
+      "program": "CT2006",
+      "average": 6.36,
+      "underFive": 26.3,
+      "eightPlus": 27.2,
+      "perfect10": 129
+    },
+    {
+      "subjectId": "dia_li",
+      "subjectName": "Địa lý",
+      "year": 2025,
+      "program": "CT2006",
+      "average": 7.19,
+      "underFive": 10.3,
+      "eightPlus": 39.5,
+      "perfect10": 115
+    },
+    {
+      "subjectId": "gdcd",
+      "subjectName": "GDCD",
+      "year": 2025,
+      "program": "CT2006",
+      "average": 7.7,
+      "underFive": 5.2,
+      "eightPlus": 52.3,
+      "perfect10": 34
+    },
+    {
+      "subjectId": "toan",
+      "subjectName": "Toán",
+      "year": 2025,
+      "program": "CT2018",
+      "average": 4.78,
+      "underFive": 56.4,
+      "eightPlus": 5.5,
+      "perfect10": 513
+    },
+    {
+      "subjectId": "ngu_van",
+      "subjectName": "Ngữ văn",
+      "year": 2025,
+      "program": "CT2018",
+      "average": 7.0,
+      "underFive": 6.2,
+      "eightPlus": 26.7,
+      "perfect10": 0
+    },
+    {
+      "subjectId": "vat_li",
+      "subjectName": "Vật lý",
+      "year": 2025,
+      "program": "CT2018",
+      "average": 6.99,
+      "underFive": 9.8,
+      "eightPlus": 30.8,
+      "perfect10": 3929
+    },
+    {
+      "subjectId": "hoa_hoc",
+      "subjectName": "Hóa học",
+      "year": 2025,
+      "program": "CT2018",
+      "average": 6.06,
+      "underFive": 29.5,
+      "eightPlus": 19.3,
+      "perfect10": 625
+    },
+    {
+      "subjectId": "sinh_hoc",
+      "subjectName": "Sinh học",
+      "year": 2025,
+      "program": "CT2018",
+      "average": 5.78,
+      "underFive": 32.4,
+      "eightPlus": 10.8,
+      "perfect10": 82
+    },
+    {
+      "subjectId": "lich_su",
+      "subjectName": "Lịch sử",
+      "year": 2025,
+      "program": "CT2018",
+      "average": 6.52,
+      "underFive": 18.6,
+      "eightPlus": 23.0,
+      "perfect10": 1518
+    },
+    {
+      "subjectId": "dia_li",
+      "subjectName": "Địa lý",
+      "year": 2025,
+      "program": "CT2018",
+      "average": 6.63,
+      "underFive": 18.7,
+      "eightPlus": 26.7,
+      "perfect10": 6907
+    },
+    {
+      "subjectId": "toan",
+      "subjectName": "Toán",
+      "year": 2025,
       "program": "all",
       "average": 4.8,
       "underFive": 56.1,
@@ -582,6 +1128,76 @@ const data: any = {
       "underFive": 5.2,
       "eightPlus": 52.3,
       "perfect10": 34
+    },
+    {
+      "subjectId": "toan",
+      "subjectName": "Toán",
+      "year": 2026,
+      "program": "CT2018",
+      "average": 5.67,
+      "underFive": 37.6,
+      "eightPlus": 16.1,
+      "perfect10": 4145
+    },
+    {
+      "subjectId": "ngu_van",
+      "subjectName": "Ngữ văn",
+      "year": 2026,
+      "program": "CT2018",
+      "average": 6.49,
+      "underFive": 11.4,
+      "eightPlus": 13.8,
+      "perfect10": 0
+    },
+    {
+      "subjectId": "vat_li",
+      "subjectName": "Vật lý",
+      "year": 2026,
+      "program": "CT2018",
+      "average": 5.58,
+      "underFive": 38.9,
+      "eightPlus": 11.1,
+      "perfect10": 184
+    },
+    {
+      "subjectId": "hoa_hoc",
+      "subjectName": "Hóa học",
+      "year": 2026,
+      "program": "CT2018",
+      "average": 6.3,
+      "underFive": 21.7,
+      "eightPlus": 18.2,
+      "perfect10": 399
+    },
+    {
+      "subjectId": "sinh_hoc",
+      "subjectName": "Sinh học",
+      "year": 2026,
+      "program": "CT2018",
+      "average": 5.85,
+      "underFive": 31.5,
+      "eightPlus": 13.2,
+      "perfect10": 121
+    },
+    {
+      "subjectId": "lich_su",
+      "subjectName": "Lịch sử",
+      "year": 2026,
+      "program": "CT2018",
+      "average": 6.18,
+      "underFive": 26.0,
+      "eightPlus": 18.7,
+      "perfect10": 2348
+    },
+    {
+      "subjectId": "dia_li",
+      "subjectName": "Địa lý",
+      "year": 2026,
+      "program": "CT2018",
+      "average": 5.1,
+      "underFive": 47.2,
+      "eightPlus": 4.2,
+      "perfect10": 52
     },
     {
       "subjectId": "toan",
