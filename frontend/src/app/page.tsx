@@ -9,6 +9,7 @@ import vscDarkPlus from 'react-syntax-highlighter/dist/cjs/styles/prism/vsc-dark
 import tsx from 'react-syntax-highlighter/dist/cjs/languages/prism/tsx';
 import python from 'react-syntax-highlighter/dist/cjs/languages/prism/python';
 import bash from 'react-syntax-highlighter/dist/cjs/languages/prism/bash';
+import { DistributionTab } from '@/components/dashboard/DistributionTab';
 import { OverviewTab } from '@/components/dashboard/OverviewTab';
 import { RegionTab } from '@/components/dashboard/RegionTab';
 import { SubjectTrendTab } from '@/components/dashboard/SubjectTrendTab';
@@ -715,6 +716,7 @@ const CHAT_SESSIONS_KEY = 'examdata_ai_chat_sessions';
 const TAB_LABELS: Record<Tab, string> = {
   overview: 'Tổng quan',
   trends: 'Xu hướng & Môn học',
+  distribution: 'Phổ điểm & Tổ hợp',
   regions: 'Địa phương & Vùng miền',
   assistant: 'Trợ lý AI',
 };
@@ -829,6 +831,10 @@ export default function Home() {
             <SidebarIcon name="distribution" />
             <span>Xu hướng & Môn học</span>
           </button>
+          <button onClick={() => setActiveTab('distribution')} className={`sidebar-nav-item ${activeTab === 'distribution' ? 'sidebar-item-active text-white' : 'text-slate-400 hover:bg-white/5 hover:text-slate-200'}`}>
+            <SidebarIcon name="correlation" />
+            <span>Phổ điểm & Tổ hợp</span>
+          </button>
           <button onClick={() => setActiveTab('regions')} className={`sidebar-nav-item ${activeTab === 'regions' ? 'sidebar-item-active text-white' : 'text-slate-400 hover:bg-white/5 hover:text-slate-200'}`}>
             <SidebarIcon name="map" />
             <span>Địa phương & Vùng miền</span>
@@ -840,21 +846,6 @@ export default function Home() {
         </nav>
 
         <div className="mx-2 my-4 border-t border-white/5" />
-
-        <div className="mx-2 grid gap-2 rounded-2xl border border-white/10 bg-white/5 p-3 text-xs font-semibold text-slate-300">
-          <div className="flex items-center justify-between">
-            <span>Giai đoạn</span>
-            <span className="text-white">2022-2026</span>
-          </div>
-          <div className="flex items-center justify-between">
-            <span>Môn chính</span>
-            <span className="text-white">9</span>
-          </div>
-          <div className="flex items-center justify-between">
-            <span>Tab phân tích</span>
-            <span className="text-white">3</span>
-          </div>
-        </div>
       </aside>
 
       <main className="ml-[272px] h-screen overflow-hidden bg-[#F5F7FB]">
@@ -870,6 +861,7 @@ export default function Home() {
           <div className="min-h-0 flex-1">
             {activeTab === 'overview' && <OverviewTab />}
             {activeTab === 'trends' && <SubjectTrendTab />}
+            {activeTab === 'distribution' && <DistributionTab />}
             {activeTab === 'regions' && <RegionTab />}
             {activeTab === 'assistant' && activeSession && (
               <div className="grid h-full min-h-0 gap-4 px-8 pb-6 lg:grid-cols-[minmax(0,1fr)_380px]">

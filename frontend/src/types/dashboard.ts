@@ -1,4 +1,4 @@
-export type Tab = 'overview' | 'trends' | 'regions' | 'assistant';
+export type Tab = 'overview' | 'trends' | 'distribution' | 'regions' | 'assistant';
 
 export type YearOption = 'all' | 2022 | 2023 | 2024 | 2025 | 2026;
 
@@ -73,4 +73,38 @@ export interface LineSeries {
   name: string;
   color: string;
   points: ChartPoint[];
+}
+
+export type DistributionKind = 'subject' | 'combination';
+
+export interface DistributionBin {
+  label: string;
+  count: number;
+  percentage: number;
+}
+
+export interface DistributionStats {
+  year: number;
+  type: DistributionKind;
+  key: string;
+  name: string;
+  candidateCount: number;
+  mean: number;
+  median: number;
+  std: number;
+  mode: number;
+  underFiveRate?: number;
+  eightPlusRate?: number;
+  under15Rate?: number;
+  above24Rate?: number;
+  perfectCount?: number;
+  highScoreCount?: number;
+}
+
+export interface DistributionRecord {
+  year: number;
+  type: DistributionKind;
+  key: string;
+  name: string;
+  bins: DistributionBin[];
 }

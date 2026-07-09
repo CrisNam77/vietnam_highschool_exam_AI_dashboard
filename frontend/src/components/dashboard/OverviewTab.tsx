@@ -1,7 +1,7 @@
 'use client';
 
-import { useMemo, useState } from 'react';
-import { candidatesByYear, nationalAverageByYear, overviewKpis, PROGRAMS, REGIONS, regionAverages, subjectAverages, YEARS } from '@/data/dashboardMockData';
+import { useState } from 'react';
+import { candidatesByYear, nationalAverageByYear, overviewKpis, PROGRAMS, subjectAverages, YEARS } from '@/data/dashboardMockData';
 import type { Program, YearOption } from '@/types/dashboard';
 import { ChartCard, SimpleBarChart, SimpleLineChart } from './charts';
 import { DashboardShell } from './DashboardShell';
@@ -13,18 +13,9 @@ const COLORS = ['#00195A', '#594DA3', '#826ACA', '#AD88F1'];
 
 export function OverviewTab() {
   const [year, setYear] = useState<YearOption>('all');
-  const [regionId, setRegionId] = useState('all');
   const [program, setProgram] = useState<Program>('all');
 
-  const selectedYear = year === 'all' ? 2026 : year;
-  const selectedRegion = REGIONS.find(region => region.id === regionId);
-
-  const scopedSubjectAverages = useMemo(() => {
-    if (regionId === 'all') return subjectAverages;
-    return regionAverages
-      .filter(item => item.regionId === regionId && item.year === selectedYear)
-      .map(item => ({ subjectId: item.subjectId, subjectName: item.subjectName, value: item.average }));
-  }, [regionId, selectedYear]);
+  const scopedSubjectAverages = subjectAverages;
 
   const scopedCandidates = candidatesByYear
     .filter(item => year === 'all' || item.year === year)
@@ -39,7 +30,7 @@ export function OverviewTab() {
 
   const kpis = overviewKpis.map(item => {
     if (item.label === 'Điểm TB toàn quốc') {
-      return { ...item, value: average.toFixed(2), detail: selectedRegion ? selectedRegion.name : program === 'all' ? 'Toàn quốc' : program };
+      return { ...item, value: average.toFixed(2), detail: program === 'all' ? 'Toàn quốc' : program };
     }
     if (item.label === 'Môn điểm cao nhất') return { ...item, value: highest.subjectName, detail: `${highest.value.toFixed(2)} điểm` };
     if (item.label === 'Môn điểm thấp nhất') return { ...item, value: lowest.subjectName, detail: `${lowest.value.toFixed(2)} điểm` };
@@ -47,7 +38,7 @@ export function OverviewTab() {
   });
 
   return (
-    <DashboardShell title="Tổng quan" question="Bức tranh chung về điểm thi THPT Việt Nam giai đoạn 2022-2026.">
+    <DashboardShell title="Tổng quan">
       <FilterBar
         controls={[
           {
@@ -55,12 +46,6 @@ export function OverviewTab() {
             value: String(year),
             options: [{ label: 'Tất cả', value: 'all' }, ...YEARS.map(item => ({ label: String(item), value: String(item) }))],
             onChange: value => setYear(value === 'all' ? 'all' : Number(value) as YearOption),
-          },
-          {
-            label: 'Vùng miền',
-            value: regionId,
-            options: [{ label: 'Toàn quốc', value: 'all' }, ...REGIONS.map(region => ({ label: region.name, value: region.id }))],
-            onChange: setRegionId,
           },
           {
             label: 'Chương trình',
@@ -71,7 +56,6 @@ export function OverviewTab() {
         ]}
         onReset={() => {
           setYear('all');
-          setRegionId('all');
           setProgram('all');
         }}
       />

@@ -9,6 +9,7 @@ User
 └── Next.js Frontend
     ├── Tổng quan
     ├── Xu hướng & Môn học
+    ├── Phổ điểm & Tổ hợp
     ├── Địa phương & Vùng miền
     ├── Trợ lý AI
     └── gọi FastAPI backend qua proxy /api/backend/...
@@ -181,12 +182,13 @@ data/logs/interaction_history.json
 
 ## Frontend Sections
 
-Next.js frontend gồm 4 khu vực chính:
+Next.js frontend gồm 5 khu vực chính:
 
 1. Tổng quan
 2. Xu hướng & Môn học
-3. Địa phương & Vùng miền
-4. Trợ lý AI
+3. Phổ điểm & Tổ hợp
+4. Địa phương & Vùng miền
+5. Trợ lý AI
 
 History/logs được hiển thị trong khu vực Trợ lý AI. Tài liệu API backend xem tại:
 

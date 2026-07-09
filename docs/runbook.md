@@ -131,12 +131,13 @@ Checklist:
 
 ## 7. Demo Dashboard Pages
 
-Frontend Next.js hiện có 4 khu vực chính:
+Frontend Next.js hiện có 5 khu vực chính:
 
 1. Tổng quan
 2. Xu hướng & Môn học
-3. Địa phương & Vùng miền
-4. Trợ lý AI
+3. Phổ điểm & Tổ hợp
+4. Địa phương & Vùng miền
+5. Trợ lý AI
 
 History/logs nằm trong khu vực Trợ lý AI. FastAPI Docs vẫn truy cập trực tiếp tại `http://localhost:8001/docs`.
 
