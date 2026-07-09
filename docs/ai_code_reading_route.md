@@ -169,7 +169,7 @@ Mục tiêu: hiểu UI gọi API, bắt buộc duyệt code trước khi chạy,
 
 File cần đọc:
 
-- `ai_frontend/src/app/page.tsx`
+- `frontend/src/app/page.tsx`
   - File lớn nhất của frontend AI.
   - `callApi`: helper gọi API qua `/api/backend`.
   - `ChatTab`: màn hình chat chính.
@@ -181,16 +181,16 @@ File cần đọc:
   - `ApiTab`: tài liệu API hiển thị ngay trong giao diện.
   - Local storage key `examdata_ai_chat_sessions`: lưu session chat phía browser.
 
-- `ai_frontend/src/app/api/backend/[...path]/route.ts`
+- `frontend/src/app/api/backend/[...path]/route.ts`
   - Proxy Next.js.
   - Đọc `BACKEND_URL` hoặc `NEXT_PUBLIC_API_URL`.
   - Forward GET/POST từ frontend sang FastAPI.
   - Giúp frontend gọi same-origin `/api/backend/...`.
 
-- `ai_frontend/src/app/globals.css`
+- `frontend/src/app/globals.css`
   - Style tổng thể, custom scrollbar, markdown output, layout.
 
-- `ai_frontend/package.json`
+- `frontend/package.json`
   - Scripts chạy frontend.
   - Dependency chính: Next.js, React, Tailwind, React Markdown, syntax highlighter, Prisma.
 
@@ -206,10 +206,10 @@ Mục tiêu: hiểu hướng lưu dữ liệu bền vững cho module AI.
 
 File cần đọc:
 
-- `ai_frontend/prisma/schema.prisma`
+- `frontend/prisma/schema.prisma`
   - Schema nguồn cho session, message, execution, artifact, feedback.
 
-- `ai_frontend/prisma/migrations/20260709003000_init_ai_module/migration.sql`
+- `frontend/prisma/migrations/20260709003000_init_ai_module/migration.sql`
   - SQL migration tạo bảng.
 
 - `backend/app/db/sqlite.py`
@@ -301,8 +301,8 @@ Nếu chỉ có ít thời gian, đọc theo thứ tự này:
 5. `backend/app/api/routes/execution.py`
 6. `backend/app/services/execution_service.py`
 7. `backend/app/services/log_service.py`
-8. `ai_frontend/src/app/api/backend/[...path]/route.ts`
-9. `ai_frontend/src/app/page.tsx`
+8. `frontend/src/app/api/backend/[...path]/route.ts`
+9. `frontend/src/app/page.tsx`
 10. `tests/test_ai_api.py`
 11. `tests/test_execution_api.py`
 
@@ -347,11 +347,11 @@ backend/app/services/execution_service.py   # Môi trường exec, helper bảng
 backend/app/services/log_service.py         # JSON log và report
 backend/app/core/config.py                  # Cấu hình .env
 
-ai_frontend/src/app/page.tsx                # UI chat, duyệt code, chạy code, history, API docs
-ai_frontend/src/app/api/backend/[...path]/route.ts
+frontend/src/app/page.tsx                # UI chat, duyệt code, chạy code, history, API docs
+frontend/src/app/api/backend/[...path]/route.ts
                                                # Proxy Next.js -> FastAPI
-ai_frontend/src/app/globals.css             # CSS frontend
-ai_frontend/prisma/schema.prisma            # Schema DB mục tiêu
+frontend/src/app/globals.css             # CSS frontend
+frontend/prisma/schema.prisma            # Schema DB mục tiêu
 
 docs/ai_module_design.md                    # Thiết kế module AI
 docs/api_contract.md                        # Hợp đồng API
