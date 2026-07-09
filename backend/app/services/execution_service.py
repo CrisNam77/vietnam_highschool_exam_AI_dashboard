@@ -1,8 +1,10 @@
 import base64
+from contextlib import contextmanager
 import io
 import re
 import sys
 import traceback
+from collections.abc import Callable, Iterator
 
 import matplotlib
 import numpy as np
@@ -69,6 +71,7 @@ COLUMN_ALIASES = {
 
 
 pd.options.mode.copy_on_write = True
+PLACEHOLDER_PATTERN = re.compile(r"\{[a-zA-Z_][a-zA-Z0-9_]*(?:\[[^\]]+\])?(?::[^}]*)?\}")
 
 
 class LinearRegression:
@@ -110,6 +113,29 @@ def normalize_unsupported_imports(code: str) -> str:
         code,
         flags=re.MULTILINE,
     )
+
+
+def normalize_sbd_modulo(code: str) -> str:
+    sbd_selector = r"((?:[A-Za-z_][A-Za-z0-9_]*|\([^()\n]+\))\s*\[\s*['\"]sbd['\"]\s*\])"
+    return re.sub(
+        rf"{sbd_selector}\s*%\s*2",
+        r"pd.to_numeric(\1, errors='coerce') % 2",
+        code,
+    )
+
+
+CODE_NORMALIZERS: tuple[Callable[[str], str], ...] = (
+    normalize_column_aliases,
+    normalize_unsupported_imports,
+    normalize_sbd_modulo,
+)
+
+
+def normalize_code(code: str) -> str:
+    normalized = code
+    for normalizer in CODE_NORMALIZERS:
+        normalized = normalizer(normalized)
+    return normalized
 
 
 def _format_markdown_value(value) -> str:
@@ -261,7 +287,7 @@ def _auto_distribution_insight(code: str, df: pd.DataFrame) -> str:
 
 
 def _has_unresolved_placeholders(text: str) -> bool:
-    return bool(re.search(r"\{[a-zA-Z_][a-zA-Z0-9_]*(?:\[[^\]]+\])?(?::[^}]*)?\}", text))
+    return bool(PLACEHOLDER_PATTERN.search(text))
 
 
 def _strip_placeholder_output(text: str) -> str:
@@ -274,13 +300,9 @@ def _strip_placeholder_output(text: str) -> str:
     return "\n".join(lines).strip()
 
 
-def execute_code(code: str, df: pd.DataFrame) -> dict:
-    code = normalize_column_aliases(code)
-    code = normalize_unsupported_imports(code)
-    plt.close("all")
-    execution_df = df.copy(deep=False)
-    exec_globals = {
-        "df": execution_df,
+def _build_exec_globals(df: pd.DataFrame) -> dict:
+    return {
+        "df": df,
         "pd": pd,
         "np": np,
         "plt": plt,
@@ -291,46 +313,67 @@ def execute_code(code: str, df: pd.DataFrame) -> dict:
         "LinearRegression": LinearRegression,
     }
 
+
+@contextmanager
+def _captured_output() -> Iterator[tuple[io.StringIO, io.StringIO]]:
     stdout_buffer = io.StringIO()
     stderr_buffer = io.StringIO()
     old_stdout = sys.stdout
     old_stderr = sys.stderr
     sys.stdout = stdout_buffer
     sys.stderr = stderr_buffer
-
-    success = True
     try:
-        exec(code, exec_globals)
-    except Exception:
-        success = False
-        traceback.print_exc(file=stderr_buffer)
+        yield stdout_buffer, stderr_buffer
     finally:
         sys.stdout = old_stdout
         sys.stderr = old_stderr
 
-    stdout = stdout_buffer.getvalue()
-    stderr = stderr_buffer.getvalue()
+
+def _run_user_code(code: str, exec_globals: dict) -> tuple[bool, str, str]:
+    success = True
+    with _captured_output() as (stdout_buffer, stderr_buffer):
+        try:
+            exec(code, exec_globals)
+        except Exception:
+            success = False
+            traceback.print_exc(file=stderr_buffer)
+
+    return success, stdout_buffer.getvalue(), stderr_buffer.getvalue()
+
+
+def _append_auto_distribution_insight(code: str, df: pd.DataFrame, stdout: str) -> str:
+    if stdout.strip() and not _has_unresolved_placeholders(stdout):
+        return stdout
+
+    auto_insight = _auto_distribution_insight(code, df)
+    if not auto_insight:
+        return stdout
+
+    stripped_stdout = _strip_placeholder_output(stdout)
+    return auto_insight + (f"\n\n{stripped_stdout}\n" if stripped_stdout else "\n")
+
+
+def _append_result_table_if_needed(stdout: str, exec_globals: dict) -> str:
+    if stdout.strip() or _has_markdown_table(stdout):
+        return stdout
+
+    result_table = _find_result_dataframe(exec_globals)
+    if result_table is None:
+        return stdout
+
+    table_buffer = io.StringIO()
+    old_stdout = sys.stdout
+    sys.stdout = table_buffer
+    try:
+        print_table(result_table)
+    finally:
+        sys.stdout = old_stdout
+
+    return stdout + "\n### Bảng kết quả\n" + table_buffer.getvalue()
+
+
+def _extract_plot_image(stderr: str) -> tuple[str | None, str]:
     plot_b64 = None
-
-    if success and (not stdout.strip() or _has_unresolved_placeholders(stdout)):
-        auto_insight = _auto_distribution_insight(code, execution_df)
-        if auto_insight:
-            stripped_stdout = _strip_placeholder_output(stdout)
-            stdout = auto_insight + (f"\n\n{stripped_stdout}\n" if stripped_stdout else "\n")
-
-    if success and not stdout.strip() and not _has_markdown_table(stdout):
-        result_table = _find_result_dataframe(exec_globals)
-        if result_table is not None:
-            stdout += "\n### Bảng kết quả\n"
-            table_buffer = io.StringIO()
-            old_stdout = sys.stdout
-            sys.stdout = table_buffer
-            try:
-                print_table(result_table)
-            finally:
-                sys.stdout = old_stdout
-            stdout += table_buffer.getvalue()
-
     try:
         if plt.get_fignums():
             image_buffer = io.BytesIO()
@@ -340,6 +383,22 @@ def execute_code(code: str, df: pd.DataFrame) -> dict:
             plt.close("all")
     except Exception as exc:
         stderr += f"\nLỗi khi trích xuất biểu đồ: {exc}"
+    return plot_b64, stderr
+
+
+def execute_code(code: str, df: pd.DataFrame) -> dict:
+    code = normalize_code(code)
+    plt.close("all")
+    execution_df = df.copy(deep=False)
+    exec_globals = _build_exec_globals(execution_df)
+
+    success, stdout, stderr = _run_user_code(code, exec_globals)
+
+    if success:
+        stdout = _append_auto_distribution_insight(code, execution_df, stdout)
+        stdout = _append_result_table_if_needed(stdout, exec_globals)
+
+    plot_b64, stderr = _extract_plot_image(stderr)
 
     return {
         "success": success,
