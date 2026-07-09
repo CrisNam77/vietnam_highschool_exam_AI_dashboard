@@ -59,7 +59,7 @@ export function RegionTab() {
     label: region.name,
     values: Object.fromEntries(
       SUBJECTS.map(subject => {
-        const row = regionSubjectMatrix.find(item => item.regionId === region.id && item.subjectId === subject.id);
+        const row = regionAverages.find(item => item.regionId === region.id && item.subjectId === subject.id && item.year === year);
         return [subject.name, row?.average ?? 0];
       })
     ),

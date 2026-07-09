@@ -1,8 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { eightPlusRates, subjectYearMatrix, SUBJECTS, underFiveRates, YEARS } from '@/data/dashboardData';
-import type { MetricKey } from '@/types/dashboard';
+import { candidatesByYear, eightPlusRates, PROGRAMS, subjectYearMatrix, SUBJECTS, underFiveRates, YEARS } from '@/data/dashboardData';
+import type { MetricKey, Program } from '@/types/dashboard';
 import { ChartCard, SimpleBarChart, SimpleLineChart } from './charts';
 import { DashboardShell } from './DashboardShell';
 import { FilterBar } from './FilterBar';
@@ -39,10 +39,28 @@ export function SubjectTrendTab() {
   const [toYear, setToYear] = useState(2026);
   const [subjectId, setSubjectId] = useState('all');
   const [metric, setMetric] = useState<MetricKey>('average');
+  const [program, setProgram] = useState<Program>('all');
+
+  // Derive available years for selected program
+  const availableYears = program === 'all'
+    ? YEARS
+    : candidatesByYear
+        .filter(item => item.program === program)
+        .map(item => item.year)
+        .sort((a, b) => a - b);
+
+  const handleProgramChange = (nextProgram: string) => {
+    const p = nextProgram as Program;
+    setProgram(p);
+    const yearsForP = p === 'all' ? YEARS : candidatesByYear
+      .filter(item => item.program === p).map(item => item.year);
+    if (!yearsForP.includes(fromYear)) setFromYear(yearsForP[0] ?? YEARS[0]);
+    if (!yearsForP.includes(toYear)) setToYear(yearsForP[yearsForP.length - 1] ?? YEARS[YEARS.length - 1]);
+  };
 
   const startYear = Math.min(fromYear, toYear);
   const endYear = Math.max(fromYear, toYear);
-  const yearRange = YEARS.filter(year => year >= startYear && year <= endYear);
+  const yearRange = availableYears.filter(year => year >= startYear && year <= endYear);
   const lineSubjects = subjectId === 'all'
     ? SUBJECTS
     : SUBJECTS.filter(subject => subject.id === subjectId);
@@ -51,11 +69,14 @@ export function SubjectTrendTab() {
     label: subject.name,
     values: Object.fromEntries(
       yearRange.map(year => {
-        const row = subjectYearMatrix.find(item => item.subjectId === subject.id && item.year === year);
+        const row = subjectYearMatrix.find(item => item.subjectId === subject.id && item.year === year && item.program === program);
         return [String(year), row?.[metric] ?? 0];
       })
     ),
   }));
+
+  const scopedUnderFive = underFiveRates.filter(item => item.program === program);
+  const scopedEightPlus = eightPlusRates.filter(item => item.program === program);
 
   return (
     <DashboardShell
@@ -65,15 +86,21 @@ export function SubjectTrendTab() {
       <FilterBar
         controls={[
           {
+            label: 'Chương trình',
+            value: program,
+            options: [{ label: 'Tất cả', value: 'all' }, ...PROGRAMS.map(p => ({ label: p, value: p }))],
+            onChange: handleProgramChange,
+          },
+          {
             label: 'Từ năm',
             value: String(fromYear),
-            options: YEARS.map(year => ({ label: String(year), value: String(year) })),
+            options: availableYears.map(year => ({ label: String(year), value: String(year) })),
             onChange: value => setFromYear(Number(value)),
           },
           {
             label: 'Đến năm',
             value: String(toYear),
-            options: YEARS.map(year => ({ label: String(year), value: String(year) })),
+            options: availableYears.map(year => ({ label: String(year), value: String(year) })),
             onChange: value => setToYear(Number(value)),
           },
           {
@@ -94,6 +121,7 @@ export function SubjectTrendTab() {
           setToYear(2026);
           setSubjectId('all');
           setMetric('average');
+          setProgram('all');
         }}
       />
 
@@ -104,7 +132,7 @@ export function SubjectTrendTab() {
             name: subject.name,
             color: subjectPalette[subject.id] ?? '#594DA3',
             points: yearRange.map(year => {
-              const row = subjectYearMatrix.find(item => item.subjectId === subject.id && item.year === year);
+              const row = subjectYearMatrix.find(item => item.subjectId === subject.id && item.year === year && item.program === program);
               return { label: String(year), value: row?.[metric] ?? 0 };
             }),
           }))}
@@ -115,10 +143,10 @@ export function SubjectTrendTab() {
 
       <div className="grid gap-5 xl:grid-cols-2">
         <ChartCard title="Tỷ lệ dưới 5 theo môn">
-          <SimpleBarChart points={underFiveRates.map(item => ({ label: item.subjectName, value: item.value }))} danger />
+          <SimpleBarChart points={scopedUnderFive.map(item => ({ label: item.subjectName, value: item.value }))} danger />
         </ChartCard>
         <ChartCard title="Tỷ lệ từ 8 trở lên theo môn">
-          <SimpleBarChart points={eightPlusRates.map(item => ({ label: item.subjectName, value: item.value }))} color="#594DA3" />
+          <SimpleBarChart points={scopedEightPlus.map(item => ({ label: item.subjectName, value: item.value }))} color="#594DA3" />
         </ChartCard>
       </div>
     </DashboardShell>
