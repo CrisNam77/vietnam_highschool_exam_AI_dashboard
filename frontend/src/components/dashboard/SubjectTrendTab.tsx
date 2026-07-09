@@ -4,8 +4,8 @@ import { useState } from 'react';
 import { candidatesByYear, eightPlusRates, PROGRAMS, subjectYearMatrix, SUBJECTS, underFiveRates, YEARS } from '@/data/dashboardData';
 import type { MetricKey, Program } from '@/types/dashboard';
 import { ChartCard, SimpleBarChart, SimpleLineChart } from './charts';
+import { DashboardSelect } from './DashboardSelect';
 import { DashboardShell } from './DashboardShell';
-import { FilterBar } from './FilterBar';
 import { HeatmapTable } from './HeatmapTable';
 import { YearRangeSlider } from './YearRangeSlider';
 
@@ -84,9 +84,8 @@ export function SubjectTrendTab() {
       title="Xu hướng & Môn học"
       question="Theo dõi biến động điểm thi theo năm và môn học."
     >
-      {/* Year range slider + other filters */}
       <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-        <div className="flex flex-wrap items-end gap-4">
+        <div className="flex flex-wrap items-end gap-3">
           <YearRangeSlider
             years={availableYears}
             fromYear={fromYear}
@@ -94,36 +93,40 @@ export function SubjectTrendTab() {
             onFromChange={setFromYear}
             onToChange={setToYear}
           />
-          <FilterBar
-            flat
-            controls={[
-              {
-                label: 'Chương trình',
-                value: program,
-                options: [{ label: 'Tất cả', value: 'all' }, ...PROGRAMS.map(p => ({ label: p, value: p }))],
-                onChange: handleProgramChange,
-              },
-              {
-                label: 'Môn học',
-                value: subjectId,
-                options: [{ label: 'Tất cả môn', value: 'all' }, ...SUBJECTS.map(subject => ({ label: subject.name, value: subject.id }))],
-                onChange: setSubjectId,
-              },
-              {
-                label: 'Chỉ số',
-                value: metric,
-                options: Object.entries(metricLabels).map(([value, label]) => ({ label, value })),
-                onChange: value => setMetric(value as MetricKey),
-              },
-            ]}
-            onReset={() => {
-              setFromYear(availableYears[0] ?? 2022);
-              setToYear(availableYears[availableYears.length - 1] ?? 2026);
-              setSubjectId('all');
-              setMetric('average');
-              setProgram('all');
-            }}
+          <DashboardSelect
+            label="Chương trình"
+            value={program}
+            options={[{ label: 'Tất cả', value: 'all' }, ...PROGRAMS.map(p => ({ label: p, value: p }))]}
+            onChange={handleProgramChange}
           />
+          <DashboardSelect
+            label="Môn học"
+            value={subjectId}
+            options={[{ label: 'Tất cả môn', value: 'all' }, ...SUBJECTS.map(s => ({ label: s.name, value: s.id }))]}
+            onChange={setSubjectId}
+          />
+          <DashboardSelect
+            label="Chỉ số"
+            value={metric}
+            options={Object.entries(metricLabels).map(([value, label]) => ({ label, value }))}
+            onChange={value => setMetric(value as MetricKey)}
+          />
+          <div className="flex flex-col">
+            <span className="invisible text-xs font-bold uppercase tracking-[0.12em]">x</span>
+            <button
+              type="button"
+              onClick={() => {
+                setFromYear(availableYears[0] ?? 2022);
+                setToYear(availableYears[availableYears.length - 1] ?? 2026);
+                setSubjectId('all');
+                setMetric('average');
+                setProgram('all');
+              }}
+              className="mt-1 rounded-2xl border border-[#AD88F1]/60 bg-white px-4 py-2.5 text-sm font-bold text-[#594DA3] transition hover:bg-[#AD88F1]/10"
+            >
+              Đặt lại
+            </button>
+          </div>
         </div>
       </div>
 
