@@ -186,12 +186,14 @@ def main():
 
     underFiveRates = []
     eightPlusRates = []
-    for s in SUBJECTS:
-        sid = s["id"]
-        latest = [row for row in subjectYearMatrix if row["subjectId"] == sid and row["year"] == max(YEARS)]
-        if latest:
-            underFiveRates.append({"subjectId": sid, "subjectName": s["name"], "value": latest[0]["underFive"]})
-            eightPlusRates.append({"subjectId": sid, "subjectName": s["name"], "value": latest[0]["eightPlus"]})
+    latest_year = max(YEARS)
+    for p in PROGRAMS + ["all"]:
+        for s in SUBJECTS:
+            sid = s["id"]
+            latest = [row for row in subjectYearMatrix if row["subjectId"] == sid and row["year"] == latest_year and row["program"] == p]
+            if latest:
+                underFiveRates.append({"subjectId": sid, "subjectName": s["name"], "program": p, "value": latest[0]["underFive"]})
+                eightPlusRates.append({"subjectId": sid, "subjectName": s["name"], "program": p, "value": latest[0]["eightPlus"]})
 
     logging.info("Calculating province and region stats...")
     provinceRankings = []

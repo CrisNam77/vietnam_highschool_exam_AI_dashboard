@@ -1270,36 +1270,85 @@ const data: any = {
     {
       "subjectId": "toan",
       "subjectName": "Toán",
+      "program": "CT2018",
       "value": 37.6
     },
     {
       "subjectId": "ngu_van",
       "subjectName": "Ngữ văn",
+      "program": "CT2018",
       "value": 11.4
     },
     {
       "subjectId": "vat_li",
       "subjectName": "Vật lý",
+      "program": "CT2018",
       "value": 38.9
     },
     {
       "subjectId": "hoa_hoc",
       "subjectName": "Hóa học",
+      "program": "CT2018",
       "value": 21.7
     },
     {
       "subjectId": "sinh_hoc",
       "subjectName": "Sinh học",
+      "program": "CT2018",
       "value": 31.5
     },
     {
       "subjectId": "lich_su",
       "subjectName": "Lịch sử",
+      "program": "CT2018",
       "value": 26.0
     },
     {
       "subjectId": "dia_li",
       "subjectName": "Địa lý",
+      "program": "CT2018",
+      "value": 47.2
+    },
+    {
+      "subjectId": "toan",
+      "subjectName": "Toán",
+      "program": "all",
+      "value": 37.6
+    },
+    {
+      "subjectId": "ngu_van",
+      "subjectName": "Ngữ văn",
+      "program": "all",
+      "value": 11.4
+    },
+    {
+      "subjectId": "vat_li",
+      "subjectName": "Vật lý",
+      "program": "all",
+      "value": 38.9
+    },
+    {
+      "subjectId": "hoa_hoc",
+      "subjectName": "Hóa học",
+      "program": "all",
+      "value": 21.7
+    },
+    {
+      "subjectId": "sinh_hoc",
+      "subjectName": "Sinh học",
+      "program": "all",
+      "value": 31.5
+    },
+    {
+      "subjectId": "lich_su",
+      "subjectName": "Lịch sử",
+      "program": "all",
+      "value": 26.0
+    },
+    {
+      "subjectId": "dia_li",
+      "subjectName": "Địa lý",
+      "program": "all",
       "value": 47.2
     }
   ],
@@ -1307,36 +1356,85 @@ const data: any = {
     {
       "subjectId": "toan",
       "subjectName": "Toán",
+      "program": "CT2018",
       "value": 16.1
     },
     {
       "subjectId": "ngu_van",
       "subjectName": "Ngữ văn",
+      "program": "CT2018",
       "value": 13.8
     },
     {
       "subjectId": "vat_li",
       "subjectName": "Vật lý",
+      "program": "CT2018",
       "value": 11.1
     },
     {
       "subjectId": "hoa_hoc",
       "subjectName": "Hóa học",
+      "program": "CT2018",
       "value": 18.2
     },
     {
       "subjectId": "sinh_hoc",
       "subjectName": "Sinh học",
+      "program": "CT2018",
       "value": 13.2
     },
     {
       "subjectId": "lich_su",
       "subjectName": "Lịch sử",
+      "program": "CT2018",
       "value": 18.7
     },
     {
       "subjectId": "dia_li",
       "subjectName": "Địa lý",
+      "program": "CT2018",
+      "value": 4.2
+    },
+    {
+      "subjectId": "toan",
+      "subjectName": "Toán",
+      "program": "all",
+      "value": 16.1
+    },
+    {
+      "subjectId": "ngu_van",
+      "subjectName": "Ngữ văn",
+      "program": "all",
+      "value": 13.8
+    },
+    {
+      "subjectId": "vat_li",
+      "subjectName": "Vật lý",
+      "program": "all",
+      "value": 11.1
+    },
+    {
+      "subjectId": "hoa_hoc",
+      "subjectName": "Hóa học",
+      "program": "all",
+      "value": 18.2
+    },
+    {
+      "subjectId": "sinh_hoc",
+      "subjectName": "Sinh học",
+      "program": "all",
+      "value": 13.2
+    },
+    {
+      "subjectId": "lich_su",
+      "subjectName": "Lịch sử",
+      "program": "all",
+      "value": 18.7
+    },
+    {
+      "subjectId": "dia_li",
+      "subjectName": "Địa lý",
+      "program": "all",
       "value": 4.2
     }
   ],
