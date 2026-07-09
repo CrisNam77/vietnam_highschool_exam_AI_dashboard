@@ -20,6 +20,9 @@ Dữ liệu đầu vào là DataFrame `df`. Phải dùng chính xác tên cột 
 - Thông tin: `nam`, `chuong_trinh`, `sbd`, `ma_tinh`, `ten_tinh`, `vung_mien`, `vung_3`, `ma_ngoai_ngu`, `so_mon`, `ban`.
 - Điểm môn: `toan`, `ngu_van`, `ngoai_ngu`, `vat_li`, `hoa_hoc`, `sinh_hoc`, `lich_su`, `dia_li`, `gdcd`, `tin_hoc`, `cong_nghe_cn`, `cong_nghe_nn`, `gd_ktpl`.
 - Điểm khối: `diem_khoi_a00`, `diem_khoi_a01`, `diem_khoi_b00`, `diem_khoi_c00`, `diem_khoi_d01`.
+- Vùng so sánh 3 miền phải dùng cột `vung_3` với giá trị chính xác `Bắc`, `Trung`, `Nam`. Không lọc `vung_mien == "Miền Bắc"` hoặc `"Miền Nam"` vì `vung_mien` là vùng kinh tế như `Đồng bằng sông Hồng`, `Đông Nam Bộ`.
+- Ban/tổ hợp tự nhiên-xã hội dùng cột `ban` với giá trị `KHTN` hoặc `KHXH`, không dùng chuỗi dài `Khoa học tự nhiên`/`Khoa học xã hội`.
+- Tên tỉnh/thành trong `ten_tinh` thường ở dạng đầy đủ và viết hoa như `THÀNH PHỐ HÀ NỘI`, `THÀNH PHỐ HỒ CHÍ MINH`, `TỈNH THANH HÓA`; nếu người dùng nói tên ngắn, nên lọc bằng `.str.contains("HÀ NỘI", case=False, na=False)` thay vì so sánh bằng đúng `"Hà Nội"`.
 
 QUY TẮC BẮT BUỘC:
 1. Chỉ viết code chạy trên DataFrame `df`; không đọc file, không tải dữ liệu online.
@@ -45,6 +48,9 @@ QUY TẮC BẮT BUỘC:
 21. Với biểu đồ so sánh nhiều nhóm, không vẽ các histogram/bar dạng filled chồng lên nhau bằng `alpha` vì màu sẽ bị trộn và khó đọc. Ưu tiên dùng màu tương phản rõ như `#2563eb`, `#f97316`, `#16a34a`, `#dc2626`; với histogram so sánh phải dùng `histtype="step"`/đường viền, `multiple="dodge"` nếu dùng seaborn, hoặc vẽ các nhóm cạnh nhau. Không để hai màu phủ lên nhau tạo màu nâu/xám bẩn.
 22. Cột `sbd` là mã định danh dạng chuỗi. Nếu cần xét SBD chẵn/lẻ, bắt buộc tạo biến số bằng `sbd_num = pd.to_numeric(data["sbd"], errors="coerce")` rồi dùng `sbd_num % 2`; không dùng trực tiếp `data["sbd"] % 2`.
 23. Không phải câu hỏi nào cũng cần biểu đồ. Nếu câu hỏi không phù hợp để vẽ biểu đồ, không có dữ liệu định lượng rõ ràng, hoặc người dùng hỏi giải thích/định nghĩa/quy trình, hãy trả lời bằng text Markdown thật đầy đủ, có cấu trúc, ví dụ và lưu ý; không bịa số liệu và không tạo biểu đồ gượng ép.
+24. Khi người dùng nói miền Bắc/miền Trung/miền Nam, bắt buộc lọc bằng `vung_3.isin(["Bắc", "Nam"])` hoặc so sánh trực tiếp `df["vung_3"] == "Bắc"`/`"Nam"`. Không dùng chuỗi `Miền Bắc`, `Miền Nam` trong code.
+25. Khi người dùng nói ban tự nhiên/xã hội, bắt buộc dùng `df["ban"] == "KHTN"` hoặc `df["ban"] == "KHXH"`.
+26. Khi lọc tỉnh/thành theo tên người dùng nhập, ưu tiên `df["ten_tinh"].str.contains("TÊN TỈNH", case=False, na=False)` để tránh sai do tiền tố `TỈNH`/`THÀNH PHỐ` và khác biệt viết hoa.
 """
 
 

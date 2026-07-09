@@ -52,21 +52,70 @@ SUBJECT_LABELS = {
 COLUMN_ALIASES = {
     "Toán": "toan",
     "toán": "toan",
+    "Điểm Toán": "toan",
     "Ngu van": "ngu_van",
     "Ngữ văn": "ngu_van",
     "Văn": "ngu_van",
+    "điểm văn": "ngu_van",
+    "Tiếng Anh": "ngoai_ngu",
+    "Anh": "ngoai_ngu",
     "Ngoại ngữ": "ngoai_ngu",
     "ngoại ngữ": "ngoai_ngu",
     "Vật lí": "vat_li",
     "Vật lý": "vat_li",
+    "Lý": "vat_li",
     "Hóa học": "hoa_hoc",
+    "Hoá học": "hoa_hoc",
+    "Hóa": "hoa_hoc",
+    "Hoá": "hoa_hoc",
     "Sinh học": "sinh_hoc",
+    "Sinh": "sinh_hoc",
     "Lịch sử": "lich_su",
+    "Sử": "lich_su",
     "Địa lí": "dia_li",
     "Địa lý": "dia_li",
+    "Địa": "dia_li",
+    "Giáo dục công dân": "gdcd",
     "Tin học": "tin_hoc",
     "Công nghệ CN": "cong_nghe_cn",
     "Công nghệ NN": "cong_nghe_nn",
+    "GDKT&PL": "gd_ktpl",
+    "GD KTPL": "gd_ktpl",
+}
+
+REGION_LABELS = {
+    "Miền Bắc": "Bắc",
+    "miền Bắc": "Bắc",
+    "Bắc Bộ": "Bắc",
+    "miền bắc": "Bắc",
+    "Miền Trung": "Trung",
+    "miền Trung": "Trung",
+    "miền trung": "Trung",
+    "Miền Nam": "Nam",
+    "miền Nam": "Nam",
+    "Nam Bộ": "Nam",
+    "miền nam": "Nam",
+}
+
+TRACK_LABELS = {
+    "Khoa học tự nhiên": "KHTN",
+    "khoa học tự nhiên": "KHTN",
+    "Tự nhiên": "KHTN",
+    "tự nhiên": "KHTN",
+    "Khoa học xã hội": "KHXH",
+    "khoa học xã hội": "KHXH",
+    "Xã hội": "KHXH",
+    "xã hội": "KHXH",
+}
+
+PROVINCE_LABELS = {
+    "Hà Nội": "HÀ NỘI",
+    "Ha Noi": "HÀ NỘI",
+    "TP.HCM": "HỒ CHÍ MINH",
+    "TP HCM": "HỒ CHÍ MINH",
+    "TP Hồ Chí Minh": "HỒ CHÍ MINH",
+    "Thành phố Hồ Chí Minh": "HỒ CHÍ MINH",
+    "Hồ Chí Minh": "HỒ CHÍ MINH",
 }
 
 
@@ -124,10 +173,58 @@ def normalize_sbd_modulo(code: str) -> str:
     )
 
 
+def _normalize_equality_filter(code: str, column: str, labels: dict[str, str]) -> str:
+    normalized = code
+    for display_value, data_value in labels.items():
+        normalized = re.sub(
+            rf"(\[['\"]){column}(['\"]\]\s*==\s*['\"]){re.escape(display_value)}(['\"])",
+            rf"\1{column}\2{data_value}\3",
+            normalized,
+        )
+    return normalized
+
+
+def _normalize_isin_values(code: str, column: str, labels: dict[str, str]) -> str:
+    normalized = code
+    for display_value, data_value in labels.items():
+        normalized = re.sub(
+            rf"(['\"]){re.escape(display_value)}(['\"])",
+            rf"\1{data_value}\2",
+            normalized,
+        )
+    return normalized
+
+
+def normalize_region_filters(code: str) -> str:
+    normalized = _normalize_equality_filter(code, "vung_mien", REGION_LABELS)
+    normalized = _normalize_isin_values(normalized, "vung_mien", REGION_LABELS)
+    if normalized != code:
+        normalized = normalized.replace("['vung_mien']", "['vung_3']").replace('["vung_mien"]', '["vung_3"]')
+    return normalized
+
+
+def normalize_track_filters(code: str) -> str:
+    return _normalize_equality_filter(code, "ban", TRACK_LABELS)
+
+
+def normalize_province_filters(code: str) -> str:
+    normalized = code
+    for display_value, contains_value in PROVINCE_LABELS.items():
+        normalized = re.sub(
+            rf"((?:[A-Za-z_][A-Za-z0-9_]*|\([^()\n]+\))\s*\[\s*['\"]ten_tinh['\"]\s*\])\s*==\s*(['\"]){re.escape(display_value)}\2",
+            rf"\1.str.contains('{contains_value}', case=False, na=False)",
+            normalized,
+        )
+    return normalized
+
+
 CODE_NORMALIZERS: tuple[Callable[[str], str], ...] = (
     normalize_column_aliases,
     normalize_unsupported_imports,
     normalize_sbd_modulo,
+    normalize_region_filters,
+    normalize_track_filters,
+    normalize_province_filters,
 )
 
 
