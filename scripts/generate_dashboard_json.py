@@ -76,7 +76,7 @@ def mad(series):
 
 def main():
     data_path = Path("data/processed/final_data.csv")
-    out_path = Path("frontend/src/data/dashboardMockData.ts")
+    out_path = Path("frontend/src/data/dashboardData.ts")
     
     if not data_path.exists():
         logging.error(f"Cannot find {data_path}. Please run clean_data.py first.")

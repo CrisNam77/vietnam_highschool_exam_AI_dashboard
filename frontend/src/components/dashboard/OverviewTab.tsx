@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { candidatesByYear, nationalAverageByYear, overviewKpis, PROGRAMS, subjectAverages, YEARS } from '@/data/dashboardMockData';
+import { candidatesByYear, nationalAverageByYear, overviewKpis, PROGRAMS, subjectAverages, YEARS } from '@/data/dashboardData';
 import type { Program, YearOption } from '@/types/dashboard';
 import { ChartCard, SimpleBarChart, SimpleLineChart } from './charts';
 import { DashboardShell } from './DashboardShell';

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { eightPlusRates, subjectYearMatrix, SUBJECTS, underFiveRates, YEARS } from '@/data/dashboardMockData';
+import { eightPlusRates, subjectYearMatrix, SUBJECTS, underFiveRates, YEARS } from '@/data/dashboardData';
 import type { MetricKey } from '@/types/dashboard';
 import { ChartCard, SimpleBarChart, SimpleLineChart } from './charts';
 import { DashboardShell } from './DashboardShell';
