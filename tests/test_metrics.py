@@ -3,13 +3,11 @@ import src.metrics as metrics
 
 def test_metrics_module_imports():
     expected_functions = [
-        "get_overview_kpis",
-        "get_subject_summary",
-        "get_yearly_trend",
-        "get_region_summary",
-        "get_score_distribution",
-        "get_correlation_matrix",
-        "get_combination_summary",
+        "markdown_table",
+        "check_course_requirements",
+        "build_validation_summary",
+        "build_clean_run_report",
+        "build_data_quality_report",
     ]
 
     for function_name in expected_functions:
