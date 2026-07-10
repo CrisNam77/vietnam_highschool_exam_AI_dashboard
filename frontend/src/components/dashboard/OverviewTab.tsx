@@ -1,7 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { candidatesByYear, nationalAverageByYear, overviewKpis, PROGRAMS, subjectAverages, subjectYearMatrix, YEARS } from '@/data/dashboardData';
+import { candidatesByYear, nationalAverageByYear, overviewKpis, PROGRAMS, subjectAverages, subjectYearMatrix } from '@/data/dashboardData';
+import { subjectsForProgram } from '@/data/dashboardSchema';
 import type { Program, YearOption } from '@/types/dashboard';
 import { ChartCard, SimpleBarChart, SimpleLineChart } from './charts';
 import { DashboardShell } from './DashboardShell';
@@ -9,6 +10,14 @@ import { FilterBar } from './FilterBar';
 import { KpiCard } from './KpiCard';
 
 const COLORS = ['#00195A', '#594DA3', '#826ACA', '#AD88F1'];
+
+function isFiniteNumber(value: number | null | undefined): value is number {
+  return typeof value === 'number' && Number.isFinite(value);
+}
+
+function hasFiniteValue<T extends { value: number | null }>(item: T): item is T & { value: number } {
+  return isFiniteNumber(item.value);
+}
 
 export function OverviewTab() {
   const [year, setYear] = useState<YearOption>('all');
@@ -32,22 +41,27 @@ export function OverviewTab() {
     }
   };
 
-  const scopedSubjectAverages = year === 'all' 
+  const availableSubjectIds = new Set(subjectsForProgram(program).map(subject => subject.id));
+
+  const scopedSubjectAverages = (year === 'all'
     ? subjectAverages.filter(item => item.program === program)
     : subjectYearMatrix
         .filter(item => item.year === year && item.program === program)
-        .map(item => ({ subjectId: item.subjectId, subjectName: item.subjectName, value: item.average }));
+        .map(item => ({ subjectId: item.subjectId, subjectName: item.subjectName, value: item.average })))
+    .filter((item): item is typeof item & { value: number } => availableSubjectIds.has(item.subjectId) && hasFiniteValue(item));
 
   const scopedCandidates = candidatesByYear
     .filter(item => (year === 'all' || item.year === year) && item.program === program)
     .map(item => ({ label: String(item.year), value: item.value }));
 
-  const average = scopedSubjectAverages.reduce((sum, item) => sum + item.value, 0) / (scopedSubjectAverages.length || 1);
+  const average = scopedSubjectAverages.length > 0
+    ? scopedSubjectAverages.reduce((sum, item) => sum + item.value, 0) / scopedSubjectAverages.length
+    : null;
   const totalCandidates = scopedCandidates.reduce((sum, item) => sum + item.value, 0);
 
   const kpis = overviewKpis.map(item => {
     if (item.label === 'Điểm TB toàn quốc') {
-      return { ...item, value: average.toFixed(2) };
+      return { ...item, value: average === null ? '—' : average.toFixed(2) };
     }
     if (item.label === 'Tổng số thí sinh') {
       const valStr = totalCandidates >= 1000000 

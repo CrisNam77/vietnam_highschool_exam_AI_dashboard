@@ -11,17 +11,17 @@ logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
 # Fixed metadata
 YEARS = [2022, 2023, 2024, 2025, 2026]
 SUBJECTS = [
-    {"id": "toan", "name": "Toán"},
-    {"id": "ngu_van", "name": "Ngữ văn"},
-    {"id": "tieng_anh", "name": "Tiếng Anh"},
-    {"id": "vat_li", "name": "Vật lý"},
-    {"id": "hoa_hoc", "name": "Hóa học"},
-    {"id": "sinh_hoc", "name": "Sinh học"},
-    {"id": "lich_su", "name": "Lịch sử"},
-    {"id": "dia_li", "name": "Địa lý"},
-    {"id": "gdcd", "name": "GDCD"},
+    {"id": "toan", "name": "Toán", "column": "toan", "programs": ["CT2006", "CT2018"]},
+    {"id": "ngu_van", "name": "Ngữ văn", "column": "ngu_van", "programs": ["CT2006", "CT2018"]},
+    {"id": "tieng_anh", "name": "Tiếng Anh", "column": "diem_anh", "programs": ["CT2006", "CT2018"]},
+    {"id": "vat_li", "name": "Vật lý", "column": "vat_li", "programs": ["CT2006", "CT2018"]},
+    {"id": "hoa_hoc", "name": "Hóa học", "column": "hoa_hoc", "programs": ["CT2006", "CT2018"]},
+    {"id": "sinh_hoc", "name": "Sinh học", "column": "sinh_hoc", "programs": ["CT2006", "CT2018"]},
+    {"id": "lich_su", "name": "Lịch sử", "column": "lich_su", "programs": ["CT2006", "CT2018"]},
+    {"id": "dia_li", "name": "Địa lý", "column": "dia_li", "programs": ["CT2006", "CT2018"]},
+    {"id": "gdcd", "name": "GDCD", "column": "gdcd", "programs": ["CT2006"]},
+    {"id": "gd_ktpl", "name": "GDKTPL", "column": "gd_ktpl", "programs": ["CT2018"]},
 ]
-SUBJECT_IDS = [s["id"] for s in SUBJECTS]
 REGIONS = [
     {"id": "dbsh", "name": "Đồng bằng sông Hồng"},
     {"id": "dnb", "name": "Đông Nam Bộ"},
@@ -61,6 +61,21 @@ def clean_float(val):
         return None
     return float(val)
 
+def subject_applies_to_program(subject, program):
+    return program == "all" or program in subject["programs"]
+
+def normalize_program(value):
+    value = str(value).strip().upper()
+    if value in {"2006", "CT2006"}:
+        return "CT2006"
+    if value in {"2018", "CT2018"}:
+        return "CT2018"
+    return value
+
+def valid_mean(series):
+    value = series.mean()
+    return None if pd.isna(value) else float(value)
+
 def generate_bins(score_series, min_score, max_score, step):
     counts, edges = np.histogram(score_series.dropna(), bins=np.arange(min_score, max_score + step + step/2, step))
     total = counts.sum()
@@ -84,25 +99,17 @@ def mad(series):
 
 def main():
     data_path = Path("data/processed/final_data.csv")
-    out_path = Path("frontend/src/data/dashboardData.ts")
-    
     if not data_path.exists():
-        logging.error(f"Cannot find {data_path}. Please run clean_data.py first.")
+        logging.error(f"Cannot find {data_path}. Please run scripts/build_final_data.py first.")
         return
 
     logging.info(f"Loading data from {data_path}...")
     df = pd.read_csv(data_path)
-
-    # Alias diem_anh to tieng_anh for processing since SUBJECTS has tieng_anh
-    if "tieng_anh" not in df.columns and "diem_anh" in df.columns:
-        df["tieng_anh"] = df["diem_anh"]
+    df["chuong_trinh"] = df["chuong_trinh"].map(normalize_program)
 
     logging.info("Calculating KPIs...")
     total_candidates = len(df)
     total_provinces = df["ten_tinh"].nunique()
-    
-    # Map UI program names to the integer codes stored in CSV
-    PROGRAM_CODE = {"CT2006": 2006, "CT2018": 2018}
 
     # candidatesByYear and nationalAverageByYear
     nat_avg_yr = []
@@ -114,21 +121,29 @@ def main():
             if p == "all":
                 df_yp = df_y
             else:
-                df_yp = df_y[df_y["chuong_trinh"] == PROGRAM_CODE[p]]
+                df_yp = df_y[df_y["chuong_trinh"] == p]
                 
             if len(df_yp) > 0:
                 candidates_yr.append({"year": y, "program": p, "value": int(len(df_yp))})
-                subj_means = [df_yp[sid].mean() for sid in SUBJECT_IDS if sid in df_yp.columns]
-                val = np.nanmean(subj_means) if subj_means else 0
-                nat_avg_yr.append({"year": y, "program": p, "value": round(float(val), 2)})
+                subj_means = [
+                    mean_value
+                    for s in SUBJECTS
+                    if subject_applies_to_program(s, p) and s["column"] in df_yp.columns
+                    for mean_value in [valid_mean(df_yp[s["column"]])]
+                    if mean_value is not None
+                ]
+                if subj_means:
+                    val = np.nanmean(subj_means)
+                    nat_avg_yr.append({"year": y, "program": p, "value": round(float(val), 2)})
         
-    overall_avg = np.mean([item["value"] for item in nat_avg_yr if item.get("program") == "all"])
+    overall_values = [item["value"] for item in nat_avg_yr if item.get("program") == "all"]
+    overall_avg = np.mean(overall_values) if overall_values else None
 
     overviewKpis = [
         {"label": "Tổng số thí sinh", "value": f"{total_candidates/1000000:.2f} triệu"},
         {"label": "Số tỉnh/thành", "value": str(total_provinces)},
         {"label": "Giai đoạn", "value": f"{min(YEARS)}-{max(YEARS)}"},
-        {"label": "Điểm TB toàn quốc", "value": f"{overall_avg:.2f}"},
+        {"label": "Điểm TB toàn quốc", "value": f"{overall_avg:.2f}" if overall_avg is not None else "—"},
     ]
 
     logging.info("Calculating subject stats...")
@@ -137,18 +152,21 @@ def main():
         if p == "all":
             df_p = df
         else:
-            df_p = df[df["chuong_trinh"] == PROGRAM_CODE[p]]
+            df_p = df[df["chuong_trinh"] == p]
             
         if len(df_p) > 0:
             for s in SUBJECTS:
                 sid = s["id"]
-                if sid in df_p.columns:
-                    val = df_p[sid].mean()
+                col = s["column"]
+                if subject_applies_to_program(s, p) and col in df_p.columns:
+                    val = df_p[col].mean()
+                    if pd.isna(val):
+                        continue
                     subjectAverages.append({
                         "subjectId": sid, 
                         "subjectName": s["name"], 
                         "program": p,
-                        "value": round(float(val), 2) if pd.notna(val) else 0
+                        "value": round(float(val), 2)
                     })
 
     subjectYearMatrix = []
@@ -158,15 +176,16 @@ def main():
             if p == "all":
                 df_yp = df_y
             else:
-                df_yp = df_y[df_y["chuong_trinh"] == PROGRAM_CODE[p]]
+                df_yp = df_y[df_y["chuong_trinh"] == p]
             
             if len(df_yp) == 0:
                 continue
 
             for s in SUBJECTS:
                 sid = s["id"]
-                if sid in df_yp.columns:
-                    series = df_yp[sid].dropna()
+                col = s["column"]
+                if subject_applies_to_program(s, p) and col in df_yp.columns:
+                    series = df_yp[col].dropna()
                     if len(series) == 0:
                         continue
                     avg = series.mean()
@@ -203,9 +222,10 @@ def main():
         df_y = df[df["nam"] == y]
         for s in SUBJECTS:
             sid = s["id"]
-            if sid in df_y.columns:
+            col = s["column"]
+            if col in df_y.columns:
                 # Province
-                grp = df_y.groupby(["ten_tinh", "vung_mien"])[sid].agg(["mean", "count"]).reset_index()
+                grp = df_y.groupby(["ten_tinh", "vung_mien"])[col].agg(["mean", "count"]).reset_index()
                 for _, row in grp.iterrows():
                     if pd.notna(row["mean"]):
                         provinceRankings.append({
@@ -220,16 +240,16 @@ def main():
                         })
                 
                 # Region
-                grp_reg = df_y.groupby("vung_mien")[sid].mean().reset_index()
+                grp_reg = df_y.groupby("vung_mien")[col].mean().reset_index()
                 for _, row in grp_reg.iterrows():
-                    if pd.notna(row[sid]):
+                    if pd.notna(row[col]):
                         regionAverages.append({
                             "regionId": "unknown",
                             "regionName": str(row["vung_mien"]),
                             "year": y,
                             "subjectId": sid,
                             "subjectName": s["name"],
-                            "average": round(float(row[sid]), 2)
+                            "average": round(float(row[col]), 2)
                         })
 
     # Map CSV vung_mien names (full) to region IDs
@@ -251,8 +271,9 @@ def main():
         # Subjects
         for s in SUBJECTS:
             sid = s["id"]
-            if sid in df_y.columns:
-                series = df_y[sid].dropna()
+            col = s["column"]
+            if col in df_y.columns:
+                series = df_y[col].dropna()
                 if len(series) == 0:
                     continue
                 bins = generate_bins(series, 0, 10, 0.25)
@@ -353,7 +374,7 @@ def main():
         "distributionStats": distributionStats
     }
     
-    ts_content = f"const data: any = {json.dumps(final_data, ensure_ascii=False, indent=2)};\nexport default data;"
+    ts_content = f"const data = {json.dumps(final_data, ensure_ascii=False, indent=2)};\nexport default data;"
     out_path.write_text(ts_content, encoding="utf-8")
 
     logging.info(f"Successfully generated {out_path}")

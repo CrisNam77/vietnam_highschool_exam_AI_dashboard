@@ -21,8 +21,15 @@ export function YearRangeSlider({
   const [dragging, setDragging] = useState<'from' | 'to' | null>(null);
 
   const maxIdx = years.length - 1;
-  const fromIdx = Math.max(0, years.indexOf(fromYear));
-  const toIdx = Math.max(0, years.indexOf(toYear));
+  const indexForYear = (year: number) => {
+    const exactIndex = years.indexOf(year);
+    if (exactIndex >= 0) return exactIndex;
+    return years.reduce((closestIndex, candidate, index) => {
+      return Math.abs(candidate - year) < Math.abs(years[closestIndex] - year) ? index : closestIndex;
+    }, 0);
+  };
+  const fromIdx = years.length > 0 ? indexForYear(fromYear) : 0;
+  const toIdx = years.length > 0 ? indexForYear(toYear) : 0;
   const pct = (idx: number) => (maxIdx === 0 ? 0 : (idx / maxIdx) * 100);
 
   const idxFromEvent = useCallback(
@@ -37,6 +44,7 @@ export function YearRangeSlider({
 
   const startDrag = (thumb: 'from' | 'to') => (e: React.MouseEvent) => {
     e.preventDefault();
+    if (years.length === 0) return;
     setDragging(thumb);
     const onMove = (ev: MouseEvent) => {
       const idx = idxFromEvent(ev.clientX);
@@ -54,6 +62,7 @@ export function YearRangeSlider({
 
   const handleTrackClick = (e: React.MouseEvent) => {
     const idx = idxFromEvent(e.clientX);
+    if (years.length === 0) return;
     const distFrom = Math.abs(idx - fromIdx);
     const distTo = Math.abs(idx - toIdx);
     if (distFrom <= distTo) onFromChange(years[Math.min(idx, toIdx)]);

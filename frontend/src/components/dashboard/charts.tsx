@@ -3,7 +3,12 @@ import type { ChartPoint, LineSeries } from '@/types/dashboard';
 
 const gridColor = '#E2E8F0';
 
-function formatValue(value: number) {
+function isFiniteNumber(value: number | null | undefined): value is number {
+  return typeof value === 'number' && Number.isFinite(value);
+}
+
+function formatValue(value: number | null) {
+  if (!isFiniteNumber(value)) return '—';
   return value >= 1000 ? `${Math.round(value / 1000)}k` : value.toFixed(value < 10 ? 2 : 1);
 }
 
@@ -27,9 +32,9 @@ export function ChartCard({ title, children }: { title: string; children: ReactN
 }
 
 export function SimpleLineChart({ series, valueMode = 'score' }: { series: LineSeries[]; valueMode?: 'score' | 'percent' | 'count' }) {
-  const allValues = series.flatMap(item => item.points.map(point => point.value)).filter(v => typeof v === 'number' && !Number.isNaN(v));
-  const min = Math.min(...allValues) - 0.15;
-  const max = Math.max(...allValues) + 0.15;
+  const allValues = series.flatMap(item => item.points.map(point => point.value)).filter(isFiniteNumber);
+  const min = allValues.length > 0 ? Math.min(...allValues) - 0.15 : 0;
+  const max = allValues.length > 0 ? Math.max(...allValues) + 0.15 : 1;
   const width = 640;
   const height = 260;
   const left = 56;
@@ -51,6 +56,11 @@ export function SimpleLineChart({ series, valueMode = 'score' }: { series: LineS
 
   return (
     <div>
+      {allValues.length === 0 ? (
+        <div className="flex h-72 items-center justify-center rounded-xl bg-[#F8FAFC] text-sm font-bold text-[#64748B]">
+          Không có dữ liệu phù hợp với bộ lọc hiện tại.
+        </div>
+      ) : (
       <svg viewBox={`0 0 ${width} ${height}`} className="h-72 w-full">
         {yTicks.map(tick => (
           <g key={tick.y}>
@@ -66,7 +76,9 @@ export function SimpleLineChart({ series, valueMode = 'score' }: { series: LineS
           </text>
         ))}
         {series.map(item => {
-          const validPoints = item.points.map((p, i) => ({ ...p, originalIndex: i })).filter(p => typeof p.value === 'number' && !Number.isNaN(p.value));
+          const validPoints = item.points
+            .map((p, i) => ({ ...p, originalIndex: i }))
+            .filter((p): p is ChartPoint & { originalIndex: number; value: number } => isFiniteNumber(p.value));
           const path = validPoints
             .map((point, i) => `${i === 0 ? 'M' : 'L'} ${xFor(point.originalIndex, item.points.length)} ${yFor(point.value)}`)
             .join(' ');
@@ -80,6 +92,7 @@ export function SimpleLineChart({ series, valueMode = 'score' }: { series: LineS
           );
         })}
       </svg>
+      )}
       <div className="flex flex-wrap gap-3">
         {series.map(item => (
           <span key={item.name} className="inline-flex items-center gap-2 text-xs font-bold text-[#64748B]">
@@ -93,40 +106,64 @@ export function SimpleLineChart({ series, valueMode = 'score' }: { series: LineS
 }
 
 export function SimpleBarChart({ points, color = '#594DA3', danger = false }: { points: ChartPoint[]; color?: string; danger?: boolean }) {
-  const max = Math.max(...points.map(point => point.value), 1);
+  const validValues = points.map(point => point.value).filter(isFiniteNumber);
+  const max = Math.max(...validValues, 1);
+  if (validValues.length === 0) {
+    return (
+      <div className="flex h-40 items-center justify-center rounded-xl bg-[#F8FAFC] text-sm font-bold text-[#64748B]">
+        Không có dữ liệu phù hợp với bộ lọc hiện tại.
+      </div>
+    );
+  }
   return (
     <div className="space-y-3">
-      {points.map(point => (
-        <div key={point.label} className="grid grid-cols-[112px_minmax(0,1fr)_56px] items-center gap-3 text-sm">
-          <span className="truncate font-semibold text-[#0F172A]">{point.label}</span>
-          <div className="h-3 overflow-hidden rounded-full bg-slate-100">
-            <div
-              className="h-full rounded-full"
-              style={{ width: `${Math.max(4, (point.value / max) * 100)}%`, background: danger ? '#F87171' : color }}
-            />
+      {points.map(point => {
+        const hasValue = isFiniteNumber(point.value);
+        const numericValue: number = hasValue ? Number(point.value) : 0;
+        return (
+          <div key={point.label} className="grid grid-cols-[112px_minmax(0,1fr)_56px] items-center gap-3 text-sm">
+            <span className="truncate font-semibold text-[#0F172A]">{point.label}</span>
+            <div className="h-3 overflow-hidden rounded-full bg-slate-100">
+              <div
+                className="h-full rounded-full"
+                style={{ width: hasValue ? `${Math.max(4, (numericValue / max) * 100)}%` : '0%', background: danger ? '#F87171' : color }}
+              />
+            </div>
+            <span className="text-right text-xs font-bold text-[#64748B]">{formatValue(point.value)}</span>
           </div>
-          <span className="text-right text-xs font-bold text-[#64748B]">{formatValue(point.value)}</span>
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 }
 
 export function SimpleHorizontalBarChart({ points, direction }: { points: ChartPoint[]; direction: 'highest' | 'lowest' }) {
-  const max = Math.max(...points.map(point => point.value), 1);
+  const validValues = points.map(point => point.value).filter(isFiniteNumber);
+  const max = Math.max(...validValues, 1);
   const palette = direction === 'lowest' ? '#F87171' : '#826ACA';
+  if (validValues.length === 0) {
+    return (
+      <div className="flex h-40 items-center justify-center rounded-xl bg-[#F8FAFC] text-sm font-bold text-[#64748B]">
+        Không có dữ liệu phù hợp với bộ lọc hiện tại.
+      </div>
+    );
+  }
   return (
     <div className="space-y-3">
-      {points.map((point, index) => (
-        <div key={point.label} className="grid grid-cols-[32px_132px_minmax(0,1fr)_52px] items-center gap-3 text-sm">
-          <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#F5F7FB] text-xs font-extrabold text-[#31327E]">{index + 1}</span>
-          <span className="truncate font-semibold text-[#0F172A]">{point.label}</span>
-          <div className="h-4 overflow-hidden rounded-full bg-slate-100">
-            <div className="h-full rounded-full" style={{ width: `${Math.max(6, (point.value / max) * 100)}%`, background: palette }} />
+      {points.map((point, index) => {
+        const hasValue = isFiniteNumber(point.value);
+        const numericValue: number = hasValue ? Number(point.value) : 0;
+        return (
+          <div key={point.label} className="grid grid-cols-[32px_132px_minmax(0,1fr)_52px] items-center gap-3 text-sm">
+            <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#F5F7FB] text-xs font-extrabold text-[#31327E]">{index + 1}</span>
+            <span className="truncate font-semibold text-[#0F172A]">{point.label}</span>
+            <div className="h-4 overflow-hidden rounded-full bg-slate-100">
+              <div className="h-full rounded-full" style={{ width: hasValue ? `${Math.max(6, (numericValue / max) * 100)}%` : '0%', background: palette }} />
+            </div>
+            <span className="text-right text-xs font-bold text-[#64748B]">{formatValue(point.value)}</span>
           </div>
-          <span className="text-right text-xs font-bold text-[#64748B]">{point.value.toFixed(2)}</span>
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 }

@@ -9,6 +9,8 @@ export type MetricKey = 'average' | 'underFive' | 'eightPlus' | 'perfect10';
 export interface Subject {
   id: string;
   name: string;
+  column?: string;
+  programs?: Exclude<Program, 'all'>[];
 }
 
 export interface Region {
@@ -32,7 +34,7 @@ export interface YearMetric {
 export interface SubjectMetric {
   subjectId: string;
   subjectName: string;
-  value: number;
+  value: number | null;
   program?: Program;
 }
 
@@ -40,9 +42,9 @@ export interface SubjectYearMetric {
   subjectId: string;
   subjectName: string;
   year: number;
-  average: number;
-  underFive: number;
-  eightPlus: number;
+  average: number | null;
+  underFive: number | null;
+  eightPlus: number | null;
   perfect10: number;
   program?: Program;
 }
@@ -64,12 +66,12 @@ export interface RegionMetric {
   year: number;
   subjectId: string;
   subjectName: string;
-  average: number;
+  average: number | null;
 }
 
 export interface ChartPoint {
   label: string;
-  value: number;
+  value: number | null;
 }
 
 export interface LineSeries {
