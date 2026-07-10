@@ -1,6 +1,6 @@
 # Data Schema
 
-Schema chính thức cho `data/processed/final_data.csv` dựa trên `src/clean_data.py` và `reports/data_quality_report.md`.
+Schema chính thức cho `data/processed/final_data.csv` dựa trên pipeline trong `src/load_data.py`, `src/clean_data.py`, `src/feature_engineering.py`, `src/metrics.py` và báo cáo `reports/data_quality_report.md`.
 
 Không dùng alias cũ như `van`, `ly`, `hoa`, `su`, `dia`, `A00` trong docs chính. Nếu UI cần tên thân thiện, phải mapping rõ từ alias sang cột canonical.
 

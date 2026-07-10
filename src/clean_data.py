@@ -89,6 +89,109 @@ RENAME_2026 = {
 }
 
 
+def normalize_sbd(df: pd.DataFrame) -> tuple[pd.DataFrame, dict]:
+    """Normalize SBD to an 8-digit string and remove invalid rows."""
+    if "sbd" not in df.columns:
+        raise ValueError("No SBD column found after column normalization.")
+
+    df = df.copy()
+    df["sbd"] = df["sbd"].fillna("").astype(str)
+    df["sbd"] = df["sbd"].str.replace(r"\.0$", "", regex=True)
+    df["sbd"] = df["sbd"].str.replace(r"\D", "", regex=True)
+    df["sbd"] = df["sbd"].str.zfill(8)
+
+    invalid_sbd_mask = df["sbd"].str.len() != 8
+    stats = {"dropped_invalid_sbd": int(invalid_sbd_mask.sum())}
+    return df[~invalid_sbd_mask].copy(), stats
+
+
+def map_province_and_region(df: pd.DataFrame) -> tuple[pd.DataFrame, dict]:
+    """Map SBD province prefixes to post-merger province/city and region columns."""
+    df = df.copy()
+    df["ma_tinh"] = df["sbd"].str[:2]
+    df["ten_tinh"] = pd.Series(pd.NA, index=df.index, dtype=object)
+
+    cond_old = df["nam"] <= 2025
+    cond_new = df["nam"] == 2026
+
+    if cond_old.any():
+        df.loc[cond_old, "ten_tinh"] = df.loc[cond_old, "ma_tinh"].map(OLD_TO_NEW)
+
+    strange_new_provinces = []
+    if cond_new.any() and "Tỉnh" in df.columns:
+        normed = df.loc[cond_new, "Tỉnh"].apply(norm_tinh)
+        valid_mask = normed.isin(PROVINCE_NEW.keys())
+        df.loc[cond_new & valid_mask, "ten_tinh"] = normed[valid_mask]
+        invalid_mask = cond_new & (~valid_mask) & df["Tỉnh"].notna() & (df["Tỉnh"] != "")
+        strange_new_provinces = sorted(df.loc[invalid_mask, "Tỉnh"].dropna().unique().tolist())
+    elif cond_new.any():
+        df.loc[cond_new, "ten_tinh"] = df.loc[cond_new, "ma_tinh"].map(OLD_TO_NEW)
+
+    df["vung_mien"] = df["ten_tinh"].map(PROVINCE_NEW)
+    df["vung_3"] = df["vung_mien"].map(REGION3_OF_6)
+
+    strange_province_mask = df["ten_tinh"].isna()
+    stats = {
+        "dropped_strange_province": int(strange_province_mask.sum()),
+        "strange_new_provinces": strange_new_provinces,
+    }
+    return df[~strange_province_mask].copy(), stats
+
+
+def clean_score_columns(df: pd.DataFrame) -> tuple[pd.DataFrame, dict]:
+    """Convert score columns to numeric and set out-of-range scores to NaN."""
+    df = df.copy()
+    out_of_bounds_by_col = {}
+    for col in SCORE_COLS:
+        if col not in df.columns:
+            df[col] = np.nan
+        df[col] = pd.to_numeric(df[col], errors="coerce").astype("float32")
+        invalid_score_mask = (df[col] < 0) | (df[col] > 10)
+        out_of_bounds_by_col[col] = int(invalid_score_mask.sum())
+        df.loc[invalid_score_mask, col] = np.nan
+
+    return df, {
+        "out_of_bounds_by_col": out_of_bounds_by_col,
+        "out_of_bounds_total": int(sum(out_of_bounds_by_col.values())),
+    }
+
+
+def clean_language_code(df: pd.DataFrame) -> pd.DataFrame:
+    """Normalize language-code values while preserving missing-language assumptions."""
+    df = df.copy()
+    if "ma_ngoai_ngu" not in df.columns:
+        df["ma_ngoai_ngu"] = "NA"
+    df["ma_ngoai_ngu"] = df["ma_ngoai_ngu"].astype(str).str.strip().str.upper()
+    df["ma_ngoai_ngu"] = df["ma_ngoai_ngu"].replace(["", "NAN", "NONE", "<NA>"], "NA")
+    df["ma_ngoai_ngu"] = df["ma_ngoai_ngu"].fillna("NA")
+    return df
+
+
+def remove_empty_score_rows(df: pd.DataFrame) -> tuple[pd.DataFrame, dict]:
+    """Remove rows without any valid subject score."""
+    df = df.copy()
+    if "so_mon" not in df.columns:
+        df["so_mon"] = df[SCORE_COLS].notna().sum(axis=1)
+    so_mon_zero_mask = df["so_mon"] == 0
+    stats = {"dropped_so_mon_zero": int(so_mon_zero_mask.sum())}
+    return df[~so_mon_zero_mask].copy(), stats
+
+
+def clean_exam_data(df: pd.DataFrame) -> tuple[pd.DataFrame, dict]:
+    """Run all cleaning steps before feature engineering."""
+    stats = {"raw_rows": len(df)}
+    df, sbd_stats = normalize_sbd(df)
+    stats.update(sbd_stats)
+    df, province_stats = map_province_and_region(df)
+    stats.update(province_stats)
+    df, score_stats = clean_score_columns(df)
+    stats.update(score_stats)
+    df = clean_language_code(df)
+    df, empty_stats = remove_empty_score_rows(df)
+    stats.update(empty_stats)
+    return df, stats
+
+
 
 def main():
     parser = argparse.ArgumentParser(description="Script làm sạch và gộp dữ liệu điểm thi THPT.")
