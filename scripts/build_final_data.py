@@ -78,7 +78,6 @@ def build_final_data(raw_dir: Path, out_dir: Path) -> pd.DataFrame:
     print(f"- clean_run_stats.md: {stats_path}")
     print(f"- data_quality_report.md: {quality_report_path}")
     print(f"- Shape: {rows} rows x {cols} columns")
-    print("Next: inspect output shape/year distribution before committing generated reports.")
     return final_df
 
 
