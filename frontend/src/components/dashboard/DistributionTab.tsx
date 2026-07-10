@@ -9,10 +9,12 @@ import {
   SUBJECTS,
   YEARS,
 } from '@/data/dashboardData';
+import { subjectAppliesToYear, subjectsForYear } from '@/data/dashboardSchema';
 import type {
   DistributionKind,
   DistributionRecord,
   DistributionStats,
+  Subject,
 } from '@/types/dashboard';
 import { DashboardShell } from './DashboardShell';
 import { FilterBar } from './FilterBar';
@@ -34,10 +36,22 @@ function recordsFor(type: DistributionKind) {
   return type === 'subject' ? subjectDistributions : combinationDistributions;
 }
 
-function optionsFor(type: DistributionKind) {
+function subjectOptions(subjects: Subject[]) {
+  return subjects.map(subject => ({ label: subject.name, value: subject.id }));
+}
+
+function optionsFor(type: DistributionKind, subjects: Subject[] = SUBJECTS) {
   return type === 'subject'
-    ? SUBJECTS.map(subject => ({ label: subject.name, value: subject.id }))
+    ? subjectOptions(subjects)
     : COMBINATIONS.map(combination => ({ label: combination.name, value: combination.id, description: combination.subjects }));
+}
+
+function subjectsForYearComparison(primaryYear: number, secondaryYear: number) {
+  return SUBJECTS.filter(subject => subjectAppliesToYear(subject, primaryYear) && subjectAppliesToYear(subject, secondaryYear));
+}
+
+function firstValidSubject(subjects: Subject[], currentKey: string) {
+  return subjects.some(subject => subject.id === currentKey) ? currentKey : subjects[0]?.id ?? 'toan';
 }
 
 function findRecord(type: DistributionKind, year: number, key: string) {
@@ -350,6 +364,8 @@ export function DistributionTab() {
 
   const detailRecord = findRecord(detailType, detailYear, detailKey);
   const detailStats = findStats(detailType, detailYear, detailKey);
+  const detailSubjects = subjectsForYear(detailYear);
+  const compareSubjects = subjectsForYearComparison(primaryYear, secondaryYear);
   const primaryRecord = findRecord(compareType, primaryYear, compareKey);
   const secondaryRecord = findRecord(compareType, secondaryYear, compareKey);
   const primaryStats = findStats(compareType, primaryYear, compareKey);
@@ -365,7 +381,11 @@ export function DistributionTab() {
               label: 'Năm',
               value: String(detailYear),
               options: YEARS.map(year => ({ label: String(year), value: String(year) })),
-              onChange: value => setDetailYear(Number(value)),
+              onChange: value => {
+                const nextYear = Number(value);
+                setDetailYear(nextYear);
+                if (detailType === 'subject') setDetailKey(firstValidSubject(subjectsForYear(nextYear), detailKey));
+              },
             },
             {
               label: 'Loại',
@@ -383,7 +403,7 @@ export function DistributionTab() {
             {
               label: detailType === 'subject' ? 'Môn học' : 'Tổ hợp',
               value: detailKey,
-              options: optionsFor(detailType),
+              options: optionsFor(detailType, detailSubjects),
               onChange: setDetailKey,
             },
           ]}
@@ -427,7 +447,7 @@ export function DistributionTab() {
             {
               label: compareType === 'subject' ? 'Môn học' : 'Tổ hợp',
               value: compareKey,
-              options: optionsFor(compareType),
+              options: optionsFor(compareType, compareSubjects),
               onChange: setCompareKey,
             },
             {
@@ -438,13 +458,21 @@ export function DistributionTab() {
                 const nextYear = Number(value);
                 setPrimaryYear(nextYear);
                 if (nextYear === secondaryYear) setSecondaryYear(nextYear === 2026 ? 2025 : 2026);
+                if (compareType === 'subject') {
+                  const nextSecondaryYear = nextYear === secondaryYear ? (nextYear === 2026 ? 2025 : 2026) : secondaryYear;
+                  setCompareKey(firstValidSubject(subjectsForYearComparison(nextYear, nextSecondaryYear), compareKey));
+                }
               },
             },
             {
               label: 'So với năm',
               value: String(secondaryYear),
               options: YEARS.filter(year => year !== primaryYear).map(year => ({ label: String(year), value: String(year) })),
-              onChange: value => setSecondaryYear(Number(value)),
+              onChange: value => {
+                const nextYear = Number(value);
+                setSecondaryYear(nextYear);
+                if (compareType === 'subject') setCompareKey(firstValidSubject(subjectsForYearComparison(primaryYear, nextYear), compareKey));
+              },
             },
           ]}
           onReset={() => {

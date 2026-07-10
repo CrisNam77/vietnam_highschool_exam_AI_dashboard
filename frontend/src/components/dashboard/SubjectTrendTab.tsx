@@ -1,8 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import { candidatesByYear, eightPlusRates, PROGRAMS, subjectYearMatrix, SUBJECTS, underFiveRates, YEARS } from '@/data/dashboardData';
-import type { MetricKey, Program } from '@/types/dashboard';
+import { candidatesByYear, eightPlusRates, PROGRAMS, subjectYearMatrix, underFiveRates, YEARS } from '@/data/dashboardData';
+import { subjectAppliesToYear, subjectsForProgram } from '@/data/dashboardSchema';
+import type { MetricKey, Program, Subject } from '@/types/dashboard';
 import { ChartCard, SimpleBarChart, SimpleLineChart } from './charts';
 import { DashboardSelect } from './DashboardSelect';
 import { DashboardShell } from './DashboardShell';
@@ -20,12 +21,13 @@ const subjectPalette: Record<string, string> = {
   toan: '#00195A',
   ngu_van: '#31327E',
   tieng_anh: '#594DA3',
-  vat_ly: '#826ACA',
+  vat_li: '#826ACA',
   hoa_hoc: '#AD88F1',
   sinh_hoc: '#7C3AED',
   lich_su: '#4F46E5',
-  dia_ly: '#2563EB',
+  dia_li: '#2563EB',
   gdcd: '#0F766E',
+  gd_ktpl: '#0E7490',
 };
 
 const metricValueMode: Record<MetricKey, 'score' | 'percent' | 'count'> = {
@@ -35,6 +37,33 @@ const metricValueMode: Record<MetricKey, 'score' | 'percent' | 'count'> = {
   perfect10: 'count',
 };
 
+function getYearsForProgram(program: Program): number[] {
+  if (program === 'all') return [...YEARS];
+  return candidatesByYear
+    .filter(item => item.program === program)
+    .map(item => item.year)
+    .sort((a, b) => a - b);
+}
+
+function clampYearRange(years: number[], fromYear: number, toYear: number): [number, number] {
+  const minYear = years[0] ?? YEARS[0];
+  const maxYear = years[years.length - 1] ?? YEARS[YEARS.length - 1];
+  const startYear = Math.min(fromYear, toYear);
+  const endYear = Math.max(fromYear, toYear);
+
+  if (endYear < minYear || startYear > maxYear) return [minYear, maxYear];
+
+  return [
+    Math.min(Math.max(startYear, minYear), maxYear),
+    Math.min(Math.max(endYear, minYear), maxYear),
+  ];
+}
+
+function findMetricRow(subject: Subject, year: number, program: Program) {
+  if (program === 'all' && !subjectAppliesToYear(subject, year)) return undefined;
+  return subjectYearMatrix.find(item => item.subjectId === subject.id && item.year === year && item.program === program);
+}
+
 export function SubjectTrendTab() {
   const [fromYear, setFromYear] = useState(2022);
   const [toYear, setToYear] = useState(2026);
@@ -42,42 +71,53 @@ export function SubjectTrendTab() {
   const [metric, setMetric] = useState<MetricKey>('average');
   const [program, setProgram] = useState<Program>('all');
 
-  // Derive available years for selected program
-  const availableYears = program === 'all'
-    ? YEARS
-    : candidatesByYear
-        .filter(item => item.program === program)
-        .map(item => item.year)
-        .sort((a, b) => a - b);
+  const availableYears = getYearsForProgram(program);
 
   const handleProgramChange = (nextProgram: string) => {
     const p = nextProgram as Program;
+    const yearsForP = getYearsForProgram(p);
+    const [nextFromYear, nextToYear] = clampYearRange(yearsForP, fromYear, toYear);
     setProgram(p);
-    const yearsForP = p === 'all' ? YEARS : candidatesByYear
-      .filter(item => item.program === p).map(item => item.year);
-    if (!yearsForP.includes(fromYear)) setFromYear(yearsForP[0] ?? YEARS[0]);
-    if (!yearsForP.includes(toYear)) setToYear(yearsForP[yearsForP.length - 1] ?? YEARS[YEARS.length - 1]);
+    setFromYear(nextFromYear);
+    setToYear(nextToYear);
+    if (subjectId !== 'all' && !subjectsForProgram(p).some(subject => subject.id === subjectId)) setSubjectId('all');
   };
 
   const startYear = Math.min(fromYear, toYear);
   const endYear = Math.max(fromYear, toYear);
   const yearRange = availableYears.filter(year => year >= startYear && year <= endYear);
+  const availableSubjects = subjectsForProgram(program);
+  const availableSubjectIds = new Set(availableSubjects.map(subject => subject.id));
+  const latestYear = Math.max(...YEARS);
+  const latestApplicableSubjectIds = new Set(
+    availableSubjects
+      .filter(subject => program !== 'all' || subjectAppliesToYear(subject, latestYear))
+      .map(subject => subject.id)
+  );
   const lineSubjects = subjectId === 'all'
-    ? SUBJECTS
-    : SUBJECTS.filter(subject => subject.id === subjectId);
+    ? availableSubjects
+    : availableSubjects.filter(subject => subject.id === subjectId);
 
-  const heatmapRows = SUBJECTS.map(subject => ({
+  const heatmapRows = availableSubjects.map(subject => ({
     label: subject.name,
     values: Object.fromEntries(
       yearRange.map(year => {
-        const row = subjectYearMatrix.find(item => item.subjectId === subject.id && item.year === year && item.program === program);
-        return [String(year), row?.[metric] ?? 0];
+        const row = findMetricRow(subject, year, program);
+        return [String(year), row?.[metric] ?? null];
       })
     ),
   }));
 
-  const scopedUnderFive = underFiveRates.filter(item => item.program === program);
-  const scopedEightPlus = eightPlusRates.filter(item => item.program === program);
+  const scopedUnderFive = underFiveRates.filter(item =>
+    item.program === program
+    && availableSubjectIds.has(item.subjectId)
+    && latestApplicableSubjectIds.has(item.subjectId)
+  );
+  const scopedEightPlus = eightPlusRates.filter(item =>
+    item.program === program
+    && availableSubjectIds.has(item.subjectId)
+    && latestApplicableSubjectIds.has(item.subjectId)
+  );
 
   return (
     <DashboardShell
@@ -102,7 +142,7 @@ export function SubjectTrendTab() {
           <DashboardSelect
             label="Môn học"
             value={subjectId}
-            options={[{ label: 'Tất cả môn', value: 'all' }, ...SUBJECTS.map(s => ({ label: s.name, value: s.id }))]}
+            options={[{ label: 'Tất cả môn', value: 'all' }, ...availableSubjects.map(s => ({ label: s.name, value: s.id }))]}
             onChange={setSubjectId}
           />
           <DashboardSelect
@@ -116,8 +156,8 @@ export function SubjectTrendTab() {
             <button
               type="button"
               onClick={() => {
-                setFromYear(availableYears[0] ?? 2022);
-                setToYear(availableYears[availableYears.length - 1] ?? 2026);
+                setFromYear(YEARS[0] ?? 2022);
+                setToYear(YEARS[YEARS.length - 1] ?? 2026);
                 setSubjectId('all');
                 setMetric('average');
                 setProgram('all');
@@ -137,8 +177,8 @@ export function SubjectTrendTab() {
             name: subject.name,
             color: subjectPalette[subject.id] ?? '#594DA3',
             points: yearRange.map(year => {
-              const row = subjectYearMatrix.find(item => item.subjectId === subject.id && item.year === year && item.program === program);
-              return { label: String(year), value: row?.[metric] ?? 0 };
+              const row = findMetricRow(subject, year, program);
+              return { label: String(year), value: row?.[metric] ?? null };
             }),
           }))}
         />

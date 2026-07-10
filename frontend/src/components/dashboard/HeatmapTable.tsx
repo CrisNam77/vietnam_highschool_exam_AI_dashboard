@@ -1,6 +1,10 @@
 export interface HeatmapRow {
   label: string;
-  values: Record<string, number>;
+  values: Record<string, number | null | undefined>;
+}
+
+function isFiniteNumber(value: number | null | undefined): value is number {
+  return typeof value === 'number' && Number.isFinite(value);
 }
 
 function cellColor(value: number, min: number, max: number, danger = false) {
@@ -20,9 +24,9 @@ export function HeatmapTable({
   rows: HeatmapRow[];
   danger?: boolean;
 }) {
-  const values = rows.flatMap(row => columns.map(column => row.values[column] ?? 0));
-  const min = Math.min(...values);
-  const max = Math.max(...values);
+  const values = rows.flatMap(row => columns.map(column => row.values[column])).filter(isFiniteNumber);
+  const min = values.length > 0 ? Math.min(...values) : 0;
+  const max = values.length > 0 ? Math.max(...values) : 1;
 
   return (
     <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
@@ -43,14 +47,15 @@ export function HeatmapTable({
               <tr key={row.label} className="border-t border-slate-100">
                 <th className="whitespace-nowrap px-4 py-3 text-left font-bold text-[#0F172A]">{row.label}</th>
                 {columns.map(column => {
-                  const value = row.values[column] ?? 0;
+                  const value = row.values[column];
+                  const hasValue = isFiniteNumber(value);
                   return (
                     <td key={column} className="px-3 py-2 text-center">
                       <span
                         className="inline-flex min-w-14 justify-center rounded-lg px-2 py-1 text-xs font-extrabold text-[#0F172A]"
-                        style={{ background: cellColor(value, min, max, danger) }}
+                        style={{ background: hasValue ? cellColor(value, min, max, danger) : '#F8FAFC' }}
                       >
-                        {value.toFixed(2)}
+                        {hasValue ? value.toFixed(2) : '—'}
                       </span>
                     </td>
                   );

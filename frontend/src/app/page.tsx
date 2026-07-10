@@ -564,10 +564,14 @@ const SendIcon = () => (
   </svg>
 );
 
-const SidebarIcon = ({ name }: { name: 'new' | 'search' | 'history' | 'api' | 'data' | 'more' | 'panel' }) => {
+const SidebarIcon = ({ name }: { name: 'new' | 'search' | 'history' | 'api' | 'data' | 'more' | 'panel' | 'chart' | 'distribution' | 'correlation' | 'map' }) => {
   const common = { fill: 'none', stroke: 'currentColor', strokeWidth: 2, strokeLinecap: 'round' as const, strokeLinejoin: 'round' as const };
   return (
     <svg width="21" height="21" viewBox="0 0 24 24" aria-hidden="true" {...common}>
+      {name === 'chart' && <><path d="M4 19V5"/><path d="M4 19h16"/><path d="M8 16V9"/><path d="M12 16V7"/><path d="M16 16v-4"/></>}
+      {name === 'distribution' && <><path d="M4 18h16"/><path d="M7 18V9"/><path d="M12 18V5"/><path d="M17 18v-6"/></>}
+      {name === 'correlation' && <><circle cx="7" cy="16" r="1.5"/><circle cx="12" cy="11" r="1.5"/><circle cx="17" cy="7" r="1.5"/><path d="M8.2 14.8 10.8 12.2"/><path d="M13.3 10 15.7 8"/></>}
+      {name === 'map' && <><path d="M9 18 3 20V6l6-2 6 2 6-2v14l-6 2-6-2Z"/><path d="M9 4v14"/><path d="M15 6v14"/></>}
       {name === 'new' && <><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></>}
       {name === 'search' && <><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></>}
       {name === 'history' && <><path d="M3 5h18"/><path d="M7 5v14"/><path d="M17 5v14"/><path d="M3 19h18"/></>}

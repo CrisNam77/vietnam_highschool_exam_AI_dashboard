@@ -1,4 +1,5 @@
 import data from './data';
+import { DASHBOARD_SUBJECTS } from './dashboardSchema';
 import type {
   KpiItem,
   CombinationOption,
@@ -11,27 +12,26 @@ import type {
   SubjectMetric,
   SubjectYearMetric,
   YearMetric,
-  Program,
-  YearOption
+  Program
 } from '@/types/dashboard';
 
 export const YEARS = data.YEARS as readonly number[];
-export const SUBJECTS: Subject[] = data.SUBJECTS;
-export const REGIONS: Region[] = data.REGIONS;
+export const SUBJECTS: Subject[] = DASHBOARD_SUBJECTS;
+export const REGIONS = data.REGIONS as Region[];
 export const PROGRAMS = data.PROGRAMS as readonly Program[];
-export const COMBINATIONS: CombinationOption[] = data.COMBINATIONS;
+export const COMBINATIONS = data.COMBINATIONS as CombinationOption[];
 
-export const overviewKpis: KpiItem[] = data.overviewKpis;
-export const nationalAverageByYear: YearMetric[] = data.nationalAverageByYear;
-export const candidatesByYear: YearMetric[] = data.candidatesByYear;
-export const subjectAverages: SubjectMetric[] = data.subjectAverages;
-export const subjectYearMatrix: SubjectYearMetric[] = data.subjectYearMatrix;
-export const underFiveRates: SubjectMetric[] = data.underFiveRates;
-export const eightPlusRates: SubjectMetric[] = data.eightPlusRates;
-export const provinceRankings: ProvinceRanking[] = data.provinceRankings;
-export const regionAverages: RegionMetric[] = data.regionAverages;
+export const overviewKpis = data.overviewKpis as KpiItem[];
+export const nationalAverageByYear = data.nationalAverageByYear as YearMetric[];
+export const candidatesByYear = data.candidatesByYear as YearMetric[];
+export const subjectAverages = data.subjectAverages as SubjectMetric[];
+export const subjectYearMatrix = data.subjectYearMatrix as SubjectYearMetric[];
+export const underFiveRates = data.underFiveRates as SubjectMetric[];
+export const eightPlusRates = data.eightPlusRates as SubjectMetric[];
+export const provinceRankings = data.provinceRankings as ProvinceRanking[];
+export const regionAverages = data.regionAverages as RegionMetric[];
 export const regionSubjectMatrix = data.regionSubjectMatrix;
 
-export const subjectDistributions: DistributionRecord[] = data.subjectDistributions;
-export const combinationDistributions: DistributionRecord[] = data.combinationDistributions;
-export const distributionStats: DistributionStats[] = data.distributionStats;
+export const subjectDistributions = data.subjectDistributions as DistributionRecord[];
+export const combinationDistributions = data.combinationDistributions as DistributionRecord[];
+export const distributionStats = data.distributionStats as DistributionStats[];
