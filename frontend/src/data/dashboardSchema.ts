@@ -10,6 +10,9 @@ export type ProcessedSubjectColumn =
   | 'lich_su'
   | 'dia_li'
   | 'gdcd'
+  | 'tin_hoc'
+  | 'cong_nghe_cn'
+  | 'cong_nghe_nn'
   | 'gd_ktpl';
 
 export type DashboardSubject = Subject & {
@@ -27,6 +30,9 @@ export const DASHBOARD_SUBJECTS: DashboardSubject[] = [
   { id: 'lich_su', name: 'Lịch sử', column: 'lich_su', programs: ['CT2006', 'CT2018'] },
   { id: 'dia_li', name: 'Địa lý', column: 'dia_li', programs: ['CT2006', 'CT2018'] },
   { id: 'gdcd', name: 'GDCD', column: 'gdcd', programs: ['CT2006'] },
+  { id: 'tin_hoc', name: 'Tin học', column: 'tin_hoc', programs: ['CT2018'] },
+  { id: 'cong_nghe_cn', name: 'Công nghệ CN', column: 'cong_nghe_cn', programs: ['CT2018'] },
+  { id: 'cong_nghe_nn', name: 'Công nghệ NN', column: 'cong_nghe_nn', programs: ['CT2018'] },
   { id: 'gd_ktpl', name: 'GDKTPL', column: 'gd_ktpl', programs: ['CT2018'] },
 ];
 

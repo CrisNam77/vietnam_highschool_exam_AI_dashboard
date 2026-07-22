@@ -27,6 +27,9 @@ const subjectPalette: Record<string, string> = {
   lich_su: '#4F46E5',
   dia_li: '#2563EB',
   gdcd: '#0F766E',
+  tin_hoc: '#0891B2',
+  cong_nghe_cn: '#EA580C',
+  cong_nghe_nn: '#65A30D',
   gd_ktpl: '#0E7490',
 };
 
