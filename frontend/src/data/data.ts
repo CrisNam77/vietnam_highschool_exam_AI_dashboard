@@ -88,6 +88,30 @@ const data = {
       ]
     },
     {
+      "id": "tin_hoc",
+      "name": "Tin học",
+      "column": "tin_hoc",
+      "programs": [
+        "CT2018"
+      ]
+    },
+    {
+      "id": "cong_nghe_cn",
+      "name": "Công nghệ CN",
+      "column": "cong_nghe_cn",
+      "programs": [
+        "CT2018"
+      ]
+    },
+    {
+      "id": "cong_nghe_nn",
+      "name": "Công nghệ NN",
+      "column": "cong_nghe_nn",
+      "programs": [
+        "CT2018"
+      ]
+    },
+    {
       "id": "gd_ktpl",
       "name": "GDKTPL",
       "column": "gd_ktpl",
@@ -203,7 +227,7 @@ const data = {
     },
     {
       "label": "Điểm TB toàn quốc",
-      "value": "6.37"
+      "value": "6.39"
     }
   ],
   "nationalAverageByYear": [
@@ -245,22 +269,22 @@ const data = {
     {
       "year": 2025,
       "program": "CT2018",
-      "value": 6.31
+      "value": 6.43
     },
     {
       "year": 2025,
       "program": "all",
-      "value": 6.45
+      "value": 6.53
     },
     {
       "year": 2026,
       "program": "CT2018",
-      "value": 5.7
+      "value": 5.74
     },
     {
       "year": 2026,
       "program": "all",
-      "value": 5.7
+      "value": 5.74
     }
   ],
   "candidatesByYear": [
@@ -424,6 +448,24 @@ const data = {
       "value": 5.91
     },
     {
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "program": "CT2018",
+      "value": 6.29
+    },
+    {
+      "subjectId": "cong_nghe_cn",
+      "subjectName": "Công nghệ CN",
+      "program": "CT2018",
+      "value": 5.79
+    },
+    {
+      "subjectId": "cong_nghe_nn",
+      "subjectName": "Công nghệ NN",
+      "program": "CT2018",
+      "value": 7.72
+    },
+    {
       "subjectId": "gd_ktpl",
       "subjectName": "GDKTPL",
       "program": "CT2018",
@@ -482,6 +524,24 @@ const data = {
       "subjectName": "GDCD",
       "program": "all",
       "value": 8.16
+    },
+    {
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "program": "all",
+      "value": 6.29
+    },
+    {
+      "subjectId": "cong_nghe_cn",
+      "subjectName": "Công nghệ CN",
+      "program": "all",
+      "value": 5.79
+    },
+    {
+      "subjectId": "cong_nghe_nn",
+      "subjectName": "Công nghệ NN",
+      "program": "all",
+      "value": 7.72
     },
     {
       "subjectId": "gd_ktpl",
@@ -1202,6 +1262,36 @@ const data = {
       "perfect10": 6907
     },
     {
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "year": 2025,
+      "program": "CT2018",
+      "average": 6.78,
+      "underFive": 11.2,
+      "eightPlus": 24.8,
+      "perfect10": 60
+    },
+    {
+      "subjectId": "cong_nghe_cn",
+      "subjectName": "Công nghệ CN",
+      "year": 2025,
+      "program": "CT2018",
+      "average": 5.79,
+      "underFive": 34.1,
+      "eightPlus": 11.2,
+      "perfect10": 4
+    },
+    {
+      "subjectId": "cong_nghe_nn",
+      "subjectName": "Công nghệ NN",
+      "year": 2025,
+      "program": "CT2018",
+      "average": 7.72,
+      "underFive": 2.1,
+      "eightPlus": 48.8,
+      "perfect10": 101
+    },
+    {
       "subjectId": "gd_ktpl",
       "subjectName": "GDKTPL",
       "year": 2025,
@@ -1302,6 +1392,36 @@ const data = {
       "perfect10": 34
     },
     {
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "year": 2025,
+      "program": "all",
+      "average": 6.78,
+      "underFive": 11.2,
+      "eightPlus": 24.8,
+      "perfect10": 60
+    },
+    {
+      "subjectId": "cong_nghe_cn",
+      "subjectName": "Công nghệ CN",
+      "year": 2025,
+      "program": "all",
+      "average": 5.79,
+      "underFive": 34.1,
+      "eightPlus": 11.2,
+      "perfect10": 4
+    },
+    {
+      "subjectId": "cong_nghe_nn",
+      "subjectName": "Công nghệ NN",
+      "year": 2025,
+      "program": "all",
+      "average": 7.72,
+      "underFive": 2.1,
+      "eightPlus": 48.8,
+      "perfect10": 101
+    },
+    {
       "subjectId": "gd_ktpl",
       "subjectName": "GDKTPL",
       "year": 2025,
@@ -1392,6 +1512,16 @@ const data = {
       "perfect10": 52
     },
     {
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "year": 2026,
+      "program": "CT2018",
+      "average": 6.06,
+      "underFive": 25.4,
+      "eightPlus": 13.1,
+      "perfect10": 22
+    },
+    {
       "subjectId": "gd_ktpl",
       "subjectName": "GDKTPL",
       "year": 2026,
@@ -1482,6 +1612,16 @@ const data = {
       "perfect10": 52
     },
     {
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "year": 2026,
+      "program": "all",
+      "average": 6.06,
+      "underFive": 25.4,
+      "eightPlus": 13.1,
+      "perfect10": 22
+    },
+    {
       "subjectId": "gd_ktpl",
       "subjectName": "GDKTPL",
       "year": 2026,
@@ -1542,6 +1682,12 @@ const data = {
       "value": 47.2
     },
     {
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "program": "CT2018",
+      "value": 25.4
+    },
+    {
       "subjectId": "gd_ktpl",
       "subjectName": "GDKTPL",
       "program": "CT2018",
@@ -1594,6 +1740,12 @@ const data = {
       "subjectName": "Địa lý",
       "program": "all",
       "value": 47.2
+    },
+    {
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "program": "all",
+      "value": 25.4
     },
     {
       "subjectId": "gd_ktpl",
@@ -1652,6 +1804,12 @@ const data = {
       "value": 4.2
     },
     {
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "program": "CT2018",
+      "value": 13.1
+    },
+    {
       "subjectId": "gd_ktpl",
       "subjectName": "GDKTPL",
       "program": "CT2018",
@@ -1704,6 +1862,12 @@ const data = {
       "subjectName": "Địa lý",
       "program": "all",
       "value": 4.2
+    },
+    {
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "program": "all",
+      "value": 13.1
     },
     {
       "subjectId": "gd_ktpl",
@@ -13958,6 +14122,976 @@ const data = {
       "regionId": "dbscl",
       "regionName": "Đồng bằng sông Cửu Long",
       "year": 2025,
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "average": 6.84,
+      "candidates": 513
+    },
+    {
+      "province": "Bắc Ninh",
+      "regionId": "dbsh",
+      "regionName": "Đồng bằng sông Hồng",
+      "year": 2025,
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "average": 6.61,
+      "candidates": 111
+    },
+    {
+      "province": "Cao Bằng",
+      "regionId": "tdmnpb",
+      "regionName": "Trung du và miền núi phía Bắc",
+      "year": 2025,
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "average": 7.08,
+      "candidates": 8
+    },
+    {
+      "province": "Cà Mau",
+      "regionId": "dbscl",
+      "regionName": "Đồng bằng sông Cửu Long",
+      "year": 2025,
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "average": 6.33,
+      "candidates": 201
+    },
+    {
+      "province": "Cần Thơ",
+      "regionId": "dbscl",
+      "regionName": "Đồng bằng sông Cửu Long",
+      "year": 2025,
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "average": 6.59,
+      "candidates": 528
+    },
+    {
+      "province": "Gia Lai",
+      "regionId": "tn",
+      "regionName": "Tây Nguyên",
+      "year": 2025,
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "average": 7.1,
+      "candidates": 209
+    },
+    {
+      "province": "Huế",
+      "regionId": "btbtb",
+      "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+      "year": 2025,
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "average": 6.53,
+      "candidates": 206
+    },
+    {
+      "province": "Hà Nội",
+      "regionId": "dbsh",
+      "regionName": "Đồng bằng sông Hồng",
+      "year": 2025,
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "average": 7.06,
+      "candidates": 626
+    },
+    {
+      "province": "Hà Tĩnh",
+      "regionId": "btbtb",
+      "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+      "year": 2025,
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "average": 8.02,
+      "candidates": 26
+    },
+    {
+      "province": "Hưng Yên",
+      "regionId": "dbsh",
+      "regionName": "Đồng bằng sông Hồng",
+      "year": 2025,
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "average": 7.04,
+      "candidates": 82
+    },
+    {
+      "province": "Hải Phòng",
+      "regionId": "dbsh",
+      "regionName": "Đồng bằng sông Hồng",
+      "year": 2025,
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "average": 7.01,
+      "candidates": 87
+    },
+    {
+      "province": "Hồ Chí Minh",
+      "regionId": "dnb",
+      "regionName": "Đông Nam Bộ",
+      "year": 2025,
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "average": 7.26,
+      "candidates": 1011
+    },
+    {
+      "province": "Khánh Hòa",
+      "regionId": "btbtb",
+      "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+      "year": 2025,
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "average": 6.19,
+      "candidates": 479
+    },
+    {
+      "province": "Lai Châu",
+      "regionId": "tdmnpb",
+      "regionName": "Trung du và miền núi phía Bắc",
+      "year": 2025,
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "average": 7.5,
+      "candidates": 1
+    },
+    {
+      "province": "Lào Cai",
+      "regionId": "tdmnpb",
+      "regionName": "Trung du và miền núi phía Bắc",
+      "year": 2025,
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "average": 5.46,
+      "candidates": 202
+    },
+    {
+      "province": "Lâm Đồng",
+      "regionId": "tn",
+      "regionName": "Tây Nguyên",
+      "year": 2025,
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "average": 6.62,
+      "candidates": 553
+    },
+    {
+      "province": "Lạng Sơn",
+      "regionId": "tdmnpb",
+      "regionName": "Trung du và miền núi phía Bắc",
+      "year": 2025,
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "average": 7.08,
+      "candidates": 6
+    },
+    {
+      "province": "Nghệ An",
+      "regionId": "btbtb",
+      "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+      "year": 2025,
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "average": 7.32,
+      "candidates": 230
+    },
+    {
+      "province": "Ninh Bình",
+      "regionId": "dbsh",
+      "regionName": "Đồng bằng sông Hồng",
+      "year": 2025,
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "average": 8.46,
+      "candidates": 60
+    },
+    {
+      "province": "Phú Thọ",
+      "regionId": "tdmnpb",
+      "regionName": "Trung du và miền núi phía Bắc",
+      "year": 2025,
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "average": 7.95,
+      "candidates": 39
+    },
+    {
+      "province": "Quảng Ngãi",
+      "regionId": "btbtb",
+      "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+      "year": 2025,
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "average": 6.71,
+      "candidates": 100
+    },
+    {
+      "province": "Quảng Ninh",
+      "regionId": "dbsh",
+      "regionName": "Đồng bằng sông Hồng",
+      "year": 2025,
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "average": 6.82,
+      "candidates": 110
+    },
+    {
+      "province": "Quảng Trị",
+      "regionId": "btbtb",
+      "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+      "year": 2025,
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "average": 6.29,
+      "candidates": 351
+    },
+    {
+      "province": "Sơn La",
+      "regionId": "tdmnpb",
+      "regionName": "Trung du và miền núi phía Bắc",
+      "year": 2025,
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "average": 7.2,
+      "candidates": 27
+    },
+    {
+      "province": "Thanh Hóa",
+      "regionId": "btbtb",
+      "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+      "year": 2025,
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "average": 7.8,
+      "candidates": 40
+    },
+    {
+      "province": "Thái Nguyên",
+      "regionId": "tdmnpb",
+      "regionName": "Trung du và miền núi phía Bắc",
+      "year": 2025,
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "average": 6.31,
+      "candidates": 57
+    },
+    {
+      "province": "Tuyên Quang",
+      "regionId": "tdmnpb",
+      "regionName": "Trung du và miền núi phía Bắc",
+      "year": 2025,
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "average": 7.38,
+      "candidates": 19
+    },
+    {
+      "province": "Tây Ninh",
+      "regionId": "dnb",
+      "regionName": "Đông Nam Bộ",
+      "year": 2025,
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "average": 6.87,
+      "candidates": 101
+    },
+    {
+      "province": "Vĩnh Long",
+      "regionId": "dbscl",
+      "regionName": "Đồng bằng sông Cửu Long",
+      "year": 2025,
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "average": 6.62,
+      "candidates": 547
+    },
+    {
+      "province": "Điện Biên",
+      "regionId": "tdmnpb",
+      "regionName": "Trung du và miền núi phía Bắc",
+      "year": 2025,
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "average": 5.35,
+      "candidates": 15
+    },
+    {
+      "province": "Đà Nẵng",
+      "regionId": "btbtb",
+      "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+      "year": 2025,
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "average": 6.91,
+      "candidates": 375
+    },
+    {
+      "province": "Đắk Lắk",
+      "regionId": "tn",
+      "regionName": "Tây Nguyên",
+      "year": 2025,
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "average": 6.57,
+      "candidates": 218
+    },
+    {
+      "province": "Đồng Nai",
+      "regionId": "dnb",
+      "regionName": "Đông Nam Bộ",
+      "year": 2025,
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "average": 6.93,
+      "candidates": 289
+    },
+    {
+      "province": "Đồng Tháp",
+      "regionId": "dbscl",
+      "regionName": "Đồng bằng sông Cửu Long",
+      "year": 2025,
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "average": 6.83,
+      "candidates": 175
+    },
+    {
+      "province": "An Giang",
+      "regionId": "dbscl",
+      "regionName": "Đồng bằng sông Cửu Long",
+      "year": 2025,
+      "subjectId": "cong_nghe_cn",
+      "subjectName": "Công nghệ CN",
+      "average": 6.15,
+      "candidates": 248
+    },
+    {
+      "province": "Bắc Ninh",
+      "regionId": "dbsh",
+      "regionName": "Đồng bằng sông Hồng",
+      "year": 2025,
+      "subjectId": "cong_nghe_cn",
+      "subjectName": "Công nghệ CN",
+      "average": 6.45,
+      "candidates": 22
+    },
+    {
+      "province": "Cao Bằng",
+      "regionId": "tdmnpb",
+      "regionName": "Trung du và miền núi phía Bắc",
+      "year": 2025,
+      "subjectId": "cong_nghe_cn",
+      "subjectName": "Công nghệ CN",
+      "average": 4.75,
+      "candidates": 32
+    },
+    {
+      "province": "Cà Mau",
+      "regionId": "dbscl",
+      "regionName": "Đồng bằng sông Cửu Long",
+      "year": 2025,
+      "subjectId": "cong_nghe_cn",
+      "subjectName": "Công nghệ CN",
+      "average": 6.83,
+      "candidates": 10
+    },
+    {
+      "province": "Cần Thơ",
+      "regionId": "dbscl",
+      "regionName": "Đồng bằng sông Cửu Long",
+      "year": 2025,
+      "subjectId": "cong_nghe_cn",
+      "subjectName": "Công nghệ CN",
+      "average": 5.88,
+      "candidates": 133
+    },
+    {
+      "province": "Gia Lai",
+      "regionId": "tn",
+      "regionName": "Tây Nguyên",
+      "year": 2025,
+      "subjectId": "cong_nghe_cn",
+      "subjectName": "Công nghệ CN",
+      "average": 5.9,
+      "candidates": 124
+    },
+    {
+      "province": "Huế",
+      "regionId": "btbtb",
+      "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+      "year": 2025,
+      "subjectId": "cong_nghe_cn",
+      "subjectName": "Công nghệ CN",
+      "average": 6.07,
+      "candidates": 42
+    },
+    {
+      "province": "Hà Nội",
+      "regionId": "dbsh",
+      "regionName": "Đồng bằng sông Hồng",
+      "year": 2025,
+      "subjectId": "cong_nghe_cn",
+      "subjectName": "Công nghệ CN",
+      "average": 5.69,
+      "candidates": 18
+    },
+    {
+      "province": "Hà Tĩnh",
+      "regionId": "btbtb",
+      "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+      "year": 2025,
+      "subjectId": "cong_nghe_cn",
+      "subjectName": "Công nghệ CN",
+      "average": 6.42,
+      "candidates": 3
+    },
+    {
+      "province": "Hưng Yên",
+      "regionId": "dbsh",
+      "regionName": "Đồng bằng sông Hồng",
+      "year": 2025,
+      "subjectId": "cong_nghe_cn",
+      "subjectName": "Công nghệ CN",
+      "average": 5.98,
+      "candidates": 53
+    },
+    {
+      "province": "Hải Phòng",
+      "regionId": "dbsh",
+      "regionName": "Đồng bằng sông Hồng",
+      "year": 2025,
+      "subjectId": "cong_nghe_cn",
+      "subjectName": "Công nghệ CN",
+      "average": 4.9,
+      "candidates": 3
+    },
+    {
+      "province": "Hồ Chí Minh",
+      "regionId": "dnb",
+      "regionName": "Đông Nam Bộ",
+      "year": 2025,
+      "subjectId": "cong_nghe_cn",
+      "subjectName": "Công nghệ CN",
+      "average": 6.08,
+      "candidates": 108
+    },
+    {
+      "province": "Khánh Hòa",
+      "regionId": "btbtb",
+      "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+      "year": 2025,
+      "subjectId": "cong_nghe_cn",
+      "subjectName": "Công nghệ CN",
+      "average": 5.91,
+      "candidates": 64
+    },
+    {
+      "province": "Lào Cai",
+      "regionId": "tdmnpb",
+      "regionName": "Trung du và miền núi phía Bắc",
+      "year": 2025,
+      "subjectId": "cong_nghe_cn",
+      "subjectName": "Công nghệ CN",
+      "average": 4.79,
+      "candidates": 58
+    },
+    {
+      "province": "Lâm Đồng",
+      "regionId": "tn",
+      "regionName": "Tây Nguyên",
+      "year": 2025,
+      "subjectId": "cong_nghe_cn",
+      "subjectName": "Công nghệ CN",
+      "average": 5.72,
+      "candidates": 133
+    },
+    {
+      "province": "Nghệ An",
+      "regionId": "btbtb",
+      "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+      "year": 2025,
+      "subjectId": "cong_nghe_cn",
+      "subjectName": "Công nghệ CN",
+      "average": 5.52,
+      "candidates": 130
+    },
+    {
+      "province": "Ninh Bình",
+      "regionId": "dbsh",
+      "regionName": "Đồng bằng sông Hồng",
+      "year": 2025,
+      "subjectId": "cong_nghe_cn",
+      "subjectName": "Công nghệ CN",
+      "average": 5.76,
+      "candidates": 47
+    },
+    {
+      "province": "Phú Thọ",
+      "regionId": "tdmnpb",
+      "regionName": "Trung du và miền núi phía Bắc",
+      "year": 2025,
+      "subjectId": "cong_nghe_cn",
+      "subjectName": "Công nghệ CN",
+      "average": 7.6,
+      "candidates": 6
+    },
+    {
+      "province": "Quảng Ngãi",
+      "regionId": "btbtb",
+      "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+      "year": 2025,
+      "subjectId": "cong_nghe_cn",
+      "subjectName": "Công nghệ CN",
+      "average": 5.01,
+      "candidates": 118
+    },
+    {
+      "province": "Quảng Ninh",
+      "regionId": "dbsh",
+      "regionName": "Đồng bằng sông Hồng",
+      "year": 2025,
+      "subjectId": "cong_nghe_cn",
+      "subjectName": "Công nghệ CN",
+      "average": 8.25,
+      "candidates": 1
+    },
+    {
+      "province": "Quảng Trị",
+      "regionId": "btbtb",
+      "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+      "year": 2025,
+      "subjectId": "cong_nghe_cn",
+      "subjectName": "Công nghệ CN",
+      "average": 5.13,
+      "candidates": 160
+    },
+    {
+      "province": "Thái Nguyên",
+      "regionId": "tdmnpb",
+      "regionName": "Trung du và miền núi phía Bắc",
+      "year": 2025,
+      "subjectId": "cong_nghe_cn",
+      "subjectName": "Công nghệ CN",
+      "average": 5.68,
+      "candidates": 117
+    },
+    {
+      "province": "Tuyên Quang",
+      "regionId": "tdmnpb",
+      "regionName": "Trung du và miền núi phía Bắc",
+      "year": 2025,
+      "subjectId": "cong_nghe_cn",
+      "subjectName": "Công nghệ CN",
+      "average": 4.11,
+      "candidates": 29
+    },
+    {
+      "province": "Tây Ninh",
+      "regionId": "dnb",
+      "regionName": "Đông Nam Bộ",
+      "year": 2025,
+      "subjectId": "cong_nghe_cn",
+      "subjectName": "Công nghệ CN",
+      "average": 6.24,
+      "candidates": 65
+    },
+    {
+      "province": "Vĩnh Long",
+      "regionId": "dbscl",
+      "regionName": "Đồng bằng sông Cửu Long",
+      "year": 2025,
+      "subjectId": "cong_nghe_cn",
+      "subjectName": "Công nghệ CN",
+      "average": 6.8,
+      "candidates": 144
+    },
+    {
+      "province": "Điện Biên",
+      "regionId": "tdmnpb",
+      "regionName": "Trung du và miền núi phía Bắc",
+      "year": 2025,
+      "subjectId": "cong_nghe_cn",
+      "subjectName": "Công nghệ CN",
+      "average": 7.91,
+      "candidates": 7
+    },
+    {
+      "province": "Đà Nẵng",
+      "regionId": "btbtb",
+      "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+      "year": 2025,
+      "subjectId": "cong_nghe_cn",
+      "subjectName": "Công nghệ CN",
+      "average": 5.02,
+      "candidates": 73
+    },
+    {
+      "province": "Đắk Lắk",
+      "regionId": "tn",
+      "regionName": "Tây Nguyên",
+      "year": 2025,
+      "subjectId": "cong_nghe_cn",
+      "subjectName": "Công nghệ CN",
+      "average": 5.88,
+      "candidates": 129
+    },
+    {
+      "province": "Đồng Nai",
+      "regionId": "dnb",
+      "regionName": "Đông Nam Bộ",
+      "year": 2025,
+      "subjectId": "cong_nghe_cn",
+      "subjectName": "Công nghệ CN",
+      "average": 6.08,
+      "candidates": 129
+    },
+    {
+      "province": "Đồng Tháp",
+      "regionId": "dbscl",
+      "regionName": "Đồng bằng sông Cửu Long",
+      "year": 2025,
+      "subjectId": "cong_nghe_cn",
+      "subjectName": "Công nghệ CN",
+      "average": 5.89,
+      "candidates": 84
+    },
+    {
+      "province": "An Giang",
+      "regionId": "dbscl",
+      "regionName": "Đồng bằng sông Cửu Long",
+      "year": 2025,
+      "subjectId": "cong_nghe_nn",
+      "subjectName": "Công nghệ NN",
+      "average": 7.63,
+      "candidates": 566
+    },
+    {
+      "province": "Bắc Ninh",
+      "regionId": "dbsh",
+      "regionName": "Đồng bằng sông Hồng",
+      "year": 2025,
+      "subjectId": "cong_nghe_nn",
+      "subjectName": "Công nghệ NN",
+      "average": 8.06,
+      "candidates": 512
+    },
+    {
+      "province": "Cao Bằng",
+      "regionId": "tdmnpb",
+      "regionName": "Trung du và miền núi phía Bắc",
+      "year": 2025,
+      "subjectId": "cong_nghe_nn",
+      "subjectName": "Công nghệ NN",
+      "average": 7.8,
+      "candidates": 152
+    },
+    {
+      "province": "Cà Mau",
+      "regionId": "dbscl",
+      "regionName": "Đồng bằng sông Cửu Long",
+      "year": 2025,
+      "subjectId": "cong_nghe_nn",
+      "subjectName": "Công nghệ NN",
+      "average": 7.72,
+      "candidates": 475
+    },
+    {
+      "province": "Cần Thơ",
+      "regionId": "dbscl",
+      "regionName": "Đồng bằng sông Cửu Long",
+      "year": 2025,
+      "subjectId": "cong_nghe_nn",
+      "subjectName": "Công nghệ NN",
+      "average": 7.88,
+      "candidates": 1488
+    },
+    {
+      "province": "Gia Lai",
+      "regionId": "tn",
+      "regionName": "Tây Nguyên",
+      "year": 2025,
+      "subjectId": "cong_nghe_nn",
+      "subjectName": "Công nghệ NN",
+      "average": 7.63,
+      "candidates": 1162
+    },
+    {
+      "province": "Huế",
+      "regionId": "btbtb",
+      "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+      "year": 2025,
+      "subjectId": "cong_nghe_nn",
+      "subjectName": "Công nghệ NN",
+      "average": 7.71,
+      "candidates": 990
+    },
+    {
+      "province": "Hà Nội",
+      "regionId": "dbsh",
+      "regionName": "Đồng bằng sông Hồng",
+      "year": 2025,
+      "subjectId": "cong_nghe_nn",
+      "subjectName": "Công nghệ NN",
+      "average": 7.5,
+      "candidates": 1162
+    },
+    {
+      "province": "Hà Tĩnh",
+      "regionId": "btbtb",
+      "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+      "year": 2025,
+      "subjectId": "cong_nghe_nn",
+      "subjectName": "Công nghệ NN",
+      "average": 7.99,
+      "candidates": 85
+    },
+    {
+      "province": "Hưng Yên",
+      "regionId": "dbsh",
+      "regionName": "Đồng bằng sông Hồng",
+      "year": 2025,
+      "subjectId": "cong_nghe_nn",
+      "subjectName": "Công nghệ NN",
+      "average": 8.07,
+      "candidates": 501
+    },
+    {
+      "province": "Hải Phòng",
+      "regionId": "dbsh",
+      "regionName": "Đồng bằng sông Hồng",
+      "year": 2025,
+      "subjectId": "cong_nghe_nn",
+      "subjectName": "Công nghệ NN",
+      "average": 8.12,
+      "candidates": 678
+    },
+    {
+      "province": "Hồ Chí Minh",
+      "regionId": "dnb",
+      "regionName": "Đông Nam Bộ",
+      "year": 2025,
+      "subjectId": "cong_nghe_nn",
+      "subjectName": "Công nghệ NN",
+      "average": 7.55,
+      "candidates": 509
+    },
+    {
+      "province": "Khánh Hòa",
+      "regionId": "btbtb",
+      "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+      "year": 2025,
+      "subjectId": "cong_nghe_nn",
+      "subjectName": "Công nghệ NN",
+      "average": 7.48,
+      "candidates": 514
+    },
+    {
+      "province": "Lai Châu",
+      "regionId": "tdmnpb",
+      "regionName": "Trung du và miền núi phía Bắc",
+      "year": 2025,
+      "subjectId": "cong_nghe_nn",
+      "subjectName": "Công nghệ NN",
+      "average": 7.32,
+      "candidates": 101
+    },
+    {
+      "province": "Lào Cai",
+      "regionId": "tdmnpb",
+      "regionName": "Trung du và miền núi phía Bắc",
+      "year": 2025,
+      "subjectId": "cong_nghe_nn",
+      "subjectName": "Công nghệ NN",
+      "average": 7.73,
+      "candidates": 640
+    },
+    {
+      "province": "Lâm Đồng",
+      "regionId": "tn",
+      "regionName": "Tây Nguyên",
+      "year": 2025,
+      "subjectId": "cong_nghe_nn",
+      "subjectName": "Công nghệ NN",
+      "average": 7.75,
+      "candidates": 1484
+    },
+    {
+      "province": "Lạng Sơn",
+      "regionId": "tdmnpb",
+      "regionName": "Trung du và miền núi phía Bắc",
+      "year": 2025,
+      "subjectId": "cong_nghe_nn",
+      "subjectName": "Công nghệ NN",
+      "average": 7.85,
+      "candidates": 415
+    },
+    {
+      "province": "Nghệ An",
+      "regionId": "btbtb",
+      "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+      "year": 2025,
+      "subjectId": "cong_nghe_nn",
+      "subjectName": "Công nghệ NN",
+      "average": 8.03,
+      "candidates": 687
+    },
+    {
+      "province": "Phú Thọ",
+      "regionId": "tdmnpb",
+      "regionName": "Trung du và miền núi phía Bắc",
+      "year": 2025,
+      "subjectId": "cong_nghe_nn",
+      "subjectName": "Công nghệ NN",
+      "average": 8.06,
+      "candidates": 207
+    },
+    {
+      "province": "Quảng Ngãi",
+      "regionId": "btbtb",
+      "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+      "year": 2025,
+      "subjectId": "cong_nghe_nn",
+      "subjectName": "Công nghệ NN",
+      "average": 7.33,
+      "candidates": 552
+    },
+    {
+      "province": "Quảng Ninh",
+      "regionId": "dbsh",
+      "regionName": "Đồng bằng sông Hồng",
+      "year": 2025,
+      "subjectId": "cong_nghe_nn",
+      "subjectName": "Công nghệ NN",
+      "average": 7.73,
+      "candidates": 182
+    },
+    {
+      "province": "Quảng Trị",
+      "regionId": "btbtb",
+      "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+      "year": 2025,
+      "subjectId": "cong_nghe_nn",
+      "subjectName": "Công nghệ NN",
+      "average": 7.8,
+      "candidates": 1811
+    },
+    {
+      "province": "Sơn La",
+      "regionId": "tdmnpb",
+      "regionName": "Trung du và miền núi phía Bắc",
+      "year": 2025,
+      "subjectId": "cong_nghe_nn",
+      "subjectName": "Công nghệ NN",
+      "average": 7.39,
+      "candidates": 152
+    },
+    {
+      "province": "Thanh Hóa",
+      "regionId": "btbtb",
+      "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+      "year": 2025,
+      "subjectId": "cong_nghe_nn",
+      "subjectName": "Công nghệ NN",
+      "average": 7.66,
+      "candidates": 432
+    },
+    {
+      "province": "Thái Nguyên",
+      "regionId": "tdmnpb",
+      "regionName": "Trung du và miền núi phía Bắc",
+      "year": 2025,
+      "subjectId": "cong_nghe_nn",
+      "subjectName": "Công nghệ NN",
+      "average": 7.46,
+      "candidates": 776
+    },
+    {
+      "province": "Tuyên Quang",
+      "regionId": "tdmnpb",
+      "regionName": "Trung du và miền núi phía Bắc",
+      "year": 2025,
+      "subjectId": "cong_nghe_nn",
+      "subjectName": "Công nghệ NN",
+      "average": 7.82,
+      "candidates": 878
+    },
+    {
+      "province": "Tây Ninh",
+      "regionId": "dnb",
+      "regionName": "Đông Nam Bộ",
+      "year": 2025,
+      "subjectId": "cong_nghe_nn",
+      "subjectName": "Công nghệ NN",
+      "average": 7.97,
+      "candidates": 275
+    },
+    {
+      "province": "Vĩnh Long",
+      "regionId": "dbscl",
+      "regionName": "Đồng bằng sông Cửu Long",
+      "year": 2025,
+      "subjectId": "cong_nghe_nn",
+      "subjectName": "Công nghệ NN",
+      "average": 8.06,
+      "candidates": 1094
+    },
+    {
+      "province": "Điện Biên",
+      "regionId": "tdmnpb",
+      "regionName": "Trung du và miền núi phía Bắc",
+      "year": 2025,
+      "subjectId": "cong_nghe_nn",
+      "subjectName": "Công nghệ NN",
+      "average": 7.77,
+      "candidates": 137
+    },
+    {
+      "province": "Đà Nẵng",
+      "regionId": "btbtb",
+      "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+      "year": 2025,
+      "subjectId": "cong_nghe_nn",
+      "subjectName": "Công nghệ NN",
+      "average": 7.15,
+      "candidates": 1370
+    },
+    {
+      "province": "Đắk Lắk",
+      "regionId": "tn",
+      "regionName": "Tây Nguyên",
+      "year": 2025,
+      "subjectId": "cong_nghe_nn",
+      "subjectName": "Công nghệ NN",
+      "average": 7.35,
+      "candidates": 796
+    },
+    {
+      "province": "Đồng Nai",
+      "regionId": "dnb",
+      "regionName": "Đông Nam Bộ",
+      "year": 2025,
+      "subjectId": "cong_nghe_nn",
+      "subjectName": "Công nghệ NN",
+      "average": 7.86,
+      "candidates": 683
+    },
+    {
+      "province": "Đồng Tháp",
+      "regionId": "dbscl",
+      "regionName": "Đồng bằng sông Cửu Long",
+      "year": 2025,
+      "subjectId": "cong_nghe_nn",
+      "subjectName": "Công nghệ NN",
+      "average": 7.88,
+      "candidates": 582
+    },
+    {
+      "province": "An Giang",
+      "regionId": "dbscl",
+      "regionName": "Đồng bằng sông Cửu Long",
+      "year": 2025,
       "subjectId": "gd_ktpl",
       "subjectName": "GDKTPL",
       "average": 7.81,
@@ -16858,6 +17992,326 @@ const data = {
       "regionId": "dbsh",
       "regionName": "Đồng bằng sông Hồng",
       "year": 2026,
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "average": 6.3,
+      "candidates": 252
+    },
+    {
+      "province": "Cao Bằng",
+      "regionId": "tdmnpb",
+      "regionName": "Trung du và miền núi phía Bắc",
+      "year": 2026,
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "average": 5.34,
+      "candidates": 73
+    },
+    {
+      "province": "Cà Mau",
+      "regionId": "dbscl",
+      "regionName": "Đồng bằng sông Cửu Long",
+      "year": 2026,
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "average": 5.81,
+      "candidates": 639
+    },
+    {
+      "province": "Cần Thơ",
+      "regionId": "dbscl",
+      "regionName": "Đồng bằng sông Cửu Long",
+      "year": 2026,
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "average": 5.71,
+      "candidates": 1389
+    },
+    {
+      "province": "Gia Lai",
+      "regionId": "tn",
+      "regionName": "Tây Nguyên",
+      "year": 2026,
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "average": 5.98,
+      "candidates": 620
+    },
+    {
+      "province": "Huế",
+      "regionId": "btbtb",
+      "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+      "year": 2026,
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "average": 5.97,
+      "candidates": 478
+    },
+    {
+      "province": "Hà Nội",
+      "regionId": "dbsh",
+      "regionName": "Đồng bằng sông Hồng",
+      "year": 2026,
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "average": 6.14,
+      "candidates": 1537
+    },
+    {
+      "province": "Hà Tĩnh",
+      "regionId": "btbtb",
+      "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+      "year": 2026,
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "average": 7.5,
+      "candidates": 78
+    },
+    {
+      "province": "Hưng Yên",
+      "regionId": "dbsh",
+      "regionName": "Đồng bằng sông Hồng",
+      "year": 2026,
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "average": 6.4,
+      "candidates": 286
+    },
+    {
+      "province": "Hải Phòng",
+      "regionId": "dbsh",
+      "regionName": "Đồng bằng sông Hồng",
+      "year": 2026,
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "average": 6.26,
+      "candidates": 248
+    },
+    {
+      "province": "Hồ Chí Minh",
+      "regionId": "dnb",
+      "regionName": "Đông Nam Bộ",
+      "year": 2026,
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "average": 6.55,
+      "candidates": 2017
+    },
+    {
+      "province": "Khánh Hòa",
+      "regionId": "btbtb",
+      "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+      "year": 2026,
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "average": 5.52,
+      "candidates": 856
+    },
+    {
+      "province": "Lai Châu",
+      "regionId": "tdmnpb",
+      "regionName": "Trung du và miền núi phía Bắc",
+      "year": 2026,
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "average": 5.52,
+      "candidates": 52
+    },
+    {
+      "province": "Lào Cai",
+      "regionId": "tdmnpb",
+      "regionName": "Trung du và miền núi phía Bắc",
+      "year": 2026,
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "average": 5.6,
+      "candidates": 177
+    },
+    {
+      "province": "Lâm Đồng",
+      "regionId": "tn",
+      "regionName": "Tây Nguyên",
+      "year": 2026,
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "average": 6.04,
+      "candidates": 1218
+    },
+    {
+      "province": "Lạng Sơn",
+      "regionId": "tdmnpb",
+      "regionName": "Trung du và miền núi phía Bắc",
+      "year": 2026,
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "average": 5.26,
+      "candidates": 101
+    },
+    {
+      "province": "Nghệ An",
+      "regionId": "btbtb",
+      "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+      "year": 2026,
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "average": 6.92,
+      "candidates": 418
+    },
+    {
+      "province": "Ninh Bình",
+      "regionId": "dbsh",
+      "regionName": "Đồng bằng sông Hồng",
+      "year": 2026,
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "average": 7.22,
+      "candidates": 210
+    },
+    {
+      "province": "Phú Thọ",
+      "regionId": "tdmnpb",
+      "regionName": "Trung du và miền núi phía Bắc",
+      "year": 2026,
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "average": 6.09,
+      "candidates": 297
+    },
+    {
+      "province": "Quảng Ngãi",
+      "regionId": "btbtb",
+      "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+      "year": 2026,
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "average": 5.87,
+      "candidates": 341
+    },
+    {
+      "province": "Quảng Ninh",
+      "regionId": "dbsh",
+      "regionName": "Đồng bằng sông Hồng",
+      "year": 2026,
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "average": 6.29,
+      "candidates": 191
+    },
+    {
+      "province": "Quảng Trị",
+      "regionId": "btbtb",
+      "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+      "year": 2026,
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "average": 5.7,
+      "candidates": 797
+    },
+    {
+      "province": "Sơn La",
+      "regionId": "tdmnpb",
+      "regionName": "Trung du và miền núi phía Bắc",
+      "year": 2026,
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "average": 4.86,
+      "candidates": 293
+    },
+    {
+      "province": "Thanh Hóa",
+      "regionId": "btbtb",
+      "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+      "year": 2026,
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "average": 6.47,
+      "candidates": 116
+    },
+    {
+      "province": "Thái Nguyên",
+      "regionId": "tdmnpb",
+      "regionName": "Trung du và miền núi phía Bắc",
+      "year": 2026,
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "average": 5.77,
+      "candidates": 229
+    },
+    {
+      "province": "Tuyên Quang",
+      "regionId": "tdmnpb",
+      "regionName": "Trung du và miền núi phía Bắc",
+      "year": 2026,
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "average": 5.38,
+      "candidates": 322
+    },
+    {
+      "province": "Tây Ninh",
+      "regionId": "dnb",
+      "regionName": "Đông Nam Bộ",
+      "year": 2026,
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "average": 6.39,
+      "candidates": 164
+    },
+    {
+      "province": "Vĩnh Long",
+      "regionId": "dbscl",
+      "regionName": "Đồng bằng sông Cửu Long",
+      "year": 2026,
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "average": 5.87,
+      "candidates": 1216
+    },
+    {
+      "province": "Điện Biên",
+      "regionId": "tdmnpb",
+      "regionName": "Trung du và miền núi phía Bắc",
+      "year": 2026,
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "average": 5.22,
+      "candidates": 43
+    },
+    {
+      "province": "Đà Nẵng",
+      "regionId": "btbtb",
+      "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+      "year": 2026,
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "average": 6.57,
+      "candidates": 904
+    },
+    {
+      "province": "Đắk Lắk",
+      "regionId": "tn",
+      "regionName": "Tây Nguyên",
+      "year": 2026,
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "average": 5.95,
+      "candidates": 526
+    },
+    {
+      "province": "Đồng Nai",
+      "regionId": "dnb",
+      "regionName": "Đông Nam Bộ",
+      "year": 2026,
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "average": 6.3,
+      "candidates": 677
+    },
+    {
+      "province": "Bắc Ninh",
+      "regionId": "dbsh",
+      "regionName": "Đồng bằng sông Hồng",
+      "year": 2026,
       "subjectId": "gd_ktpl",
       "subjectName": "GDKTPL",
       "average": 5.11,
@@ -18907,6 +20361,150 @@ const data = {
       "regionId": "btbtb",
       "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
       "year": 2025,
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "average": 6.63
+    },
+    {
+      "regionId": "tdmnpb",
+      "regionName": "Trung du và miền núi phía Bắc",
+      "year": 2025,
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "average": 6.14
+    },
+    {
+      "regionId": "tn",
+      "regionName": "Tây Nguyên",
+      "year": 2025,
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "average": 6.71
+    },
+    {
+      "regionId": "dnb",
+      "regionName": "Đông Nam Bộ",
+      "year": 2025,
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "average": 7.16
+    },
+    {
+      "regionId": "dbscl",
+      "regionName": "Đồng bằng sông Cửu Long",
+      "year": 2025,
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "average": 6.66
+    },
+    {
+      "regionId": "dbsh",
+      "regionName": "Đồng bằng sông Hồng",
+      "year": 2025,
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "average": 7.06
+    },
+    {
+      "regionId": "btbtb",
+      "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+      "year": 2025,
+      "subjectId": "cong_nghe_cn",
+      "subjectName": "Công nghệ CN",
+      "average": 5.34
+    },
+    {
+      "regionId": "tdmnpb",
+      "regionName": "Trung du và miền núi phía Bắc",
+      "year": 2025,
+      "subjectId": "cong_nghe_cn",
+      "subjectName": "Công nghệ CN",
+      "average": 5.28
+    },
+    {
+      "regionId": "tn",
+      "regionName": "Tây Nguyên",
+      "year": 2025,
+      "subjectId": "cong_nghe_cn",
+      "subjectName": "Công nghệ CN",
+      "average": 5.83
+    },
+    {
+      "regionId": "dnb",
+      "regionName": "Đông Nam Bộ",
+      "year": 2025,
+      "subjectId": "cong_nghe_cn",
+      "subjectName": "Công nghệ CN",
+      "average": 6.11
+    },
+    {
+      "regionId": "dbscl",
+      "regionName": "Đồng bằng sông Cửu Long",
+      "year": 2025,
+      "subjectId": "cong_nghe_cn",
+      "subjectName": "Công nghệ CN",
+      "average": 6.22
+    },
+    {
+      "regionId": "dbsh",
+      "regionName": "Đồng bằng sông Hồng",
+      "year": 2025,
+      "subjectId": "cong_nghe_cn",
+      "subjectName": "Công nghệ CN",
+      "average": 5.93
+    },
+    {
+      "regionId": "btbtb",
+      "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+      "year": 2025,
+      "subjectId": "cong_nghe_nn",
+      "subjectName": "Công nghệ NN",
+      "average": 7.6
+    },
+    {
+      "regionId": "tdmnpb",
+      "regionName": "Trung du và miền núi phía Bắc",
+      "year": 2025,
+      "subjectId": "cong_nghe_nn",
+      "subjectName": "Công nghệ NN",
+      "average": 7.7
+    },
+    {
+      "regionId": "tn",
+      "regionName": "Tây Nguyên",
+      "year": 2025,
+      "subjectId": "cong_nghe_nn",
+      "subjectName": "Công nghệ NN",
+      "average": 7.62
+    },
+    {
+      "regionId": "dnb",
+      "regionName": "Đông Nam Bộ",
+      "year": 2025,
+      "subjectId": "cong_nghe_nn",
+      "subjectName": "Công nghệ NN",
+      "average": 7.77
+    },
+    {
+      "regionId": "dbscl",
+      "regionName": "Đồng bằng sông Cửu Long",
+      "year": 2025,
+      "subjectId": "cong_nghe_nn",
+      "subjectName": "Công nghệ NN",
+      "average": 7.88
+    },
+    {
+      "regionId": "dbsh",
+      "regionName": "Đồng bằng sông Hồng",
+      "year": 2025,
+      "subjectId": "cong_nghe_nn",
+      "subjectName": "Công nghệ NN",
+      "average": 7.84
+    },
+    {
+      "regionId": "btbtb",
+      "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+      "year": 2025,
       "subjectId": "gd_ktpl",
       "subjectName": "GDKTPL",
       "average": 7.58
@@ -19334,6 +20932,54 @@ const data = {
       "subjectId": "dia_li",
       "subjectName": "Địa lý",
       "average": 5.2
+    },
+    {
+      "regionId": "btbtb",
+      "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+      "year": 2026,
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "average": 6.09
+    },
+    {
+      "regionId": "tdmnpb",
+      "regionName": "Trung du và miền núi phía Bắc",
+      "year": 2026,
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "average": 5.49
+    },
+    {
+      "regionId": "tn",
+      "regionName": "Tây Nguyên",
+      "year": 2026,
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "average": 6.01
+    },
+    {
+      "regionId": "dnb",
+      "regionName": "Đông Nam Bộ",
+      "year": 2026,
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "average": 6.48
+    },
+    {
+      "regionId": "dbscl",
+      "regionName": "Đồng bằng sông Cửu Long",
+      "year": 2026,
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "average": 5.79
+    },
+    {
+      "regionId": "dbsh",
+      "regionName": "Đồng bằng sông Hồng",
+      "year": 2026,
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "average": 6.29
     },
     {
       "regionId": "btbtb",
@@ -19768,6 +21414,54 @@ const data = {
       "subjectId": "dia_li",
       "subjectName": "Địa lý",
       "average": 5.2
+    },
+    {
+      "regionId": "btbtb",
+      "regionName": "Bắc Trung Bộ và Duyên hải miền Trung",
+      "year": 2026,
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "average": 6.09
+    },
+    {
+      "regionId": "tdmnpb",
+      "regionName": "Trung du và miền núi phía Bắc",
+      "year": 2026,
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "average": 5.49
+    },
+    {
+      "regionId": "tn",
+      "regionName": "Tây Nguyên",
+      "year": 2026,
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "average": 6.01
+    },
+    {
+      "regionId": "dnb",
+      "regionName": "Đông Nam Bộ",
+      "year": 2026,
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "average": 6.48
+    },
+    {
+      "regionId": "dbscl",
+      "regionName": "Đồng bằng sông Cửu Long",
+      "year": 2026,
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "average": 5.79
+    },
+    {
+      "regionId": "dbsh",
+      "regionName": "Đồng bằng sông Hồng",
+      "year": 2026,
+      "subjectId": "tin_hoc",
+      "subjectName": "Tin học",
+      "average": 6.29
     },
     {
       "regionId": "btbtb",
@@ -30550,6 +32244,900 @@ const data = {
     {
       "year": 2025,
       "type": "subject",
+      "key": "tin_hoc",
+      "name": "Tin học",
+      "scoreMin": 0,
+      "scoreMax": 10,
+      "binSize": 0.25,
+      "bins": [
+        {
+          "start": 0.0,
+          "end": 0.25,
+          "label": "0.00-0.25",
+          "percentage": 0.0,
+          "count": 0
+        },
+        {
+          "start": 0.25,
+          "end": 0.5,
+          "label": "0.25-0.50",
+          "percentage": 0.0,
+          "count": 0
+        },
+        {
+          "start": 0.5,
+          "end": 0.75,
+          "label": "0.50-0.75",
+          "percentage": 0.0,
+          "count": 0
+        },
+        {
+          "start": 0.75,
+          "end": 1.0,
+          "label": "0.75-1.00",
+          "percentage": 0.0,
+          "count": 0
+        },
+        {
+          "start": 1.0,
+          "end": 1.25,
+          "label": "1.00-1.25",
+          "percentage": 0.0,
+          "count": 0
+        },
+        {
+          "start": 1.25,
+          "end": 1.5,
+          "label": "1.25-1.50",
+          "percentage": 0.01,
+          "count": 1
+        },
+        {
+          "start": 1.5,
+          "end": 1.75,
+          "label": "1.50-1.75",
+          "percentage": 0.0,
+          "count": 0
+        },
+        {
+          "start": 1.75,
+          "end": 2.0,
+          "label": "1.75-2.00",
+          "percentage": 0.03,
+          "count": 2
+        },
+        {
+          "start": 2.0,
+          "end": 2.25,
+          "label": "2.00-2.25",
+          "percentage": 0.01,
+          "count": 1
+        },
+        {
+          "start": 2.25,
+          "end": 2.5,
+          "label": "2.25-2.50",
+          "percentage": 0.05,
+          "count": 4
+        },
+        {
+          "start": 2.5,
+          "end": 2.75,
+          "label": "2.50-2.75",
+          "percentage": 0.11,
+          "count": 8
+        },
+        {
+          "start": 2.75,
+          "end": 3.0,
+          "label": "2.75-3.00",
+          "percentage": 0.16,
+          "count": 12
+        },
+        {
+          "start": 3.0,
+          "end": 3.25,
+          "label": "3.00-3.25",
+          "percentage": 0.25,
+          "count": 19
+        },
+        {
+          "start": 3.25,
+          "end": 3.5,
+          "label": "3.25-3.50",
+          "percentage": 0.53,
+          "count": 40
+        },
+        {
+          "start": 3.5,
+          "end": 3.75,
+          "label": "3.50-3.75",
+          "percentage": 0.58,
+          "count": 44
+        },
+        {
+          "start": 3.75,
+          "end": 4.0,
+          "label": "3.75-4.00",
+          "percentage": 1.04,
+          "count": 79
+        },
+        {
+          "start": 4.0,
+          "end": 4.25,
+          "label": "4.00-4.25",
+          "percentage": 1.57,
+          "count": 119
+        },
+        {
+          "start": 4.25,
+          "end": 4.5,
+          "label": "4.25-4.50",
+          "percentage": 1.68,
+          "count": 128
+        },
+        {
+          "start": 4.5,
+          "end": 4.75,
+          "label": "4.50-4.75",
+          "percentage": 2.45,
+          "count": 186
+        },
+        {
+          "start": 4.75,
+          "end": 5.0,
+          "label": "4.75-5.00",
+          "percentage": 2.76,
+          "count": 210
+        },
+        {
+          "start": 5.0,
+          "end": 5.25,
+          "label": "5.00-5.25",
+          "percentage": 3.66,
+          "count": 278
+        },
+        {
+          "start": 5.25,
+          "end": 5.5,
+          "label": "5.25-5.50",
+          "percentage": 3.97,
+          "count": 302
+        },
+        {
+          "start": 5.5,
+          "end": 5.75,
+          "label": "5.50-5.75",
+          "percentage": 4.63,
+          "count": 352
+        },
+        {
+          "start": 5.75,
+          "end": 6.0,
+          "label": "5.75-6.00",
+          "percentage": 5.33,
+          "count": 405
+        },
+        {
+          "start": 6.0,
+          "end": 6.25,
+          "label": "6.00-6.25",
+          "percentage": 5.63,
+          "count": 428
+        },
+        {
+          "start": 6.25,
+          "end": 6.5,
+          "label": "6.25-6.50",
+          "percentage": 5.7,
+          "count": 433
+        },
+        {
+          "start": 6.5,
+          "end": 6.75,
+          "label": "6.50-6.75",
+          "percentage": 6.12,
+          "count": 465
+        },
+        {
+          "start": 6.75,
+          "end": 7.0,
+          "label": "6.75-7.00",
+          "percentage": 6.18,
+          "count": 470
+        },
+        {
+          "start": 7.0,
+          "end": 7.25,
+          "label": "7.00-7.25",
+          "percentage": 6.3,
+          "count": 479
+        },
+        {
+          "start": 7.25,
+          "end": 7.5,
+          "label": "7.25-7.50",
+          "percentage": 6.08,
+          "count": 462
+        },
+        {
+          "start": 7.5,
+          "end": 7.75,
+          "label": "7.50-7.75",
+          "percentage": 5.02,
+          "count": 382
+        },
+        {
+          "start": 7.75,
+          "end": 8.0,
+          "label": "7.75-8.00",
+          "percentage": 5.37,
+          "count": 408
+        },
+        {
+          "start": 8.0,
+          "end": 8.25,
+          "label": "8.00-8.25",
+          "percentage": 5.2,
+          "count": 395
+        },
+        {
+          "start": 8.25,
+          "end": 8.5,
+          "label": "8.25-8.50",
+          "percentage": 4.41,
+          "count": 335
+        },
+        {
+          "start": 8.5,
+          "end": 8.75,
+          "label": "8.50-8.75",
+          "percentage": 3.67,
+          "count": 279
+        },
+        {
+          "start": 8.75,
+          "end": 9.0,
+          "label": "8.75-9.00",
+          "percentage": 3.05,
+          "count": 232
+        },
+        {
+          "start": 9.0,
+          "end": 9.25,
+          "label": "9.00-9.25",
+          "percentage": 2.68,
+          "count": 204
+        },
+        {
+          "start": 9.25,
+          "end": 9.5,
+          "label": "9.25-9.50",
+          "percentage": 2.32,
+          "count": 176
+        },
+        {
+          "start": 9.5,
+          "end": 9.75,
+          "label": "9.50-9.75",
+          "percentage": 1.45,
+          "count": 110
+        },
+        {
+          "start": 9.75,
+          "end": 10.0,
+          "label": "9.75-10.00",
+          "percentage": 1.24,
+          "count": 94
+        },
+        {
+          "start": 10.0,
+          "end": 10.25,
+          "label": "10.00-10.25",
+          "percentage": 0.79,
+          "count": 60
+        }
+      ]
+    },
+    {
+      "year": 2025,
+      "type": "subject",
+      "key": "cong_nghe_cn",
+      "name": "Công nghệ CN",
+      "scoreMin": 0,
+      "scoreMax": 10,
+      "binSize": 0.25,
+      "bins": [
+        {
+          "start": 0.0,
+          "end": 0.25,
+          "label": "0.00-0.25",
+          "percentage": 0.0,
+          "count": 0
+        },
+        {
+          "start": 0.25,
+          "end": 0.5,
+          "label": "0.25-0.50",
+          "percentage": 0.0,
+          "count": 0
+        },
+        {
+          "start": 0.5,
+          "end": 0.75,
+          "label": "0.50-0.75",
+          "percentage": 0.0,
+          "count": 0
+        },
+        {
+          "start": 0.75,
+          "end": 1.0,
+          "label": "0.75-1.00",
+          "percentage": 0.0,
+          "count": 0
+        },
+        {
+          "start": 1.0,
+          "end": 1.25,
+          "label": "1.00-1.25",
+          "percentage": 0.0,
+          "count": 0
+        },
+        {
+          "start": 1.25,
+          "end": 1.5,
+          "label": "1.25-1.50",
+          "percentage": 0.0,
+          "count": 0
+        },
+        {
+          "start": 1.5,
+          "end": 1.75,
+          "label": "1.50-1.75",
+          "percentage": 0.0,
+          "count": 0
+        },
+        {
+          "start": 1.75,
+          "end": 2.0,
+          "label": "1.75-2.00",
+          "percentage": 0.0,
+          "count": 0
+        },
+        {
+          "start": 2.0,
+          "end": 2.25,
+          "label": "2.00-2.25",
+          "percentage": 0.0,
+          "count": 0
+        },
+        {
+          "start": 2.25,
+          "end": 2.5,
+          "label": "2.25-2.50",
+          "percentage": 0.09,
+          "count": 2
+        },
+        {
+          "start": 2.5,
+          "end": 2.75,
+          "label": "2.50-2.75",
+          "percentage": 0.22,
+          "count": 5
+        },
+        {
+          "start": 2.75,
+          "end": 3.0,
+          "label": "2.75-3.00",
+          "percentage": 0.35,
+          "count": 8
+        },
+        {
+          "start": 3.0,
+          "end": 3.25,
+          "label": "3.00-3.25",
+          "percentage": 1.27,
+          "count": 29
+        },
+        {
+          "start": 3.25,
+          "end": 3.5,
+          "label": "3.25-3.50",
+          "percentage": 2.05,
+          "count": 47
+        },
+        {
+          "start": 3.5,
+          "end": 3.75,
+          "label": "3.50-3.75",
+          "percentage": 2.14,
+          "count": 49
+        },
+        {
+          "start": 3.75,
+          "end": 4.0,
+          "label": "3.75-4.00",
+          "percentage": 4.45,
+          "count": 102
+        },
+        {
+          "start": 4.0,
+          "end": 4.25,
+          "label": "4.00-4.25",
+          "percentage": 5.28,
+          "count": 121
+        },
+        {
+          "start": 4.25,
+          "end": 4.5,
+          "label": "4.25-4.50",
+          "percentage": 6.46,
+          "count": 148
+        },
+        {
+          "start": 4.5,
+          "end": 4.75,
+          "label": "4.50-4.75",
+          "percentage": 5.46,
+          "count": 125
+        },
+        {
+          "start": 4.75,
+          "end": 5.0,
+          "label": "4.75-5.00",
+          "percentage": 6.29,
+          "count": 144
+        },
+        {
+          "start": 5.0,
+          "end": 5.25,
+          "label": "5.00-5.25",
+          "percentage": 5.55,
+          "count": 127
+        },
+        {
+          "start": 5.25,
+          "end": 5.5,
+          "label": "5.25-5.50",
+          "percentage": 5.85,
+          "count": 134
+        },
+        {
+          "start": 5.5,
+          "end": 5.75,
+          "label": "5.50-5.75",
+          "percentage": 5.37,
+          "count": 123
+        },
+        {
+          "start": 5.75,
+          "end": 6.0,
+          "label": "5.75-6.00",
+          "percentage": 5.02,
+          "count": 115
+        },
+        {
+          "start": 6.0,
+          "end": 6.25,
+          "label": "6.00-6.25",
+          "percentage": 5.33,
+          "count": 122
+        },
+        {
+          "start": 6.25,
+          "end": 6.5,
+          "label": "6.25-6.50",
+          "percentage": 5.07,
+          "count": 116
+        },
+        {
+          "start": 6.5,
+          "end": 6.75,
+          "label": "6.50-6.75",
+          "percentage": 4.59,
+          "count": 105
+        },
+        {
+          "start": 6.75,
+          "end": 7.0,
+          "label": "6.75-7.00",
+          "percentage": 3.58,
+          "count": 82
+        },
+        {
+          "start": 7.0,
+          "end": 7.25,
+          "label": "7.00-7.25",
+          "percentage": 4.45,
+          "count": 102
+        },
+        {
+          "start": 7.25,
+          "end": 7.5,
+          "label": "7.25-7.50",
+          "percentage": 3.84,
+          "count": 88
+        },
+        {
+          "start": 7.5,
+          "end": 7.75,
+          "label": "7.50-7.75",
+          "percentage": 3.49,
+          "count": 80
+        },
+        {
+          "start": 7.75,
+          "end": 8.0,
+          "label": "7.75-8.00",
+          "percentage": 2.58,
+          "count": 59
+        },
+        {
+          "start": 8.0,
+          "end": 8.25,
+          "label": "8.00-8.25",
+          "percentage": 2.75,
+          "count": 63
+        },
+        {
+          "start": 8.25,
+          "end": 8.5,
+          "label": "8.25-8.50",
+          "percentage": 2.01,
+          "count": 46
+        },
+        {
+          "start": 8.5,
+          "end": 8.75,
+          "label": "8.50-8.75",
+          "percentage": 2.05,
+          "count": 47
+        },
+        {
+          "start": 8.75,
+          "end": 9.0,
+          "label": "8.75-9.00",
+          "percentage": 1.53,
+          "count": 35
+        },
+        {
+          "start": 9.0,
+          "end": 9.25,
+          "label": "9.00-9.25",
+          "percentage": 1.05,
+          "count": 24
+        },
+        {
+          "start": 9.25,
+          "end": 9.5,
+          "label": "9.25-9.50",
+          "percentage": 0.79,
+          "count": 18
+        },
+        {
+          "start": 9.5,
+          "end": 9.75,
+          "label": "9.50-9.75",
+          "percentage": 0.66,
+          "count": 15
+        },
+        {
+          "start": 9.75,
+          "end": 10.0,
+          "label": "9.75-10.00",
+          "percentage": 0.22,
+          "count": 5
+        },
+        {
+          "start": 10.0,
+          "end": 10.25,
+          "label": "10.00-10.25",
+          "percentage": 0.17,
+          "count": 4
+        }
+      ]
+    },
+    {
+      "year": 2025,
+      "type": "subject",
+      "key": "cong_nghe_nn",
+      "name": "Công nghệ NN",
+      "scoreMin": 0,
+      "scoreMax": 10,
+      "binSize": 0.25,
+      "bins": [
+        {
+          "start": 0.0,
+          "end": 0.25,
+          "label": "0.00-0.25",
+          "percentage": 0.0,
+          "count": 0
+        },
+        {
+          "start": 0.25,
+          "end": 0.5,
+          "label": "0.25-0.50",
+          "percentage": 0.0,
+          "count": 0
+        },
+        {
+          "start": 0.5,
+          "end": 0.75,
+          "label": "0.50-0.75",
+          "percentage": 0.0,
+          "count": 0
+        },
+        {
+          "start": 0.75,
+          "end": 1.0,
+          "label": "0.75-1.00",
+          "percentage": 0.0,
+          "count": 0
+        },
+        {
+          "start": 1.0,
+          "end": 1.25,
+          "label": "1.00-1.25",
+          "percentage": 0.0,
+          "count": 0
+        },
+        {
+          "start": 1.25,
+          "end": 1.5,
+          "label": "1.25-1.50",
+          "percentage": 0.0,
+          "count": 0
+        },
+        {
+          "start": 1.5,
+          "end": 1.75,
+          "label": "1.50-1.75",
+          "percentage": 0.0,
+          "count": 1
+        },
+        {
+          "start": 1.75,
+          "end": 2.0,
+          "label": "1.75-2.00",
+          "percentage": 0.01,
+          "count": 3
+        },
+        {
+          "start": 2.0,
+          "end": 2.25,
+          "label": "2.00-2.25",
+          "percentage": 0.01,
+          "count": 2
+        },
+        {
+          "start": 2.25,
+          "end": 2.5,
+          "label": "2.25-2.50",
+          "percentage": 0.02,
+          "count": 5
+        },
+        {
+          "start": 2.5,
+          "end": 2.75,
+          "label": "2.50-2.75",
+          "percentage": 0.04,
+          "count": 8
+        },
+        {
+          "start": 2.75,
+          "end": 3.0,
+          "label": "2.75-3.00",
+          "percentage": 0.05,
+          "count": 11
+        },
+        {
+          "start": 3.0,
+          "end": 3.25,
+          "label": "3.00-3.25",
+          "percentage": 0.05,
+          "count": 12
+        },
+        {
+          "start": 3.25,
+          "end": 3.5,
+          "label": "3.25-3.50",
+          "percentage": 0.14,
+          "count": 30
+        },
+        {
+          "start": 3.5,
+          "end": 3.75,
+          "label": "3.50-3.75",
+          "percentage": 0.17,
+          "count": 38
+        },
+        {
+          "start": 3.75,
+          "end": 4.0,
+          "label": "3.75-4.00",
+          "percentage": 0.18,
+          "count": 40
+        },
+        {
+          "start": 4.0,
+          "end": 4.25,
+          "label": "4.00-4.25",
+          "percentage": 0.24,
+          "count": 53
+        },
+        {
+          "start": 4.25,
+          "end": 4.5,
+          "label": "4.25-4.50",
+          "percentage": 0.24,
+          "count": 53
+        },
+        {
+          "start": 4.5,
+          "end": 4.75,
+          "label": "4.50-4.75",
+          "percentage": 0.39,
+          "count": 86
+        },
+        {
+          "start": 4.75,
+          "end": 5.0,
+          "label": "4.75-5.00",
+          "percentage": 0.59,
+          "count": 131
+        },
+        {
+          "start": 5.0,
+          "end": 5.25,
+          "label": "5.00-5.25",
+          "percentage": 0.77,
+          "count": 169
+        },
+        {
+          "start": 5.25,
+          "end": 5.5,
+          "label": "5.25-5.50",
+          "percentage": 1.09,
+          "count": 241
+        },
+        {
+          "start": 5.5,
+          "end": 5.75,
+          "label": "5.50-5.75",
+          "percentage": 1.37,
+          "count": 303
+        },
+        {
+          "start": 5.75,
+          "end": 6.0,
+          "label": "5.75-6.00",
+          "percentage": 1.95,
+          "count": 429
+        },
+        {
+          "start": 6.0,
+          "end": 6.25,
+          "label": "6.00-6.25",
+          "percentage": 2.34,
+          "count": 515
+        },
+        {
+          "start": 6.25,
+          "end": 6.5,
+          "label": "6.25-6.50",
+          "percentage": 3.1,
+          "count": 684
+        },
+        {
+          "start": 6.5,
+          "end": 6.75,
+          "label": "6.50-6.75",
+          "percentage": 3.93,
+          "count": 867
+        },
+        {
+          "start": 6.75,
+          "end": 7.0,
+          "label": "6.75-7.00",
+          "percentage": 4.88,
+          "count": 1077
+        },
+        {
+          "start": 7.0,
+          "end": 7.25,
+          "label": "7.00-7.25",
+          "percentage": 6.09,
+          "count": 1342
+        },
+        {
+          "start": 7.25,
+          "end": 7.5,
+          "label": "7.25-7.50",
+          "percentage": 7.23,
+          "count": 1593
+        },
+        {
+          "start": 7.5,
+          "end": 7.75,
+          "label": "7.50-7.75",
+          "percentage": 7.95,
+          "count": 1752
+        },
+        {
+          "start": 7.75,
+          "end": 8.0,
+          "label": "7.75-8.00",
+          "percentage": 8.36,
+          "count": 1844
+        },
+        {
+          "start": 8.0,
+          "end": 8.25,
+          "label": "8.00-8.25",
+          "percentage": 8.69,
+          "count": 1915
+        },
+        {
+          "start": 8.25,
+          "end": 8.5,
+          "label": "8.25-8.50",
+          "percentage": 8.72,
+          "count": 1923
+        },
+        {
+          "start": 8.5,
+          "end": 8.75,
+          "label": "8.50-8.75",
+          "percentage": 8.26,
+          "count": 1821
+        },
+        {
+          "start": 8.75,
+          "end": 9.0,
+          "label": "8.75-9.00",
+          "percentage": 7.37,
+          "count": 1626
+        },
+        {
+          "start": 9.0,
+          "end": 9.25,
+          "label": "9.00-9.25",
+          "percentage": 6.22,
+          "count": 1372
+        },
+        {
+          "start": 9.25,
+          "end": 9.5,
+          "label": "9.25-9.50",
+          "percentage": 4.6,
+          "count": 1015
+        },
+        {
+          "start": 9.5,
+          "end": 9.75,
+          "label": "9.50-9.75",
+          "percentage": 2.99,
+          "count": 660
+        },
+        {
+          "start": 9.75,
+          "end": 10.0,
+          "label": "9.75-10.00",
+          "percentage": 1.48,
+          "count": 326
+        },
+        {
+          "start": 10.0,
+          "end": 10.25,
+          "label": "10.00-10.25",
+          "percentage": 0.46,
+          "count": 101
+        }
+      ]
+    },
+    {
+      "year": 2025,
+      "type": "subject",
       "key": "gd_ktpl",
       "name": "GDKTPL",
       "scoreMin": 0,
@@ -33226,6 +35814,304 @@ const data = {
           "label": "10.00-10.25",
           "percentage": 0.01,
           "count": 52
+        }
+      ]
+    },
+    {
+      "year": 2026,
+      "type": "subject",
+      "key": "tin_hoc",
+      "name": "Tin học",
+      "scoreMin": 0,
+      "scoreMax": 10,
+      "binSize": 0.25,
+      "bins": [
+        {
+          "start": 0.0,
+          "end": 0.25,
+          "label": "0.00-0.25",
+          "percentage": 0.0,
+          "count": 0
+        },
+        {
+          "start": 0.25,
+          "end": 0.5,
+          "label": "0.25-0.50",
+          "percentage": 0.0,
+          "count": 0
+        },
+        {
+          "start": 0.5,
+          "end": 0.75,
+          "label": "0.50-0.75",
+          "percentage": 0.0,
+          "count": 0
+        },
+        {
+          "start": 0.75,
+          "end": 1.0,
+          "label": "0.75-1.00",
+          "percentage": 0.0,
+          "count": 0
+        },
+        {
+          "start": 1.0,
+          "end": 1.25,
+          "label": "1.00-1.25",
+          "percentage": 0.0,
+          "count": 0
+        },
+        {
+          "start": 1.25,
+          "end": 1.5,
+          "label": "1.25-1.50",
+          "percentage": 0.0,
+          "count": 0
+        },
+        {
+          "start": 1.5,
+          "end": 1.75,
+          "label": "1.50-1.75",
+          "percentage": 0.01,
+          "count": 1
+        },
+        {
+          "start": 1.75,
+          "end": 2.0,
+          "label": "1.75-2.00",
+          "percentage": 0.05,
+          "count": 9
+        },
+        {
+          "start": 2.0,
+          "end": 2.25,
+          "label": "2.00-2.25",
+          "percentage": 0.11,
+          "count": 18
+        },
+        {
+          "start": 2.25,
+          "end": 2.5,
+          "label": "2.25-2.50",
+          "percentage": 0.21,
+          "count": 35
+        },
+        {
+          "start": 2.5,
+          "end": 2.75,
+          "label": "2.50-2.75",
+          "percentage": 0.29,
+          "count": 49
+        },
+        {
+          "start": 2.75,
+          "end": 3.0,
+          "label": "2.75-3.00",
+          "percentage": 0.6,
+          "count": 101
+        },
+        {
+          "start": 3.0,
+          "end": 3.25,
+          "label": "3.00-3.25",
+          "percentage": 0.96,
+          "count": 161
+        },
+        {
+          "start": 3.25,
+          "end": 3.5,
+          "label": "3.25-3.50",
+          "percentage": 1.46,
+          "count": 245
+        },
+        {
+          "start": 3.5,
+          "end": 3.75,
+          "label": "3.50-3.75",
+          "percentage": 2.01,
+          "count": 337
+        },
+        {
+          "start": 3.75,
+          "end": 4.0,
+          "label": "3.75-4.00",
+          "percentage": 2.77,
+          "count": 465
+        },
+        {
+          "start": 4.0,
+          "end": 4.25,
+          "label": "4.00-4.25",
+          "percentage": 3.39,
+          "count": 569
+        },
+        {
+          "start": 4.25,
+          "end": 4.5,
+          "label": "4.25-4.50",
+          "percentage": 3.94,
+          "count": 660
+        },
+        {
+          "start": 4.5,
+          "end": 4.75,
+          "label": "4.50-4.75",
+          "percentage": 4.71,
+          "count": 790
+        },
+        {
+          "start": 4.75,
+          "end": 5.0,
+          "label": "4.75-5.00",
+          "percentage": 4.89,
+          "count": 819
+        },
+        {
+          "start": 5.0,
+          "end": 5.25,
+          "label": "5.00-5.25",
+          "percentage": 5.12,
+          "count": 859
+        },
+        {
+          "start": 5.25,
+          "end": 5.5,
+          "label": "5.25-5.50",
+          "percentage": 5.51,
+          "count": 924
+        },
+        {
+          "start": 5.5,
+          "end": 5.75,
+          "label": "5.50-5.75",
+          "percentage": 5.52,
+          "count": 926
+        },
+        {
+          "start": 5.75,
+          "end": 6.0,
+          "label": "5.75-6.00",
+          "percentage": 5.74,
+          "count": 962
+        },
+        {
+          "start": 6.0,
+          "end": 6.25,
+          "label": "6.00-6.25",
+          "percentage": 5.48,
+          "count": 919
+        },
+        {
+          "start": 6.25,
+          "end": 6.5,
+          "label": "6.25-6.50",
+          "percentage": 5.95,
+          "count": 998
+        },
+        {
+          "start": 6.5,
+          "end": 6.75,
+          "label": "6.50-6.75",
+          "percentage": 5.58,
+          "count": 935
+        },
+        {
+          "start": 6.75,
+          "end": 7.0,
+          "label": "6.75-7.00",
+          "percentage": 5.46,
+          "count": 915
+        },
+        {
+          "start": 7.0,
+          "end": 7.25,
+          "label": "7.00-7.25",
+          "percentage": 4.83,
+          "count": 809
+        },
+        {
+          "start": 7.25,
+          "end": 7.5,
+          "label": "7.25-7.50",
+          "percentage": 4.63,
+          "count": 776
+        },
+        {
+          "start": 7.5,
+          "end": 7.75,
+          "label": "7.50-7.75",
+          "percentage": 4.01,
+          "count": 672
+        },
+        {
+          "start": 7.75,
+          "end": 8.0,
+          "label": "7.75-8.00",
+          "percentage": 3.67,
+          "count": 615
+        },
+        {
+          "start": 8.0,
+          "end": 8.25,
+          "label": "8.00-8.25",
+          "percentage": 2.86,
+          "count": 479
+        },
+        {
+          "start": 8.25,
+          "end": 8.5,
+          "label": "8.25-8.50",
+          "percentage": 2.64,
+          "count": 443
+        },
+        {
+          "start": 8.5,
+          "end": 8.75,
+          "label": "8.50-8.75",
+          "percentage": 2.18,
+          "count": 365
+        },
+        {
+          "start": 8.75,
+          "end": 9.0,
+          "label": "8.75-9.00",
+          "percentage": 1.7,
+          "count": 285
+        },
+        {
+          "start": 9.0,
+          "end": 9.25,
+          "label": "9.00-9.25",
+          "percentage": 1.52,
+          "count": 254
+        },
+        {
+          "start": 9.25,
+          "end": 9.5,
+          "label": "9.25-9.50",
+          "percentage": 0.98,
+          "count": 164
+        },
+        {
+          "start": 9.5,
+          "end": 9.75,
+          "label": "9.50-9.75",
+          "percentage": 0.7,
+          "count": 118
+        },
+        {
+          "start": 9.75,
+          "end": 10.0,
+          "label": "9.75-10.00",
+          "percentage": 0.39,
+          "count": 66
+        },
+        {
+          "start": 10.0,
+          "end": 10.25,
+          "label": "10.00-10.25",
+          "percentage": 0.13,
+          "count": 22
         }
       ]
     },
@@ -85019,7 +87905,7 @@ const data = {
       "candidateCount": 982726,
       "mean": 6.466254072854489,
       "median": 6.8,
-      "std": 1.675435332139685,
+      "std": 1.6754353321403415,
       "mad": 1.3524221400471745,
       "mode": 7.8,
       "underFiveCount": 186220,
@@ -85039,7 +87925,7 @@ const data = {
       "candidateCount": 981407,
       "mean": 6.50774573647834,
       "median": 6.5,
-      "std": 1.3796018959652367,
+      "std": 1.3796018959647918,
       "mad": 1.1008334972136944,
       "mode": 7.0,
       "underFiveCount": 114005,
@@ -85059,7 +87945,7 @@ const data = {
       "candidateCount": 870609,
       "mean": 5.157686401128404,
       "median": 4.8,
-      "std": 1.9495474568318674,
+      "std": 1.949547456830969,
       "mad": 1.6041279150571615,
       "mode": 3.8,
       "underFiveCount": 447398,
@@ -85079,7 +87965,7 @@ const data = {
       "candidateCount": 325523,
       "mean": 6.7237791185261875,
       "median": 7.0,
-      "std": 1.4419252633650632,
+      "std": 1.441925263364743,
       "mad": 1.1563522393194952,
       "mode": 7.25,
       "underFiveCount": 38045,
@@ -85099,7 +87985,7 @@ const data = {
       "candidateCount": 327367,
       "mean": 6.703898071583269,
       "median": 7.0,
-      "std": 1.6003930712214824,
+      "std": 1.60039307122149,
       "mad": 1.307440884389691,
       "mode": 8.0,
       "underFiveCount": 49897,
@@ -85119,7 +88005,7 @@ const data = {
       "candidateCount": 322198,
       "mean": 5.01910859161137,
       "median": 4.75,
-      "std": 1.4482701031058367,
+      "std": 1.4482701031062946,
       "mad": 1.1454765392708832,
       "mode": 4.5,
       "underFiveCount": 163640,
@@ -85139,7 +88025,7 @@ const data = {
       "candidateCount": 659662,
       "mean": 6.343929542705204,
       "median": 6.5,
-      "std": 1.6128785745691274,
+      "std": 1.6128785745636383,
       "mad": 1.312314109346908,
       "mode": 7.0,
       "underFiveCount": 127552,
@@ -85159,7 +88045,7 @@ const data = {
       "candidateCount": 657421,
       "mean": 6.67792936337598,
       "median": 6.75,
-      "std": 1.215013356280311,
+      "std": 1.2150133562795384,
       "mad": 0.9725263567789895,
       "mode": 7.0,
       "underFiveCount": 47985,
@@ -85179,7 +88065,7 @@ const data = {
       "candidateCount": 554343,
       "mean": 8.033266407260486,
       "median": 8.25,
-      "std": 1.067272175132045,
+      "std": 1.0672721751306173,
       "mad": 0.8216623101581512,
       "mode": 8.5,
       "underFiveCount": 5721,
@@ -85199,7 +88085,7 @@ const data = {
       "candidateCount": 323673,
       "mean": 21.095522023770904,
       "median": 21.45,
-      "std": 3.237838997873442,
+      "std": 3.2378389978733377,
       "mad": 2.559680449095229,
       "mode": 22.75,
       "underFifteenCount": 14706,
@@ -85218,7 +88104,7 @@ const data = {
       "candidateCount": 312164,
       "mean": 20.290872906549115,
       "median": 20.4,
-      "std": 3.33958942196032,
+      "std": 3.339589421960257,
       "mad": 2.6801045283889233,
       "mode": 20.35,
       "underFifteenCount": 19929,
@@ -85237,7 +88123,7 @@ const data = {
       "candidateCount": 318688,
       "mean": 19.39957732955116,
       "median": 19.6,
-      "std": 2.852934478195768,
+      "std": 2.8529344781956403,
       "mad": 2.257944133447133,
       "mode": 19.7,
       "underFifteenCount": 22786,
@@ -85256,7 +88142,7 @@ const data = {
       "candidateCount": 322124,
       "mean": 19.403933112714352,
       "median": 19.55,
-      "std": 3.155483022278096,
+      "std": 3.1554830222785997,
       "mad": 2.523877916578709,
       "mode": 20.45,
       "underFifteenCount": 28051,
@@ -85275,7 +88161,7 @@ const data = {
       "candidateCount": 310153,
       "mean": 18.551757358465018,
       "median": 18.55,
-      "std": 3.179699828610201,
+      "std": 3.1796998286104476,
       "mad": 2.5861947168010624,
       "mode": 18.3,
       "underFifteenCount": 41961,
@@ -85294,7 +88180,7 @@ const data = {
       "candidateCount": 656942,
       "mean": 19.452029813895294,
       "median": 19.75,
-      "std": 3.564176286753474,
+      "std": 3.5641762867513664,
       "mad": 2.864672969607668,
       "mode": 20.0,
       "underFifteenCount": 70508,
@@ -85313,7 +88199,7 @@ const data = {
       "candidateCount": 647318,
       "mean": 18.608475370683344,
       "median": 18.9,
-      "std": 3.8679402274624106,
+      "std": 3.8679402274617085,
       "mad": 3.1452309374990337,
       "mode": 19.2,
       "underFifteenCount": 118794,
@@ -85332,7 +88218,7 @@ const data = {
       "candidateCount": 645167,
       "mean": 18.95317661938691,
       "median": 19.2,
-      "std": 3.534100216549508,
+      "std": 3.5341002165499367,
       "mad": 2.854768951294781,
       "mode": 19.8,
       "underFifteenCount": 90302,
@@ -85351,7 +88237,7 @@ const data = {
       "candidateCount": 866730,
       "mean": 18.43807900961083,
       "median": 18.55,
-      "std": 3.8846068616592544,
+      "std": 3.884606861658652,
       "mad": 3.1696800849168727,
       "mode": 18.8,
       "underFifteenCount": 169767,
@@ -85370,7 +88256,7 @@ const data = {
       "candidateCount": 310920,
       "mean": 20.23967531840988,
       "median": 20.5,
-      "std": 3.2064167394557352,
+      "std": 3.20641673945586,
       "mad": 2.553028270937862,
       "mode": 21.3,
       "underFifteenCount": 19852,
@@ -85389,7 +88275,7 @@ const data = {
       "candidateCount": 551997,
       "mean": 17.823509240086455,
       "median": 17.65,
-      "std": 3.8232596292733407,
+      "std": 3.8232596292731373,
       "mad": 3.1079190647775263,
       "mode": 17.25,
       "underFifteenCount": 132884,
@@ -85408,7 +88294,7 @@ const data = {
       "candidateCount": 551826,
       "mean": 18.13579992606365,
       "median": 17.95,
-      "std": 3.4801134715063697,
+      "std": 3.480113471506018,
       "mad": 2.8175682008459195,
       "mode": 17.4,
       "underFifteenCount": 103144,
@@ -85427,7 +88313,7 @@ const data = {
       "candidateCount": 1003373,
       "mean": 6.250557469654851,
       "median": 6.6,
-      "std": 1.6333359071731994,
+      "std": 1.6333359071716942,
       "mad": 1.3274130358301448,
       "mode": 7.6,
       "underFiveCount": 217094,
@@ -85447,7 +88333,7 @@ const data = {
       "candidateCount": 1008239,
       "mean": 6.858193920290725,
       "median": 7.0,
-      "std": 1.3264706479824537,
+      "std": 1.3264706479836896,
       "mad": 1.0556864989352723,
       "mode": 7.0,
       "underFiveCount": 73656,
@@ -85467,7 +88353,7 @@ const data = {
       "candidateCount": 876102,
       "mean": 5.453706531887841,
       "median": 5.2,
-      "std": 1.9623717471365452,
+      "std": 1.9623717471397424,
       "mad": 1.6343663180771184,
       "mode": 4.2,
       "underFiveCount": 392784,
@@ -85487,7 +88373,7 @@ const data = {
       "candidateCount": 327189,
       "mean": 6.57389994773663,
       "median": 6.75,
-      "std": 1.486818606383108,
+      "std": 1.486818606383071,
       "mad": 1.2132834539058466,
       "mode": 7.5,
       "underFiveCount": 48380,
@@ -85507,7 +88393,7 @@ const data = {
       "candidateCount": 328118,
       "mean": 6.744645981019024,
       "median": 7.0,
-      "std": 1.4284676902382774,
+      "std": 1.4284676902384608,
       "mad": 1.1303029702728897,
       "mode": 7.5,
       "underFiveCount": 38376,
@@ -85527,7 +88413,7 @@ const data = {
       "candidateCount": 324625,
       "mean": 6.394932614555256,
       "median": 6.5,
-      "std": 1.2067717357380603,
+      "std": 1.2067717357382324,
       "mad": 0.9558259530227186,
       "mode": 6.5,
       "underFiveCount": 33754,
@@ -85547,7 +88433,7 @@ const data = {
       "candidateCount": 683447,
       "mean": 6.025629273374527,
       "median": 6.0,
-      "std": 1.5529305942496912,
+      "std": 1.5529305942499783,
       "mad": 1.2762419763346682,
       "mode": 5.75,
       "underFiveCount": 170237,
@@ -85567,7 +88453,7 @@ const data = {
       "candidateCount": 682134,
       "mean": 6.147522700818314,
       "median": 6.25,
-      "std": 1.1687316558417935,
+      "std": 1.1687316558410394,
       "mad": 0.9201949323739911,
       "mode": 6.25,
       "underFiveCount": 91073,
@@ -85587,7 +88473,7 @@ const data = {
       "candidateCount": 565452,
       "mean": 8.285804542206943,
       "median": 8.5,
-      "std": 1.1376376545904523,
+      "std": 1.1376376545904656,
       "mad": 0.8824555399927846,
       "mode": 9.0,
       "underFiveCount": 5492,
@@ -85607,7 +88493,7 @@ const data = {
       "candidateCount": 325902,
       "mean": 20.774499389386996,
       "median": 21.15,
-      "std": 3.094093115637134,
+      "std": 3.0940931156368525,
       "mad": 2.433412805076373,
       "mode": 22.1,
       "underFifteenCount": 15349,
@@ -85626,7 +88512,7 @@ const data = {
       "candidateCount": 314412,
       "mean": 20.274251618894954,
       "median": 20.45,
-      "std": 3.3398603503564113,
+      "std": 3.339860350356591,
       "mad": 2.6910804931109507,
       "mode": 21.05,
       "underFifteenCount": 20983,
@@ -85645,7 +88531,7 @@ const data = {
       "candidateCount": 322538,
       "mean": 20.426486491514186,
       "median": 20.7,
-      "std": 2.725684442820527,
+      "std": 2.7256844428200933,
       "mad": 2.1553739404349264,
       "mode": 21.75,
       "underFifteenCount": 11728,
@@ -85664,7 +88550,7 @@ const data = {
       "candidateCount": 324554,
       "mean": 20.604732802553656,
       "median": 20.85,
-      "std": 2.776287402905596,
+      "std": 2.7762874029054547,
       "mad": 2.181480585665251,
       "mode": 21.6,
       "underFifteenCount": 10858,
@@ -85683,7 +88569,7 @@ const data = {
       "candidateCount": 313063,
       "mean": 20.065865975857896,
       "median": 20.2,
-      "std": 3.004831812617424,
+      "std": 3.0048318126173683,
       "mad": 2.4384360336417914,
       "mode": 20.55,
       "underFifteenCount": 15942,
@@ -85702,7 +88588,7 @@ const data = {
       "candidateCount": 681723,
       "mean": 18.97492598900139,
       "median": 19.0,
-      "std": 3.3788950460472766,
+      "std": 3.378895046046237,
       "mad": 2.706908363074151,
       "mode": 18.75,
       "underFifteenCount": 77402,
@@ -85721,7 +88607,7 @@ const data = {
       "candidateCount": 669692,
       "mean": 18.47917105176708,
       "median": 18.7,
-      "std": 3.68808893270451,
+      "std": 3.688088932705092,
       "mad": 3.0066651236687902,
       "mode": 18.9,
       "underFifteenCount": 121377,
@@ -85740,7 +88626,7 @@ const data = {
       "candidateCount": 668369,
       "mean": 18.61029118645539,
       "median": 18.85,
-      "std": 3.37038918299846,
+      "std": 3.3703891829990695,
       "mad": 2.712538941812083,
       "mode": 19.0,
       "underFifteenCount": 98556,
@@ -85759,7 +88645,7 @@ const data = {
       "candidateCount": 873126,
       "mean": 18.88911180058777,
       "median": 19.05,
-      "std": 3.8137027523352702,
+      "std": 3.8137027523343257,
       "mad": 3.117908308766432,
       "mode": 19.6,
       "underFifteenCount": 143042,
@@ -85778,7 +88664,7 @@ const data = {
       "candidateCount": 313538,
       "mean": 20.421613967047055,
       "median": 20.65,
-      "std": 3.0618621610145778,
+      "std": 3.061862161013933,
       "mad": 2.4272467771051676,
       "mode": 20.55,
       "underFifteenCount": 15920,
@@ -85797,7 +88683,7 @@ const data = {
       "candidateCount": 557405,
       "mean": 18.154823440765696,
       "median": 18.0,
-      "std": 3.7074905262403117,
+      "std": 3.7074905262406364,
       "mad": 3.0296058341780205,
       "mode": 17.6,
       "underFifteenCount": 116039,
@@ -85816,7 +88702,7 @@ const data = {
       "candidateCount": 557312,
       "mean": 18.249236531781122,
       "median": 18.1,
-      "std": 3.3839646021526693,
+      "std": 3.38396460215258,
       "mad": 2.741096531206936,
       "mode": 17.35,
       "underFifteenCount": 94400,
@@ -85835,7 +88721,7 @@ const data = {
       "candidateCount": 1045613,
       "mean": 6.447309281732343,
       "median": 6.8,
-      "std": 1.5569001873660366,
+      "std": 1.556900187367002,
       "mad": 1.2563730558055413,
       "mode": 7.6,
       "underFiveCount": 182915,
@@ -85855,7 +88741,7 @@ const data = {
       "candidateCount": 1050101,
       "mean": 7.23114611832576,
       "median": 7.5,
-      "std": 1.330057335946036,
+      "std": 1.3300573359472314,
       "mad": 1.053171142585332,
       "mode": 8.0,
       "underFiveCount": 53194,
@@ -85875,7 +88761,7 @@ const data = {
       "candidateCount": 906538,
       "mean": 5.512698419702209,
       "median": 5.2,
-      "std": 1.8769791975071066,
+      "std": 1.8769791975080128,
       "mad": 1.5505708530695899,
       "mode": 4.6,
       "underFiveCount": 386850,
@@ -85895,7 +88781,7 @@ const data = {
       "candidateCount": 345615,
       "mean": 6.666866310779335,
       "median": 7.0,
-      "std": 1.6311291075605172,
+      "std": 1.6311291075596566,
       "mad": 1.3245128249641942,
       "mode": 8.0,
       "underFiveCount": 56488,
@@ -85915,7 +88801,7 @@ const data = {
       "candidateCount": 346518,
       "mean": 6.680829711587854,
       "median": 6.75,
-      "std": 1.6414703285826295,
+      "std": 1.6414703285830343,
       "mad": 1.3545234302402762,
       "mode": 7.75,
       "underFiveCount": 54975,
@@ -85935,7 +88821,7 @@ const data = {
       "candidateCount": 342378,
       "mean": 6.2840785622908015,
       "median": 6.25,
-      "std": 1.244849006395384,
+      "std": 1.2448490063958393,
       "mad": 1.0037524315230535,
       "mode": 6.5,
       "underFiveCount": 45868,
@@ -85955,7 +88841,7 @@ const data = {
       "candidateCount": 706214,
       "mean": 6.570343054654821,
       "median": 6.5,
-      "std": 1.4628042098598246,
+      "std": 1.4628042098613436,
       "mad": 1.1848430504068173,
       "mode": 6.75,
       "underFiveCount": 92106,
@@ -85975,7 +88861,7 @@ const data = {
       "candidateCount": 704682,
       "mean": 7.193541200144178,
       "median": 7.25,
-      "std": 1.2839445726518313,
+      "std": 1.2839445726529362,
       "mad": 1.0163130319775444,
       "mode": 7.25,
       "underFiveCount": 30747,
@@ -85995,7 +88881,7 @@ const data = {
       "candidateCount": 583609,
       "mean": 8.156503326713604,
       "median": 8.25,
-      "std": 1.0426443087584,
+      "std": 1.0426443087576058,
       "mad": 0.8074695558156232,
       "mode": 8.75,
       "underFiveCount": 4519,
@@ -86015,7 +88901,7 @@ const data = {
       "candidateCount": 343800,
       "mean": 20.90463336242001,
       "median": 21.3,
-      "std": 3.3803535841126573,
+      "std": 3.3803535841119934,
       "mad": 2.704438481675393,
       "mode": 22.8,
       "underFifteenCount": 19478,
@@ -86034,7 +88920,7 @@ const data = {
       "candidateCount": 328850,
       "mean": 20.47235000760226,
       "median": 20.75,
-      "std": 3.3508627761626184,
+      "std": 3.350862776162119,
       "mad": 2.6975812680553446,
       "mode": 21.4,
       "underFifteenCount": 21243,
@@ -86053,7 +88939,7 @@ const data = {
       "candidateCount": 339801,
       "mean": 20.510197733379247,
       "median": 20.9,
-      "std": 2.861234577979325,
+      "std": 2.861234577979217,
       "mad": 2.2744844776795827,
       "mode": 22.0,
       "underFifteenCount": 14620,
@@ -86072,7 +88958,7 @@ const data = {
       "candidateCount": 342291,
       "mean": 20.531107449509335,
       "median": 20.75,
-      "std": 2.9818355862513357,
+      "std": 2.9818355862511674,
       "mad": 2.4015470754416564,
       "mode": 21.2,
       "underFifteenCount": 13419,
@@ -86091,7 +88977,7 @@ const data = {
       "candidateCount": 326939,
       "mean": 20.05363875218313,
       "median": 20.2,
-      "std": 2.9171013383916766,
+      "std": 2.917101338390653,
       "mad": 2.3663386747986626,
       "mode": 20.5,
       "underFifteenCount": 15243,
@@ -86110,7 +88996,7 @@ const data = {
       "candidateCount": 704008,
       "mean": 20.952816956625494,
       "median": 21.25,
-      "std": 3.465673364954999,
+      "std": 3.465673364954272,
       "mad": 2.762831643958591,
       "mode": 21.25,
       "underFifteenCount": 34005,
@@ -86129,7 +89015,7 @@ const data = {
       "candidateCount": 691003,
       "mean": 19.638869339206924,
       "median": 19.9,
-      "std": 3.55701385712569,
+      "std": 3.557013857128424,
       "mad": 2.8668372062060503,
       "mode": 20.3,
       "underFifteenCount": 74112,
@@ -86148,7 +89034,7 @@ const data = {
       "candidateCount": 689443,
       "mean": 20.27158490259529,
       "median": 20.6,
-      "std": 3.4333531963441755,
+      "std": 3.433353196344002,
       "mad": 2.746959400559582,
       "mode": 20.8,
       "underFifteenCount": 51764,
@@ -86167,7 +89053,7 @@ const data = {
       "candidateCount": 902723,
       "mean": 19.493928037725873,
       "median": 19.6,
-      "std": 3.623232112565054,
+      "std": 3.6232321125648363,
       "mad": 2.940404465157085,
       "mode": 20.2,
       "underFifteenCount": 103873,
@@ -86186,7 +89072,7 @@ const data = {
       "candidateCount": 327525,
       "mean": 20.451038088695515,
       "median": 20.7,
-      "std": 3.1120486861717036,
+      "std": 3.1120486861715513,
       "mad": 2.4790069460346538,
       "mode": 21.35,
       "underFifteenCount": 16814,
@@ -86205,7 +89091,7 @@ const data = {
       "candidateCount": 571762,
       "mean": 19.172737625095753,
       "median": 19.1,
-      "std": 3.564721684744759,
+      "std": 3.564721684744789,
       "mad": 2.8880566564409667,
       "mode": 18.9,
       "underFifteenCount": 69542,
@@ -86224,7 +89110,7 @@ const data = {
       "candidateCount": 571611,
       "mean": 19.787771928811726,
       "median": 19.75,
-      "std": 3.407307674215102,
+      "std": 3.407307674214425,
       "mad": 2.7518681236015405,
       "mode": 19.85,
       "underFifteenCount": 44948,
@@ -86243,7 +89129,7 @@ const data = {
       "candidateCount": 1137417,
       "mean": 4.799712154820967,
       "median": 4.6,
-      "std": 1.6885494578622395,
+      "std": 1.6885494578627382,
       "mad": 1.3582093462643865,
       "mode": 4.75,
       "underFiveCount": 637628,
@@ -86263,7 +89149,7 @@ const data = {
       "candidateCount": 1144098,
       "mean": 6.990479032390581,
       "median": 7.25,
-      "std": 1.2910494522396445,
+      "std": 1.2910494522360754,
       "mad": 1.003993154432575,
       "mode": 7.5,
       "underFiveCount": 74008,
@@ -86283,7 +89169,7 @@ const data = {
       "candidateCount": 356978,
       "mean": 5.375941234473833,
       "median": 5.25,
-      "std": 1.4568173344257662,
+      "std": 1.4568173344261819,
       "mad": 1.1622031329661773,
       "mode": 5.25,
       "underFiveCount": 136500,
@@ -86303,7 +89189,7 @@ const data = {
       "candidateCount": 351733,
       "mean": 6.978460508396993,
       "median": 7.0,
-      "std": 1.5216168800947953,
+      "std": 1.5216168800960084,
       "mad": 1.2543544393048136,
       "mode": 7.5,
       "underFiveCount": 34860,
@@ -86323,7 +89209,7 @@ const data = {
       "candidateCount": 244283,
       "mean": 6.069783611630773,
       "median": 6.0,
-      "std": 1.8122426993244425,
+      "std": 1.8122426993245428,
       "mad": 1.5109895080705575,
       "mode": 6.25,
       "underFiveCount": 71921,
@@ -86343,7 +89229,7 @@ const data = {
       "candidateCount": 71616,
       "mean": 5.780638404825737,
       "median": 5.75,
-      "std": 1.5940254393626705,
+      "std": 1.5940254393626583,
       "mad": 1.3083710344057196,
       "mode": 6.5,
       "underFiveCount": 23228,
@@ -86363,7 +89249,7 @@ const data = {
       "candidateCount": 495165,
       "mean": 6.514921288863309,
       "median": 6.5,
-      "std": 1.6443165014398151,
+      "std": 1.6443165014401468,
       "mad": 1.3646323952621857,
       "mode": 7.25,
       "underFiveCount": 93314,
@@ -86383,7 +89269,7 @@ const data = {
       "candidateCount": 489581,
       "mean": 6.642910366211106,
       "median": 6.75,
-      "std": 1.7501270487432972,
+      "std": 1.7501270487432383,
       "mad": 1.4528201666322837,
       "mode": 7.75,
       "underFiveCount": 90409,
@@ -86403,7 +89289,7 @@ const data = {
       "candidateCount": 4099,
       "mean": 7.6977921444254696,
       "median": 8.0,
-      "std": 1.532405971732946,
+      "std": 1.5324059717329455,
       "mad": 1.1509514515735546,
       "mode": 9.0,
       "underFiveCount": 212,
@@ -86418,12 +89304,72 @@ const data = {
     {
       "year": 2025,
       "type": "subject",
+      "key": "tin_hoc",
+      "name": "Tin học",
+      "candidateCount": 7602,
+      "mean": 6.782761115495923,
+      "median": 6.75,
+      "std": 1.4827328452758757,
+      "mad": 1.2091094448829256,
+      "mode": 7.0,
+      "underFiveCount": 853,
+      "underFiveRate": 11.2,
+      "eightPlusCount": 1885,
+      "eightPlusRate": 24.8,
+      "perfectCount": 60,
+      "zeroCount": 0,
+      "belowOneCount": 0,
+      "belowOneRate": 0.0
+    },
+    {
+      "year": 2025,
+      "type": "subject",
+      "key": "cong_nghe_cn",
+      "name": "Công nghệ CN",
+      "candidateCount": 2290,
+      "mean": 5.792554585152839,
+      "median": 5.6,
+      "std": 1.5398699478819877,
+      "mad": 1.2750436681222708,
+      "mode": 6.0,
+      "underFiveCount": 780,
+      "underFiveRate": 34.1,
+      "eightPlusCount": 257,
+      "eightPlusRate": 11.2,
+      "perfectCount": 4,
+      "zeroCount": 0,
+      "belowOneCount": 0,
+      "belowOneRate": 0.0
+    },
+    {
+      "year": 2025,
+      "type": "subject",
+      "key": "cong_nghe_nn",
+      "name": "Công nghệ NN",
+      "candidateCount": 22048,
+      "mean": 7.715897133526851,
+      "median": 7.75,
+      "std": 1.1705141294304608,
+      "mad": 0.9160014513788098,
+      "mode": 8.25,
+      "underFiveCount": 473,
+      "underFiveRate": 2.1,
+      "eightPlusCount": 10759,
+      "eightPlusRate": 48.8,
+      "perfectCount": 101,
+      "zeroCount": 0,
+      "belowOneCount": 0,
+      "belowOneRate": 0.0
+    },
+    {
+      "year": 2025,
+      "type": "subject",
       "key": "gd_ktpl",
       "name": "GDKTPL",
       "candidateCount": 246401,
       "mean": 7.6914040527432945,
       "median": 7.75,
-      "std": 1.1808894108016543,
+      "std": 1.1808894108015564,
       "mad": 0.9143700715500342,
       "mode": 8.25,
       "underFiveCount": 6324,
@@ -86443,7 +89389,7 @@ const data = {
       "candidateCount": 165467,
       "mean": 19.38436757782518,
       "median": 19.25,
-      "std": 4.3373499507040645,
+      "std": 4.337349950704087,
       "mad": 3.596811448808523,
       "mode": 22.0,
       "underFifteenCount": 28160,
@@ -86462,7 +89408,7 @@ const data = {
       "candidateCount": 148246,
       "mean": 18.875138620940866,
       "median": 18.85,
-      "std": 3.626509718779891,
+      "std": 3.626509718779842,
       "mad": 2.9598019508114897,
       "mode": 20.0,
       "underFifteenCount": 21820,
@@ -86481,7 +89427,7 @@ const data = {
       "candidateCount": 5708,
       "mean": 15.815565872459706,
       "median": 15.5,
-      "std": 3.340573368666026,
+      "std": 3.3405733686660253,
       "mad": 2.6760073580939037,
       "mode": 14.6,
       "underFifteenCount": 2474,
@@ -86500,7 +89446,7 @@ const data = {
       "candidateCount": 46607,
       "mean": 18.34063981805308,
       "median": 18.1,
-      "std": 4.501786370842215,
+      "std": 4.501786370842184,
       "mad": 3.7405389748321065,
       "mode": 22.75,
       "underFifteenCount": 11845,
@@ -86519,7 +89465,7 @@ const data = {
       "candidateCount": 4641,
       "mean": 15.89595992243051,
       "median": 15.6,
-      "std": 3.5531553712663566,
+      "std": 3.5531553712663535,
       "mad": 2.864393449687568,
       "mode": 15.1,
       "underFifteenCount": 1961,
@@ -86538,7 +89484,7 @@ const data = {
       "candidateCount": 310012,
       "mean": 19.712084016102605,
       "median": 19.85,
-      "std": 4.2915754861979964,
+      "std": 4.291575486197622,
       "mad": 3.546871508199683,
       "mode": 23.25,
       "underFifteenCount": 46238,
@@ -86557,7 +89503,7 @@ const data = {
       "candidateCount": 480327,
       "mean": 17.274973799099364,
       "median": 17.45,
-      "std": 3.5630595981833135,
+      "std": 3.5630595981835924,
       "mad": 2.901130708871248,
       "mode": 20.0,
       "underFifteenCount": 126805,
@@ -86576,7 +89522,7 @@ const data = {
       "candidateCount": 474952,
       "mean": 17.286605467499868,
       "median": 17.45,
-      "std": 3.6513981439012997,
+      "std": 3.6513981439024006,
       "mad": 2.9739299129175167,
       "mode": 20.5,
       "underFifteenCount": 127787,
@@ -86595,7 +89541,7 @@ const data = {
       "candidateCount": 354273,
       "mean": 18.58148442020702,
       "median": 18.5,
-      "std": 2.943594826788643,
+      "std": 2.9435948267886354,
       "mad": 2.3583071529583113,
       "mode": 19.25,
       "underFifteenCount": 37244,
@@ -86614,7 +89560,7 @@ const data = {
       "candidateCount": 25160,
       "mean": 17.54592408585055,
       "median": 17.35,
-      "std": 3.7252968125329855,
+      "std": 3.7252968125329864,
       "mad": 3.0290003974562794,
       "mode": 17.75,
       "underFifteenCount": 6505,
@@ -86633,7 +89579,7 @@ const data = {
       "candidateCount": 71460,
       "mean": 20.360254268122027,
       "median": 20.6,
-      "std": 2.9537160363093493,
+      "std": 2.9537160363093817,
       "mad": 2.3212643436887768,
       "mode": 21.0,
       "underFifteenCount": 3069,
@@ -86652,7 +89598,7 @@ const data = {
       "candidateCount": 54960,
       "mean": 20.53075727802038,
       "median": 20.75,
-      "std": 2.893502080078027,
+      "std": 2.893502080078072,
       "mad": 2.2769075691411937,
       "mode": 21.5,
       "underFifteenCount": 1894,
@@ -86671,7 +89617,7 @@ const data = {
       "candidateCount": 1116603,
       "mean": 5.672386112163405,
       "median": 5.5,
-      "std": 1.9038426345990835,
+      "std": 1.9038426345964201,
       "mad": 1.60328393350188,
       "mode": 5.25,
       "underFiveCount": 420367,
@@ -86691,7 +89637,7 @@ const data = {
       "candidateCount": 1120848,
       "mean": 6.493463047621086,
       "median": 6.75,
-      "std": 1.33652993340058,
+      "std": 1.336529933397778,
       "mad": 1.0449297050090647,
       "mode": 7.0,
       "underFiveCount": 127313,
@@ -86711,7 +89657,7 @@ const data = {
       "candidateCount": 328292,
       "mean": 5.116685207071753,
       "median": 5.0,
-      "std": 1.7003156597480416,
+      "std": 1.700315659747485,
       "mad": 1.3796884480888965,
       "mode": 4.25,
       "underFiveCount": 161973,
@@ -86731,7 +89677,7 @@ const data = {
       "candidateCount": 360054,
       "mean": 5.581887161370239,
       "median": 5.5,
-      "std": 1.7515666495930704,
+      "std": 1.7515666495933246,
       "mad": 1.4809845189888184,
       "mode": 7.0,
       "underFiveCount": 139939,
@@ -86751,7 +89697,7 @@ const data = {
       "candidateCount": 232373,
       "mean": 6.302090173987511,
       "median": 6.5,
-      "std": 1.6425966063794244,
+      "std": 1.6425966063793642,
       "mad": 1.353678783679687,
       "mode": 7.5,
       "underFiveCount": 50497,
@@ -86771,7 +89717,7 @@ const data = {
       "candidateCount": 62244,
       "mean": 5.854661493477282,
       "median": 5.75,
-      "std": 1.6433785838317614,
+      "std": 1.6433785838317418,
       "mad": 1.3425976800976802,
       "mode": 6.0,
       "underFiveCount": 19578,
@@ -86791,7 +89737,7 @@ const data = {
       "candidateCount": 528471,
       "mean": 6.184855365762738,
       "median": 6.1,
-      "std": 1.7071965603282178,
+      "std": 1.7071965603281125,
       "mad": 1.4214513189938525,
       "mode": 7.0,
       "underFiveCount": 137443,
@@ -86811,7 +89757,7 @@ const data = {
       "candidateCount": 416937,
       "mean": 5.096187673437473,
       "median": 5.0,
-      "std": 1.5842416154493408,
+      "std": 1.5842416154493477,
       "mad": 1.3077189119699137,
       "mode": 6.0,
       "underFiveCount": 196717,
@@ -86826,12 +89772,32 @@ const data = {
     {
       "year": 2026,
       "type": "subject",
+      "key": "tin_hoc",
+      "name": "Tin học",
+      "candidateCount": 16765,
+      "mean": 6.061640322099612,
+      "median": 6.0,
+      "std": 1.5376318393218973,
+      "mad": 1.2617596182523114,
+      "mode": 6.25,
+      "underFiveCount": 4259,
+      "underFiveRate": 25.4,
+      "eightPlusCount": 2196,
+      "eightPlusRate": 13.1,
+      "perfectCount": 22,
+      "zeroCount": 0,
+      "belowOneCount": 0,
+      "belowOneRate": 0.0
+    },
+    {
+      "year": 2026,
+      "type": "subject",
       "key": "gd_ktpl",
       "name": "GDKTPL",
       "candidateCount": 264079,
       "mean": 5.011502429197322,
       "median": 5.0,
-      "std": 1.3124843423518806,
+      "std": 1.3124843423515637,
       "mad": 1.0690287754800645,
       "mode": 5.75,
       "underFiveCount": 127532,
@@ -86851,7 +89817,7 @@ const data = {
       "candidateCount": 163288,
       "mean": 19.476271985693987,
       "median": 19.75,
-      "std": 4.281467110020337,
+      "std": 4.281467110020119,
       "mad": 3.564094728332762,
       "mode": 22.75,
       "underFifteenCount": 28081,
@@ -86870,7 +89836,7 @@ const data = {
       "candidateCount": 136874,
       "mean": 18.47813500007306,
       "median": 18.5,
-      "std": 3.9855387219976506,
+      "std": 3.9855387219976763,
       "mad": 3.3051247862998085,
       "mode": 20.5,
       "underFifteenCount": 28743,
@@ -86889,7 +89855,7 @@ const data = {
       "candidateCount": 3333,
       "mean": 15.10154515451545,
       "median": 14.75,
-      "std": 3.4767226525705834,
+      "std": 3.476722652570588,
       "mad": 2.793399339933994,
       "mode": 14.6,
       "underFifteenCount": 1757,
@@ -86908,7 +89874,7 @@ const data = {
       "candidateCount": 42526,
       "mean": 19.818205333207924,
       "median": 20.1,
-      "std": 4.356521638434732,
+      "std": 4.356521638434729,
       "mad": 3.619618586276631,
       "mode": 24.0,
       "underFifteenCount": 6555,
@@ -86927,7 +89893,7 @@ const data = {
       "candidateCount": 3146,
       "mean": 17.038207247298157,
       "median": 16.75,
-      "std": 3.7112366430808303,
+      "std": 3.711236643080827,
       "mad": 3.0222504767959313,
       "mode": 18.5,
       "underFifteenCount": 990,
@@ -86946,7 +89912,7 @@ const data = {
       "candidateCount": 259804,
       "mean": 17.205950639713013,
       "median": 17.2,
-      "std": 4.136670933461666,
+      "std": 4.136670933461316,
       "mad": 3.4071386121845695,
       "mode": 21.25,
       "underFifteenCount": 81281,
@@ -86965,7 +89931,7 @@ const data = {
       "candidateCount": 515267,
       "mean": 17.20162686529508,
       "median": 17.2,
-      "std": 3.911613255420518,
+      "std": 3.911613255420483,
       "mad": 3.193733559494398,
       "mode": 19.25,
       "underFifteenCount": 152293,
@@ -86984,7 +89950,7 @@ const data = {
       "candidateCount": 405174,
       "mean": 15.96688173476087,
       "median": 16.0,
-      "std": 3.835013901141245,
+      "std": 3.835013901141443,
       "mad": 3.1272178866363585,
       "mode": 17.5,
       "underFifteenCount": 164058,
@@ -87003,7 +89969,7 @@ const data = {
       "candidateCount": 324295,
       "mean": 19.06938077984551,
       "median": 19.0,
-      "std": 3.1742562018033524,
+      "std": 3.174256201803434,
       "mad": 2.588185695123267,
       "mode": 19.25,
       "underFifteenCount": 31211,
@@ -87022,7 +89988,7 @@ const data = {
       "candidateCount": 18321,
       "mean": 18.826303149391407,
       "median": 19.0,
-      "std": 3.739125641496809,
+      "std": 3.73912564149679,
       "mad": 3.063904808689482,
       "mode": 20.5,
       "underFifteenCount": 3016,
@@ -87041,7 +90007,7 @@ const data = {
       "candidateCount": 85081,
       "mean": 19.61565179064656,
       "median": 19.75,
-      "std": 3.0741101958897494,
+      "std": 3.074110195889835,
       "mad": 2.4841219543728914,
       "mode": 20.25,
       "underFifteenCount": 5713,
@@ -87060,7 +90026,7 @@ const data = {
       "candidateCount": 44697,
       "mean": 18.664078349777387,
       "median": 18.6,
-      "std": 2.8584288785443843,
+      "std": 2.858428878544401,
       "mad": 2.2962885652280915,
       "mode": 19.25,
       "underFifteenCount": 4221,
