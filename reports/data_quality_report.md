@@ -7,8 +7,8 @@ The dataset combines Vietnam high school graduation exam score files from 2022 t
 The pipeline loads available raw files, normalizes source columns, cleans SBD and score values, maps province/region metadata, adds derived fields, writes the processed CSV, and generates validation reports.
 
 ## Final Output
-- Path: `data/processed/final_data.csv`
-- File size: 770.06 MB
+- Path: `data\processed\final_data.csv`
+- File size: 775.17 MB
 - Shape: 5359670 rows x 37 columns
 - Unique `ten_tinh`: 34
 - Unique `vung_mien`: 6
