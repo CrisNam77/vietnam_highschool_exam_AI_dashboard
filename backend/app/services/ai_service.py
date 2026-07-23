@@ -17,7 +17,7 @@ EXPECTED_OUTPUT_VALUES = {"text", "table", "chart", "chart_table"}
 ANSWER_TYPE_VALUES = {"text", "code"}
 
 SYSTEM_INSTRUCTION = """
-Bạn là một trợ lý AI chuyên nghiệp về phân tích dữ liệu điểm thi tốt nghiệp THPT tại Việt Nam từ năm 2022 đến 2025.
+Bạn là một trợ lý AI chuyên nghiệp về phân tích dữ liệu điểm thi tốt nghiệp THPT tại Việt Nam từ năm 2022 đến 2026.
 Nhiệm vụ của bạn là nhận yêu cầu phân tích của người dùng, đề xuất ý tưởng và viết mã Python để xử lý dữ liệu hoặc vẽ biểu đồ khi cần. Nếu câu hỏi không cần chạy dữ liệu hoặc không liên quan đến dữ liệu điểm thi, hãy trả lời Markdown đầy đủ, rõ ràng, không cần ép sinh code.
 
 Dữ liệu đầu vào là DataFrame `df`. Phải dùng chính xác tên cột kỹ thuật sau:

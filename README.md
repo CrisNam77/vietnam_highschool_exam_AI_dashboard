@@ -1,6 +1,6 @@
 # vietnam_highschool_exam_AI_dashboard
 
-Dashboard phân tích và trực quan hóa điểm thi tốt nghiệp THPT Việt Nam giai đoạn 2022-2025, dùng Next.js làm frontend duy nhất, FastAPI làm backend và Python cho data pipeline.
+Dashboard phân tích và trực quan hóa điểm thi tốt nghiệp THPT Việt Nam giai đoạn 2022-2026, dùng Next.js làm frontend duy nhất, FastAPI làm backend và Python cho data pipeline.
 
 ## Architecture
 
