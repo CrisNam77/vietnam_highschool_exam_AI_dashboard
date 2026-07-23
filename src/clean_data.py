@@ -43,6 +43,19 @@ OLD_TO_NEW = {
  "62":"Điện Biên","63":"Lâm Đồng","64":"Cần Thơ",
 }
 
+CODE_2026_TO_PROVINCE = {
+    "01": "Hà Nội", "04": "Cao Bằng", "08": "Tuyên Quang", "11": "Điện Biên",
+    "12": "Lai Châu", "14": "Sơn La", "15": "Lào Cai", "19": "Thái Nguyên",
+    "20": "Lạng Sơn", "22": "Quảng Ninh", "24": "Bắc Ninh", "25": "Phú Thọ",
+    "31": "Hải Phòng", "33": "Hưng Yên", "37": "Ninh Bình", "38": "Thanh Hóa",
+    "40": "Nghệ An", "42": "Hà Tĩnh", "44": "Quảng Trị", "46": "Huế",
+    "48": "Đà Nẵng", "51": "Quảng Ngãi", "52": "Gia Lai", "56": "Khánh Hòa",
+    "66": "Đắk Lắk", "68": "Lâm Đồng", "75": "Đồng Nai", "79": "Hồ Chí Minh",
+    "80": "Tây Ninh", "82": "Đồng Tháp", "86": "Vĩnh Long", "91": "An Giang",
+    "92": "Cần Thơ", "96": "Cà Mau",
+}
+
+
 REGION3_OF_6 = {
  "Trung du và miền núi phía Bắc":"Bắc","Đồng bằng sông Hồng":"Bắc",
  "Bắc Trung Bộ và Duyên hải miền Trung":"Trung","Tây Nguyên":"Trung",
@@ -118,14 +131,27 @@ def map_province_and_region(df: pd.DataFrame) -> tuple[pd.DataFrame, dict]:
         df.loc[cond_old, "ten_tinh"] = df.loc[cond_old, "ma_tinh"].map(OLD_TO_NEW)
 
     strange_new_provinces = []
-    if cond_new.any() and "Tỉnh" in df.columns:
+    if cond_new.any() and "tinh_source" in df.columns:
+        source_codes = (
+            df.loc[cond_new, "tinh_source"]
+            .fillna("")
+            .astype(str)
+            .str.replace(r"\.0$", "", regex=True)
+            .str.replace(r"\D", "", regex=True)
+            .str.zfill(2)
+        )
+        mapped = source_codes.map(CODE_2026_TO_PROVINCE)
+        df.loc[cond_new, "ten_tinh"] = mapped
+        strange_new_provinces = sorted(source_codes[mapped.isna()].dropna().unique().tolist())
+    elif cond_new.any() and "Tỉnh" in df.columns:
         normed = df.loc[cond_new, "Tỉnh"].apply(norm_tinh)
         valid_mask = normed.isin(PROVINCE_NEW.keys())
         df.loc[cond_new & valid_mask, "ten_tinh"] = normed[valid_mask]
         invalid_mask = cond_new & (~valid_mask) & df["Tỉnh"].notna() & (df["Tỉnh"] != "")
         strange_new_provinces = sorted(df.loc[invalid_mask, "Tỉnh"].dropna().unique().tolist())
     elif cond_new.any():
-        df.loc[cond_new, "ten_tinh"] = df.loc[cond_new, "ma_tinh"].map(OLD_TO_NEW)
+        df.loc[cond_new, "ten_tinh"] = df.loc[cond_new, "ma_tinh"].map(CODE_2026_TO_PROVINCE)
+
 
     df["vung_mien"] = df["ten_tinh"].map(PROVINCE_NEW)
     df["vung_3"] = df["vung_mien"].map(REGION3_OF_6)
