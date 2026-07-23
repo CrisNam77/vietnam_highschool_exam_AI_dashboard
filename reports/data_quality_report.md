@@ -8,7 +8,7 @@ The pipeline loads available raw files, normalizes source columns, cleans SBD an
 
 ## Final Output
 - Path: `data\processed\final_data.csv`
-- File size: 785.01 MB
+- File size: 784.78 MB
 - Shape: 5436558 rows x 37 columns
 - Unique `ten_tinh`: 34
 - Unique `vung_mien`: 6
@@ -53,10 +53,10 @@ The pipeline loads available raw files, normalizes source columns, cleans SBD an
 - Province/city names use the post-merger mapping for this project version.
 - Missing subject scores remain NaN.
 - `diem_tb` averages all available subject scores.
-- For years without language codes, `ngoai_ngu` is temporarily treated as `diem_anh`.
+- `diem_anh` is derived only from rows where `ma_ngoai_ngu == N1`.
 
 ## Limitations
 - Historical province names are not kept as separate columns.
 - CT2006 and CT2018 rows are not fully comparable without program-aware filtering.
-- The English-score assumption should be revisited when official language-code data is available.
+- Language-code quality depends on the raw source and should be checked when changing sources.
 - `final_data.csv` is large and should remain ignored by git.

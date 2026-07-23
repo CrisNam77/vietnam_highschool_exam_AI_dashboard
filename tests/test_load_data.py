@@ -17,6 +17,7 @@ def test_normalize_github_raw_columns():
     assert normalize_column_name("NguVan") == "ngu_van"
     assert normalize_column_name("KinhTePhapLuat") == "gd_ktpl"
     assert normalize_column_name("MaMonNgoaiNgu") == "ma_ngoai_ngu"
+    assert normalize_column_name("NgoaiNgu") == "ngoai_ngu"
 
 
 def test_discover_raw_files_accepts_github_txt_names(tmp_path: Path):
