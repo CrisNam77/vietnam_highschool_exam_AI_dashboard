@@ -7,14 +7,14 @@ The dataset combines Vietnam high school graduation exam score files from 2022 t
 The pipeline loads available raw files, normalizes source columns, cleans SBD and score values, maps province/region metadata, adds derived fields, writes the processed CSV, and generates validation reports.
 
 ## Final Output
-- Path: `data\processed\final_data.csv`
-- File size: 784.78 MB
-- Shape: 5436558 rows x 37 columns
+- Path: `data/processed/final_data.csv`
+- File size: 898.72 MB
+- Shape: 5436558 rows x 44 columns
 - Unique `ten_tinh`: 34
 - Unique `vung_mien`: 6
 
 ## Final Schema
-`nam`, `chuong_trinh`, `sbd`, `ma_tinh`, `ten_tinh`, `vung_mien`, `vung_3`, `ma_ngoai_ngu`, `toan`, `ngu_van`, `ngoai_ngu`, `vat_li`, `hoa_hoc`, `sinh_hoc`, `lich_su`, `dia_li`, `gdcd`, `tin_hoc`, `cong_nghe_cn`, `cong_nghe_nn`, `gd_ktpl`, `so_mon`, `diem_tb`, `ban`, `diem_anh`, `diem_khoi_a00`, `diem_khoi_a01`, `diem_khoi_a02`, `diem_khoi_b00`, `diem_khoi_b08`, `diem_khoi_c00`, `diem_khoi_c03`, `diem_khoi_c04`, `diem_khoi_d01`, `diem_khoi_d07`, `diem_khoi_d14`, `diem_khoi_d15`
+`nam`, `chuong_trinh`, `sbd`, `ma_tinh`, `ten_tinh`, `vung_mien`, `vung_3`, `ma_ngoai_ngu`, `toan`, `ngu_van`, `ngoai_ngu`, `vat_li`, `hoa_hoc`, `sinh_hoc`, `lich_su`, `dia_li`, `gdcd`, `tin_hoc`, `cong_nghe_cn`, `cong_nghe_nn`, `gd_ktpl`, `ten_ngoai_ngu`, `so_mon`, `diem_tb`, `ban`, `diem_anh`, `diem_nga`, `diem_phap`, `diem_trung`, `diem_duc`, `diem_nhat`, `diem_han`, `diem_khoi_a00`, `diem_khoi_a01`, `diem_khoi_a02`, `diem_khoi_b00`, `diem_khoi_b08`, `diem_khoi_c00`, `diem_khoi_c03`, `diem_khoi_c04`, `diem_khoi_d01`, `diem_khoi_d07`, `diem_khoi_d14`, `diem_khoi_d15`
 
 ## Quality Checks
 - Invalid SBD rows removed: 0
