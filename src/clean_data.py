@@ -418,7 +418,7 @@ def main():
     # Điểm Anh
     # 2022 và 2026 thiếu mã ngoại ngữ nên coi toàn bộ là tiếng Anh
     df["diem_anh"] = np.where(
-        (df["ma_ngoai_ngu"] == "N1") | df["nam"].isin([2022, 2026]),
+        df["ma_ngoai_ngu"] == "N1",
         df["ngoai_ngu"],
         np.nan
     )
