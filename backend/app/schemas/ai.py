@@ -21,6 +21,7 @@ class AIGenerateRequest(BaseModel):
 
 class AIGenerateResponse(BaseModel):
     status: str
+    answer_type: str = "code"
     explanation: str
     code: str
     expected_output: str

@@ -61,6 +61,7 @@ Response:
 ```json
 {
   "status": "pending_approval",
+  "answer_type": "code",
   "explanation": "Markdown explanation",
   "code": "print(df.head())",
   "expected_output": "table",
@@ -72,6 +73,9 @@ Ghi chú:
 
 - Backend dùng OpenRouter khi có `OPENROUTER_API_KEY`.
 - Nếu thiếu API key hoặc provider lỗi, `explanation` sẽ mô tả lỗi cấu hình/kết nối và `code` có thể rỗng.
+- `answer_type` là `code` hoặc `text`; nếu là `text` thì frontend không cần hiển thị bước chạy code.
+- `expected_output` có thể là `text`, `table`, `chart`, hoặc `chart_table`.
+- `warnings` gồm cảnh báo từ AI và cảnh báo validator backend nếu code chứa keyword không được phép.
 - Generate event được ghi vào JSON log local.
 
 ## POST /api/execute
@@ -133,6 +137,8 @@ Response khi bị từ chối:
 Ghi chú:
 
 - Code chạy trên local DataFrame đọc từ `DATA_PATH`, mặc định `data/processed/final_data.csv`.
+- `approved: true` là bắt buộc. Backend sẽ từ chối mọi request chưa được duyệt, kể cả khi có `prompt`.
+- Backend chạy validator trước khi execute và từ chối code có thao tác không được phép như đọc file, gọi network hoặc subprocess.
 - Nếu code tạo Matplotlib figure, backend có thể trả ảnh base64 qua `plot_b64`.
 - Execution event được ghi vào JSON log local.
 

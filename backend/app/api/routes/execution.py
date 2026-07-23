@@ -7,6 +7,7 @@ from backend.app.schemas.execution import ExecutionRequest, ExecutionResponse
 from backend.app.services.ai_service import generate_analysis_from_data
 from backend.app.services.execution_service import execute_code
 from backend.app.services.log_service import log_interaction
+from backend.app.utils.code_validator import validate_generated_code
 from src.viz import load_data
 
 
@@ -31,12 +32,24 @@ def _get_dataframe():
 @router.post("/execute", response_model=ExecutionResponse)
 def run_code(request: ExecutionRequest) -> ExecutionResponse:
     """Execute user-approved Python code on the local dataframe."""
-    if not request.approved and not request.prompt:
+    if not request.approved:
         return ExecutionResponse(
             status="rejected",
             message="Code chưa được phê duyệt nên không thực thi.",
             output=None,
             logs=[],
+        )
+
+    is_valid, validation_warnings = validate_generated_code(request.code)
+    if not is_valid:
+        return ExecutionResponse(
+            status="rejected",
+            message="Code chứa thao tác không được phép nên không thực thi.",
+            output=None,
+            logs=validation_warnings,
+            success=False,
+            stdout="",
+            stderr="\n".join(validation_warnings),
         )
 
     result = execute_code(request.code, _get_dataframe())
