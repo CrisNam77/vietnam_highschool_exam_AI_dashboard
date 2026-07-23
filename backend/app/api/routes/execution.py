@@ -71,7 +71,7 @@ def run_code(request: ExecutionRequest) -> ExecutionResponse:
         )
     log_interaction(
         prompt=request.prompt,
-        generated_code="",
+        generated_code=request.generated_code or request.code,
         explanation=request.explanation,
         executed_code=request.code,
         status=status,

@@ -63,6 +63,16 @@ interface PendingReview {
   isFallbackInsight?: boolean;
 }
 
+interface ChatAttachment {
+  id: string;
+  filename: string;
+  kind: 'table' | 'image';
+  content_type: string;
+  size_bytes: number;
+  summary: string;
+  data_url?: string;
+}
+
 interface LogEntry {
   timestamp: string;
   event_type?: string;
@@ -153,6 +163,27 @@ async function callApi(method: 'GET' | 'POST', endpoint: string, payload?: objec
     return {
       error: 'NETWORK_ERROR',
       detail: error instanceof Error ? error.message : 'Không gọi được backend.',
+    };
+  }
+}
+
+async function uploadAttachment(file: File): Promise<ChatAttachment | { error: string; detail?: string }> {
+  try {
+    const formData = new FormData();
+    formData.append('file', file);
+    const res = await fetch(`${API_BASE}/api/ai/attachments/analyze`, {
+      method: 'POST',
+      body: formData,
+    });
+    if (!res.ok) {
+      const detail = await res.text();
+      return { error: `HTTP ${res.status}`, detail };
+    }
+    return await res.json();
+  } catch (error) {
+    return {
+      error: 'NETWORK_ERROR',
+      detail: error instanceof Error ? error.message : 'Không upload được file.',
     };
   }
 }
@@ -583,7 +614,7 @@ const SidebarIcon = ({ name }: { name: 'new' | 'search' | 'history' | 'api' | 'd
   );
 };
 
-const ActionIcon = ({ name }: { name: 'copy' | 'edit' | 'like' | 'dislike' | 'check' | 'trash' }) => {
+const ActionIcon = ({ name }: { name: 'copy' | 'edit' | 'like' | 'dislike' | 'check' | 'trash' | 'attach' | 'x' }) => {
   const common = { fill: 'none', stroke: 'currentColor', strokeWidth: 1.75, strokeLinecap: 'round' as const, strokeLinejoin: 'round' as const };
   return (
     <svg width="21" height="21" viewBox="0 0 24 24" aria-hidden="true" {...common}>
@@ -593,6 +624,8 @@ const ActionIcon = ({ name }: { name: 'copy' | 'edit' | 'like' | 'dislike' | 'ch
       {name === 'dislike' && <><path d="M16.5 12.5v-8"/><path d="M16.5 5.5h1.75a2.25 2.25 0 0 1 2.25 2.25v2.5a2.25 2.25 0 0 1-2.25 2.25H16.5"/><path d="M16.5 12.5 12.8 19.2a1.7 1.7 0 0 1-3.2-.9v-3.1H6.15a2.65 2.65 0 0 1-2.55-3.35l1.05-4.1A3 3 0 0 1 7.55 5.5h8.95"/></>}
       {name === 'check' && <path d="m5.5 12.5 4 4 9-9"/>}
       {name === 'trash' && <><path d="M4 7h16"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M6 7l1 14h10l1-14"/><path d="M9 7V4h6v3"/></>}
+      {name === 'attach' && <><path d="m21.4 11.6-8.5 8.5a6 6 0 0 1-8.5-8.5l8.5-8.5a4 4 0 1 1 5.7 5.7l-8.5 8.5a2 2 0 0 1-2.8-2.8l8-8"/></>}
+      {name === 'x' && <><path d="M18 6 6 18"/><path d="m6 6 12 12"/></>}
     </svg>
   );
 };
@@ -623,7 +656,10 @@ function ChatTab({
   const [editingCodeIndex, setEditingCodeIndex] = useState<number | null>(null);
   const [editingCodeText, setEditingCodeText] = useState('');
   const [rerunExecutingIndex, setRerunExecutingIndex] = useState<number | null>(null);
+  const [attachments, setAttachments] = useState<ChatAttachment[]>([]);
+  const [uploadingAttachment, setUploadingAttachment] = useState(false);
   const bottomRef = useRef<HTMLDivElement>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => { bottomRef.current?.scrollIntoView({ behavior: 'smooth' }); }, [messages, pending, loading]);
   useEffect(() => { onMessagesChange?.(messages); }, [messages, onMessagesChange]);
@@ -634,17 +670,27 @@ function ChatTab({
     setTimeout(() => setCopiedIndex(null), 1500);
   };
 
-  const sendPrompt = useCallback(async (prompt: string, baseMessages?: Message[]) => {
+  const sendPrompt = useCallback(async (prompt: string, baseMessages?: Message[], promptAttachments = attachments) => {
     if (loading || !prompt.trim()) return;
-    const nextMessages = [...(baseMessages ?? messages), { role: 'user' as const, content: prompt.trim() }];
+    const attachmentNote = promptAttachments.length
+      ? `\n\nĐính kèm: ${promptAttachments.map(item => item.filename).join(', ')}`
+      : '';
+    const nextMessages = [...(baseMessages ?? messages), { role: 'user' as const, content: `${prompt.trim()}${attachmentNote}` }];
     setMessages(nextMessages);
     setInput('');
+    setAttachments([]);
     setPending(null);
     setLoading(true);
     setError('');
     const gen = await callApi('POST', '/api/ai/generate', {
       prompt,
       history: getContextHistory(baseMessages ?? messages),
+      attachments: promptAttachments.map(item => ({
+        filename: item.filename,
+        kind: item.kind,
+        summary: item.summary,
+        data_url: item.data_url,
+      })),
     });
     const generateError = getApiError(gen);
     if (generateError) {
@@ -662,7 +708,28 @@ function ChatTab({
     setLoading(false);
     setPending({ code: gen.code, explanation: safeExplanation, isFallbackInsight: insight.isFallback });
     setEditedCode(gen.code ?? '');
-  }, [loading, messages]);
+  }, [attachments, loading, messages]);
+
+  const handleAttachmentUpload = async (files: FileList | null) => {
+    if (!files?.length) return;
+    setUploadingAttachment(true);
+    setError('');
+    for (const file of Array.from(files).slice(0, 5)) {
+      const uploaded = await uploadAttachment(file);
+      const uploadError = getApiError(uploaded);
+      if (uploadError) {
+        setError(`Không thể đính kèm ${file.name}: ${uploadError}`);
+        continue;
+      }
+      setAttachments(prev => [...prev.filter(item => item.filename !== file.name), uploaded as ChatAttachment].slice(-5));
+    }
+    setUploadingAttachment(false);
+    if (fileInputRef.current) fileInputRef.current.value = '';
+  };
+
+  const removeAttachment = (id: string) => {
+    setAttachments(prev => prev.filter(item => item.id !== id));
+  };
 
   const submitEditedMessage = () => {
     const text = editingText.trim();
@@ -674,12 +741,14 @@ function ChatTab({
 
   const executePythonCode = async ({
     code,
+    generatedCode,
     explanation,
     prompt,
     onSuccess,
     messageIndex,
   }: {
     code: string;
+    generatedCode?: string;
     explanation: string;
     prompt: string;
     onSuccess: (output: string, plot_b64?: string, analysis?: string, errorText?: string, logText?: string) => void;
@@ -690,6 +759,7 @@ function ChatTab({
     const exec = await callApi('POST', '/api/execute', {
       approved: true,
       code,
+      generated_code: generatedCode ?? code,
       prompt,
       explanation,
     });
@@ -720,6 +790,7 @@ function ChatTab({
     const lastUserMsg = [...messages].reverse().find(m => m.role === 'user');
     await executePythonCode({
       code: editedCode,
+      generatedCode: pending.code,
       prompt: lastUserMsg?.content ?? '',
       explanation: pending.explanation,
       onSuccess: (output, plot_b64, analysis, errorText, logText) => {
@@ -749,6 +820,7 @@ function ChatTab({
     const relatedPrompt = [...messages.slice(0, messageIndex)].reverse().find(m => m.role === 'user')?.content ?? '';
     await executePythonCode({
       code,
+      generatedCode: message.code,
       prompt: relatedPrompt,
       explanation: message.content,
       messageIndex,
@@ -1046,15 +1118,54 @@ function ChatTab({
           </div>
         )}
         <div className="input-glow mx-auto flex max-w-3xl items-end gap-2 rounded-[1.4rem] border border-[#DDE3EE] bg-white px-3 py-2.5 shadow-xl shadow-slate-300/30 transition-all sm:rounded-3xl sm:px-4 sm:py-3">
+          <input
+            ref={fileInputRef}
+            type="file"
+            multiple
+            accept=".csv,.xlsx,.xls,image/png,image/jpeg,image/webp"
+            className="hidden"
+            onChange={event => handleAttachmentUpload(event.target.files)}
+          />
+          <button
+            type="button"
+            onClick={() => fileInputRef.current?.click()}
+            disabled={loading || uploadingAttachment}
+            title="Đính kèm CSV, XLSX hoặc ảnh"
+            className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-2xl text-slate-500 transition-colors hover:bg-[#F3F0FF] hover:text-[#31327E] disabled:cursor-not-allowed disabled:opacity-40"
+          >
+            <ActionIcon name="attach" />
+          </button>
           <textarea value={input} onChange={e => setInput(e.target.value)}
             onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendPrompt(input); }}}
-            placeholder="Hỏi về điểm thi..."
+            placeholder={attachments.length ? 'Hỏi về file vừa đính kèm...' : 'Hỏi về điểm thi...'}
             rows={1} className="custom-scrollbar max-h-36 min-h-10 flex-1 resize-none bg-transparent px-1 py-2 text-[15px] leading-relaxed text-[#071636] outline-none placeholder-slate-400" />
           <button onClick={() => sendPrompt(input)} disabled={loading || !input.trim()}
             className={`flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-[#00195A] to-[#31327E] text-white shadow-md transition-all active:scale-95 disabled:opacity-40 ${input.trim() ? 'send-btn-ready' : ''}`}>
             <SendIcon />
           </button>
         </div>
+        {(attachments.length > 0 || uploadingAttachment) && (
+          <div className="mx-auto mt-2 flex max-w-3xl flex-wrap gap-2 px-1">
+            {uploadingAttachment && (
+              <span className="rounded-full border border-sky-200 bg-sky-50 px-3 py-1.5 text-[11px] font-semibold text-sky-700">
+                Đang đọc file...
+              </span>
+            )}
+            {attachments.map(item => (
+              <span key={item.id} className="inline-flex max-w-full items-center gap-2 rounded-full border border-[#DDE3EE] bg-white px-3 py-1.5 text-[11px] font-semibold text-[#4B5568] shadow-sm">
+                <span className="truncate">{item.kind === 'image' ? 'Ảnh' : 'Bảng'}: {item.filename}</span>
+                <button
+                  type="button"
+                  onClick={() => removeAttachment(item.id)}
+                  title="Gỡ file"
+                  className="text-slate-400 transition-colors hover:text-rose-600"
+                >
+                  <ActionIcon name="x" />
+                </button>
+              </span>
+            ))}
+          </div>
+        )}
         <p className="mt-2 text-center text-[10px] font-medium text-slate-400">Kiểm tra lại kết quả quan trọng.</p>
       </div>
     </div>
@@ -1243,66 +1354,11 @@ function HistoryTab() {
   );
 }
 
-// ── API Docs Tab ──────────────────────────────────────────
-function ApiTab() {
-  const endpoints = [
-    {
-      method: 'POST', path: '/api/ai/generate',
-      req: '{ "prompt": "Vẽ biểu đồ phổ điểm môn Toán..." }',
-      res: '{ "status": "pending_approval", "code": "...", "explanation": "..." }'
-    },
-    {
-      method: 'POST', path: '/api/execute',
-      req: '{ "approved": true, "code": "...", "prompt": "..." }',
-      res: '{ "status": "success", "analysis": "...", "stdout": "...", "plot_b64": "..." }'
-    },
-    {
-      method: 'GET', path: '/api/logs',
-      req: '—',
-      res: '[{ "timestamp": "...", "prompt": "...", "status": "success", ... }]'
-    },
-    {
-      method: 'GET', path: '/api/report/ai-usage',
-      req: '—',
-      res: '{ "total_logs": 10, "status_counts": {...}, "recent_requests": [...] }'
-    },
-  ];
-
-  return (
-    <div className="space-y-4">
-      <div className="flex items-center justify-between gap-3">
-        <h2 className="text-base font-bold text-slate-950">API</h2>
-        <span className="rounded-md border border-slate-200 bg-white px-2.5 py-1 text-xs font-semibold text-slate-600">
-          Backend <code className="font-mono text-slate-700">{BACKEND_LABEL}</code>
-        </span>
-      </div>
-      {endpoints.map((ep, i) => (
-        <div key={i} className="space-y-3 rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
-          <div className="flex items-center gap-3">
-            <span className={`rounded-md px-2.5 py-1 text-xs font-bold ${ep.method === 'POST' ? 'bg-sky-100 text-sky-700' : 'bg-emerald-100 text-emerald-700'}`}>{ep.method}</span>
-            <code className="text-sm font-mono text-slate-800 font-semibold">{ep.path}</code>
-          </div>
-          <div className="grid gap-3 lg:grid-cols-2">
-            <div>
-              <p className="text-xs text-slate-400 font-semibold mb-1.5 uppercase tracking-wider">Payload / Body</p>
-              <pre className="overflow-x-auto rounded-lg bg-slate-950 p-3 text-xs leading-relaxed text-green-300">{ep.req}</pre>
-            </div>
-            <div>
-              <p className="text-xs text-slate-400 font-semibold mb-1.5 uppercase tracking-wider">Response</p>
-              <pre className="overflow-x-auto rounded-lg bg-slate-950 p-3 text-xs leading-relaxed text-cyan-300">{ep.res}</pre>
-            </div>
-          </div>
-        </div>
-      ))}
-    </div>
-  );
-}
-
 // ── Main Page ─────────────────────────────────────────────
-type AssistantTab = 'chat' | 'history' | 'api';
+type AssistantTab = 'chat' | 'history';
 const CHAT_SESSIONS_KEY = 'examdata_ai_chat_sessions';
 const DASHBOARD_TABS: DashboardTab[] = ['overview', 'trends', 'distribution', 'regions'];
-const ASSISTANT_TABS: AssistantTab[] = ['chat', 'history', 'api'];
+const ASSISTANT_TABS: AssistantTab[] = ['chat', 'history'];
 const EMPTY_CHAT_SESSION: ChatSession = {
   id: 'chat-empty',
   title: 'Cuộc trò chuyện mới',
@@ -1697,7 +1753,7 @@ export default function Home() {
             <div className="flex items-center justify-between gap-3">
               <div>
                 <p className="text-xs font-bold uppercase tracking-[0.18em] text-slate-400">
-                  {activeTab === 'chat' ? 'Chat' : activeTab === 'history' ? 'History' : 'API'}
+                  {activeTab === 'chat' ? 'Chat' : 'History'}
                 </p>
                 <h1 className="mt-1 text-xl font-extrabold tracking-tight text-[#071636] sm:text-2xl">
                   ExamData AI
@@ -1722,7 +1778,7 @@ export default function Home() {
               )}
             </div>
             {activeTab === 'history' && <div className="h-full overflow-y-auto px-4 pb-6 pt-4 sm:px-8"><HistoryTab /></div>}
-            {activeTab === 'api' && <div className="h-full overflow-y-auto px-4 pb-6 pt-4 sm:px-8"><ApiTab /></div>}
+            
           </div>
         </div>
       </main>

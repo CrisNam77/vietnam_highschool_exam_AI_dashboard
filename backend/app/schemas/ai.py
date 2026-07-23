@@ -8,11 +8,19 @@ class AIHistoryMessage(BaseModel):
     code: str | None = None
 
 
+class AIAttachment(BaseModel):
+    filename: str
+    kind: str
+    summary: str
+    data_url: str | None = None
+
+
 class AIGenerateRequest(BaseModel):
     question: str | None = Field(default=None, min_length=1)
     prompt: str | None = Field(default=None, min_length=1)
     context: dict | None = None
     history: list[AIHistoryMessage] = []
+    attachments: list[AIAttachment] = []
 
     @property
     def text(self) -> str:

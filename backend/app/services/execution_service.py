@@ -33,6 +33,21 @@ SUBJECT_COLS = [
     "gd_ktpl",
 ]
 
+COMBINATION_COLS = [
+    "diem_khoi_a00",
+    "diem_khoi_a01",
+    "diem_khoi_a02",
+    "diem_khoi_b00",
+    "diem_khoi_b08",
+    "diem_khoi_c00",
+    "diem_khoi_c03",
+    "diem_khoi_c04",
+    "diem_khoi_d01",
+    "diem_khoi_d07",
+    "diem_khoi_d14",
+    "diem_khoi_d15",
+]
+
 SUBJECT_LABELS = {
     "toan": "Toán",
     "ngu_van": "Ngữ văn",
@@ -47,6 +62,20 @@ SUBJECT_LABELS = {
     "cong_nghe_cn": "Công nghệ CN",
     "cong_nghe_nn": "Công nghệ NN",
     "gd_ktpl": "GDKTPL",
+    "diem_anh": "Tiếng Anh",
+    "diem_tb": "Điểm TB",
+    "diem_khoi_a00": "A00",
+    "diem_khoi_a01": "A01",
+    "diem_khoi_a02": "A02",
+    "diem_khoi_b00": "B00",
+    "diem_khoi_b08": "B08",
+    "diem_khoi_c00": "C00",
+    "diem_khoi_c03": "C03",
+    "diem_khoi_c04": "C04",
+    "diem_khoi_d01": "D01",
+    "diem_khoi_d07": "D07",
+    "diem_khoi_d14": "D14",
+    "diem_khoi_d15": "D15",
 }
 
 COLUMN_ALIASES = {
@@ -57,8 +86,9 @@ COLUMN_ALIASES = {
     "Ngữ văn": "ngu_van",
     "Văn": "ngu_van",
     "điểm văn": "ngu_van",
-    "Tiếng Anh": "ngoai_ngu",
-    "Anh": "ngoai_ngu",
+    "Tiếng Anh": "diem_anh",
+    "Anh": "diem_anh",
+    "Điểm Anh": "diem_anh",
     "Ngoại ngữ": "ngoai_ngu",
     "ngoại ngữ": "ngoai_ngu",
     "Vật lí": "vat_li",
@@ -81,6 +111,20 @@ COLUMN_ALIASES = {
     "Công nghệ NN": "cong_nghe_nn",
     "GDKT&PL": "gd_ktpl",
     "GD KTPL": "gd_ktpl",
+    "Điểm trung bình": "diem_tb",
+    "Diem TB": "diem_tb",
+    "A00": "diem_khoi_a00",
+    "A01": "diem_khoi_a01",
+    "A02": "diem_khoi_a02",
+    "B00": "diem_khoi_b00",
+    "B08": "diem_khoi_b08",
+    "C00": "diem_khoi_c00",
+    "C03": "diem_khoi_c03",
+    "C04": "diem_khoi_c04",
+    "D01": "diem_khoi_d01",
+    "D07": "diem_khoi_d07",
+    "D14": "diem_khoi_d14",
+    "D15": "diem_khoi_d15",
 }
 
 REGION_LABELS = {
@@ -109,13 +153,18 @@ TRACK_LABELS = {
 }
 
 PROVINCE_LABELS = {
-    "Hà Nội": "HÀ NỘI",
-    "Ha Noi": "HÀ NỘI",
-    "TP.HCM": "HỒ CHÍ MINH",
-    "TP HCM": "HỒ CHÍ MINH",
-    "TP Hồ Chí Minh": "HỒ CHÍ MINH",
-    "Thành phố Hồ Chí Minh": "HỒ CHÍ MINH",
-    "Hồ Chí Minh": "HỒ CHÍ MINH",
+    "Hà Nội": "Hà Nội",
+    "Ha Noi": "Hà Nội",
+    "TP.HCM": "Hồ Chí Minh",
+    "TP HCM": "Hồ Chí Minh",
+    "TP Hồ Chí Minh": "Hồ Chí Minh",
+    "Thành phố Hồ Chí Minh": "Hồ Chí Minh",
+    "Hồ Chí Minh": "Hồ Chí Minh",
+    "Huế": "Huế",
+    "Thừa Thiên Huế": "Huế",
+    "Thanh Hóa": "Thanh Hóa",
+    "Thanh Hoá": "Thanh Hóa",
+    "Đà Nẵng": "Đà Nẵng",
 }
 
 
@@ -316,16 +365,17 @@ def _find_result_dataframe(exec_globals: dict) -> pd.DataFrame | None:
 
 
 def _detect_year_filter(code: str) -> int | None:
-    match = re.search(r"nam['\"]?\]?\s*(?:==|=)\s*(20(?:22|23|24|25))", code)
+    match = re.search(r"nam['\"]?\]?\s*(?:==|=)\s*(20(?:22|23|24|25|26))", code)
     if not match:
-        match = re.search(r"\b(20(?:22|23|24|25))\b", code)
+        match = re.search(r"\b(20(?:22|23|24|25|26))\b", code)
     return int(match.group(1)) if match else None
 
 
 def _detect_subject(code: str) -> str | None:
+    candidate_cols = [*SUBJECT_COLS, "diem_anh", "diem_tb", *COMBINATION_COLS]
     subject_hits = [
         subject
-        for subject in SUBJECT_COLS
+        for subject in candidate_cols
         if re.search(rf"(['\"]){re.escape(subject)}\1", code)
     ]
     if not subject_hits:
@@ -353,7 +403,8 @@ def _auto_distribution_insight(code: str, df: pd.DataFrame) -> str:
     if scores.empty:
         return ""
 
-    bins = np.arange(0, 10.25, 0.25)
+    score_max = 30 if subject in COMBINATION_COLS else 10
+    bins = np.arange(0, score_max + 0.25, 0.25)
     counts, edges = np.histogram(scores.to_numpy(dtype=float), bins=bins)
     peak_index = int(np.argmax(counts))
     peak_left = edges[peak_index]
@@ -364,8 +415,10 @@ def _auto_distribution_insight(code: str, df: pd.DataFrame) -> str:
     std = float(scores.std())
     min_score = float(scores.min())
     max_score = float(scores.max())
-    below_5 = float((scores < 5).mean() * 100)
-    above_8 = float((scores >= 8).mean() * 100)
+    low_threshold = 15 if subject in COMBINATION_COLS else 5
+    high_threshold = 24 if subject in COMBINATION_COLS else 8
+    below_low = float((scores < low_threshold).mean() * 100)
+    above_high = float((scores >= high_threshold).mean() * 100)
     subject_label = SUBJECT_LABELS.get(subject, subject)
     year_text = f" năm {year}" if year else ""
 
@@ -376,7 +429,7 @@ def _auto_distribution_insight(code: str, df: pd.DataFrame) -> str:
             f"- Cỡ mẫu hợp lệ: **{n:,}** thí sinh.",
             f"- Điểm trung bình là **{mean:.2f}**, trung vị **{median:.2f}**, độ lệch chuẩn **{std:.2f}**.",
             f"- Điểm thấp nhất/cao nhất trong dữ liệu hợp lệ là **{min_score:.2f}** và **{max_score:.2f}**.",
-            f"- Tỷ lệ dưới 5 điểm là **{below_5:.1f}%**, còn tỷ lệ từ 8 điểm trở lên là **{above_8:.1f}%**.",
+            f"- Tỷ lệ dưới {low_threshold:g} điểm là **{below_low:.1f}%**, còn tỷ lệ từ {high_threshold:g} điểm trở lên là **{above_high:.1f}%**.",
             f"- Khoảng điểm đông nhất nằm quanh **{peak_left:.2f}-{peak_right:.2f}** với khoảng **{int(counts[peak_index]):,}** thí sinh.",
             "- Diễn giải: phổ điểm cho thấy mức tập trung chính của thí sinh và giúp nhận diện nhanh nhóm điểm thấp/cao thay vì chỉ nhìn hình dạng biểu đồ.",
         ]

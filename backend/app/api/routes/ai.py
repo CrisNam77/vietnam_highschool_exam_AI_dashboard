@@ -13,7 +13,8 @@ router = APIRouter()
 def generate_code(request: AIGenerateRequest) -> AIGenerateResponse:
     """Generate Python code, then wait for user approval before execution."""
     history = [message.model_dump() for message in request.history]
-    generated = generate_code_and_explanation(request.text, history)
+    attachments = [attachment.model_dump() for attachment in request.attachments]
+    generated = generate_code_and_explanation(request.text, history, attachments)
     code = generated["code"]
     warnings = list(generated["warnings"])
     if code:

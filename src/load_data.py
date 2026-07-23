@@ -136,7 +136,16 @@ def load_processed_data(path: str | Path = "data/processed/final_data.csv") -> p
             f"Processed data file not found: {csv_path}. "
             "Run the data pipeline or place final_data.csv in data/processed/."
         )
-    return pd.read_csv(csv_path)
+    return pd.read_csv(
+        csv_path,
+        dtype={
+            "sbd": str,
+            "ma_tinh": str,
+            "ma_ngoai_ngu": str,
+            "chuong_trinh": str,
+            "ban": str,
+        },
+    )
 
 
 def normalize_column_name(column: object) -> str:

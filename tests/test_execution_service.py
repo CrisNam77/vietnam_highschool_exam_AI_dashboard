@@ -2,6 +2,7 @@ import pandas as pd
 
 from backend.app.services.execution_service import (
     execute_code,
+    normalize_column_aliases,
     normalize_province_filters,
     normalize_region_filters,
     normalize_sbd_modulo,
@@ -66,7 +67,18 @@ def test_normalize_province_filters_supports_short_city_names():
     normalized = normalize_province_filters(code)
 
     assert 'df["ten_tinh"].str.contains' in normalized
-    assert "HÀ NỘI" in normalized
+    assert "Hà Nội" in normalized
+
+
+def test_normalize_column_aliases_supports_new_english_and_combination_columns():
+    code = 'result = df[["Tiếng Anh", "A02", "D14", "Điểm trung bình"]].mean()'
+
+    normalized = normalize_column_aliases(code)
+
+    assert '"diem_anh"' in normalized
+    assert '"diem_khoi_a02"' in normalized
+    assert '"diem_khoi_d14"' in normalized
+    assert '"diem_tb"' in normalized
 
 
 def test_execute_code_supports_common_region_labels():
@@ -94,7 +106,7 @@ print(f"Nam: {df_nam['sinh_hoc'].dropna().shape[0]}")
 def test_execute_code_supports_common_track_and_province_labels():
     df = pd.DataFrame(
         {
-            "ten_tinh": ["THÀNH PHỐ HÀ NỘI", "THÀNH PHỐ HỒ CHÍ MINH"],
+            "ten_tinh": ["Hà Nội", "Hồ Chí Minh"],
             "ban": ["KHTN", "KHXH"],
             "toan": [8.0, 7.0],
         }

@@ -17,7 +17,7 @@ Không dùng alias cũ như `van`, `ly`, `hoa`, `su`, `dia`, `A00` trong docs ch
 | `ten_tinh` | Tên tỉnh/thành phố |
 | `vung_mien` | Vùng kinh tế xã hội, gồm 6 vùng |
 | `vung_3` | Miền địa lý rút gọn: Bắc, Trung, Nam |
-| `ma_ngoai_ngu` | Mã môn ngoại ngữ: `N1` đến `N7`, hoặc `NA` nếu không thi ngoại ngữ |
+| `ma_ngoai_ngu` | Mã môn ngoại ngữ: `N1` đến `N7`; dữ liệu build hiện tại có đủ mã cho các bản ghi có ngoại ngữ |
 
 ## Subject Score Columns
 
