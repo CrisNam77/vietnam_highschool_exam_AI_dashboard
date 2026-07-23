@@ -33,7 +33,7 @@ REGION6_ORDER = [
     "Đồng bằng sông Cửu Long"
 ]
 
-YEAR_ORDER = [2022, 2023, 2024, 2025]
+YEAR_ORDER = [2022, 2023, 2024, 2025, 2026]
 
 def load_data(path):
     df = pd.read_csv(
