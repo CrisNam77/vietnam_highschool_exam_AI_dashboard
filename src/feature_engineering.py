@@ -67,11 +67,7 @@ def add_track_column(df: pd.DataFrame) -> pd.DataFrame:
 
 def add_english_score(df: pd.DataFrame) -> pd.DataFrame:
     df = df.copy()
-    df["diem_anh"] = np.where(
-        (df["ma_ngoai_ngu"] == "N1") | df["nam"].isin([2022, 2026]),
-        df["ngoai_ngu"],
-        np.nan,
-    )
+    df["diem_anh"] = np.where(df["ma_ngoai_ngu"] == "N1", df["ngoai_ngu"], np.nan)
     return df
 
 
