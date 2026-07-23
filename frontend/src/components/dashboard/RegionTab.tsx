@@ -7,7 +7,6 @@ import type { ProvinceRanking } from '@/types/dashboard';
 import { ChartCard, SimpleBarChart, SimpleHorizontalBarChart } from './charts';
 import { DashboardShell } from './DashboardShell';
 import { FilterBar } from './FilterBar';
-import { HeatmapTable } from './HeatmapTable';
 import { RankingTable } from './RankingTable';
 
 type Direction = 'highest' | 'lowest';
@@ -45,7 +44,6 @@ export function RegionTab() {
   const [regionId, setRegionId] = useState('all');
   const [topN, setTopN] = useState(10);
   const [direction, setDirection] = useState<Direction>('highest');
-  const [search, setSearch] = useState('');
   const availableSubjects = useMemo(() => subjectsForYear(year), [year]);
   const availableSubjectIds = useMemo(() => new Set(availableSubjects.map(subject => subject.id)), [availableSubjects]);
 
@@ -68,15 +66,7 @@ export function RegionTab() {
     return { label: region.name, value: value === null ? null : Number(value.toFixed(2)) };
   });
 
-  const heatmapRows = REGIONS.map(region => ({
-    label: region.name,
-    values: Object.fromEntries(
-      availableSubjects.map(subject => {
-        const row = regionAverages.find(item => item.regionId === region.id && item.subjectId === subject.id && item.year === year);
-        return [subject.name, row?.average ?? null];
-      })
-    ),
-  }));
+
 
   return (
     <DashboardShell
@@ -123,19 +113,12 @@ export function RegionTab() {
             onChange: value => setDirection(value as Direction),
           },
         ]}
-        search={{
-          label: 'Tìm tỉnh/thành',
-          value: search,
-          placeholder: 'Nhập tên tỉnh/thành...',
-          onChange: setSearch,
-        }}
         onReset={() => {
           setYear(2026);
           setSubjectId('aggregate');
           setRegionId('all');
           setTopN(10);
           setDirection('highest');
-          setSearch('');
         }}
       />
 
@@ -151,8 +134,7 @@ export function RegionTab() {
         </ChartCard>
       </div>
 
-      <HeatmapTable columns={availableSubjects.map(subject => subject.name)} rows={heatmapRows} />
-      <RankingTable rows={rankedRows} search={search} />
+      <RankingTable rows={rankedRows} />
     </DashboardShell>
   );
 }

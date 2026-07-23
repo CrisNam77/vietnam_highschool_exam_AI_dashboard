@@ -7,7 +7,6 @@ import type { MetricKey, Program, Subject } from '@/types/dashboard';
 import { ChartCard, SimpleBarChart, SimpleLineChart } from './charts';
 import { DashboardSelect } from './DashboardSelect';
 import { DashboardShell } from './DashboardShell';
-import { HeatmapTable } from './HeatmapTable';
 import { YearRangeSlider } from './YearRangeSlider';
 
 const metricLabels: Record<MetricKey, string> = {
@@ -101,16 +100,6 @@ export function SubjectTrendTab() {
     ? availableSubjects
     : availableSubjects.filter(subject => subject.id === subjectId);
 
-  const heatmapRows = availableSubjects.map(subject => ({
-    label: subject.name,
-    values: Object.fromEntries(
-      yearRange.map(year => {
-        const row = findMetricRow(subject, year, program);
-        return [String(year), row?.[metric] ?? null];
-      })
-    ),
-  }));
-
   const scopedUnderFive = underFiveRates.filter(item =>
     item.program === program
     && availableSubjectIds.has(item.subjectId)
@@ -186,8 +175,6 @@ export function SubjectTrendTab() {
           }))}
         />
       </ChartCard>
-
-      <HeatmapTable columns={yearRange.map(String)} rows={heatmapRows} danger={metric === 'underFive'} />
 
       <div className="grid gap-5 xl:grid-cols-2">
         <ChartCard title="Tỷ lệ dưới 5 theo môn">
