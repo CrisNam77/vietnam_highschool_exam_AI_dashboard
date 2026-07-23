@@ -8,8 +8,8 @@ The pipeline loads available raw files, normalizes source columns, cleans SBD an
 
 ## Final Output
 - Path: `data\processed\final_data.csv`
-- File size: 775.17 MB
-- Shape: 5359670 rows x 37 columns
+- File size: 785.01 MB
+- Shape: 5436558 rows x 37 columns
 - Unique `ten_tinh`: 34
 - Unique `vung_mien`: 6
 
@@ -30,7 +30,7 @@ The pipeline loads available raw files, normalizes source columns, cleans SBD an
 | 2023 | 1017584 |
 | 2024 | 1061604 |
 | 2025 | 1153072 |
-| 2026 | 1131975 |
+| 2026 | 1208863 |
 
 ## Program Distribution
 | nam | chuong_trinh | rows |
@@ -40,7 +40,7 @@ The pipeline loads available raw files, normalizes source columns, cleans SBD an
 | 2024 | 2006 | 1061604 |
 | 2025 | 2006 | 22088 |
 | 2025 | 2018 | 1130984 |
-| 2026 | 2018 | 1131975 |
+| 2026 | 2018 | 1208863 |
 
 ## Course Requirement Fit
 - PASS: final_data.csv has more than 2,000 rows
