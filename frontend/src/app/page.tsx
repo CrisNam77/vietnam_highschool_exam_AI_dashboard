@@ -1355,10 +1355,10 @@ function HistoryTab() {
 }
 
 // ── Main Page ─────────────────────────────────────────────
-type AssistantTab = 'chat' | 'history';
+type AssistantTab = 'chat' | 'history' | 'api';
 const CHAT_SESSIONS_KEY = 'examdata_ai_chat_sessions';
 const DASHBOARD_TABS: DashboardTab[] = ['overview', 'trends', 'distribution', 'regions'];
-const ASSISTANT_TABS: AssistantTab[] = ['chat', 'history'];
+const ASSISTANT_TABS: AssistantTab[] = ['chat', 'history', 'api'];
 const EMPTY_CHAT_SESSION: ChatSession = {
   id: 'chat-empty',
   title: 'Cuộc trò chuyện mới',
