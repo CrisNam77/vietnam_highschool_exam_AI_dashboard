@@ -674,12 +674,14 @@ function ChatTab({
 
   const executePythonCode = async ({
     code,
+    generatedCode,
     explanation,
     prompt,
     onSuccess,
     messageIndex,
   }: {
     code: string;
+    generatedCode?: string;
     explanation: string;
     prompt: string;
     onSuccess: (output: string, plot_b64?: string, analysis?: string, errorText?: string, logText?: string) => void;
@@ -690,6 +692,7 @@ function ChatTab({
     const exec = await callApi('POST', '/api/execute', {
       approved: true,
       code,
+      generated_code: generatedCode ?? code,
       prompt,
       explanation,
     });
@@ -720,6 +723,7 @@ function ChatTab({
     const lastUserMsg = [...messages].reverse().find(m => m.role === 'user');
     await executePythonCode({
       code: editedCode,
+      generatedCode: pending.code,
       prompt: lastUserMsg?.content ?? '',
       explanation: pending.explanation,
       onSuccess: (output, plot_b64, analysis, errorText, logText) => {
@@ -749,6 +753,7 @@ function ChatTab({
     const relatedPrompt = [...messages.slice(0, messageIndex)].reverse().find(m => m.role === 'user')?.content ?? '';
     await executePythonCode({
       code,
+      generatedCode: message.code,
       prompt: relatedPrompt,
       explanation: message.content,
       messageIndex,

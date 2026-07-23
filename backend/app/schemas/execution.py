@@ -6,6 +6,7 @@ class ExecutionRequest(BaseModel):
     approved: bool = False
     prompt: str = ""
     explanation: str = ""
+    generated_code: str = ""
 
 
 class ExecutionResponse(BaseModel):
