@@ -1487,6 +1487,10 @@ export default function Home() {
               <SidebarIcon name="map" />
               <span>Địa phương & Vùng miền</span>
             </button>
+            <a href="/report" className="sidebar-nav-item text-slate-400 hover:bg-white/5 hover:text-slate-200">
+              <SidebarIcon name="chart" />
+              <span>Báo cáo phân tích</span>
+            </a>
             <button onClick={() => { setAssistantOpen(true); setActiveTab('chat'); }} className="sidebar-nav-item text-slate-400 hover:bg-white/5 hover:text-slate-200">
               <SidebarIcon name="data" />
               <span>Trợ lý AI</span>
