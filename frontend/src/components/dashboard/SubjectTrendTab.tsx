@@ -67,26 +67,12 @@ function findMetricRow(subject: Subject, year: number, program: Program) {
   return subjectYearMatrix.find(item => item.subjectId === subject.id && item.year === year && item.program === program);
 }
 
-interface SubjectTrendTabProps {
-  initialFromYear?: number;
-  initialToYear?: number;
-  initialSubjectId?: string;
-  initialMetric?: MetricKey;
-  initialProgram?: Program;
-}
-
-export function SubjectTrendTab({
-  initialFromYear = 2022,
-  initialToYear = 2026,
-  initialSubjectId = 'all',
-  initialMetric = 'average',
-  initialProgram = 'all',
-}: SubjectTrendTabProps) {
-  const [fromYear, setFromYear] = useState(initialFromYear);
-  const [toYear, setToYear] = useState(initialToYear);
-  const [subjectId, setSubjectId] = useState(initialSubjectId);
-  const [metric, setMetric] = useState<MetricKey>(initialMetric);
-  const [program, setProgram] = useState<Program>(initialProgram);
+export function SubjectTrendTab() {
+  const [fromYear, setFromYear] = useState(2022);
+  const [toYear, setToYear] = useState(2026);
+  const [subjectId, setSubjectId] = useState('all');
+  const [metric, setMetric] = useState<MetricKey>('average');
+  const [program, setProgram] = useState<Program>('all');
 
   const availableYears = getYearsForProgram(program);
 

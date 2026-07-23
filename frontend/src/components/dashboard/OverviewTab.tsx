@@ -19,14 +19,9 @@ function hasFiniteValue<T extends { value: number | null }>(item: T): item is T 
   return isFiniteNumber(item.value);
 }
 
-interface OverviewTabProps {
-  initialYear?: YearOption;
-  initialProgram?: Program;
-}
-
-export function OverviewTab({ initialYear = 'all', initialProgram = 'all' }: OverviewTabProps) {
-  const [year, setYear] = useState<YearOption>(initialYear);
-  const [program, setProgram] = useState<Program>(initialProgram);
+export function OverviewTab() {
+  const [year, setYear] = useState<YearOption>('all');
+  const [program, setProgram] = useState<Program>('all');
 
   // Derive which years actually have data for the selected program
   const availableYears = candidatesByYear

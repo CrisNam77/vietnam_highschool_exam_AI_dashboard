@@ -1299,59 +1299,6 @@ function ApiTab() {
 
 // ── Main Page ─────────────────────────────────────────────
 type AssistantTab = 'chat' | 'history' | 'api';
-type DashboardView = Exclude<DashboardTab, 'assistant'>;
-
-interface DashboardViewConfig {
-  view: DashboardView;
-  program: 'all' | 'CT2006' | 'CT2018';
-  fromYear: number;
-  toYear: number;
-  year: number;
-  subject: string;
-  metric: 'average' | 'underFive' | 'eightPlus' | 'perfect10';
-  topN: number;
-  direction: 'highest' | 'lowest';
-}
-
-const DEFAULT_DASHBOARD_VIEW_CONFIG: DashboardViewConfig = {
-  view: 'overview',
-  program: 'all',
-  fromYear: 2022,
-  toYear: 2026,
-  year: 2026,
-  subject: 'all',
-  metric: 'average',
-  topN: 10,
-  direction: 'highest',
-};
-
-function readDashboardViewConfig(): DashboardViewConfig {
-  const params = new URLSearchParams(window.location.search);
-  const validViews: DashboardView[] = ['overview', 'trends', 'distribution', 'regions'];
-  const view = validViews.includes(params.get('view') as DashboardView)
-    ? params.get('view') as DashboardView
-    : DEFAULT_DASHBOARD_VIEW_CONFIG.view;
-  const program = params.get('program');
-  const metric = params.get('metric');
-  const direction = params.get('direction');
-  const year = Number(params.get('year'));
-  const fromYear = Number(params.get('from'));
-  const toYear = Number(params.get('to'));
-  const topN = Number(params.get('topN'));
-
-  return {
-    view,
-    program: program === 'CT2006' || program === 'CT2018' ? program : DEFAULT_DASHBOARD_VIEW_CONFIG.program,
-    fromYear: Number.isFinite(fromYear) ? fromYear : DEFAULT_DASHBOARD_VIEW_CONFIG.fromYear,
-    toYear: Number.isFinite(toYear) ? toYear : DEFAULT_DASHBOARD_VIEW_CONFIG.toYear,
-    year: Number.isFinite(year) ? year : DEFAULT_DASHBOARD_VIEW_CONFIG.year,
-    subject: params.get('subject') ?? DEFAULT_DASHBOARD_VIEW_CONFIG.subject,
-    metric: metric === 'underFive' || metric === 'eightPlus' || metric === 'perfect10' ? metric : DEFAULT_DASHBOARD_VIEW_CONFIG.metric,
-    topN: [5, 10, 20].includes(topN) ? topN : DEFAULT_DASHBOARD_VIEW_CONFIG.topN,
-    direction: direction === 'lowest' ? direction : DEFAULT_DASHBOARD_VIEW_CONFIG.direction,
-  };
-}
-
 const CHAT_SESSIONS_KEY = 'examdata_ai_chat_sessions';
 const EMPTY_CHAT_SESSION: ChatSession = {
   id: 'chat-empty',
@@ -1426,7 +1373,6 @@ function loadChatSessions() {
 
 export default function Home() {
   const [dashboardTab, setDashboardTab] = useState<DashboardTab>('overview');
-  const [dashboardViewConfig, setDashboardViewConfig] = useState<DashboardViewConfig>(DEFAULT_DASHBOARD_VIEW_CONFIG);
   const [assistantOpen, setAssistantOpen] = useState(false);
   const [activeTab, setActiveTab] = useState<AssistantTab>('chat');
   const [sessions, setSessions] = useState<ChatSession[]>([EMPTY_CHAT_SESSION]);
@@ -1434,15 +1380,6 @@ export default function Home() {
   const [sessionSearch, setSessionSearch] = useState('');
   const [sessionsHydrated, setSessionsHydrated] = useState(false);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
-
-  useEffect(() => {
-    const timer = window.setTimeout(() => {
-      const nextConfig = readDashboardViewConfig();
-      setDashboardViewConfig(nextConfig);
-      setDashboardTab(nextConfig.view);
-    }, 0);
-    return () => window.clearTimeout(timer);
-  }, []);
 
   useEffect(() => {
     const timer = window.setTimeout(() => {
@@ -1562,25 +1499,10 @@ export default function Home() {
         <main className="ml-[272px] h-screen overflow-hidden bg-[#F5F7FB]">
           <div className="flex h-full flex-col">
             <div className="min-h-0 flex-1">
-              {dashboardTab === 'overview' && <OverviewTab initialProgram={dashboardViewConfig.program} />}
-              {dashboardTab === 'trends' && (
-                <SubjectTrendTab
-                  initialFromYear={dashboardViewConfig.fromYear}
-                  initialToYear={dashboardViewConfig.toYear}
-                  initialProgram={dashboardViewConfig.program}
-                  initialSubjectId={dashboardViewConfig.subject}
-                  initialMetric={dashboardViewConfig.metric}
-                />
-              )}
+              {dashboardTab === 'overview' && <OverviewTab />}
+              {dashboardTab === 'trends' && <SubjectTrendTab />}
               {dashboardTab === 'distribution' && <DistributionTab />}
-              {dashboardTab === 'regions' && (
-                <RegionTab
-                  initialYear={dashboardViewConfig.year}
-                  initialSubjectId={dashboardViewConfig.subject === 'all' ? 'aggregate' : dashboardViewConfig.subject}
-                  initialTopN={dashboardViewConfig.topN}
-                  initialDirection={dashboardViewConfig.direction}
-                />
-              )}
+              {dashboardTab === 'regions' && <RegionTab />}
             </div>
           </div>
         </main>
