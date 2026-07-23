@@ -2,6 +2,8 @@
 
 Schema chính thức cho `data/processed/final_data.csv` dựa trên pipeline trong `src/load_data.py`, `src/clean_data.py`, `src/feature_engineering.py`, `src/metrics.py` và báo cáo `reports/data_quality_report.md`.
 
+Raw source hien duoc adapter trong `src/load_data.py` chuan hoa tu bo file `sdgedfegw/du-lieu-diem-thi` (`du_lieu_diem_thi_2022.txt` ... `du_lieu_diem_thi_2026.txt`). Cac cot nguon khong dau nhu `Toan`, `NguVan`, `VatLy`, `KinhTePhapLuat`, `MaMonNgoaiNgu` duoc map ve schema canonical ben duoi.
+
 Không dùng alias cũ như `van`, `ly`, `hoa`, `su`, `dia`, `A00` trong docs chính. Nếu UI cần tên thân thiện, phải mapping rõ từ alias sang cột canonical.
 
 ## Metadata Columns

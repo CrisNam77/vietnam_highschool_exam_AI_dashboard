@@ -95,6 +95,23 @@ npm install
 
 ## 5. Prepare Dashboard Data
 
+Raw data currently uses the `sdgedfegw/du-lieu-diem-thi` export. Put these files in `data/raw/`:
+
+```text
+du_lieu_diem_thi_2022.txt
+du_lieu_diem_thi_2023.txt
+du_lieu_diem_thi_2024.txt
+du-lieu-diem-thi-2025-ct2006.txt
+du-lieu-diem-thi-2025-ct2018.txt
+du_lieu_diem_thi_2026.txt
+```
+
+The pipeline also accepts matching `.csv` variants and selected legacy filenames. Rebuild the processed dataset first:
+
+```bash
+python scripts/build_final_data.py
+```
+
 Dữ liệu cho frontend dashboard không dùng mock data nữa mà dùng dữ liệu thật xuất từ `final_data.csv`. Để tạo file dữ liệu tĩnh cho Next.js, hãy chạy script ETL:
 
 ```bash
