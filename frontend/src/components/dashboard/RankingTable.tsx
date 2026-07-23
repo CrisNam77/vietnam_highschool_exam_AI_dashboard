@@ -7,21 +7,16 @@ type SortKey = 'average' | 'candidates';
 
 export function RankingTable({
   rows,
-  search,
 }: {
   rows: ProvinceRanking[];
-  search: string;
 }) {
   const [sortKey, setSortKey] = useState<SortKey>('average');
   const [page, setPage] = useState(1);
   const pageSize = 8;
 
   const visibleRows = useMemo(() => {
-    const normalized = search.trim().toLowerCase();
-    return rows
-      .filter(row => !normalized || row.province.toLowerCase().includes(normalized))
-      .sort((a, b) => b[sortKey] - a[sortKey]);
-  }, [rows, search, sortKey]);
+    return [...rows].sort((a, b) => b[sortKey] - a[sortKey]);
+  }, [rows, sortKey]);
 
   const maxPage = Math.max(1, Math.ceil(visibleRows.length / pageSize));
   const currentPage = Math.min(page, maxPage);
