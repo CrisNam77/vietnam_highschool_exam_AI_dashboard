@@ -1354,66 +1354,11 @@ function HistoryTab() {
   );
 }
 
-// ── API Docs Tab ──────────────────────────────────────────
-function ApiTab() {
-  const endpoints = [
-    {
-      method: 'POST', path: '/api/ai/generate',
-      req: '{ "prompt": "Vẽ biểu đồ phổ điểm môn Toán..." }',
-      res: '{ "status": "pending_approval", "code": "...", "explanation": "..." }'
-    },
-    {
-      method: 'POST', path: '/api/execute',
-      req: '{ "approved": true, "code": "...", "prompt": "..." }',
-      res: '{ "status": "success", "analysis": "...", "stdout": "...", "plot_b64": "..." }'
-    },
-    {
-      method: 'GET', path: '/api/logs',
-      req: '—',
-      res: '[{ "timestamp": "...", "prompt": "...", "status": "success", ... }]'
-    },
-    {
-      method: 'GET', path: '/api/report/ai-usage',
-      req: '—',
-      res: '{ "total_logs": 10, "status_counts": {...}, "recent_requests": [...] }'
-    },
-  ];
-
-  return (
-    <div className="space-y-4">
-      <div className="flex items-center justify-between gap-3">
-        <h2 className="text-base font-bold text-slate-950">API</h2>
-        <span className="rounded-md border border-slate-200 bg-white px-2.5 py-1 text-xs font-semibold text-slate-600">
-          Backend <code className="font-mono text-slate-700">{BACKEND_LABEL}</code>
-        </span>
-      </div>
-      {endpoints.map((ep, i) => (
-        <div key={i} className="space-y-3 rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
-          <div className="flex items-center gap-3">
-            <span className={`rounded-md px-2.5 py-1 text-xs font-bold ${ep.method === 'POST' ? 'bg-sky-100 text-sky-700' : 'bg-emerald-100 text-emerald-700'}`}>{ep.method}</span>
-            <code className="text-sm font-mono text-slate-800 font-semibold">{ep.path}</code>
-          </div>
-          <div className="grid gap-3 lg:grid-cols-2">
-            <div>
-              <p className="text-xs text-slate-400 font-semibold mb-1.5 uppercase tracking-wider">Payload / Body</p>
-              <pre className="overflow-x-auto rounded-lg bg-slate-950 p-3 text-xs leading-relaxed text-green-300">{ep.req}</pre>
-            </div>
-            <div>
-              <p className="text-xs text-slate-400 font-semibold mb-1.5 uppercase tracking-wider">Response</p>
-              <pre className="overflow-x-auto rounded-lg bg-slate-950 p-3 text-xs leading-relaxed text-cyan-300">{ep.res}</pre>
-            </div>
-          </div>
-        </div>
-      ))}
-    </div>
-  );
-}
-
 // ── Main Page ─────────────────────────────────────────────
-type AssistantTab = 'chat' | 'history' | 'api';
+type AssistantTab = 'chat' | 'history';
 const CHAT_SESSIONS_KEY = 'examdata_ai_chat_sessions';
 const DASHBOARD_TABS: DashboardTab[] = ['overview', 'trends', 'distribution', 'regions'];
-const ASSISTANT_TABS: AssistantTab[] = ['chat', 'history', 'api'];
+const ASSISTANT_TABS: AssistantTab[] = ['chat', 'history'];
 const EMPTY_CHAT_SESSION: ChatSession = {
   id: 'chat-empty',
   title: 'Cuộc trò chuyện mới',
@@ -1808,7 +1753,7 @@ export default function Home() {
             <div className="flex items-center justify-between gap-3">
               <div>
                 <p className="text-xs font-bold uppercase tracking-[0.18em] text-slate-400">
-                  {activeTab === 'chat' ? 'Chat' : activeTab === 'history' ? 'History' : 'API'}
+                  {activeTab === 'chat' ? 'Chat' : 'History'}
                 </p>
                 <h1 className="mt-1 text-xl font-extrabold tracking-tight text-[#071636] sm:text-2xl">
                   ExamData AI
@@ -1833,7 +1778,7 @@ export default function Home() {
               )}
             </div>
             {activeTab === 'history' && <div className="h-full overflow-y-auto px-4 pb-6 pt-4 sm:px-8"><HistoryTab /></div>}
-            {activeTab === 'api' && <div className="h-full overflow-y-auto px-4 pb-6 pt-4 sm:px-8"><ApiTab /></div>}
+            
           </div>
         </div>
       </main>
