@@ -70,9 +70,6 @@ export function SimpleLineChart({ series, valueMode = 'score' }: { series: LineS
             </text>
           </g>
         ))}
-        {min < 0 && max > 0 && (
-          <line x1={left} x2={width - right} y1={yFor(0)} y2={yFor(0)} stroke="#94A3B8" strokeWidth="1.5" strokeDasharray="5 4" />
-        )}
         {labels.map((label, index) => (
           <text key={label} x={xFor(index, labels.length)} y={height - 14} textAnchor="middle" fontSize="12" fill="#64748B">
             {label}

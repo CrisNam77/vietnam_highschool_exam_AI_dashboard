@@ -13,11 +13,6 @@ npm install
 npm run dev
 ```
 
-View báo cáo biểu đồ dùng trong notebook:
-
-```text
-http://localhost:3000/report
-```
 
 Backend mac dinh:
 
