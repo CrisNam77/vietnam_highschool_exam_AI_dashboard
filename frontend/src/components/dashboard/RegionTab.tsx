@@ -39,12 +39,26 @@ function aggregateProvinceRows(rows: ProvinceRanking[], subjectId: string): Prov
   });
 }
 
-export function RegionTab() {
-  const [year, setYear] = useState(2026);
-  const [subjectId, setSubjectId] = useState('aggregate');
-  const [regionId, setRegionId] = useState('all');
-  const [topN, setTopN] = useState(10);
-  const [direction, setDirection] = useState<Direction>('highest');
+interface RegionTabProps {
+  initialYear?: number;
+  initialSubjectId?: string;
+  initialRegionId?: string;
+  initialTopN?: number;
+  initialDirection?: Direction;
+}
+
+export function RegionTab({
+  initialYear = 2026,
+  initialSubjectId = 'aggregate',
+  initialRegionId = 'all',
+  initialTopN = 10,
+  initialDirection = 'highest',
+}: RegionTabProps) {
+  const [year, setYear] = useState(initialYear);
+  const [subjectId, setSubjectId] = useState(initialSubjectId);
+  const [regionId, setRegionId] = useState(initialRegionId);
+  const [topN, setTopN] = useState(initialTopN);
+  const [direction, setDirection] = useState<Direction>(initialDirection);
   const [search, setSearch] = useState('');
   const availableSubjects = useMemo(() => subjectsForYear(year), [year]);
   const availableSubjectIds = useMemo(() => new Set(availableSubjects.map(subject => subject.id)), [availableSubjects]);
