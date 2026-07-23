@@ -7,12 +7,17 @@ async function proxy(request: NextRequest, context: { params: Promise<{ path: st
   const target = `${BACKEND_URL}/${path.join('/')}${request.nextUrl.search}`;
 
   try {
+    const body = request.method === 'GET' || request.method === 'HEAD'
+      ? undefined
+      : await request.arrayBuffer();
+    const headers = new Headers();
+    const contentType = request.headers.get('content-type');
+    if (contentType) headers.set('content-type', contentType);
+
     const response = await fetch(target, {
       method: request.method,
-      headers: {
-        'content-type': request.headers.get('content-type') ?? 'application/json',
-      },
-      body: request.method === 'GET' || request.method === 'HEAD' ? undefined : await request.text(),
+      headers,
+      body,
     });
 
     const text = await response.text();
