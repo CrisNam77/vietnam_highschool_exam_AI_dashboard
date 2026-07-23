@@ -32,10 +32,17 @@ FINAL_COLS = [
     "vung_3",
     "ma_ngoai_ngu",
     *SCORE_COLS,
+    "ten_ngoai_ngu",
     "so_mon",
     "diem_tb",
     "ban",
     "diem_anh",
+    "diem_nga",
+    "diem_phap",
+    "diem_trung",
+    "diem_duc",
+    "diem_nhat",
+    "diem_han",
     *COMBINATION_COLS,
 ]
 
@@ -65,14 +72,43 @@ def add_track_column(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
-def add_english_score(df: pd.DataFrame) -> pd.DataFrame:
+LANGUAGE_CODE_TO_COLUMN = {
+    "N1": "diem_anh",
+    "N2": "diem_nga",
+    "N3": "diem_phap",
+    "N4": "diem_trung",
+    "N5": "diem_duc",
+    "N6": "diem_nhat",
+    "N7": "diem_han",
+}
+
+LANGUAGE_CODE_TO_NAME = {
+    "N1": "Tiếng Anh",
+    "N2": "Tiếng Nga",
+    "N3": "Tiếng Pháp",
+    "N4": "Tiếng Trung",
+    "N5": "Tiếng Đức",
+    "N6": "Tiếng Nhật",
+    "N7": "Tiếng Hàn",
+}
+
+
+def add_foreign_language_features(df: pd.DataFrame) -> pd.DataFrame:
+    # Frontend currently displays only Tiếng Anh intentionally, but the processed dataset preserves all foreign-language scores through language-specific columns.
     df = df.copy()
-    df["diem_anh"] = np.where(
-        (df["ma_ngoai_ngu"] == "N1") | df["nam"].isin([2022, 2026]),
-        df["ngoai_ngu"],
-        np.nan,
-    )
+    ma_upper = df["ma_ngoai_ngu"].astype(str).str.strip().str.upper() if "ma_ngoai_ngu" in df.columns else pd.Series("NA", index=df.index)
+    
+    for code, col in LANGUAGE_CODE_TO_COLUMN.items():
+        df[col] = np.where(ma_upper == code, df["ngoai_ngu"], np.nan)
+        
+    df["ten_ngoai_ngu"] = df["ma_ngoai_ngu"].map(LANGUAGE_CODE_TO_NAME)
+    df["ten_ngoai_ngu"] = df["ten_ngoai_ngu"].fillna("Không thi ngoại ngữ")
     return df
+
+
+def add_english_score(df: pd.DataFrame) -> pd.DataFrame:
+    """Compatibility wrapper for older imports."""
+    return add_foreign_language_features(df)
 
 
 def add_combination_scores(df: pd.DataFrame) -> pd.DataFrame:
@@ -100,7 +136,7 @@ def add_features(df: pd.DataFrame) -> pd.DataFrame:
     df = add_subject_count(df)
     df = add_average_score(df)
     df = add_track_column(df)
-    df = add_english_score(df)
+    df = add_foreign_language_features(df)
     return add_combination_scores(df)
 
 
