@@ -75,7 +75,11 @@ QUY TẮC BẮT BUỘC:
 """
 
 
-def generate_code_and_explanation(prompt: str, history: list[dict] | None = None) -> dict[str, Any]:
+def generate_code_and_explanation(
+    prompt: str,
+    history: list[dict] | None = None,
+    attachments: list[dict] | None = None,
+) -> dict[str, Any]:
     if not settings.openrouter_api_key:
         return _generated_payload(
             code="",
@@ -86,7 +90,7 @@ def generate_code_and_explanation(prompt: str, history: list[dict] | None = None
 
     try:
         text = _call_openrouter(
-            messages=_build_generate_messages(prompt, history or []),
+            messages=_build_generate_messages(prompt, history or [], attachments or []),
             temperature=0.2,
             max_tokens=GENERATE_MAX_TOKENS,
         )
@@ -106,11 +110,30 @@ def generate_code_and_explanation(prompt: str, history: list[dict] | None = None
         )
 
 
-def _build_generate_messages(prompt: str, history: list[dict]) -> list[dict[str, str]]:
+def _build_generate_messages(prompt: str, history: list[dict], attachments: list[dict] | None = None) -> list[dict[str, Any]]:
     messages = [{"role": "system", "content": SYSTEM_INSTRUCTION}]
     messages.extend(_sanitize_history(history))
-    messages.append({"role": "user", "content": prompt})
+    messages.append({"role": "user", "content": _build_user_content(prompt, attachments or [])})
     return messages
+
+
+def _build_user_content(prompt: str, attachments: list[dict]) -> str | list[dict[str, Any]]:
+    text_parts = [prompt.strip()]
+    content_blocks: list[dict[str, Any]] = []
+
+    for attachment in attachments[:5]:
+        summary = str(attachment.get("summary") or "").strip()
+        if summary:
+            text_parts.append(f"\n\n[Attachment: {attachment.get('filename') or 'file'}]\n{summary[:6000]}")
+        data_url = str(attachment.get("data_url") or "").strip()
+        if attachment.get("kind") == "image" and data_url:
+            content_blocks.append({"type": "image_url", "image_url": {"url": data_url}})
+
+    combined_text = "\n".join(text_parts)
+    if not content_blocks:
+        return combined_text
+
+    return [{"type": "text", "text": combined_text}, *content_blocks]
 
 
 def _extract_python_code(text: str) -> tuple[str, str]:
@@ -375,7 +398,7 @@ def _correlation_strength(value: float | None) -> str:
     return f"{level}, {direction}"
 
 
-def _call_openrouter(messages: list[dict[str, str]], temperature: float, max_tokens: int) -> str:
+def _call_openrouter(messages: list[dict[str, Any]], temperature: float, max_tokens: int) -> str:
     try:
         with urllib.request.urlopen(_openrouter_request(messages, temperature, max_tokens), timeout=90) as response:
             data = json.loads(response.read().decode("utf-8"))
@@ -390,7 +413,7 @@ def _call_openrouter(messages: list[dict[str, str]], temperature: float, max_tok
 
 
 def _openrouter_request(
-    messages: list[dict[str, str]],
+    messages: list[dict[str, Any]],
     temperature: float,
     max_tokens: int,
 ) -> urllib.request.Request:

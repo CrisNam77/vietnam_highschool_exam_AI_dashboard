@@ -19,7 +19,7 @@ def test_ai_generate_includes_validation_warnings(monkeypatch):
     monkeypatch.setattr(
         ai,
         "generate_code_and_explanation",
-        lambda _prompt, _history: {
+        lambda _prompt, _history, _attachments=None: {
             "answer_type": "code",
             "explanation": "Test",
             "code": "open('secret.txt')",
