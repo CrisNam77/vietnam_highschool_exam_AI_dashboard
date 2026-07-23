@@ -9,8 +9,12 @@ from backend.app.core.config import settings
 
 MAX_HISTORY_MESSAGES = 10
 MAX_HISTORY_CONTENT_CHARS = 1200
+GENERATE_MAX_TOKENS = 2048
+ANALYSIS_MAX_TOKENS = 2048
 CODE_BLOCK_PATTERN = re.compile(r"```python(.*?)```", re.DOTALL)
 PLACEHOLDER_PATTERN = re.compile(r"\{[a-zA-Z_][a-zA-Z0-9_]*(?:\[[^\]]+\])?(?::[^}]*)?\}")
+EXPECTED_OUTPUT_VALUES = {"text", "table", "chart", "chart_table"}
+ANSWER_TYPE_VALUES = {"text", "code"}
 
 SYSTEM_INSTRUCTION = """
 Bạn là một trợ lý AI chuyên nghiệp về phân tích dữ liệu điểm thi tốt nghiệp THPT tại Việt Nam từ năm 2022 đến 2025.
@@ -51,28 +55,50 @@ QUY TẮC BẮT BUỘC:
 24. Khi người dùng nói miền Bắc/miền Trung/miền Nam, bắt buộc lọc bằng `vung_3.isin(["Bắc", "Nam"])` hoặc so sánh trực tiếp `df["vung_3"] == "Bắc"`/`"Nam"`. Không dùng chuỗi `Miền Bắc`, `Miền Nam` trong code.
 25. Khi người dùng nói ban tự nhiên/xã hội, bắt buộc dùng `df["ban"] == "KHTN"` hoặc `df["ban"] == "KHXH"`.
 26. Khi lọc tỉnh/thành theo tên người dùng nhập, ưu tiên `df["ten_tinh"].str.contains("TÊN TỈNH", case=False, na=False)` để tránh sai do tiền tố `TỈNH`/`THÀNH PHỐ` và khác biệt viết hoa.
+
+ĐỊNH DẠNG PHẢN HỒI:
+- Ưu tiên trả về đúng một JSON object thuần, không bọc trong Markdown/code fence.
+- Schema bắt buộc:
+  {
+    "answer_type": "code" hoặc "text",
+    "explanation": "Markdown ngắn để người dùng đọc trước khi duyệt",
+    "code": "Python code nếu answer_type=code, ngược lại để chuỗi rỗng",
+    "expected_output": "text" hoặc "table" hoặc "chart" hoặc "chart_table",
+    "warnings": ["cảnh báo ngắn nếu có"]
+  }
+- Nếu answer_type="text", không bịa số liệu định lượng từ data thật.
 """
 
 
-def generate_code_and_explanation(prompt: str, history: list[dict] | None = None) -> tuple[str, str]:
+def generate_code_and_explanation(prompt: str, history: list[dict] | None = None) -> dict[str, Any]:
     if not settings.openrouter_api_key:
-        return (
-            "",
-            "Không tìm thấy OpenRouter API Key. Vui lòng cấu hình `OPENROUTER_API_KEY` trong file `.env` ở thư mục gốc.",
+        return _generated_payload(
+            code="",
+            explanation="Không tìm thấy OpenRouter API Key. Vui lòng cấu hình `OPENROUTER_API_KEY` trong file `.env` ở thư mục gốc.",
+            answer_type="text",
+            expected_output="text",
         )
 
     try:
         text = _call_openrouter(
             messages=_build_generate_messages(prompt, history or []),
             temperature=0.2,
-            max_tokens=8192,
+            max_tokens=GENERATE_MAX_TOKENS,
         )
-        code, explanation = _extract_python_code(text)
+        parsed = _parse_generated_response(text, prompt)
+        code = parsed["code"]
+        explanation = parsed["explanation"]
         if not code:
-            return "", _sanitize_placeholder_text(text, prompt)
-        return code, _sanitize_placeholder_text(explanation, prompt)
+            parsed["answer_type"] = "text"
+            parsed["expected_output"] = "text"
+        return parsed
     except Exception as exc:
-        return "", _format_openrouter_error(exc)
+        return _generated_payload(
+            code="",
+            explanation=_format_openrouter_error(exc),
+            answer_type="text",
+            expected_output="text",
+        )
 
 
 def _build_generate_messages(prompt: str, history: list[dict]) -> list[dict[str, str]]:
@@ -90,6 +116,84 @@ def _extract_python_code(text: str) -> tuple[str, str]:
     code = code_match.group(1).strip()
     explanation = text.replace(code_match.group(0), "").strip()
     return code, explanation
+
+
+def _generated_payload(
+    code: str,
+    explanation: str,
+    answer_type: str = "code",
+    expected_output: str = "table",
+    warnings: list[str] | None = None,
+) -> dict[str, Any]:
+    return {
+        "answer_type": answer_type if answer_type in ANSWER_TYPE_VALUES else "code",
+        "explanation": explanation,
+        "code": code,
+        "expected_output": expected_output if expected_output in EXPECTED_OUTPUT_VALUES else "table",
+        "warnings": warnings or [],
+    }
+
+
+def _parse_generated_response(text: str, prompt: str) -> dict[str, Any]:
+    parsed_json = _parse_json_object(text)
+    if parsed_json:
+        code = str(parsed_json.get("code") or "").strip()
+        explanation = _sanitize_placeholder_text(str(parsed_json.get("explanation") or text), prompt)
+        return _generated_payload(
+            code=code,
+            explanation=explanation,
+            answer_type=str(parsed_json.get("answer_type") or ("code" if code else "text")),
+            expected_output=str(parsed_json.get("expected_output") or _infer_expected_output(code, explanation)),
+            warnings=_coerce_warning_list(parsed_json.get("warnings")),
+        )
+
+    code, explanation = _extract_python_code(text)
+    if not code:
+        return _generated_payload(
+            code="",
+            explanation=_sanitize_placeholder_text(text, prompt),
+            answer_type="text",
+            expected_output="text",
+        )
+
+    return _generated_payload(
+        code=code,
+        explanation=_sanitize_placeholder_text(explanation, prompt),
+        answer_type="code",
+        expected_output=_infer_expected_output(code, explanation),
+    )
+
+
+def _parse_json_object(text: str) -> dict[str, Any] | None:
+    cleaned = text.strip()
+    if cleaned.startswith("```"):
+        cleaned = re.sub(r"^```(?:json)?\s*", "", cleaned, flags=re.IGNORECASE)
+        cleaned = re.sub(r"\s*```$", "", cleaned)
+
+    try:
+        data = json.loads(cleaned)
+    except json.JSONDecodeError:
+        return None
+    return data if isinstance(data, dict) else None
+
+
+def _coerce_warning_list(value: Any) -> list[str]:
+    if not isinstance(value, list):
+        return []
+    return [str(item).strip() for item in value if str(item).strip()]
+
+
+def _infer_expected_output(code: str, explanation: str) -> str:
+    combined = f"{code}\n{explanation}".lower()
+    has_chart = any(token in combined for token in ["plt.", "sns.", "plot(", "hist(", "bar(", "scatter("])
+    has_table = "print_table" in combined or "|" in explanation or ".groupby(" in combined or ".agg(" in combined
+    if has_chart and has_table:
+        return "chart_table"
+    if has_chart:
+        return "chart"
+    if has_table:
+        return "table"
+    return "text"
 
 
 def _has_unresolved_placeholders(text: str) -> bool:
@@ -167,7 +271,7 @@ def generate_analysis_from_data(prompt: str, stdout: str) -> str:
         analysis = _call_openrouter(
             messages=_build_analysis_messages(prompt, stdout),
             temperature=0.3,
-            max_tokens=4096,
+            max_tokens=ANALYSIS_MAX_TOKENS,
         )
         return analysis.strip() or _fallback_analysis_from_stdout(prompt, stdout)
     except Exception:
@@ -315,5 +419,9 @@ def _format_openrouter_error(error: Exception) -> str:
         return "OpenRouter API đang bị giới hạn tốc độ hoặc hết quota." + retry_after
     if "401" in raw_error or "403" in raw_error or "unauthorized" in raw_error.lower():
         return "OpenRouter API key không hợp lệ hoặc không có quyền dùng model hiện tại."
+    if "402" in raw_error or "more credits" in raw_error.lower() or "fewer max_tokens" in raw_error.lower():
+        token_match = re.search(r"can only afford\s+(\d+)", raw_error, flags=re.IGNORECASE)
+        token_detail = f" Tài khoản hiện chỉ đủ khoảng {token_match.group(1)} token output cho request này." if token_match else ""
+        return "OpenRouter không đủ credit hoặc giới hạn token cho request hiện tại." + token_detail
 
     return "Không thể kết nối với OpenRouter API. Vui lòng kiểm tra API key, mạng, credit hoặc trạng thái model."
