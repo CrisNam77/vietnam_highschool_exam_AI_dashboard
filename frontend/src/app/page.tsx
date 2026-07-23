@@ -1,6 +1,6 @@
 'use client';
 /* eslint-disable @next/next/no-img-element */
-import { useState, useRef, useEffect, useCallback } from 'react';
+import { useState, useRef, useEffect, useCallback, useSyncExternalStore } from 'react';
 import type { ComponentPropsWithoutRef, CSSProperties, ReactNode } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
@@ -688,6 +688,7 @@ function ChatTab({
     if (messageIndex === undefined) setExecuting(true);
     else setRerunExecutingIndex(messageIndex);
     const exec = await callApi('POST', '/api/execute', {
+      approved: true,
       code,
       prompt,
       explanation,
@@ -1300,6 +1301,8 @@ function ApiTab() {
 // ── Main Page ─────────────────────────────────────────────
 type AssistantTab = 'chat' | 'history' | 'api';
 const CHAT_SESSIONS_KEY = 'examdata_ai_chat_sessions';
+const DASHBOARD_TABS: DashboardTab[] = ['overview', 'trends', 'distribution', 'regions'];
+const ASSISTANT_TABS: AssistantTab[] = ['chat', 'history', 'api'];
 const EMPTY_CHAT_SESSION: ChatSession = {
   id: 'chat-empty',
   title: 'Cuộc trò chuyện mới',
@@ -1371,15 +1374,79 @@ function loadChatSessions() {
   return [createChatSession()];
 }
 
+function parseViewState(search: string) {
+  const params = new URLSearchParams(search);
+  const dashboardParam = params.get('dashboard') as DashboardTab | null;
+  const assistantParam = params.get('assistant') as AssistantTab | null;
+
+  return {
+    dashboardTab: dashboardParam && DASHBOARD_TABS.includes(dashboardParam) ? dashboardParam : 'overview',
+    assistantOpen: Boolean(assistantParam && ASSISTANT_TABS.includes(assistantParam)),
+    activeTab: assistantParam && ASSISTANT_TABS.includes(assistantParam) ? assistantParam : 'chat',
+  };
+}
+
+function subscribeToUrlChanges(callback: () => void) {
+  window.addEventListener('popstate', callback);
+  window.addEventListener('examdata:urlchange', callback);
+  return () => {
+    window.removeEventListener('popstate', callback);
+    window.removeEventListener('examdata:urlchange', callback);
+  };
+}
+
+function getUrlSnapshot() {
+  return window.location.search;
+}
+
+function getServerUrlSnapshot() {
+  return '';
+}
+
+function updateViewUrl({
+  dashboardTab,
+  assistantOpen,
+  activeTab,
+}: {
+  dashboardTab: DashboardTab;
+  assistantOpen: boolean;
+  activeTab: AssistantTab;
+}) {
+  const params = new URLSearchParams();
+  if (assistantOpen) {
+    params.set('assistant', activeTab);
+  } else if (dashboardTab !== 'overview') {
+    params.set('dashboard', dashboardTab);
+  }
+
+  const query = params.toString();
+  const nextUrl = query ? `/?${query}` : '/';
+  if (window.location.pathname + window.location.search !== nextUrl) {
+    window.history.pushState(null, '', nextUrl);
+    window.dispatchEvent(new Event('examdata:urlchange'));
+  }
+}
+
 export default function Home() {
-  const [dashboardTab, setDashboardTab] = useState<DashboardTab>('overview');
-  const [assistantOpen, setAssistantOpen] = useState(false);
-  const [activeTab, setActiveTab] = useState<AssistantTab>('chat');
+  const urlSearch = useSyncExternalStore(subscribeToUrlChanges, getUrlSnapshot, getServerUrlSnapshot);
+  const { dashboardTab, assistantOpen, activeTab } = parseViewState(urlSearch);
   const [sessions, setSessions] = useState<ChatSession[]>([EMPTY_CHAT_SESSION]);
   const [activeSessionId, setActiveSessionId] = useState(EMPTY_CHAT_SESSION.id);
   const [sessionSearch, setSessionSearch] = useState('');
   const [sessionsHydrated, setSessionsHydrated] = useState(false);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+
+  const openDashboardTab = useCallback((tab: DashboardTab) => {
+    updateViewUrl({ dashboardTab: tab, assistantOpen: false, activeTab });
+  }, [activeTab]);
+
+  const openAssistantTab = useCallback((tab: AssistantTab) => {
+    updateViewUrl({ dashboardTab, assistantOpen: true, activeTab: tab });
+  }, [dashboardTab]);
+
+  const openDashboard = useCallback(() => {
+    updateViewUrl({ dashboardTab, assistantOpen: false, activeTab });
+  }, [activeTab, dashboardTab]);
 
   useEffect(() => {
     const timer = window.setTimeout(() => {
@@ -1404,9 +1471,8 @@ export default function Home() {
     const newSession = createChatSession();
     setSessions(prev => [newSession, ...prev.filter(session => session.messages.length > 0)]);
     setActiveSessionId(newSession.id);
-    setActiveTab('chat');
-    setAssistantOpen(true);
-  }, []);
+    openAssistantTab('chat');
+  }, [openAssistantTab]);
 
   const deleteSession = useCallback((sessionId: string) => {
     setSessions(prev => {
@@ -1414,19 +1480,19 @@ export default function Home() {
       const nextSessions = remaining.length > 0 ? remaining : [createChatSession()];
       if (activeSessionId === sessionId) {
         setActiveSessionId(nextSessions[0].id);
-        setActiveTab('chat');
+        openAssistantTab('chat');
       }
       return nextSessions;
     });
-  }, [activeSessionId]);
+  }, [activeSessionId, openAssistantTab]);
 
   const clearSessions = useCallback(() => {
     const newSession = createChatSession();
     setSessions([newSession]);
     setActiveSessionId(newSession.id);
     setSessionSearch('');
-    setActiveTab('chat');
-  }, []);
+    openAssistantTab('chat');
+  }, [openAssistantTab]);
 
   const updateActiveSession = useCallback((messages: Message[]) => {
     if (!activeSessionId) return;
@@ -1471,23 +1537,23 @@ export default function Home() {
           </div>
 
           <nav className="space-y-2">
-            <button onClick={() => setDashboardTab('overview')} className={`sidebar-nav-item ${dashboardTab === 'overview' ? 'sidebar-item-active text-white' : 'text-slate-400 hover:bg-white/5 hover:text-slate-200'}`}>
+            <button onClick={() => openDashboardTab('overview')} className={`sidebar-nav-item ${dashboardTab === 'overview' ? 'sidebar-item-active text-white' : 'text-slate-400 hover:bg-white/5 hover:text-slate-200'}`}>
               <SidebarIcon name="chart" />
               <span>Tổng quan</span>
             </button>
-            <button onClick={() => setDashboardTab('trends')} className={`sidebar-nav-item ${dashboardTab === 'trends' ? 'sidebar-item-active text-white' : 'text-slate-400 hover:bg-white/5 hover:text-slate-200'}`}>
+            <button onClick={() => openDashboardTab('trends')} className={`sidebar-nav-item ${dashboardTab === 'trends' ? 'sidebar-item-active text-white' : 'text-slate-400 hover:bg-white/5 hover:text-slate-200'}`}>
               <SidebarIcon name="distribution" />
               <span>Xu hướng & Môn học</span>
             </button>
-            <button onClick={() => setDashboardTab('distribution')} className={`sidebar-nav-item ${dashboardTab === 'distribution' ? 'sidebar-item-active text-white' : 'text-slate-400 hover:bg-white/5 hover:text-slate-200'}`}>
+            <button onClick={() => openDashboardTab('distribution')} className={`sidebar-nav-item ${dashboardTab === 'distribution' ? 'sidebar-item-active text-white' : 'text-slate-400 hover:bg-white/5 hover:text-slate-200'}`}>
               <SidebarIcon name="correlation" />
               <span>Phổ điểm & Tổ hợp</span>
             </button>
-            <button onClick={() => setDashboardTab('regions')} className={`sidebar-nav-item ${dashboardTab === 'regions' ? 'sidebar-item-active text-white' : 'text-slate-400 hover:bg-white/5 hover:text-slate-200'}`}>
+            <button onClick={() => openDashboardTab('regions')} className={`sidebar-nav-item ${dashboardTab === 'regions' ? 'sidebar-item-active text-white' : 'text-slate-400 hover:bg-white/5 hover:text-slate-200'}`}>
               <SidebarIcon name="map" />
               <span>Địa phương & Vùng miền</span>
             </button>
-            <button onClick={() => { setAssistantOpen(true); setActiveTab('chat'); }} className="sidebar-nav-item text-slate-400 hover:bg-white/5 hover:text-slate-200">
+            <button onClick={() => openAssistantTab('chat')} className="sidebar-nav-item text-slate-400 hover:bg-white/5 hover:text-slate-200">
               <SidebarIcon name="data" />
               <span>Trợ lý AI</span>
             </button>
@@ -1532,7 +1598,7 @@ export default function Home() {
         <nav className="space-y-2">
           <button
             aria-label="Back to dashboard"
-            onClick={() => setAssistantOpen(false)}
+            onClick={openDashboard}
             className={`flex w-full items-center justify-center gap-2 rounded-lg border border-white/15 bg-white/10 px-3 py-2.5 text-left text-[13px] font-semibold text-slate-100 shadow-sm transition-colors hover:bg-white/20 ${sidebarCollapsed ? 'mt-10 h-11 px-0' : ''}`}
           >
             <span className="text-base leading-none">←</span>
@@ -1551,15 +1617,15 @@ export default function Home() {
               className="w-full rounded-xl border border-white/15 bg-white/10 py-2.5 pl-10 pr-3 text-[12.5px] text-white outline-none transition-all placeholder:text-indigo-200/70 focus:border-white/40 focus:bg-white/15 focus:ring-2 focus:ring-white/10"
             />
           </div>}
-          <button aria-label="Chat" onClick={() => setActiveTab('chat')} className={`sidebar-nav-item ${sidebarCollapsed ? 'justify-center px-0' : ''} ${activeTab === 'chat' ? 'sidebar-item-active text-white' : 'text-slate-400 hover:bg-white/5 hover:text-slate-200'}`}>
+          <button aria-label="Chat" onClick={() => openAssistantTab('chat')} className={`sidebar-nav-item ${sidebarCollapsed ? 'justify-center px-0' : ''} ${activeTab === 'chat' ? 'sidebar-item-active text-white' : 'text-slate-400 hover:bg-white/5 hover:text-slate-200'}`}>
             <SidebarIcon name="data" />
             {!sidebarCollapsed && <span>Chat</span>}
           </button>
-          <button aria-label="History" onClick={() => setActiveTab('history')} className={`sidebar-nav-item ${sidebarCollapsed ? 'justify-center px-0' : ''} ${activeTab === 'history' ? 'sidebar-item-active text-white' : 'text-slate-400 hover:bg-white/5 hover:text-slate-200'}`}>
+          <button aria-label="History" onClick={() => openAssistantTab('history')} className={`sidebar-nav-item ${sidebarCollapsed ? 'justify-center px-0' : ''} ${activeTab === 'history' ? 'sidebar-item-active text-white' : 'text-slate-400 hover:bg-white/5 hover:text-slate-200'}`}>
             <SidebarIcon name="history" />
             {!sidebarCollapsed && <span>History</span>}
           </button>
-          <button aria-label="API" onClick={() => setActiveTab('api')} className={`sidebar-nav-item ${sidebarCollapsed ? 'justify-center px-0' : ''} ${activeTab === 'api' ? 'sidebar-item-active text-white' : 'text-slate-400 hover:bg-white/5 hover:text-slate-200'}`}>
+          <button aria-label="API" onClick={() => openAssistantTab('api')} className={`sidebar-nav-item ${sidebarCollapsed ? 'justify-center px-0' : ''} ${activeTab === 'api' ? 'sidebar-item-active text-white' : 'text-slate-400 hover:bg-white/5 hover:text-slate-200'}`}>
             <SidebarIcon name="api" />
             {!sidebarCollapsed && <span>API</span>}
           </button>
@@ -1601,7 +1667,7 @@ export default function Home() {
                         <SidebarIcon name="data" />
                         <div className="ml-2.5 min-w-0 flex-1">
                           <button
-                            onClick={() => { setActiveSessionId(session.id); setActiveTab('chat'); }}
+                            onClick={() => { setActiveSessionId(session.id); openAssistantTab('chat'); }}
                             className={`block w-full truncate text-left text-[12.5px] ${isActiveSession ? 'font-bold' : 'font-medium'}`}
                           >
                             {session.title}
@@ -1638,7 +1704,7 @@ export default function Home() {
                 </h1>
               </div>
               <button
-                onClick={() => setAssistantOpen(false)}
+                onClick={openDashboard}
                 className="rounded-lg border border-[#C7B7F5] bg-white px-3 py-2 text-sm font-bold text-[#594DA3] shadow-sm transition hover:bg-[#F3F0FF]"
               >
                 ← Về dashboard
