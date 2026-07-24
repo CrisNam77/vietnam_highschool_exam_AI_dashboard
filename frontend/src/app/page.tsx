@@ -1225,7 +1225,7 @@ function HistoryTab() {
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between gap-3 px-1">
-        <h2 className="text-base font-bold text-slate-950">History</h2>
+        <h2 className="text-base font-bold text-slate-950">Lịch sử</h2>
         {visibleLogs.length > 0 && (
           <button
             onClick={clearHistoryLogs}
@@ -1587,7 +1587,7 @@ export default function Home() {
               </div>
               <div>
                 <p className="text-sm font-bold tracking-tight text-white">ExamData AI</p>
-                <p className="mt-0.5 text-[9px] font-semibold uppercase tracking-[0.18em] text-indigo-300">Analytics</p>
+                <p className="mt-0.5 text-[9px] font-semibold uppercase tracking-[0.18em] text-indigo-300">Phân tích</p>
               </div>
             </div>
           </div>
@@ -1639,11 +1639,11 @@ export default function Home() {
             </div>
             <div className={sidebarCollapsed ? 'hidden' : ''}>
               <p className="text-sm font-bold tracking-tight text-white">ExamData AI</p>
-              <p className="mt-0.5 text-[9px] font-semibold uppercase tracking-[0.18em] text-indigo-300">Assistant</p>
+              <p className="mt-0.5 text-[9px] font-semibold uppercase tracking-[0.18em] text-indigo-300">Trợ lý</p>
             </div>
           </div>
           <button
-            aria-label={sidebarCollapsed ? 'Mở rộng sidebar' : 'Thu gọn sidebar'}
+            aria-label={sidebarCollapsed ? 'Mở rộng thanh bên' : 'Thu gọn thanh bên'}
             onClick={() => setSidebarCollapsed(prev => !prev)}
             className={`${sidebarCollapsed ? 'absolute left-1/2 top-16 -translate-x-1/2' : ''} flex h-8 w-8 items-center justify-center rounded-lg text-indigo-200 transition-colors hover:bg-white/10 hover:text-white`}
           >
@@ -1653,16 +1653,16 @@ export default function Home() {
 
         <nav className="space-y-2">
           <button
-            aria-label="Back to dashboard"
+            aria-label="Về bảng điều khiển"
             onClick={openDashboard}
             className={`flex w-full items-center justify-center gap-2 rounded-lg border border-white/15 bg-white/10 px-3 py-2.5 text-left text-[13px] font-semibold text-slate-100 shadow-sm transition-colors hover:bg-white/20 ${sidebarCollapsed ? 'mt-10 h-11 px-0' : ''}`}
           >
             <span className="text-base leading-none">←</span>
             {!sidebarCollapsed && <span>Dashboard</span>}
           </button>
-          <button aria-label="New chat" onClick={startNewChat} className={`flex w-full items-center justify-center gap-2 rounded-lg border border-white/15 bg-white px-3 py-2.5 text-left text-[13px] font-semibold text-[#00195A] shadow-sm transition-colors hover:bg-[#F3F0FF] ${sidebarCollapsed ? 'mt-10 h-11 px-0' : ''}`}>
+          <button aria-label="Cuộc trò chuyện mới" onClick={startNewChat} className={`flex w-full items-center justify-center gap-2 rounded-lg border border-white/15 bg-white px-3 py-2.5 text-left text-[13px] font-semibold text-[#00195A] shadow-sm transition-colors hover:bg-[#F3F0FF] ${sidebarCollapsed ? 'mt-10 h-11 px-0' : ''}`}>
             <SidebarIcon name="new" />
-            {!sidebarCollapsed && <span>New</span>}
+            {!sidebarCollapsed && <span>Cuộc trò chuyện mới</span>}
           </button>
           {!sidebarCollapsed && <div className="relative">
             <span className="absolute left-3 top-1/2 -translate-y-1/2 text-indigo-200"><SidebarIcon name="search" /></span>
@@ -1673,17 +1673,13 @@ export default function Home() {
               className="w-full rounded-xl border border-white/15 bg-white/10 py-2.5 pl-10 pr-3 text-[12.5px] text-white outline-none transition-all placeholder:text-indigo-200/70 focus:border-white/40 focus:bg-white/15 focus:ring-2 focus:ring-white/10"
             />
           </div>}
-          <button aria-label="Chat" onClick={() => openAssistantTab('chat')} className={`sidebar-nav-item ${sidebarCollapsed ? 'justify-center px-0' : ''} ${activeTab === 'chat' ? 'sidebar-item-active text-white' : 'text-slate-400 hover:bg-white/5 hover:text-slate-200'}`}>
+          <button aria-label="Trò chuyện" onClick={() => openAssistantTab('chat')} className={`sidebar-nav-item ${sidebarCollapsed ? 'justify-center px-0' : ''} ${activeTab === 'chat' ? 'sidebar-item-active text-white' : 'text-slate-400 hover:bg-white/5 hover:text-slate-200'}`}>
             <SidebarIcon name="data" />
-            {!sidebarCollapsed && <span>Chat</span>}
+            {!sidebarCollapsed && <span>Trò chuyện</span>}
           </button>
-          <button aria-label="History" onClick={() => openAssistantTab('history')} className={`sidebar-nav-item ${sidebarCollapsed ? 'justify-center px-0' : ''} ${activeTab === 'history' ? 'sidebar-item-active text-white' : 'text-slate-400 hover:bg-white/5 hover:text-slate-200'}`}>
+          <button aria-label="Lịch sử" onClick={() => openAssistantTab('history')} className={`sidebar-nav-item ${sidebarCollapsed ? 'justify-center px-0' : ''} ${activeTab === 'history' ? 'sidebar-item-active text-white' : 'text-slate-400 hover:bg-white/5 hover:text-slate-200'}`}>
             <SidebarIcon name="history" />
-            {!sidebarCollapsed && <span>History</span>}
-          </button>
-          <button aria-label="API" onClick={() => openAssistantTab('api')} className={`sidebar-nav-item ${sidebarCollapsed ? 'justify-center px-0' : ''} ${activeTab === 'api' ? 'sidebar-item-active text-white' : 'text-slate-400 hover:bg-white/5 hover:text-slate-200'}`}>
-            <SidebarIcon name="api" />
-            {!sidebarCollapsed && <span>API</span>}
+            {!sidebarCollapsed && <span>Lịch sử</span>}
           </button>
         </nav>
 
@@ -1753,7 +1749,7 @@ export default function Home() {
             <div className="flex items-center justify-between gap-3">
               <div>
                 <p className="text-xs font-bold uppercase tracking-[0.18em] text-slate-400">
-                  {activeTab === 'chat' ? 'Chat' : 'History'}
+                  {activeTab === 'chat' ? 'Trò chuyện' : 'Lịch sử'}
                 </p>
                 <h1 className="mt-1 text-xl font-extrabold tracking-tight text-[#071636] sm:text-2xl">
                   ExamData AI

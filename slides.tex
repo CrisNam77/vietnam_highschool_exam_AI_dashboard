@@ -1,0 +1,598 @@
+\documentclass[aspectratio=169,11pt]{beamer}
+
+% Vietnamese-compatible, pdfLaTeX-friendly setup
+\usepackage[utf8]{inputenc}
+\usepackage[T5]{fontenc}
+\usepackage[vietnamese]{babel}
+
+% Tables, figures, and diagrams
+\usepackage{graphicx}
+\usepackage{svg}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,shapes.geometric}
+
+% Theme and colors
+\definecolor{PrismNavy}{HTML}{123B5D}
+\definecolor{PrismBlue}{HTML}{1677B8}
+\definecolor{PrismCyan}{HTML}{28A7C7}
+\definecolor{PrismGold}{HTML}{E6A23C}
+\definecolor{PrismLight}{HTML}{EEF5F8}
+\definecolor{PrismText}{HTML}{22313F}
+\definecolor{PrismMuted}{HTML}{627482}
+
+\usetheme{default}
+\usefonttheme{professionalfonts}
+\setbeamercolor{normal text}{fg=PrismText,bg=white}
+\setbeamercolor{structure}{fg=PrismBlue}
+\setbeamercolor{frametitle}{fg=white,bg=PrismNavy}
+\setbeamercolor{title}{fg=PrismNavy}
+\setbeamercolor{subtitle}{fg=PrismBlue}
+\setbeamercolor{block title}{fg=white,bg=PrismBlue}
+\setbeamercolor{block body}{fg=PrismText,bg=PrismLight}
+\setbeamercolor{alerted text}{fg=PrismGold}
+\setbeamercolor{footline}{fg=white,bg=PrismNavy}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{itemize item}{\color{PrismCyan}$\blacktriangleright$}
+\setbeamertemplate{itemize subitem}{\color{PrismBlue}$\bullet$}
+\setbeamertemplate{enumerate item}{\color{PrismBlue}\insertenumlabel.}
+\setbeamertemplate{frametitle}{%
+  \nointerlineskip
+  \begin{beamercolorbox}[wd=\paperwidth,ht=0.82cm,dp=0.22cm,leftskip=0.55cm]{frametitle}
+    \usebeamerfont{frametitle}\insertframetitle
+  \end{beamercolorbox}
+}
+\setbeamertemplate{footline}{%
+  \begin{beamercolorbox}[wd=\paperwidth,ht=0.32cm,dp=0.13cm,leftskip=0.45cm,rightskip=0.45cm]{footline}
+    \scriptsize Nhóm 8 -- Phân tích điểm thi THPT
+    \hfill
+    \insertframenumber/\inserttotalframenumber
+  \end{beamercolorbox}
+}
+\setbeamersize{text margin left=0.55cm,text margin right=0.55cm}
+\setlength{\tabcolsep}{5pt}
+\renewcommand{\arraystretch}{1.12}
+\svgsetup{inkscapelatex=false}
+
+% Use the same image paths as the report. If an asset is temporarily absent,
+% keep the slide compilable and show its intended path as a placeholder.
+\newcommand{\MissingImage}[2][0.72\textheight]{%
+  \begin{tikzpicture}
+    \node[
+      draw=PrismBlue,dashed,rounded corners=3pt,
+      fill=PrismLight,minimum width=0.91\linewidth,
+      minimum height=#1,align=center,text=PrismMuted
+    ] {\Large Ảnh placeholder\\[0.25cm]\ttfamily\detokenize{#2}};
+  \end{tikzpicture}%
+}
+\newcommand{\ReportImage}[2][0.72\textheight]{%
+  \IfFileExists{#2}{\includegraphics[width=\linewidth,height=#1,keepaspectratio]{#2}}{\MissingImage[#1]{#2}}%
+}
+\newcommand{\ReportSVG}[2][0.72\textheight]{%
+  \IfFileExists{#2}{\includesvg[width=\linewidth,height=#1,keepaspectratio]{#2}}{\MissingImage[#1]{#2}}%
+}
+\newcommand{\Metric}[3]{%
+  \begin{beamercolorbox}[wd=0.29\linewidth,sep=0.18cm,center,rounded=true]{block body}
+    {\color{PrismBlue}\Large\bfseries #1}\par
+    {\scriptsize #2}\par
+    {\tiny\color{PrismMuted}#3}
+  \end{beamercolorbox}%
+}
+
+\title{Phân tích và trực quan hóa\\điểm thi tốt nghiệp THPT Việt Nam}
+\subtitle{Dashboard tương tác và AI Assistant có kiểm soát}
+\author{Nhóm 8}
+\institute{Khoa Công nghệ Thông tin\\Trường Đại học Khoa học Tự nhiên -- ĐHQG-HCM}
+\date{Tháng 7 năm 2026}
+
+\begin{document}
+
+\begin{frame}[plain]
+  \begin{columns}[c,onlytextwidth]
+    \begin{column}{0.25\textwidth}
+      \centering
+      \ReportImage[3.15cm]{figures/hcmus-logo.png}
+    \end{column}
+    \begin{column}{0.71\textwidth}
+      {\small\color{PrismMuted}BÁO CÁO ĐỒ ÁN -- TRỰC QUAN HÓA DỮ LIỆU}\par
+      \vspace{0.25cm}
+      {\LARGE\bfseries\color{PrismNavy}\inserttitle}\par
+      \vspace{0.18cm}
+      {\large\color{PrismBlue}\insertsubtitle}\par
+      \vspace{0.55cm}
+      {\normalsize\insertauthor}\par
+      {\small\color{PrismMuted}\insertinstitute}\par
+      \vspace{0.25cm}
+      {\small\insertdate}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Nhóm thực hiện}
+  \small
+  \begin{tabular}{@{}p{3.1cm}p{1.8cm}p{8.95cm}@{}}
+    \toprule
+    \textbf{Thành viên} & \textbf{MSSV} & \textbf{Phụ trách chính} \\
+    \midrule
+    Phạm Quốc Khánh & 23120283 & Thu thập và mô tả nguồn dữ liệu \\
+    Phạm Thành Nam & 23120301 & Khảo sát, tiền xử lý và chuẩn hóa dữ liệu \\
+    Trương Quang Phát & 23120318 & Dashboard frontend, tab Tổng quan và Xu hướng \\
+    Châu Huỳnh Phúc & 23120329 & Phổ điểm, tổ hợp, địa phương và vùng miền \\
+    Huỳnh Tấn Phước & 23120334 & AI Assistant, FastAPI, thực thi local và logs \\
+    \bottomrule
+  \end{tabular}
+\end{frame}
+
+\begin{frame}{Bài toán và mục tiêu}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Bài toán}
+        \begin{itemize}
+          \item Dữ liệu điểm thi có quy mô lớn và nhiều chiều phân tích.
+          \item Bảng dữ liệu thô khó bộc lộ xu hướng, phân bố và khác biệt địa lý.
+          \item CT2006 và CT2018 có cấu trúc môn học khác nhau.
+        \end{itemize}
+      \end{block}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Mục tiêu}
+        \begin{itemize}
+          \item Xây dựng dashboard rõ ràng, có bộ lọc và điều hướng.
+          \item Dẫn dắt từ tổng quan đến môn học, tổ hợp và địa phương.
+          \item Hỗ trợ hỏi dữ liệu bằng ngôn ngữ tự nhiên qua AI Assistant.
+        \end{itemize}
+      \end{block}
+    \end{column}
+  \end{columns}
+  \vspace{0.25cm}
+  \centering
+  \alert{Biến dữ liệu điểm thi thành một câu chuyện trực quan có thể khám phá và kiểm chứng.}
+\end{frame}
+
+\begin{frame}{Phạm vi và cấu trúc hệ thống}
+  \centering
+  \begin{tikzpicture}[
+    node distance=0.42cm,
+    box/.style={rounded corners=4pt,draw=PrismBlue,fill=PrismLight,
+      minimum width=3.25cm,minimum height=1.25cm,align=center,font=\small},
+    arr/.style={-{Latex[length=3mm]},very thick,draw=PrismCyan}
+  ]
+    \node[box] (raw) {Dữ liệu thô\\TXT/CSV/XLSX\\2022--2026};
+    \node[box,right=of raw] (etl) {Pipeline\\làm sạch, chuẩn hóa\\và tạo đặc trưng};
+    \node[box,right=of etl] (dash) {Dashboard\\5 góc nhìn\\tương tác};
+    \node[box,right=of dash] (ai) {AI Assistant\\sinh code, phê duyệt\\và thực thi local};
+    \draw[arr] (raw) -- (etl);
+    \draw[arr] (etl) -- (dash);
+    \draw[arr] (dash) -- (ai);
+  \end{tikzpicture}
+  \vspace{0.65cm}
+
+  \Metric{2022--2026}{Giai đoạn dữ liệu}{5 năm thi}
+  \hfill
+  \Metric{5.436.558}{Số bản ghi sau xử lý}{mỗi hàng là một thí sinh}
+  \hfill
+  \Metric{44}{Số biến}{định danh, địa lý, điểm, ngoại ngữ và tổ hợp}
+\end{frame}
+
+\begin{frame}{Nguồn và quy mô dữ liệu}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.55\textwidth}
+      \small
+      \begin{tabular}{@{}lr@{}}
+        \toprule
+        \textbf{Năm} & \textbf{Số hàng sau xử lý} \\
+        \midrule
+        2022 & 995.435 \\
+        2023 & 1.017.584 \\
+        2024 & 1.061.604 \\
+        2025 & 1.153.072 \\
+        2026 & 1.208.863 \\
+        \midrule
+        \textbf{Tổng} & \textbf{5.436.558} \\
+        \bottomrule
+      \end{tabular}
+    \end{column}
+    \begin{column}{0.41\textwidth}
+      \begin{block}{Đầu vào}
+        \small
+        \begin{itemize}
+          \item Các tệp điểm thi 2022--2026 được adapter hóa từ nguồn thô.
+          \item Mỗi bản ghi tương ứng một thí sinh.
+          \item Schema khác nhau theo năm và chương trình.
+        \end{itemize}
+      \end{block}
+      \begin{block}{Đầu ra}
+        \small
+        \texttt{data/processed/final\_data.csv}
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Pipeline tiền xử lý}
+  \small
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.32\textwidth}
+      \begin{block}{1. Chuẩn hóa}
+        \begin{itemize}
+          \item Đọc CSV/XLSX
+          \item Đồng nhất tên cột
+          \item Chuẩn hóa số báo danh
+          \item Chuyển điểm sang kiểu số
+        \end{itemize}
+      \end{block}
+    \end{column}
+    \begin{column}{0.32\textwidth}
+      \begin{block}{2. Làm sạch}
+        \begin{itemize}
+          \item Giữ điểm thiếu là \texttt{NaN}
+          \item Loại điểm ngoài $[0,10]$
+          \item Loại hàng không có điểm hợp lệ
+          \item Ánh xạ tỉnh và vùng miền
+        \end{itemize}
+      \end{block}
+    \end{column}
+    \begin{column}{0.32\textwidth}
+      \begin{block}{3. Tạo đặc trưng}
+        \begin{itemize}
+          \item Số môn và điểm trung bình
+          \item Điểm ngoại ngữ theo mã N1--N7
+          \item Ban/chương trình học
+          \item 12 tổ hợp xét tuyển
+        \end{itemize}
+      \end{block}
+    \end{column}
+  \end{columns}
+  \vspace{0.3cm}
+  \centering
+  \alert{Mục tiêu: một schema thống nhất, đủ tin cậy để mọi biểu đồ dùng chung.}
+\end{frame}
+
+\begin{frame}{Schema dữ liệu sau xử lý}
+  \small
+  \begin{tabular}{@{}p{3.1cm}p{11.5cm}@{}}
+    \toprule
+    \textbf{Nhóm biến} & \textbf{Các trường tiêu biểu} \\
+    \midrule
+    Định danh & \texttt{nam}, \texttt{chuong\_trinh}, \texttt{sbd} \\
+    Địa lý & \texttt{ma\_tinh}, \texttt{ten\_tinh}, \texttt{vung\_mien}, \texttt{vung\_3} \\
+    Điểm môn học & Toán, Ngữ văn, Ngoại ngữ, Vật lý, Hóa học, Sinh học, Lịch sử, Địa lý, GDCD, Tin học, Công nghệ, GDKTPL \\
+    Biến dẫn xuất & \texttt{so\_mon}, \texttt{diem\_tb}, \texttt{ban}, \texttt{ten\_ngoai\_ngu}, các cột điểm ngoại ngữ riêng \\
+    Điểm tổ hợp & \texttt{diem\_khoi\_a00} đến \texttt{diem\_khoi\_d15} cho 12 tổ hợp \\
+    \bottomrule
+  \end{tabular}
+  \vspace{0.45cm}
+  \begin{block}{Quy tắc quan trọng}
+    Điểm tổ hợp chỉ được tính khi thí sinh có đủ môn thành phần; các biểu đồ dùng tên cột canonical, ví dụ \texttt{ngu\_van}, \texttt{vat\_li}, \texttt{diem\_khoi\_a00}.
+  \end{block}
+\end{frame}
+
+\begin{frame}{Dashboard: năm góc nhìn liên kết}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.48\textwidth}
+      \begin{enumerate}
+        \item \textbf{Tổng quan}: KPI và bức tranh toàn quốc
+        \item \textbf{Xu hướng \& Môn học}: biến động theo thời gian
+        \item \textbf{Phổ điểm \& Tổ hợp}: hình dạng phân bố
+        \item \textbf{Địa phương \& Vùng miền}: xếp hạng và so sánh
+        \item \textbf{Trợ lý AI}: hỏi, sinh code và kiểm duyệt
+      \end{enumerate}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Bộ lọc dùng chung}
+        \begin{itemize}
+          \item Năm và chương trình
+          \item Môn học, chỉ số và tổ hợp
+          \item Vùng miền, tỉnh/thành phố
+          \item Số lượng phần tử Top-$N$
+        \end{itemize}
+      \end{block}
+    \end{column}
+  \end{columns}
+  \vfill
+  \centering
+  \alert{Luồng khám phá: Toàn quốc $\rightarrow$ xu hướng $\rightarrow$ phân bố $\rightarrow$ địa phương.}
+\end{frame}
+
+\begin{frame}{Tab Tổng quan}
+  \centering
+  \ReportImage[6.65cm]{figures/overview_tab.png}
+  \vspace{-0.12cm}
+
+  {\scriptsize\color{PrismMuted}KPI quy mô, điểm trung bình và xu hướng toàn quốc theo trạng thái lọc.}
+\end{frame}
+
+\begin{frame}{Tab Xu hướng \& Môn học}
+  \centering
+  \ReportImage[6.65cm]{figures/subject_trend_tab.png}
+  \vspace{-0.12cm}
+
+  {\scriptsize\color{PrismMuted}Biểu đồ đường và heatmap hỗ trợ so sánh môn học theo năm/chương trình.}
+\end{frame}
+
+\begin{frame}{Tab Phổ điểm \& Tổ hợp}
+  \centering
+  \ReportImage[6.65cm]{figures/distribution_tab.png}
+  \vspace{-0.12cm}
+
+  {\scriptsize\color{PrismMuted}Histogram, thống kê tóm tắt và so sánh các tổ hợp xét tuyển.}
+\end{frame}
+
+\begin{frame}{Tab Địa phương \& Vùng miền}
+  \centering
+  \ReportImage[6.65cm]{figures/region_tab.png}
+  \vspace{-0.12cm}
+
+  {\scriptsize\color{PrismMuted}Top/Bottom tỉnh, điểm vùng và heatmap vùng $\times$ môn học.}
+\end{frame}
+
+\begin{frame}{Câu hỏi 1: Điểm trung bình tăng do đâu?}
+  \begin{columns}[c,onlytextwidth]
+    \begin{column}{0.62\textwidth}
+      \centering
+      \ReportSVG[5.55cm]{figures/q1_national_average_ct2006.svg}
+    \end{column}
+    \begin{column}{0.35\textwidth}
+      \begin{block}{Phạm vi}
+        \small
+        \begin{itemize}
+          \item CT2006
+          \item Giai đoạn 2022--2024
+          \item So sánh toàn quốc với 9 môn
+        \end{itemize}
+      \end{block}
+      \centering
+      {\color{PrismBlue}\LARGE\bfseries 6,40 $\rightarrow$ 6,75}\par
+      \vspace{0.12cm}
+      {\small Tăng \textbf{0,35 điểm}}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Câu hỏi 1: Xu hướng theo từng môn}
+  \begin{columns}[c,onlytextwidth]
+    \begin{column}{0.67\textwidth}
+      \centering
+      \ReportSVG[5.65cm]{figures/q1_subject_trends_ct2006.svg}
+    \end{column}
+    \begin{column}{0.30\textwidth}
+      \small
+      \begin{itemize}
+        \item \textbf{Sinh học}: $+1,26$
+        \item \textbf{Ngữ văn}: $+0,72$
+        \item \textbf{Địa lý}: $+0,51$
+        \item Tiếng Anh: $+0,36$
+        \item Toán, Hóa, Lý: giảm nhẹ
+      \end{itemize}
+      \vspace{0.2cm}
+      \begin{beamercolorbox}[sep=0.18cm,rounded=true]{block body}
+        \centering \textbf{6/9 môn tăng}\par
+        \scriptsize nhưng mức tăng không đồng đều
+      \end{beamercolorbox}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Kết luận phân tích 1}
+  \begin{block}{Phát hiện chính}
+    Điểm trung bình toàn quốc tăng \textbf{không đồng nghĩa toàn bộ môn thi cùng cải thiện}. Xu hướng tăng chủ yếu tập trung ở \textbf{Sinh học, Ngữ văn và Địa lý}.
+  \end{block}
+  \vspace{0.3cm}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.48\textwidth}
+      \centering
+      {\color{PrismBlue}\Huge\bfseries 0,35}\par
+      Mức tăng toàn quốc
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \centering
+      {\color{PrismGold}\Huge\bfseries 1,31}\par
+      Khoảng cách giữa môn tăng nhiều nhất\par và môn giảm nhiều nhất
+    \end{column}
+  \end{columns}
+  \vfill
+  \centering
+  \alert{Cần luôn đặt chỉ số tổng hợp cạnh chuỗi điểm của từng môn.}
+\end{frame}
+
+\begin{frame}{Câu hỏi 2: Mặt bằng vùng hay cực trị địa phương?}
+  \begin{columns}[c,onlytextwidth]
+    \begin{column}{0.68\textwidth}
+      \centering
+      \ReportSVG[5.7cm]{figures/q2_region_snapshot_2026.svg}
+    \end{column}
+    \begin{column}{0.29\textwidth}
+      \begin{block}{Trạng thái lọc}
+        \small
+        \begin{itemize}
+          \item Năm 2026
+          \item Môn Tổng hợp
+          \item Phạm vi Toàn quốc
+          \item Top 10 tỉnh/thành
+        \end{itemize}
+      \end{block}
+      \small
+      Đồng bằng sông Hồng dẫn đầu với khoảng \textbf{6,15 điểm}.
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Câu hỏi 2: Kiểm tra độ phân hóa nội vùng}
+  \begin{columns}[c,onlytextwidth]
+    \begin{column}{0.68\textwidth}
+      \centering
+      \ReportSVG[5.7cm]{figures/q2_bottom_region_snapshot_2026.svg}
+    \end{column}
+    \begin{column}{0.29\textwidth}
+      \small
+      \begin{itemize}
+        \item ĐBSH: khoảng cách nội vùng \textbf{0,48}
+        \item Trung du \& MNPB: \textbf{0,93}
+        \item Bắc Trung Bộ \& DHMT: \textbf{0,61}
+      \end{itemize}
+      \vspace{0.2cm}
+      \begin{beamercolorbox}[sep=0.18cm,rounded=true]{block body}
+        Chênh lệch nội vùng lớn nhất gần \textbf{gấp đôi} chênh lệch giữa vùng cao nhất và thấp nhất.
+      \end{beamercolorbox}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Kết luận phân tích 2}
+  \begin{block}{Phát hiện chính}
+    Chênh lệch vùng miền \textbf{không được tạo ra bởi mọi địa phương theo cùng một mức độ}. Điểm trung bình vùng có thể che khuất sự phân hóa lớn giữa các tỉnh trong cùng vùng.
+  \end{block}
+  \vspace{0.35cm}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.31\textwidth}
+      \centering
+      {\color{PrismBlue}\Large\bfseries Mặt bằng vùng}\par
+      \small Xác định vị trí tương đối
+    \end{column}
+    \begin{column}{0.31\textwidth}
+      \centering
+      {\color{PrismCyan}\Large\bfseries Top/Bottom tỉnh}\par
+      \small Nhận diện các cực trị
+    \end{column}
+    \begin{column}{0.31\textwidth}
+      \centering
+      {\color{PrismGold}\Large\bfseries Khoảng cách nội vùng}\par
+      \small Đánh giá mức độ đồng đều
+    \end{column}
+  \end{columns}
+  \vfill
+  \centering
+  \alert{Ba lớp thông tin cần được đọc đồng thời khi so sánh địa lý.}
+\end{frame}
+
+\begin{frame}{Kiến trúc AI Assistant}
+  \begin{columns}[c,onlytextwidth]
+    \begin{column}{0.69\textwidth}
+      \centering
+      \ReportImage[5.8cm]{figures/system_architecture.png}
+    \end{column}
+    \begin{column}{0.28\textwidth}
+      \small
+      \begin{itemize}
+        \item Frontend nhận câu hỏi
+        \item AI API sinh code và giải thích
+        \item Execution API validate và chạy local
+        \item Attachments API phân tích file đính kèm
+        \item Logs/Report API lưu và tổng hợp lịch sử
+      \end{itemize}
+      \vspace{0.2cm}
+      \begin{beamercolorbox}[sep=0.18cm,rounded=true]{block body}
+        \centering \textbf{Sinh code và thực thi là hai bước tách biệt.}
+      \end{beamercolorbox}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{AI Assistant: từ câu hỏi đến code đề xuất}
+  \begin{columns}[c,onlytextwidth]
+    \begin{column}{0.68\textwidth}
+      \centering
+      \ReportImage[5.8cm]{figures/ai_assistant_tab.png}
+    \end{column}
+    \begin{column}{0.29\textwidth}
+      \small
+      \begin{enumerate}
+        \item Người dùng nhập câu hỏi hoặc đính kèm file.
+        \item AI sinh code, giải thích và cảnh báo nếu có.
+        \item Code ở trạng thái chờ kiểm tra.
+      \end{enumerate}
+      \vspace{0.25cm}
+      \alert{Không có thực thi ngầm.}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{AI Assistant: phê duyệt và thực thi local}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.49\textwidth}
+      \centering
+      \ReportImage[4.65cm]{figures/ai_code_review.png}
+      \par\scriptsize\color{PrismMuted}Người dùng xem, chỉnh sửa, từ chối hoặc phê duyệt code.
+    \end{column}
+    \begin{column}{0.49\textwidth}
+      \centering
+      \ReportImage[4.65cm]{figures/ai_execution_result.png}
+      \par\scriptsize\color{PrismMuted}Chỉ phiên bản đã phê duyệt mới được chạy cục bộ.
+    \end{column}
+  \end{columns}
+  \vfill
+  \centering
+  \alert{JSON logs lưu yêu cầu, code ban đầu, code cuối, kết quả, lỗi và ảnh biểu đồ để truy vết.}
+\end{frame}
+
+\begin{frame}{Đánh giá theo yêu cầu môn học}
+  \small
+  \begin{tabular}{@{}p{11.8cm}>{\centering\arraybackslash}p{2cm}@{}}
+    \toprule
+    \textbf{Tiêu chí} & \textbf{Trạng thái} \\
+    \midrule
+    Dữ liệu thực tế liên quan đến Việt Nam & \color{PrismBlue}\textbf{Đạt} \\
+    Dữ liệu trên 2.000 hàng và có ít nhất 7 biến & \color{PrismBlue}\textbf{Đạt} \\
+    Ứng dụng trực quan hóa dựa trên dashboard & \color{PrismBlue}\textbf{Đạt} \\
+    Có bộ lọc tương tác và điều hướng & \color{PrismBlue}\textbf{Đạt} \\
+    Có câu chuyện phân tích trực quan & \color{PrismBlue}\textbf{Đạt} \\
+    Có tích hợp AI với cơ chế kiểm soát & \color{PrismBlue}\textbf{Đạt} \\
+    \bottomrule
+  \end{tabular}
+  \vspace{0.4cm}
+  \begin{beamercolorbox}[sep=0.2cm,rounded=true]{block body}
+    Trạng thái cần được đối chiếu lần cuối với phiên bản dashboard và minh chứng nộp chính thức.
+  \end{beamercolorbox}
+\end{frame}
+
+\begin{frame}{Hạn chế và hướng phát triển}
+  \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Hạn chế}
+        \small
+        \begin{itemize}
+          \item Khác biệt CT2006 và CT2018.
+          \item Ánh xạ địa phương sau sáp nhập.
+        \item Tệp dữ liệu cuối khoảng 785 MB và không commit lên git.
+          \item Kết quả AI vẫn có thể sai logic.
+        \end{itemize}
+      \end{block}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Hướng phát triển}
+        \small
+        \begin{itemize}
+          \item Hoàn thiện API dữ liệu tổng hợp theo bộ lọc.
+          \item Chuyển logs từ JSON sang SQLite/Prisma khi cần.
+          \item Trực quan hóa bản đồ địa lý.
+          \item Mẫu câu hỏi AI và kiểm thử tự động.
+          \item Xuất dữ liệu và báo cáo.
+        \end{itemize}
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Kết luận}
+  \begin{columns}[c,onlytextwidth]
+    \begin{column}{0.25\textwidth}
+      \centering
+      \ReportImage[2.65cm]{figures/hcmus-logo.png}
+    \end{column}
+    \begin{column}{0.70\textwidth}
+      \begin{itemize}
+        \item Hợp nhất \textbf{5,44 triệu} bản ghi điểm thi giai đoạn 2022--2026.
+        \item Xây dựng dashboard gồm tổng quan, xu hướng, phân bố và địa lý.
+        \item Hai phân tích cho thấy chỉ số tổng hợp có thể che khuất khác biệt ở cấp môn và địa phương.
+        \item AI Assistant mở rộng khả năng khám phá dữ liệu nhưng giữ quyền kiểm soát ở người dùng.
+      \end{itemize}
+      \vspace{0.45cm}
+      {\Large\bfseries\color{PrismNavy}Xin cảm ơn!}\par
+      \vspace{0.12cm}
+      {\color{PrismBlue}Q\&A}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\end{document}
