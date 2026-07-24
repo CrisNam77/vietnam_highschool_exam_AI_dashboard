@@ -36,14 +36,21 @@ REGION6_ORDER = [
 YEAR_ORDER = [2022, 2023, 2024, 2025, 2026]
 
 def load_data(path):
-    df = pd.read_csv(
-        path,
-        dtype={
-            "sbd": str, "ma_tinh": str, "ma_ngoai_ngu": str,
-            "chuong_trinh": str, "ban": str,
-        },
-    )
+    path_str = str(path)
+    if path_str.endswith(".parquet"):
+        df = pd.read_parquet(path)
+    else:
+        df = pd.read_csv(
+            path,
+            dtype={
+                "sbd": str, "ma_tinh": str, "ma_ngoai_ngu": str,
+                "chuong_trinh": str, "ban": str,
+            },
+        )
     # "NA" trong CSV bị đọc thành NaN -> khôi phục thành chuỗi "NA" (không thi NN)
+    if getattr(df["ma_ngoai_ngu"].dtype, "name", "") == "category":
+        if "NA" not in df["ma_ngoai_ngu"].cat.categories:
+            df["ma_ngoai_ngu"] = df["ma_ngoai_ngu"].cat.add_categories(["NA"])
     df["ma_ngoai_ngu"] = df["ma_ngoai_ngu"].fillna("NA")
     # 13 cột điểm: ô trống -> NaN (không thi), ép float32 cho nhẹ + tính toán đúng
     df[SUBJECT_COLS] = df[SUBJECT_COLS].astype("float32")

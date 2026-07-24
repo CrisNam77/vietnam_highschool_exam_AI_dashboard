@@ -18,12 +18,23 @@ _df_cache = None
 def _get_dataframe():
     global _df_cache
     if _df_cache is None:
-        data_path = Path(settings.data_path)
-        if not data_path.exists():
-            raise HTTPException(
-                status_code=500,
-                detail=f"Không tìm thấy file {data_path}. Vui lòng chuẩn bị dữ liệu processed trước.",
-            )
+        if settings.hf_dataset_repo:
+            try:
+                from huggingface_hub import hf_hub_download
+                file_path = hf_hub_download(repo_id=settings.hf_dataset_repo, repo_type="dataset", filename="final_data.parquet")
+                data_path = Path(file_path)
+            except Exception as e:
+                raise HTTPException(
+                    status_code=500,
+                    detail=f"Lỗi tải dữ liệu từ Hugging Face: {e}"
+                )
+        else:
+            data_path = Path(settings.data_path)
+            if not data_path.exists():
+                raise HTTPException(
+                    status_code=500,
+                    detail=f"Không tìm thấy file {data_path}. Vui lòng chuẩn bị dữ liệu processed trước.",
+                )
         _df_cache = load_data(data_path)
     return _df_cache
 

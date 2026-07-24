@@ -2,20 +2,27 @@ import json
 from datetime import datetime
 from pathlib import Path
 
+from backend.app.core.config import settings
 
-LOG_FILE = Path("data/logs/interaction_history.json")
+def _get_log_file() -> Path:
+    return Path(settings.log_path)
 
 
 def init_log_file() -> None:
-    LOG_FILE.parent.mkdir(parents=True, exist_ok=True)
-    if not LOG_FILE.exists():
-        LOG_FILE.write_text("[]", encoding="utf-8")
+    try:
+        log_file = _get_log_file()
+        log_file.parent.mkdir(parents=True, exist_ok=True)
+        if not log_file.exists():
+            log_file.write_text("[]", encoding="utf-8")
+    except Exception as e:
+        import sys
+        print(f"Warning: Failed to init log file: {e}", file=sys.stderr)
 
 
 def load_logs() -> list[dict]:
     init_log_file()
     try:
-        return json.loads(LOG_FILE.read_text(encoding="utf-8-sig"))
+        return json.loads(_get_log_file().read_text(encoding="utf-8-sig"))
     except Exception:
         return []
 
@@ -23,9 +30,11 @@ def load_logs() -> list[dict]:
 def save_logs(logs: list[dict]) -> bool:
     init_log_file()
     try:
-        LOG_FILE.write_text(json.dumps(logs, ensure_ascii=False, indent=4), encoding="utf-8")
+        _get_log_file().write_text(json.dumps(logs, ensure_ascii=False, indent=4), encoding="utf-8")
         return True
-    except Exception:
+    except Exception as e:
+        import sys
+        print(f"Warning: Failed to save logs: {e}", file=sys.stderr)
         return False
 
 

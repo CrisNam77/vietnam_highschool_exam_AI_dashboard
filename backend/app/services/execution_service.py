@@ -13,6 +13,7 @@ import pandas as pd
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import seaborn as sns
+from sklearn.linear_model import LinearRegression
 
 import src.viz as viz
 
@@ -172,25 +173,6 @@ pd.options.mode.copy_on_write = True
 PLACEHOLDER_PATTERN = re.compile(r"\{[a-zA-Z_][a-zA-Z0-9_]*(?:\[[^\]]+\])?(?::[^}]*)?\}")
 
 
-class LinearRegression:
-    """Fallback nhỏ cho các đoạn code AI lỡ dùng sklearn LinearRegression."""
-
-    def fit(self, x, y):
-        x_array = np.asarray(x, dtype=float)
-        y_array = np.asarray(y, dtype=float).reshape(-1)
-        if x_array.ndim == 1:
-            x_array = x_array.reshape(-1, 1)
-        design = np.column_stack([np.ones(len(x_array)), x_array])
-        params, *_ = np.linalg.lstsq(design, y_array, rcond=None)
-        self.intercept_ = float(params[0])
-        self.coef_ = params[1:]
-        return self
-
-    def predict(self, x):
-        x_array = np.asarray(x, dtype=float)
-        if x_array.ndim == 1:
-            x_array = x_array.reshape(-1, 1)
-        return self.intercept_ + x_array @ self.coef_
 
 
 def normalize_column_aliases(code: str) -> str:
@@ -202,15 +184,6 @@ def normalize_column_aliases(code: str) -> str:
             normalized,
         )
     return normalized
-
-
-def normalize_unsupported_imports(code: str) -> str:
-    return re.sub(
-        r"^\s*from\s+sklearn\.linear_model\s+import\s+LinearRegression\s*$",
-        "# LinearRegression fallback is provided by the execution environment",
-        code,
-        flags=re.MULTILINE,
-    )
 
 
 def normalize_sbd_modulo(code: str) -> str:
@@ -269,7 +242,6 @@ def normalize_province_filters(code: str) -> str:
 
 CODE_NORMALIZERS: tuple[Callable[[str], str], ...] = (
     normalize_column_aliases,
-    normalize_unsupported_imports,
     normalize_sbd_modulo,
     normalize_region_filters,
     normalize_track_filters,
@@ -479,11 +451,21 @@ def _captured_output() -> Iterator[tuple[io.StringIO, io.StringIO]]:
         sys.stderr = old_stderr
 
 
+import concurrent.futures
+from backend.app.core.config import settings
+
 def _run_user_code(code: str, exec_globals: dict) -> tuple[bool, str, str]:
     success = True
     with _captured_output() as (stdout_buffer, stderr_buffer):
-        try:
+        def _execute():
             exec(code, exec_globals)
+        try:
+            with concurrent.futures.ThreadPoolExecutor(max_workers=1) as executor:
+                future = executor.submit(_execute)
+                future.result(timeout=settings.execution_timeout)
+        except concurrent.futures.TimeoutError:
+            success = False
+            print(f"Code chạy quá {settings.execution_timeout} giây, đã dừng", file=stderr_buffer)
         except Exception:
             success = False
             traceback.print_exc(file=stderr_buffer)

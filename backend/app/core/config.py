@@ -9,13 +9,18 @@ class Settings(BaseSettings):
     app_name: str = "vietnam-highschool-exam-ai-dashboard"
     app_env: str = "local"
     data_path: str = "data/processed/final_data.csv"
+    log_path: str = "data/logs/interaction_history.json"
     sqlite_db_path: str = "database/app.db"
     ai_provider: str = ""
     openai_api_key: str = ""
     gemini_api_key: str = ""
     openrouter_api_key: str = ""
     openrouter_model: str = "openai/gpt-4.1-mini"
+    openrouter_models: str = ""
     openrouter_url: str = "https://openrouter.ai/api/v1/chat/completions"
+    execution_timeout: int = 30
+    allowed_origins: str = "http://localhost:3000,http://127.0.0.1:3000"
+    hf_dataset_repo: str = ""
 
     if BaseSettings is not object:
         model_config = SettingsConfigDict(

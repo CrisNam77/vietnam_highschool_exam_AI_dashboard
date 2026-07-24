@@ -398,27 +398,45 @@ def _correlation_strength(value: float | None) -> str:
     return f"{level}, {direction}"
 
 
-def _call_openrouter(messages: list[dict[str, Any]], temperature: float, max_tokens: int) -> str:
-    try:
-        with urllib.request.urlopen(_openrouter_request(messages, temperature, max_tokens), timeout=90) as response:
-            data = json.loads(response.read().decode("utf-8"))
-    except urllib.error.HTTPError as exc:
-        detail = exc.read().decode("utf-8", errors="replace")
-        raise RuntimeError(f"OpenRouter HTTP {exc.code}: {detail}") from exc
+import sys
 
-    try:
-        return data["choices"][0]["message"]["content"].strip()
-    except (KeyError, IndexError, TypeError) as exc:
-        raise RuntimeError("OpenRouter trả về response không hợp lệ.") from exc
+def _call_openrouter(messages: list[dict[str, Any]], temperature: float, max_tokens: int) -> str:
+    models_str = settings.openrouter_models
+    models = [m.strip() for m in models_str.split(",") if m.strip()] if models_str else []
+    if not models:
+        models = [settings.openrouter_model]
+        
+    last_error = None
+    for model in models:
+        try:
+            with urllib.request.urlopen(_openrouter_request(model, messages, temperature, max_tokens), timeout=90) as response:
+                data = json.loads(response.read().decode("utf-8"))
+            try:
+                return data["choices"][0]["message"]["content"].strip()
+            except (KeyError, IndexError, TypeError) as exc:
+                raise RuntimeError("OpenRouter trả về response không hợp lệ.") from exc
+        except urllib.error.HTTPError as exc:
+            if exc.code in (404, 429):
+                print(f"Warning: Model {model} failed with HTTP {exc.code}, trying next...", file=sys.stderr)
+                last_error = exc
+                continue
+            detail = exc.read().decode("utf-8", errors="replace")
+            raise RuntimeError(f"OpenRouter HTTP {exc.code}: {detail}") from exc
+
+    if last_error:
+        detail = last_error.read().decode("utf-8", errors="replace")
+        raise RuntimeError(f"OpenRouter HTTP {last_error.code}: {detail}") from last_error
+    raise RuntimeError("No models configured.")
 
 
 def _openrouter_request(
+    model: str,
     messages: list[dict[str, Any]],
     temperature: float,
     max_tokens: int,
 ) -> urllib.request.Request:
     payload = {
-        "model": settings.openrouter_model,
+        "model": model,
         "messages": messages,
         "temperature": temperature,
         "max_tokens": max_tokens,
