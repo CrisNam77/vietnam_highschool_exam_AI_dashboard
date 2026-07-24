@@ -1,3 +1,13 @@
+---
+title: THPT Exam AI Backend
+emoji: 📊
+colorFrom: blue
+colorTo: indigo
+sdk: docker
+app_port: 7860
+pinned: false
+---
+
 # vietnam_highschool_exam_AI_dashboard
 
 Dashboard phân tích và trực quan hóa điểm thi tốt nghiệp THPT Việt Nam giai đoạn 2022-2026, dùng Next.js làm frontend duy nhất, FastAPI làm backend và Python cho data pipeline.
